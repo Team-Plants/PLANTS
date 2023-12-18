@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://sp-taskify-api.vercel.app/2-8/';
+export const BASE_URL = 'https://sp-taskify-api.vercel.app/2-5/';
