@@ -1,5 +1,5 @@
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-//import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
 
 function ReactQueryProviders({ children }: React.PropsWithChildren) {
@@ -18,7 +18,7 @@ function ReactQueryProviders({ children }: React.PropsWithChildren) {
   return (
     <QueryClientProvider client={client}>
       {children}
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
