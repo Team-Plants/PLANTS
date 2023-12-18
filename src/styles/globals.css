@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 10px;  
+}
+
+body {
+  margin: 0px;
+  font-family: 'Pretendard';
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
