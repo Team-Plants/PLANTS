@@ -1,0 +1,55 @@
+name: "🐛 Bug Report"
+description: '버그 템플릿'
+title: "🐛 [BUG] - <title>"
+labels: [
+  "bug"
+]
+body:
+  - type: textarea
+    attributes:
+      label: 👀 버그 설명
+      description: 문제가 일어난 명확한 설명 부탁드립니다.
+      value: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+      render: bash
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: ⎙ 스크린샷
+      description: 스크린샷으로 보여주세요.
+      value: |
+        ![DESCRIPTION](LINK.png)
+      render: bash
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: 🧾 로그
+      description: 로그가 있으면 복붙해 주세요.
+      render: shell
+    validations:
+      required: false
+  - type: dropdown
+    id: browsers
+    attributes:
+      label: "Browsers"
+      description: What browsers are you seeing the problem on ?
+      options:
+        - Chrome
+        - Safari
+    validations:
+      required: false
+  - type: dropdown
+    id: os
+    attributes:
+      label: "OS"
+      description: What is the impacted environment ?
+      options:
+        - Windows
+        - Mac
+    validations:
+      required: false
