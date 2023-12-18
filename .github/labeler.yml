@@ -1,0 +1,6 @@
+style:
+  - 'src/styles/*'
+  - 'src/styles/**/*'
+
+docs:
+  - '*.md'
