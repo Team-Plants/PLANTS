@@ -3,10 +3,10 @@ export const ERROR_EMAIL_EXIST = '이미 사용중인 이메일입니다.';
 export const ERROR_EMAIL_EMPTY = '이메일을 입력해 주세요.';
 
 export const ERROR_PASSWORD_CHECK = '비밀번호가 일치하지 않습니다.';
-export const ERROR_PASSWORD_VALIDATION = '8자 이상 작성해 주세요.';
+export const ERROR_PASSWORD_VALIDATION = '8자 이상 입력해 주세요.';
 export const ERROR_PASSWORD_EMPTY = '비밀번호를 입력해 주세요.';
 
-export const ERROR_SECOND_PASSWORD_EMPTY = '비밀번호 확인란을 입력해 주세요.';
+export const ERROR_PASSWORD_SECOND_EMPTY = '비밀번호를 한번 더 입력해 주세요.';
 
 export const ERROR_NICKNAME_CHECK = '열 자 이하로 작성해 주세요.';
 export const ERROR_NICKNAME_EMPTY = '닉네임을 입력해 주세요.';
