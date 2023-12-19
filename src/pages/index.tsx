@@ -20,9 +20,11 @@ export default function Home() {
           <p className={S.serviceDescription}>서비스에 대한 설명</p>
           {/* <button></button> */}
         </div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <div className={S.pointContainer}>
+          <div className={S.point}>1</div>
+          <div className={S.point}>2</div>
+          <div></div>
+        </div>
       </main>
       <footer></footer>
     </>
