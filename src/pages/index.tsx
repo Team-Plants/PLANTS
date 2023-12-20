@@ -3,6 +3,8 @@ import S from './index.module.css';
 import Image from 'next/image';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
+import HomeImg3 from '@/assets/images/Home3.png';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
@@ -26,7 +28,7 @@ export default function Home() {
             <div className={S.pointHeader}>
               <p className={S.pointH1}>Point 1</p>
               <p className={S.pointDescription}>
-                일의 <span className={S.pointDescriptionSpan}>우선순위를</span>{' '}
+                일의 <span className={S.pointDescriptionSpan}>우선순위를</span>
                 <br />
                 관리하세요
               </p>
@@ -35,7 +37,19 @@ export default function Home() {
               <Image className={S.pointImg1} src={HomeImg2} alt="홈이미지2" />
             </div>
           </div>
-          <div className={S.point}>2</div>
+          <div className={S.point2}>
+            <div className={S.pointHeader2}>
+              <p className={S.pointH1}>Point 2</p>
+              <p className={S.pointDescription}>
+                해야 할 일을
+                <br />
+                등록하세요
+              </p>
+            </div>
+            <div className={S.pointImgContainer2}>
+              <Image className={S.pointImg2} src={HomeImg3} alt="홈이미지3" />
+            </div>
+          </div>
           <div></div>
         </div>
       </div>

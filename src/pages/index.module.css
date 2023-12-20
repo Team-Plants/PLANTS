@@ -196,3 +196,50 @@
   max-width: 594px;
   max-height: 497px;
 }
+
+.point2 {
+  background: var(--gray-80);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 35px 0;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    margin: 45px 0;
+  }
+  @media (min-width: 1200px) {
+    margin: 55px 0;
+    flex-direction: row-reverse;
+  }
+}
+
+.pointHeader2 {
+  text-align: center;
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding-left: 60px;
+  }
+  @media (min-width: 1200px) {
+    padding-right: 250px;
+  }
+}
+
+.pointImgContainer2 {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  @media (min-width: 1200px) {
+    padding-top: 100px;
+  }
+}
+
+.pointImg2 {
+  width: 58vw;
+  height: 64vw;
+  max-width: 436px;
+  max-height: 502px;
+}
