@@ -1,11 +1,15 @@
 import S from './index.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
 import HomeImg3 from '@/assets/images/Home3.png';
 import HomeImg4 from '@/assets/images/Home4.png';
 import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
+import EmailImg from '@/assets/icons/Email.svg';
+import FacebookImg from '@/assets/icons/Facebook.svg';
+import InstagramImg from '@/assets/icons/Instagram.svg';
 
 export default function Home() {
   return (
@@ -100,7 +104,34 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <footer></footer>
+      <footer className={S.footer}>
+        <div>©codeit - 2023</div>
+        <div className={S.footerGap}>
+          <div>Privacy Policy</div>
+          <div>FAQ</div>
+        </div>
+        <div className={S.linkList}>
+          <Link href="https://mail.google.com">
+            <Image src={EmailImg} alt="이메일이미지" width={17} height={17} />
+          </Link>
+          <Link href="https://www.facebook.com">
+            <Image
+              src={FacebookImg}
+              alt="페이스북이미지"
+              width={17}
+              height={17}
+            />
+          </Link>
+          <Link href="https://www.instagram.com">
+            <Image
+              src={InstagramImg}
+              alt="인스타그램이미지"
+              width={17}
+              height={17}
+            />
+          </Link>
+        </div>
+      </footer>
     </>
   );
 }
