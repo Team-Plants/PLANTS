@@ -1,0 +1,73 @@
+name: 'Daily Scrum'
+description: '데일리 스크럼'
+title: '🗯️ 몇월 며칠'
+body:
+  - type: markdown
+    attributes:
+      label: 💁🏻‍♂️ 김윤후
+      value: |
+      - 오늘의 컨디션 :
+      - 어제 진행했거나 완료한 작업 :
+      - 오늘 진행할 작업 :
+      - 막혔던 부분 :
+      - 도움이 필요한 부분 :
+      - TMI :
+      render: bash
+      validations:
+        required: true
+
+  - type: markdown
+    attributes:
+      label: 💁🏻‍♂️ 송민혁
+      value: |
+      - 오늘의 컨디션 :
+      - 어제 진행했거나 완료한 작업 :
+      - 오늘 진행할 작업 :
+      - 막혔던 부분 :
+      - 도움이 필요한 부분 :
+      - TMI :
+      render: bash
+      validations:
+        required: true
+        
+  - type: markdown
+    attributes:
+      label: 💁🏻‍♀️ 안혜정
+      value: |
+      - 오늘의 컨디션 :
+      - 어제 진행했거나 완료한 작업 :
+      - 오늘 진행할 작업 :
+      - 막혔던 부분 :
+      - 도움이 필요한 부분 :
+      - TMI :
+      render: bash
+      validations:
+        required: true
+
+  - type: markdown
+    attributes:
+      label: 💁🏻‍♀️ 전수빈
+      value: |
+      - 오늘의 컨디션 :
+      - 어제 진행했거나 완료한 작업 :
+      - 오늘 진행할 작업 :
+      - 막혔던 부분 :
+      - 도움이 필요한 부분 :
+      - TMI :
+      render: bash
+      validations:
+        required: true
+        
+  - type: markdown
+    attributes:
+      label: 💁🏻‍♀️ 한슬희
+      value: |
+      - 오늘의 컨디션 :
+      - 어제 진행했거나 완료한 작업 :
+      - 오늘 진행할 작업 :
+      - 막혔던 부분 :
+      - 도움이 필요한 부분 :
+      - TMI :
+      render: bash
+      validations:
+        required: true
