@@ -252,6 +252,7 @@
   font-weight: 700;
   line-height: normal;
   padding-top: 55px;
+  padding-bottom: 36px;
   @media (min-width: 768px) {
     font-size: 28px;
   }
@@ -266,8 +267,7 @@
   align-items: center;
 }
 
-.config {
-  background: var(--gray-80);
+.configOuter {
   width: 100%;
   max-width: 1200px;
   margin: 35px 0;
@@ -286,7 +286,84 @@
 .configList {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 48px;
   @media (min-width: 1200px) {
     flex-direction: row;
+    justify-content: center;
+    gap: 30px;
   }
+}
+
+.config {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 448px;
+  height: auto;
+  @media (min-width: 768px) {
+    max-width: 470px;
+  }
+  @media (min-width: 1200px) {
+    max-width: 378px;
+    max-height: 384px;
+  }
+}
+
+.configImgContainer {
+  padding: 0 20px;
+  background: var(--gray-60);
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 280px;
+
+  @media (min-width: 1200px) {
+    padding: 20px 20px;
+    min-height: 260px;
+  }
+}
+
+.configImg1 {
+  width: 100%;
+  max-width: 380px;
+  max-height: 165px;
+}
+
+.configImg2 {
+  composes: configImg1;
+  max-height: 240px;
+}
+
+.configImg3 {
+  composes: configImg1;
+  max-height: 390px;
+}
+
+.configDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 27px 32px;
+  background: var(--gray-80);
+  border-radius: 0 0 8px 8px;
+  gap: 25px;
+  @media (min-width: 1200px) {
+    padding: 20px 22px;
+  }
+}
+
+.h3 {
+  color: var(--white);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.h4 {
+  composes: h3;
+  font-size: 16px;
+  font-weight: 500;
 }

@@ -3,6 +3,9 @@ import Image from 'next/image';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
 import HomeImg3 from '@/assets/images/Home3.png';
+import HomeImg4 from '@/assets/images/Home4.png';
+import HomeImg5 from '@/assets/images/Home5.png';
+import HomeImg6 from '@/assets/images/Home6.png';
 
 export default function Home() {
   return (
@@ -49,9 +52,51 @@ export default function Home() {
           </div>
         </div>
         <div className={S.configContainer}>
-          <div className={S.config}>
+          <div className={S.configOuter}>
             <p className={S.h2}>생산성을 높이는 다양한 설정 ⚡</p>
-            <div className={S.configList}></div>
+            <div className={S.configList}>
+              <div className={S.config}>
+                <div className={S.configImgContainer}>
+                  <Image
+                    className={S.configImg1}
+                    src={HomeImg4}
+                    alt="홈이미지4"
+                  />
+                </div>
+                <div className={S.configDescriptionContainer}>
+                  <p className={S.h3}>대시보드 설정</p>
+                  <p className={S.h4}>
+                    대시보드 사진과 이름을 변경할 수 있어요.
+                  </p>
+                </div>
+              </div>
+              <div className={S.config}>
+                <div className={S.configImgContainer}>
+                  <Image
+                    className={S.configImg2}
+                    src={HomeImg5}
+                    alt="홈이미지5"
+                  />
+                </div>
+                <div className={S.configDescriptionContainer}>
+                  <p className={S.h3}>초대</p>
+                  <p className={S.h4}>새로운 팀원을 초대할 수 있어요.</p>
+                </div>
+              </div>
+              <div className={S.config}>
+                <div className={S.configImgContainer}>
+                  <Image
+                    className={S.configImg3}
+                    src={HomeImg6}
+                    alt="홈이미지6"
+                  />
+                </div>
+                <div className={S.configDescriptionContainer}>
+                  <p className={S.h3}>구성원</p>
+                  <p className={S.h4}>구성원을 초대하고 내보낼 수 있어요.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
