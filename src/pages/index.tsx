@@ -1,11 +1,8 @@
-import { Inter } from 'next/font/google';
 import S from './index.module.css';
 import Image from 'next/image';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
 import HomeImg3 from '@/assets/images/Home3.png';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
@@ -50,7 +47,12 @@ export default function Home() {
               <Image className={S.pointImg2} src={HomeImg3} alt="홈이미지3" />
             </div>
           </div>
-          <div></div>
+        </div>
+        <div className={S.configContainer}>
+          <div className={S.config}>
+            <p className={S.h2}>생산성을 높이는 다양한 설정 ⚡</p>
+            <div className={S.configList}></div>
+          </div>
         </div>
       </div>
       <footer></footer>
