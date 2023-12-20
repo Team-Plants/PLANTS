@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import S from '@/components/modal/modalLayout.module.css';
 
@@ -11,8 +11,7 @@ function ModalLayout({ children }: ModalLayoutProp) {
 
   useEffect(() => {
     setMounted(true);
-  }),
-    [];
+  }, []);
 
   if (!mounted) return <></>;
 
