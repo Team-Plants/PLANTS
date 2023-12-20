@@ -1,5 +1,20 @@
 {
-  "extends": ["next/core-web-vitals", "plugin:import/recommended"],
+  "extends": [
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "plugin:import/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "overrides": [
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off"
+      }
+    }
+  ],
   "rules": {
     "import/named": 0
   }
