@@ -12,7 +12,7 @@ interface InputProps {
 }
 
 function Input({ type, label } : InputProps) {
-  const { register, errors, required, pattern, maxLength, checkPassword } = useAuthInput(type);
+  const { register, errors, required, pattern, maxLength} = useAuthInput(type);
   const [eye, setEye] = useState(false);
 
   return (
