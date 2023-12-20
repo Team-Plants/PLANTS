@@ -1,3 +1,5 @@
+import LightHeader from '@/components/header/LightHeader';
+
 export default function Home() {
-  return <></>;
+  return <LightHeader></LightHeader>;
 }
