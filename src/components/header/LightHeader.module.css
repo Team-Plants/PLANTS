@@ -1,5 +1,4 @@
 .headerContainer {
-  border: 1px solid rebeccapurple;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -10,26 +9,24 @@
 }
 
 .logo {
-  display: inline-flex;
-  padding: 0.4rem 0.2rem 0 0.4rem;
-  justify-content: center;
-  align-items: center;
-
-  /* Mobile */
-  @media (max-width: 480px) {
-    display: none;
-  }
-}
-
-.smallLogo {
   display: none;
   padding: 0.4rem 0.2rem 0 0.4rem;
   justify-content: center;
   align-items: center;
 
-  /* Mobile */
-  @media (max-width: 480px) {
-    display: inline-block;
+  @media (min-width: 768px) {
+    display: inline-flex;
+  }
+}
+
+.smallLogo {
+  display: inline-block;
+  padding: 0.4rem 0.2rem 0 0.4rem;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 768px) {
+    display: none;
   }
 }
 
@@ -39,10 +36,9 @@
   color: var(--black, #333236);
   font-size: 1.6rem;
   font-weight: 400;
-  gap: 3.6rem;
+  gap: 2rem;
 
-  /* Mobile */
-  @media (max-width: 480px) {
-    gap: 2rem;
+  @media (min-width: 768px) {
+    gap: 3.6rem;
   }
 }
