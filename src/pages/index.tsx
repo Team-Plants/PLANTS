@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       {/* <header></header> */}
-      <body className={S.body}>
+      <div className={S.body}>
         <div className={S.article}>
           <div className={S.imgContainer}>
             <Image src={HomeImg} alt="홈이미지1" fill={true} />
@@ -38,7 +38,7 @@ export default function Home() {
           <div className={S.point}>2</div>
           <div></div>
         </div>
-      </body>
+      </div>
       <footer></footer>
     </>
   );
