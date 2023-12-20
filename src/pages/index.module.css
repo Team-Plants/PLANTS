@@ -1,4 +1,4 @@
-.main {
+.body {
   background: var(--black);
   display: flex;
   flex-direction: column;
@@ -109,12 +109,90 @@
   width: 100%;
   max-width: 1200px;
   margin: 35px 0;
-  height: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 
   @media (min-width: 768px) {
     margin: 45px 0;
   }
   @media (min-width: 1200px) {
     margin: 55px 0;
+    flex-direction: row;
   }
+}
+
+.pointHeader {
+  text-align: center;
+
+  @media (min-width: 768px) {
+    text-align: left;
+    padding-left: 60px;
+  }
+  @media (min-width: 1200px) {
+  }
+}
+
+.pointH1 {
+  color: var(--gray-40);
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  padding: 60px 0;
+  @media (min-width: 1200px) {
+    padding: 120px 0;
+  }
+}
+
+.pointDescription {
+  color: var(--white);
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-family: Pretendard;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  padding-bottom: 250px;
+
+  @media (min-width: 768px) {
+    padding-bottom: 200px;
+  }
+  @media (min-width: 1200px) {
+    padding-bottom: 0px;
+    width: 300px;
+  }
+}
+
+.pointDescriptionSpan {
+  composes: pointDescription;
+  @media (min-width: 1200px) {
+    color: var(--gray-30);
+  }
+}
+
+.pointImgContainer1 {
+  position: relative;
+  width: 100%;
+  height: 65vw;
+  max-height: 497px;
+  @media (min-width: 1200px) {
+    margin-top: 103px;
+  }
+}
+
+.pointImg1 {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 80vw;
+  height: 65vw;
+  max-width: 594px;
+  max-height: 497px;
 }
