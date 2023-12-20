@@ -1,0 +1,12 @@
+name: Meeting Minute
+description: 프로젝트 회의록
+title: '📜 '
+body:
+  - type: textarea
+    attributes:
+      value: |
+        - 회의 주제 :
+        - 회의 내용 :
+      placeholder: 내용을 입력해주세요
+      validations:
+        required: true
