@@ -1,5 +1,5 @@
 import { FormValuesType } from '@/types/FormValue';
-import { DevTool } from '@hookform/devtools';
+// import { DevTool } from '@hookform/devtools';
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -14,7 +14,7 @@ function CommonFormProvider({ children }: PropsWithChildren) {
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>{children}</form>
       </FormProvider>
-      <DevTool control={methods.control} />
+      {/* <DevTool control={methods.control} /> */}
     </>
   );
 }
