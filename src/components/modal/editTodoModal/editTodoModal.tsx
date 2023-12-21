@@ -8,6 +8,7 @@ import S from '@/components/modal/editTodoModal/editTodoModal.module.css';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '@/components/modal/textarea/textarea';
 import SelectInput from '@/components/modal/input/selectInput/selectInput';
+import ImgInput from '../input/imgInput/imgInput';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -71,6 +72,9 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
           </InputLayout>
           <InputLayout label="태그" isNessary={false}>
             <TagInput />
+          </InputLayout>
+          <InputLayout label="태그" isNessary={false}>
+            <ImgInput />
           </InputLayout>
         </form>
       </InputModalLayout>
