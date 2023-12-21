@@ -2,18 +2,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  height: 7rem;
-  padding: 1.6rem;
+  height: 70px;
+  padding: 16px;
   flex-shrink: 0;
-  background: var(--black, #000);
+  background: var(--white, #fff);
 }
 
 .logo {
   display: none;
-  padding: 0.4rem 0.2rem 0 0.4rem;
+  padding: 4px 2px 0 4px;
   justify-content: center;
   align-items: center;
-  fill: var(--white);
 
   @media (min-width: 768px) {
     display: inline-flex;
@@ -22,10 +21,9 @@
 
 .smallLogo {
   display: inline-block;
-  padding: 0.4rem 0.2rem 0 0.4rem;
+  padding: 4px 2px 0 4px;
   justify-content: center;
   align-items: center;
-  fill: var(--white);
 
   @media (min-width: 768px) {
     display: none;
@@ -35,12 +33,21 @@
 .links {
   display: flex;
   align-items: center;
-  color: var(--white, #fff);
   font-size: 1.6rem;
   font-weight: 400;
-  gap: 2rem;
+  gap: 20px;
 
   @media (min-width: 768px) {
-    gap: 3.6rem;
+    gap: 36px;
   }
+}
+
+.darkBg {
+  background: var(--black, #000);
+  color: var(--white, #fff);
+}
+
+.lightBg {
+  background: var(--white, #fff);
+  color: var(--black, #333236);
 }
