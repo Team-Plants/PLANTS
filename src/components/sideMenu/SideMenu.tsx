@@ -3,8 +3,14 @@ import Image from 'next/image';
 import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
+import { MouseEvent } from 'react';
 
 function SideMenu() {
+  function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
+  }
+
   return (
     <div className={S.main}>
       <div className={S.imgContainer}>
@@ -17,7 +23,7 @@ function SideMenu() {
       </div>
       <div className={S.headerContainer}>
         <p className={S.headerDescription}>Dash Boards</p>
-        <button>
+        <button onClick={handleAddClick}>
           <Image
             src={AddBoxImg}
             alt="대시보드 추가 이미지"
