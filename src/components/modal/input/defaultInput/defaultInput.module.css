@@ -1,22 +1,3 @@
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-}
-
-.label {
-  color: var(--gray-70);
-  font-family: Pretendard;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.violetLabel {
-  composes: label;
-  color: var(--violet);
-}
-
 .input {
   box-sizing: border-box;
   padding: 14px 16px;
