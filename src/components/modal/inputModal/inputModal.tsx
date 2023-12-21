@@ -1,20 +1,42 @@
-import S from '@/components/modal/inputModal/inputModal.module.css';
-import alertModalStyle from '@/components/modal/alertModal/alertModal.module.css';
 import { ReactNode } from 'react';
+import ModalDefaultButton from '../button/modalDefaultButton';
+import ModalLayout from '../modalLayout';
+import InputModalLayout from './inputModalLayout';
+import S from '@/components/modal/inputModal/inputModal.module.css';
 
-interface InputModalProps {
-  title: string;
+interface InputModalLayoutProps {
+  onClick: () => void;
   children: ReactNode;
-  buttonItem: ReactNode;
+  title: string;
+  isDelete: boolean;
 }
 
-function InputModal({ children, buttonItem, title }: InputModalProps) {
+function InputModal({
+  onClick,
+  children,
+  title,
+  isDelete,
+}: InputModalLayoutProps) {
   return (
-    <div className={S.inputModalMainContainer}>
-      <div className={S.modalTitle}>{title}</div>
-      <div className={S.modalContent}>{children}</div>
-      <div className={alertModalStyle.modalButtonContainer}>{buttonItem}</div>
-    </div>
+    <ModalLayout onClick={onClick}>
+      <InputModalLayout
+        title={title}
+        buttonItem={
+          <>
+            {isDelete && <div className={S.deleteButton}>삭제하기</div>}
+            <div className={S.rightButtonContainer}>
+              <ModalDefaultButton type="default" onClick={onClick}>
+                취소
+              </ModalDefaultButton>
+              <ModalDefaultButton type="violet" onClick={onClick}>
+                확인
+              </ModalDefaultButton>
+            </div>
+          </>
+        }>
+        {children}
+      </InputModalLayout>
+    </ModalLayout>
   );
 }
 

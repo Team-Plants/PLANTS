@@ -2,7 +2,7 @@ import ModalDefaultButton from '../button/modalDefaultButton';
 import DefaultInput from '../input/defaultInput/defaultInput';
 import InputLayout from '../input/inputLayout';
 import TagInput from '../input/tagInput/tagInput';
-import InputModal from '../inputModal/inputModal';
+import InputModalLayout from '../inputModal/inputModalLayout';
 import ModalLayout from '../modalLayout';
 import S from '@/components/modal/inputModal/inputModal.module.css';
 
@@ -13,7 +13,7 @@ interface AddTodoModalProps {
 function AddTodoModal({ onClick }: AddTodoModalProps) {
   return (
     <ModalLayout onClick={onClick}>
-      <InputModal
+      <InputModalLayout
         title="새 컬럼 생성"
         buttonItem={
           <>
@@ -36,7 +36,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
             <TagInput />
           </InputLayout>
         </form>
-      </InputModal>
+      </InputModalLayout>
     </ModalLayout>
   );
 }

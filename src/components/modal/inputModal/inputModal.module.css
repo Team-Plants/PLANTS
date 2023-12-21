@@ -1,27 +1,13 @@
-.inputModalMainContainer {
-  composes: modalMainContainer from '@/components/modal/modalLayout.module.css';
-  padding: 28px;
-}
-
-.modalTitle {
-  color: var(--black-black_333236, #333236);
+.deleteButton {
+  color: var(--gray-gray_9FA6B2, #9fa6b2);
   font-family: Pretendard;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  align-self: flex-start;
-  margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration-line: underline;
+  cursor: pointer;
 }
 
-.modalContent {
+.rightButtonContainer {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
+  gap: 12px;
 }

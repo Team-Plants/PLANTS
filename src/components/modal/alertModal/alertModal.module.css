@@ -23,7 +23,9 @@
 .modalButtonContainer {
   display: flex;
   align-self: flex-end;
-  gap: 12px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
 
   @media all and (mobile) {
     gap: 11px;
