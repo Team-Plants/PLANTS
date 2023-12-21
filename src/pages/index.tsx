@@ -111,10 +111,10 @@ export default function Home() {
           <div>FAQ</div>
         </div>
         <div className={S.linkList}>
-          <Link href="https://mail.google.com">
+          <Link href="https://mail.google.com" target="_blank">
             <Image src={EmailImg} alt="이메일이미지" width={17} height={17} />
           </Link>
-          <Link href="https://www.facebook.com">
+          <Link href="https://www.facebook.com" target="_blank">
             <Image
               src={FacebookImg}
               alt="페이스북이미지"
@@ -122,7 +122,7 @@ export default function Home() {
               height={17}
             />
           </Link>
-          <Link href="https://www.instagram.com">
+          <Link href="https://www.instagram.com" target="_blank">
             <Image
               src={InstagramImg}
               alt="인스타그램이미지"
