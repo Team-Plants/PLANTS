@@ -12,6 +12,7 @@ import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import ModalLayout from '@/components/modal/modalLayout';
 import AlertModal from '@/components/modal/alertModal/alertModal';
+import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 
 export default function Home() {
   return (
@@ -135,7 +136,13 @@ export default function Home() {
         </div>
       </footer>
       <ModalLayout>
-        <AlertModal buttonItem={<div>button</div>}>
+        <AlertModal
+          buttonItem={
+            <>
+              <ModalDefaultButton type="default">취소</ModalDefaultButton>
+              <ModalDefaultButton type="violet">확인</ModalDefaultButton>
+            </>
+          }>
           비밀번호를 확인해주세요
         </AlertModal>
       </ModalLayout>

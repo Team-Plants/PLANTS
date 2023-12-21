@@ -1,0 +1,42 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
+.buttonContainer {
+  width: 120px;
+  height: 48px;
+  padding: 14px 0;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid var(--gray-30);
+  background: var(--white);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media all and (mobile) {
+    width: 138px;
+    height: 42px;
+  }
+}
+
+.buttonTitle {
+  color: var(--gray-50);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  font-size: small;
+
+  @media all and (mobile) {
+    font-size: 14px;
+  }
+}
+
+.violetButtonContainer {
+  composes: buttonContainer;
+  background: var(--violet-violet_5534DA, #5534da);
+}
+
+.violetButtonContainer > .buttonTitle {
+  color: var(--white);
+}
