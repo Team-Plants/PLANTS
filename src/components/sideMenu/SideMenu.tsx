@@ -19,38 +19,46 @@ function SideMenu({ data }: SideMenuProps) {
 
   return (
     <div className={S.main}>
-      <div className={S.imgContainer}>
-        <Image
-          src={SmallLogoImg}
-          alt="로고 이미지"
-          className={S.smallLogoImg}
-        />
-        <Image src={TaskifyImg} alt="Taskify 이미지" className={S.taskifyImg} />
-      </div>
-      <div className={S.headerContainer}>
-        <p className={S.headerDescription}>Dash Boards</p>
-        <button onClick={handleAddClick}>
+      <div className={S.headerOuter}>
+        <div className={S.imgContainer}>
           <Image
-            src={AddBoxImg}
-            alt="대시보드 추가 이미지"
-            width={20}
-            height={20}
+            src={SmallLogoImg}
+            alt="로고 이미지"
+            className={S.smallLogoImg}
           />
-        </button>
+          <Image
+            src={TaskifyImg}
+            alt="Taskify 이미지"
+            className={S.taskifyImg}
+          />
+        </div>
+        <div className={S.headerContainer}>
+          <p className={S.headerDescription}>Dash Boards</p>
+          <button onClick={handleAddClick}>
+            <Image
+              src={AddBoxImg}
+              alt="대시보드 추가 이미지"
+              width={20}
+              height={20}
+            />
+          </button>
+        </div>
       </div>
-      <ul className={S.dashBoardContainer}>
-        {data &&
-          data.dashboards.map((dashboard) => (
-            <Link href={`/${dashboard.id}`} key={dashboard.id}>
-              <li className={S.dashBoardLi}>
-                <div
-                  className={S.dashBoardColor}
-                  style={{ backgroundColor: `${dashboard.color}` }}></div>
-                <div className={S.dashBoardTitle}>{dashboard.title}</div>
-              </li>
-            </Link>
-          ))}
-      </ul>
+      <div className={S.dashBoardOuter}>
+        <ul className={S.dashBoardContainer}>
+          {data &&
+            data.dashboards.map((dashboard) => (
+              <Link href={`/${dashboard.id}`} key={dashboard.id}>
+                <li className={S.dashBoardLi}>
+                  <div
+                    className={S.dashBoardColor}
+                    style={{ backgroundColor: `${dashboard.color}` }}></div>
+                  <div className={S.dashBoardTitle}>{dashboard.title}</div>
+                </li>
+              </Link>
+            ))}
+        </ul>
+      </div>
     </div>
   );
 }
