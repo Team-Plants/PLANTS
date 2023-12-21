@@ -4,14 +4,20 @@ import { ReactNode } from 'react';
 interface ModalDefaultButtonProps {
   children: ReactNode;
   type: 'default' | 'violet';
+  onClick: () => void;
 }
 
-function ModalDefaultButton({ children, type }: ModalDefaultButtonProps) {
+function ModalDefaultButton({
+  children,
+  type,
+  onClick,
+}: ModalDefaultButtonProps) {
   return (
     <div
       className={
         type === 'violet' ? S.violetButtonContainer : S.buttonContainer
-      }>
+      }
+      onClick={onClick}>
       <div className={S.buttonTitle}>{children}</div>
     </div>
   );

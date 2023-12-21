@@ -13,8 +13,15 @@ import InstagramImg from '@/assets/icons/Instagram.svg';
 import ModalLayout from '@/components/modal/modalLayout';
 import AlertModal from '@/components/modal/alertModal/alertModal';
 import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
+import { useState } from 'react';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleModal() {
+    setIsModalOpen((prev) => !prev);
+  }
+
   return (
     <>
       {/* <header></header> */}
@@ -25,7 +32,9 @@ export default function Home() {
           </div>
           <div className={S.h1Container}>
             <p className={S.h1}>새로운 일정 관리</p>
-            <p className={S.h1Violet}>Taskify</p>
+            <p className={S.h1Violet} onClick={() => handleModal()}>
+              Taskify
+            </p>
           </div>
           <p className={S.serviceDescription}>서비스에 대한 설명</p>
           {/* <button></button> */}
@@ -135,17 +144,21 @@ export default function Home() {
           </Link>
         </div>
       </footer>
-      <ModalLayout>
-        <AlertModal
-          buttonItem={
-            <>
-              {/* <ModalDefaultButton type="default">취소</ModalDefaultButton> */}
-              <ModalDefaultButton type="violet">확인</ModalDefaultButton>
-            </>
-          }>
-          비밀번호를 확인해주세요
-        </AlertModal>
-      </ModalLayout>
+      {isModalOpen && (
+        <ModalLayout onClick={handleModal}>
+          <AlertModal
+            buttonItem={
+              <>
+                {/* <ModalDefaultButton type="default">취소</ModalDefaultButton> */}
+                <ModalDefaultButton type="violet" onClick={handleModal}>
+                  확인
+                </ModalDefaultButton>
+              </>
+            }>
+            비밀번호를 확인해주세요
+          </AlertModal>
+        </ModalLayout>
+      )}
     </>
   );
 }
