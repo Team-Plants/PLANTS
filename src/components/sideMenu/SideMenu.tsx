@@ -1,5 +1,6 @@
 import S from '@/components/sideMenu/sideMenu.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
@@ -40,12 +41,14 @@ function SideMenu({ data }: SideMenuProps) {
       <ul className={S.dashBoardContainer}>
         {data &&
           data.dashboards.map((dashboard) => (
-            <li key={dashboard.id} className={S.dashBoardLi}>
-              <div
-                className={S.dashBoardColor}
-                style={{ backgroundColor: `${dashboard.color}` }}></div>
-              <div className={S.dashBoardTitle}>{dashboard.title}</div>
-            </li>
+            <Link href={`/${dashboard.id}`} key={dashboard.id}>
+              <li className={S.dashBoardLi}>
+                <div
+                  className={S.dashBoardColor}
+                  style={{ backgroundColor: `${dashboard.color}` }}></div>
+                <div className={S.dashBoardTitle}>{dashboard.title}</div>
+              </li>
+            </Link>
           ))}
       </ul>
     </div>
