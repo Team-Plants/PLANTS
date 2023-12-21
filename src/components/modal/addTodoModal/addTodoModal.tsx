@@ -4,7 +4,6 @@ import InputLayout from '../input/inputLayout';
 import TagInput from '../input/tagInput/tagInput';
 import InputModalLayout from '../inputModal/inputModalLayout';
 import ModalLayout from '../modalLayout';
-import S from '@/components/modal/inputModal/inputModalLayout.module.css';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '../textarea/textarea';
 import SelectInput from '../input/selectInput/selectInput';
@@ -12,12 +11,6 @@ import SelectInput from '../input/selectInput/selectInput';
 interface AddTodoModalProps {
   onClick: () => void;
 }
-
-// const stateOptions = [
-//   { value: 'To Do', label: 'To Do' },
-//   { value: 'On Progress', label: 'On Progress' },
-//   { value: 'Done', label: 'Done' },
-// ];
 
 const ManagerOptions = [
   { value: '배유철', label: '배유철' },
@@ -29,7 +22,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
   return (
     <ModalLayout onClick={onClick}>
       <InputModalLayout
-        title="새 컬럼 생성"
+        title="할 일 생성"
         buttonItem={
           <div className={CommonStyle.modalButtonContainer}>
             <div className={CommonStyle.rightButtonContainer}>
@@ -42,7 +35,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
             </div>
           </div>
         }>
-        <form className={S.form}>
+        <form className={CommonStyle.form}>
           <InputLayout label="담당자" isNessary={false}>
             <SelectInput
               optionData={ManagerOptions}

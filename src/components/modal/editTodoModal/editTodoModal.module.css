@@ -1,0 +1,11 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
+.inputContainer {
+  display: flex;
+  gap: 16px;
+
+  @media all and (mobile) {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .a {
   background: var(--violet);
   background-color: blue;
@@ -21,9 +23,13 @@
   padding: 13px 16px;
   border-radius: 6px;
   background-color: var(--white);
-  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  border: 1px solid var(--gray-30);
   cursor: pointer;
   align-self: center;
+
+  @media all and (mobile) {
+    width: 100%;
+  }
 }
 .selectContainer::before {
   content: url('../../../../assets/icons/ArrowDrop.svg');
@@ -34,18 +40,18 @@
   top: 50%;
   right: 11px;
   color: var(--black);
-  font-size: 20px;
+  font-size: 2rem;
 }
 
 .selectedLabel {
-  font-size: 14px;
+  font-size: 1.4rem;
   text-align: center;
 }
 
 .placeholder {
   color: var(--gray-40);
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: 400;
 }
 

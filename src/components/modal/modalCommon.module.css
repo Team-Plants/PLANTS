@@ -39,3 +39,9 @@
 .isDeleteModalButtonContainer {
   justify-content: space-between;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

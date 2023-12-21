@@ -11,7 +11,8 @@ import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import { useState } from 'react';
-import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
+// import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
+import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
 // import AlertModal from '@/components/modal/alertModal/alertModal';
 // import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 // import InputModal from '@/components/modal/inputModal/inputModal';
@@ -158,7 +159,8 @@ export default function Home() {
           비밀번호가 일치하지 않습니다.
         </AlertModal>
       )} */}
-      {isModalOpen && <AddTodoModal onClick={handleModal} />}
+      {/* {isModalOpen && <AddTodoModal onClick={handleModal} />} */}
+      {isModalOpen && <EditTodoModal onClick={handleModal} />}
       {/* {isModalOpen && (
         <InputModal onClick={handleModal} title={'칼럼 관리'} isDelete={true}>
           <form>
