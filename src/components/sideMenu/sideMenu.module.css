@@ -1,0 +1,49 @@
+.main {
+  background: var(--white);
+  width: 67px;
+  min-height: 1859px;
+  height: auto;
+  padding: 20px 22px;
+  border: 3.5px solid;
+  border-color: var(--gray-40);
+  @media (min-width: 768px) {
+    width: 160px;
+    padding: 20px 25px;
+  }
+  @media (min-width: 1200px) {
+    padding: 20px 24px;
+    width: 300px;
+  }
+}
+
+.imgContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 38.8px;
+  @media (min-width: 768px) {
+    padding-bottom: 59.9px;
+  }
+  @media (min-width: 1200px) {
+    justify-content: left;
+  }
+}
+
+.smallLogoImg {
+  width: 23.6px;
+  height: 27.1px;
+  @media (min-width: 768px) {
+    width: 28.8px;
+    height: 33px;
+  }
+}
+
+.taskifyImg {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    width: 80px;
+    height: 22px;
+  }
+}
