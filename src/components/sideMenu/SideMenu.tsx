@@ -4,13 +4,18 @@ import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import { MouseEvent } from 'react';
+import { DashBoardData } from '@/types/DashBoard';
 
-function SideMenu() {
+interface SideMenuProps {
+  data: DashBoardData;
+}
+
+function SideMenu({ data }: SideMenuProps) {
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
   }
-
+  console.log(data);
   return (
     <div className={S.main}>
       <div className={S.imgContainer}>
