@@ -1,0 +1,19 @@
+.managerOptionContainer {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.managerName {
+  color: var(--gray-70);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #a3c4a2;
+}

@@ -7,10 +7,23 @@ import ModalLayout from '../modalLayout';
 import S from '@/components/modal/inputModal/inputModalLayout.module.css';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '../textarea/textarea';
+import SelectInput from '../input/selectInput/selectInput';
 
 interface AddTodoModalProps {
   onClick: () => void;
 }
+
+// const stateOptions = [
+//   { value: 'To Do', label: 'To Do' },
+//   { value: 'On Progress', label: 'On Progress' },
+//   { value: 'Done', label: 'Done' },
+// ];
+
+const ManagerOptions = [
+  { value: '배유철', label: '배유철' },
+  { value: '배동석', label: '배동석' },
+  { value: '배유철1', label: '배유철1' },
+];
 
 function AddTodoModal({ onClick }: AddTodoModalProps) {
   return (
@@ -30,6 +43,13 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
           </div>
         }>
         <form className={S.form}>
+          <InputLayout label="담당자" isNessary={false}>
+            <SelectInput
+              optionData={ManagerOptions}
+              type="manager"
+              placeholder="이름을 입력해주세요"
+            />
+          </InputLayout>
           <InputLayout label="제목" isNessary={true}>
             <DefaultInput placeholder="제목을 입력해 주세요" />
           </InputLayout>
