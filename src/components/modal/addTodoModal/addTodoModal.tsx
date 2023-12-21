@@ -8,6 +8,7 @@ import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '../textarea/textarea';
 import SelectInput from '../input/selectInput/selectInput';
 import ImgInput from '../input/imgInput/imgInput';
+import { useState } from 'react';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -20,6 +21,8 @@ const ManagerOptions = [
 ];
 
 function AddTodoModal({ onClick }: AddTodoModalProps) {
+  const [explain, setExplain] = useState('');
+
   return (
     <ModalLayout onClick={onClick}>
       <InputModalLayout
@@ -48,7 +51,11 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
             <DefaultInput placeholder="제목을 입력해 주세요" />
           </InputLayout>
           <InputLayout label="설명" isNessary={true}>
-            <TextArea />
+            <TextArea
+              placeholder="설명을 입력해 주세요"
+              value={explain}
+              onChange={setExplain}
+            />
           </InputLayout>
           <InputLayout label="마감일" isNessary={false}>
             <DefaultInput placeholder="설명을 입력해 주세요" type="date" />
