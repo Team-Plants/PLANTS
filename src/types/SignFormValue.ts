@@ -1,4 +1,4 @@
-export interface FormValuesType {
+export interface SignFormValuesType {
   email: string;
   password: string;
   nickname?: string;

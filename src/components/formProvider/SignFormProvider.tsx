@@ -1,11 +1,11 @@
-import { FormValuesType } from '@/types/FormValue';
+import { SignFormValuesType } from '@/types/SignFormValue';
 import { DevTool } from '@hookform/devtools';
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-function CommonFormProvider({ children }: PropsWithChildren) {
-  const methods = useForm<FormValuesType>({ mode: 'onSubmit' });
-  function onSubmit(data: FormValuesType) {
+function SignFormProvider({ children }: PropsWithChildren) {
+  const methods = useForm<SignFormValuesType>({ mode: 'onSubmit' });
+  function onSubmit(data: SignFormValuesType) {
     console.log(data);
   }
 
@@ -19,4 +19,4 @@ function CommonFormProvider({ children }: PropsWithChildren) {
   );
 }
 
-export default CommonFormProvider;
+export default SignFormProvider;
