@@ -4,7 +4,7 @@
   min-height: 1859px;
   height: auto;
   padding: 20px 22px;
-  border: 3.5px solid;
+  border-right: 3px solid;
   border-color: var(--gray-40);
   @media (min-width: 768px) {
     width: 160px;
@@ -45,5 +45,30 @@
     display: block;
     width: 80px;
     height: 22px;
+  }
+}
+
+.headerContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 38px;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    padding-bottom: 30px;
+  }
+}
+
+.headerDescription {
+  display: none;
+  color: var(--gray-50);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 3px;
+  @media (min-width: 768px) {
+    display: block;
   }
 }
