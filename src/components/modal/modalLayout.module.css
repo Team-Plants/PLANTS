@@ -8,6 +8,24 @@
 .outerModalContainer {
   width: 100%;
   height: 100%;
-  background-color: #000;
+  background-color: var(--black);
   opacity: 0.4;
+}
+
+.modalMainContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 36rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border: 1px solid #dee2e6;
+  padding: 3.2rem 4rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
 }

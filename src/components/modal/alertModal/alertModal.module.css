@@ -1,0 +1,9 @@
+.alertModalMainContainer {
+  composes: label from '@/components/modal/modalLayout.module.css';
+}
+
+.modalContent {
+  color: var(--gray-70);
+  font-size: 18px;
+  font-weight: 500;
+}

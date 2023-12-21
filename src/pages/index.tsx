@@ -1,11 +1,12 @@
+import AlertModal from '@/components/modal/alertModal/alertModal';
 import ModalLayout from '@/components/modal/modalLayout';
 
 export default function Home() {
   return (
     <ModalLayout>
-      <div>
-        <h1>hi</h1>
-      </div>
+      <AlertModal buttonItem={<div>aa</div>}>
+        비밀번호가 일치하지 않습니다.
+      </AlertModal>
     </ModalLayout>
   );
 }
