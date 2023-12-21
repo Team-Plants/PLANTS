@@ -7,6 +7,7 @@ import ModalLayout from '../modalLayout';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '../textarea/textarea';
 import SelectInput from '../input/selectInput/selectInput';
+import ImgInput from '../input/imgInput/imgInput';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -54,6 +55,9 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
           </InputLayout>
           <InputLayout label="태그" isNessary={false}>
             <TagInput />
+          </InputLayout>
+          <InputLayout label="태그" isNessary={false}>
+            <ImgInput />
           </InputLayout>
         </form>
       </InputModalLayout>

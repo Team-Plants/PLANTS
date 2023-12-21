@@ -1,0 +1,65 @@
+.commentContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.profileImg {
+  width: 34px;
+  height: 34px;
+}
+
+.noImg {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--violet);
+}
+
+.commentContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.commentTopContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.name {
+  color: var(--black-black_333236, #333236);
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.date {
+  color: var(--gray-gray_9FA6B2, #9fa6b2);
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.commentContent {
+  color: var(--black-black_333236, #333236);
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.commentToolContainer {
+  margin-top: 6px;
+  display: flex;
+  gap: 12px;
+}
+
+.commentToolItem {
+  color: var(--gray-gray_9FA6B2, #9fa6b2);
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-decoration-line: underline;
+  cursor: pointer;
+}

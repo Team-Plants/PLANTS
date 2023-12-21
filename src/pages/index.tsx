@@ -12,7 +12,8 @@ import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import { useState } from 'react';
 // import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
-import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
+// import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
+import TodoModal from '@/components/modal/todoModal/todoModal';
 // import AlertModal from '@/components/modal/alertModal/alertModal';
 // import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 // import InputModal from '@/components/modal/inputModal/inputModal';
@@ -160,7 +161,7 @@ export default function Home() {
         </AlertModal>
       )} */}
       {/* {isModalOpen && <AddTodoModal onClick={handleModal} />} */}
-      {isModalOpen && <EditTodoModal onClick={handleModal} />}
+      {/* {isModalOpen && <EditTodoModal onClick={handleModal} />} */}
       {/* {isModalOpen && (
         <InputModal onClick={handleModal} title={'칼럼 관리'} isDelete={true}>
           <form>
@@ -170,6 +171,7 @@ export default function Home() {
           </form>
         </InputModal>
       )} */}
+      {isModalOpen && <TodoModal onClick={handleModal} />}
     </>
   );
 }

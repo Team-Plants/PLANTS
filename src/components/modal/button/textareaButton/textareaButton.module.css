@@ -1,0 +1,18 @@
+.buttonContainer {
+  composes: buttonContainer from '@/components/modal/button/modalDefaultButton.module.css';
+  width: 83px;
+  height: 32px;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 9px 0;
+  border-radius: 4px;
+}
+
+.buttonTitle {
+  color: var(--violet);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 500;
+}

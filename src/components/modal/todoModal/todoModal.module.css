@@ -1,0 +1,119 @@
+.todoModalContainer {
+  composes: modalMainContainer from '@/components/modal/modalCommon.module.css';
+  width: 730px;
+  height: fit-content;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.headerContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  color: var(--gray-90);
+  font-family: Pretendard;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.modalToolContainer {
+  display: flex;
+  gap: 24px;
+}
+.modalToolContainer > img {
+  cursor: pointer;
+}
+
+.mainContainer {
+  display: flex;
+  gap: 24px;
+  margin-top: 21px;
+}
+
+.mainContentContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 450px;
+}
+
+.chipContainer {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.mainContent {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.mainImg {
+  width: 100%;
+  height: 263px;
+}
+
+.commentInputContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  gap: 10px;
+}
+
+.textareaContainer {
+  position: relative;
+}
+
+.commentTitle {
+  color: var(--black-black_333236, #333236);
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.commentContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  gap: 10px;
+}
+
+.mainInfoContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 20px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  background: var(--white);
+  width: 200px;
+  height: fit-content;
+}
+
+.mainInfoItemContainer {
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainInfoTitle {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.mainInfoContent {
+  color: var(--black-black_333236, #333236);
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: 400;
+}

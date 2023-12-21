@@ -1,3 +1,9 @@
+.textareaContainer {
+  width: 100%;
+  height: fit-content;
+  position: relative;
+}
+
 .textarea {
   resize: none;
   border-radius: 6px;
