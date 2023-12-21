@@ -6,7 +6,6 @@
   @media (min-width: 768px) {
     padding: 100px 40px;
   }
-
   @media (min-width: 1200px) {
     padding: 100px auto;
   }
@@ -38,9 +37,6 @@
     gap: 20px;
     padding-top: 50px;
   }
-
-  @media (min-width: 1200px) {
-  }
 }
 
 .h1 {
@@ -51,7 +47,6 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -2px;
-
   @media (min-width: 768px) {
     font-size: 5.6rem;
     line-height: 100%;
@@ -63,7 +58,6 @@
 
 .h1Violet {
   color: var(--violet);
-  font-family: Montserrat;
   text-align: center;
   font-size: 4.2rem;
   font-style: normal;
@@ -112,7 +106,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -124,21 +117,14 @@
 
 .pointHeader {
   text-align: center;
-
   @media (min-width: 768px) {
     text-align: left;
     padding-left: 60px;
-  }
-  @media (min-width: 1200px) {
   }
 }
 
 .pointH1 {
   color: var(--gray-40);
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-  font-family: Pretendard;
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 500;
@@ -151,16 +137,11 @@
 
 .pointDescription {
   color: var(--white);
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-  font-family: Pretendard;
   font-size: 3.6rem;
   font-style: normal;
   font-weight: 700;
   line-height: 50px;
   padding-bottom: 250px;
-
   @media (min-width: 768px) {
     padding-bottom: 200px;
   }
@@ -206,7 +187,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -218,7 +198,6 @@
 
 .pointHeader2 {
   text-align: center;
-
   @media (min-width: 768px) {
     text-align: left;
     padding-left: 60px;
@@ -274,7 +253,6 @@
   height: auto;
   display: flex;
   flex-direction: column;
-
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -319,7 +297,6 @@
   justify-content: center;
   position: relative;
   min-height: 280px;
-
   @media (min-width: 1200px) {
     padding: 20px 20px;
     min-height: 260px;
@@ -381,7 +358,6 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-
   @media (min-width: 768px) {
     gap: 0;
     font-size: 1.6rem;
