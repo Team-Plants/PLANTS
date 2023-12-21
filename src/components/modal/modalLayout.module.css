@@ -11,22 +11,3 @@
   background-color: var(--black);
   opacity: 0.4;
 }
-
-.modalMainContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  width: 540px;
-  height: fit-content;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--white);
-  border: 1px solid #dee2e6;
-  padding: 28px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-}

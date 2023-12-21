@@ -11,12 +11,12 @@ import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import { useState } from 'react';
-// import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 // import AlertModal from '@/components/modal/alertModal/alertModal';
 // import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
-import InputModal from '@/components/modal/inputModal/inputModal';
-import InputLayout from '@/components/modal/input/inputLayout';
-import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+// import InputModal from '@/components/modal/inputModal/inputModal';
+// import InputLayout from '@/components/modal/input/inputLayout';
+// import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -158,8 +158,8 @@ export default function Home() {
           비밀번호가 일치하지 않습니다.
         </AlertModal>
       )} */}
-      {/* {isModalOpen && <AddTodoModal onClick={handleModal} />} */}
-      {isModalOpen && (
+      {isModalOpen && <AddTodoModal onClick={handleModal} />}
+      {/* {isModalOpen && (
         <InputModal onClick={handleModal} title={'칼럼 관리'} isDelete={true}>
           <form>
             <InputLayout label="이름" isNessary={false}>
@@ -167,7 +167,7 @@ export default function Home() {
             </InputLayout>
           </form>
         </InputModal>
-      )}
+      )} */}
     </>
   );
 }

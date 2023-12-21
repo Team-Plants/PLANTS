@@ -1,6 +1,7 @@
 import S from '@/components/modal/alertModal/alertModal.module.css';
 import { ReactNode } from 'react';
 import ModalLayout from '../modalLayout';
+import CommonStyle from '@/components/modal/modalCommon.module.css';
 
 interface alertModalProp {
   children: ReactNode;
@@ -13,7 +14,7 @@ function AlertModal({ children, buttonItem, onClick }: alertModalProp) {
     <ModalLayout onClick={onClick}>
       <div className={S.alertModalMainContainer}>
         <div className={S.modalContent}>{children}</div>
-        <div className={S.modalButtonContainer}>{buttonItem}</div>
+        <div className={CommonStyle.modalButtonContainer}>{buttonItem}</div>
       </div>
     </ModalLayout>
   );

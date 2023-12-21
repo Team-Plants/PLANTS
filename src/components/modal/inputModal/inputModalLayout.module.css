@@ -1,5 +1,5 @@
 .inputModalMainContainer {
-  composes: modalMainContainer from '@/components/modal/modalLayout.module.css';
+  composes: modalMainContainer from '@/components/modal/modalCommon.module.css';
   padding: 28px;
 }
 

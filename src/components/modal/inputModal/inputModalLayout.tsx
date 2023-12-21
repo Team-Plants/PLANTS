@@ -1,5 +1,4 @@
 import S from '@/components/modal/inputModal/inputModalLayout.module.css';
-import alertModalStyle from '@/components/modal/alertModal/alertModal.module.css';
 import { ReactNode } from 'react';
 
 interface InputModalProps {
@@ -13,7 +12,7 @@ function InputModalLayout({ children, buttonItem, title }: InputModalProps) {
     <div className={S.inputModalMainContainer}>
       <div className={S.modalTitle}>{title}</div>
       <div className={S.modalContent}>{children}</div>
-      <div className={alertModalStyle.modalButtonContainer}>{buttonItem}</div>
+      {buttonItem}
     </div>
   );
 }

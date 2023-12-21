@@ -6,8 +6,3 @@
   text-decoration-line: underline;
   cursor: pointer;
 }
-
-.rightButtonContainer {
-  display: flex;
-  gap: 12px;
-}

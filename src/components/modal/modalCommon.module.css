@@ -1,0 +1,41 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
+.modalMainContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 540px;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border: 1px solid #dee2e6;
+  padding: 28px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.modalButtonContainer {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media all and (mobile) {
+    gap: 11px;
+    justify-content: center;
+  }
+}
+
+.rightButtonContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.isDeleteModalButtonContainer {
+  justify-content: space-between;
+}
