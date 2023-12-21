@@ -1,0 +1,61 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 520px;
+}
+
+.formLabel {
+  font-size: 1.6rem;
+  color: var(--gray-70);
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: 1px solid var(--gray-30);
+  border-radius: 8px;
+}
+
+.inputContainer:focus-within {
+  border-color: var(--violet);
+}
+
+.input {
+  all: unset;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 16px;
+  border: none;
+  width: 100%;
+  font-size: 1.6rem;
+  color: var(--gray-80);
+}
+
+.image {
+  position: absolute;
+  display: flex;
+  right: 16px;
+}
+
+.display {
+  display: none;
+}
+
+.errorBorder {
+  border: 1px solid var(--red);
+}
+
+.errorBorder:focus-within {
+  border-color: var(--red);
+}
+
+.error {
+  color: var(--red);
+  font-size: 1.4rem;
+}
