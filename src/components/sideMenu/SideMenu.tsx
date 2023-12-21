@@ -8,10 +8,11 @@ import { MouseEvent } from 'react';
 import { DashBoardData } from '@/types/DashBoard';
 
 interface SideMenuProps {
+  pageId: number;
   data: DashBoardData;
 }
 
-function SideMenu({ data }: SideMenuProps) {
+function SideMenu({ pageId, data }: SideMenuProps) {
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
@@ -49,7 +50,12 @@ function SideMenu({ data }: SideMenuProps) {
           {data &&
             data.dashboards.map((dashboard) => (
               <Link href={`/${dashboard.id}`} key={dashboard.id}>
-                <li className={S.dashBoardLi}>
+                <li
+                  className={S.dashBoardLi}
+                  style={{
+                    backgroundColor:
+                      pageId == dashboard.id ? '#F1EFFD' : '#FFF',
+                  }}>
                   <div
                     className={S.dashBoardColor}
                     style={{ backgroundColor: `${dashboard.color}` }}></div>

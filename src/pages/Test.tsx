@@ -51,8 +51,9 @@ const data = {
     },
   ],
 };
+const pageId = 2;
 function Test() {
-  return <SideMenu data={data} />;
+  return <SideMenu data={data} pageId={pageId} />;
 }
 
 export default Test;
