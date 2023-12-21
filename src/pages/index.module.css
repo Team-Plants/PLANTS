@@ -213,6 +213,7 @@
   justify-content: center;
   @media (min-width: 1200px) {
     padding-top: 100px;
+    padding-right: 45px;
   }
 }
 
@@ -305,17 +306,17 @@
 .configImg1 {
   width: 100%;
   max-width: 380px;
-  max-height: 165px;
+  max-height: 155px;
 }
 
 .configImg2 {
   composes: configImg1;
-  max-height: 240px;
+  max-height: 190px;
 }
 
 .configImg3 {
   composes: configImg1;
-  max-height: 390px;
+  max-height: 220px;
 }
 
 .configDescriptionContainer {
@@ -324,7 +325,7 @@
   padding: 27px 32px;
   background: var(--gray-80);
   border-radius: 0 0 8px 8px;
-  gap: 25px;
+  gap: 20px;
   @media (min-width: 1200px) {
     padding: 20px 22px;
   }
