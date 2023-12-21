@@ -139,7 +139,7 @@ export default function Home() {
         <AlertModal
           buttonItem={
             <>
-              <ModalDefaultButton type="default">취소</ModalDefaultButton>
+              {/* <ModalDefaultButton type="default">취소</ModalDefaultButton> */}
               <ModalDefaultButton type="violet">확인</ModalDefaultButton>
             </>
           }>

@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .alertModalMainContainer {
   composes: modalMainContainer from '@/components/modal/modalLayout.module.css';
   height: 250px;
@@ -5,15 +7,29 @@
   box-sizing: border-box;
   gap: 45px;
   padding: 28px;
+  justify-content: flex-end;
+
+  @media all and (mobile) {
+    width: 327px;
+    height: 220px;
+    padding: 28px 20px;
+    gap: 50px;
+  }
 }
 
 .modalContent {
   color: var(--gray-70);
-  font-size: 18px;
+  font-size: 1.8rem;
   font-weight: 500;
 }
 
 .modalButtonContainer {
   display: flex;
   align-self: flex-end;
+  gap: 12px;
+
+  @media all and (mobile) {
+    gap: 11px;
+    align-self: center;
+  }
 }
