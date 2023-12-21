@@ -32,7 +32,7 @@ export default function Home() {
             <div className={S.pointHeader}>
               <p className={S.pointH1}>Point 1</p>
               <p className={S.pointDescription}>
-                일의 <span className={S.pointDescriptionSpan}>우선순위를</span>
+                일의 <span className={S.pointDescriptionSpan}>우선순위</span>를
                 <br />
                 관리하세요
               </p>
