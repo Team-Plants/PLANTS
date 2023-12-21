@@ -42,7 +42,7 @@ function SelectInput({
           type === 'manager' ? (
             <ManagerOption name={selected} />
           ) : (
-            <Chip name={selected} />
+            <Chip content={selected} />
           )
         ) : (
           <div className={S.placeholder}>{placeholder}</div>
