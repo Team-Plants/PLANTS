@@ -15,7 +15,7 @@ function SideMenu({ data }: SideMenuProps) {
     e.preventDefault();
     // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
   }
-  console.log(data);
+
   return (
     <div className={S.main}>
       <div className={S.imgContainer}>
@@ -37,6 +37,17 @@ function SideMenu({ data }: SideMenuProps) {
           />
         </button>
       </div>
+      <ul className={S.dashBoardContainer}>
+        {data &&
+          data.dashboards.map((dashboard) => (
+            <li key={dashboard.id} className={S.dashBoardLi}>
+              <div
+                className={S.dashBoardColor}
+                style={{ backgroundColor: `${dashboard.color}` }}></div>
+              <div className={S.dashBoardTitle}>{dashboard.title}</div>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

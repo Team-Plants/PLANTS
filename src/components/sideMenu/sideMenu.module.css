@@ -72,3 +72,40 @@
     display: block;
   }
 }
+
+.dashBoardContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 27px;
+  @media (min-width: 768px) {
+    align-items: stretch;
+  }
+}
+
+.dashBoardLi {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+}
+
+.dashBoardColor {
+  margin-top: 6.5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: var(--gray-50);
+}
+
+.dashBoardTitle {
+  color: var(--gray-50);
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
