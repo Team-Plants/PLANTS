@@ -1,9 +1,19 @@
 .alertModalMainContainer {
-  composes: label from '@/components/modal/modalLayout.module.css';
+  composes: modalMainContainer from '@/components/modal/modalLayout.module.css';
+  height: 250px;
+  width: 540px;
+  box-sizing: border-box;
+  gap: 45px;
+  padding: 28px;
 }
 
 .modalContent {
   color: var(--gray-70);
   font-size: 18px;
   font-weight: 500;
+}
+
+.modalButtonContainer {
+  display: flex;
+  align-self: flex-end;
 }

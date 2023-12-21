@@ -10,6 +10,8 @@ import HomeImg6 from '@/assets/images/Home6.png';
 import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
+import ModalLayout from '@/components/modal/modalLayout';
+import AlertModal from '@/components/modal/alertModal/alertModal';
 
 export default function Home() {
   return (
@@ -132,6 +134,11 @@ export default function Home() {
           </Link>
         </div>
       </footer>
+      <ModalLayout>
+        <AlertModal buttonItem={<div>button</div>}>
+          비밀번호를 확인해주세요
+        </AlertModal>
+      </ModalLayout>
     </>
   );
 }
