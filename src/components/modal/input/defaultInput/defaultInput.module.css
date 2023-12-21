@@ -1,0 +1,35 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.label {
+  color: var(--gray-70);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.violetLabel {
+  composes: label;
+  color: var(--violet);
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 14px 16px;
+  background: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--gray-30);
+  width: 484px;
+  height: 48px;
+  color: var(--gray-80);
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.input:focus {
+  border: 1px solid var(--violet);
+  outline: none;
+}

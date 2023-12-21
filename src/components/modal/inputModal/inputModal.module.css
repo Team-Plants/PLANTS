@@ -1,0 +1,21 @@
+.inputModalMainContainer {
+  composes: modalMainContainer from '@/components/modal/modalLayout.module.css';
+  padding: 28px;
+}
+
+.modalTitle {
+  color: var(--black-black_333236, #333236);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-self: flex-start;
+  margin-bottom: 4px;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

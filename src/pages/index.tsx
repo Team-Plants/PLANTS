@@ -11,9 +11,11 @@ import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import ModalLayout from '@/components/modal/modalLayout';
-import AlertModal from '@/components/modal/alertModal/alertModal';
+// import AlertModal from '@/components/modal/alertModal/alertModal';
 import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 import { useState } from 'react';
+import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+import InputModal from '@/components/modal/inputModal/inputModal';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -146,18 +148,53 @@ export default function Home() {
       </footer>
       {isModalOpen && (
         <ModalLayout onClick={handleModal}>
-          <AlertModal
+          <InputModal
+            title="새 컬럼 생성"
             buttonItem={
               <>
-                {/* <ModalDefaultButton type="default">취소</ModalDefaultButton> */}
+                <ModalDefaultButton type="default" onClick={handleModal}>
+                  취소
+                </ModalDefaultButton>
                 <ModalDefaultButton type="violet" onClick={handleModal}>
                   확인
                 </ModalDefaultButton>
               </>
             }>
-            비밀번호를 확인해주세요
-          </AlertModal>
+            <DefaultInput
+              label="이름"
+              placeholder="새로운 프로젝트"
+              isNessary={true}
+            />
+            <DefaultInput
+              label="이름"
+              placeholder="새로운 프로젝트"
+              isNessary={true}
+            />
+            <DefaultInput
+              label="이름"
+              placeholder="새로운 프로젝트"
+              isNessary={true}
+            />
+            <DefaultInput
+              label="이름"
+              placeholder="새로운 프로젝트"
+              isNessary={false}
+            />
+          </InputModal>
         </ModalLayout>
+        // <ModalLayout onClick={handleModal}>
+        //   <AlertModal
+        //     buttonItem={
+        //       <>
+        //         {/* <ModalDefaultButton type="default">취소</ModalDefaultButton> */}
+        //         <ModalDefaultButton type="violet" onClick={handleModal}>
+        //           확인
+        //         </ModalDefaultButton>
+        //       </>
+        //     }>
+        //     <DefaultInput label="" placeholder="제목을 입력해 주세요" />
+        //   </AlertModal>
+        // </ModalLayout>
       )}
     </>
   );
