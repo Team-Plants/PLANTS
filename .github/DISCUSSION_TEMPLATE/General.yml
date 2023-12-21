@@ -1,5 +1,5 @@
-name: 'Daily Scrum'
-description: '데일리 스크럼'
+name: Daily Scrum
+description: 데일리 스크럼
 title: '🗯️ 몇월 며칠'
 body:
   - type: markdown
