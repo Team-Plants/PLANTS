@@ -138,3 +138,7 @@
   height: 5px;
   width: auto;
 }
+
+.warning {
+  text-align: center;
+}
