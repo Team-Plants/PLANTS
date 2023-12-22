@@ -44,10 +44,14 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  @media all and (mobile) {
+    gap: 24px;
+  }
 }
 
 .deleteButton {
-  color: var(--gray-gray_9FA6B2, #9fa6b2);
+  color: var(--gray-40);
   font-family: Pretendard;
   font-size: 1.4rem;
   font-weight: 400;

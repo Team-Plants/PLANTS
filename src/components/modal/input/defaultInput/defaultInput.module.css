@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .input {
   box-sizing: border-box;
   padding: 14px 16px;
@@ -9,6 +11,16 @@
   color: var(--gray-80);
   font-size: 1.6rem;
   font-weight: 400;
+
+  @media all and (mobile) {
+    width: 100%;
+    height: 42px;
+    font-size: 1.4rem;
+  }
+}
+
+.input::placeholder {
+  color: var(--gray-40);
 }
 .input:focus {
   border: 1px solid var(--violet);

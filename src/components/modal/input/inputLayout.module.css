@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .inputContainer {
   width: 100%;
   display: flex;
@@ -10,6 +12,10 @@
   font-family: Pretendard;
   font-size: 1.8rem;
   font-weight: 500;
+
+  @media all and (mobile) {
+    font-size: 1.6rem;
+  }
 }
 
 .violetLabel {
