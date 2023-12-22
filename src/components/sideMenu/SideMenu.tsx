@@ -5,8 +5,9 @@ import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardData } from '@/types/DashBoard';
+import axios, { AxiosResponse } from 'axios';
 
 interface SideMenuProps {
   pageId: number;
@@ -14,6 +15,33 @@ interface SideMenuProps {
 }
 
 function SideMenu({ pageId, data }: SideMenuProps) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [dashboards, setDashboards] = useState([]);
+  async function fetchMoreDashboards() {
+    setIsLoading(true);
+    const response: AxiosResponse = await axios.get(
+      'https://sp-taskify-api.vercel.app/5/dashboards',
+      {
+        params: {
+          navigationMethod: 'infiniteScroll',
+          size: 10,
+        },
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYsInRlYW1JZCI6IjUiLCJpYXQiOjE3MDMxNTM0MjEsImlzcyI6InNwLXRhc2tpZnkifQ.EymSG57SnaoeMZQ79mPVpzMbk8FB7Vyr_Hb0P_yFZvY',
+        },
+      },
+    );
+    const data = await response.data;
+    setDashboards((prev) => prev.concat(data));
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    fetchMoreDashboards();
+  }, []);
+  console.log(dashboards);
+
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
@@ -78,6 +106,8 @@ function SideMenu({ pageId, data }: SideMenuProps) {
                 </li>
               </Link>
             ))}
+          {isLoading && <div>Loading...</div>}
+          {!isLoading && <div></div>}
         </ul>
       </div>
     </div>
