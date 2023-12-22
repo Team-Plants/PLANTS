@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 interface Color {
-  color: string;
+  color: Theme;
 }
 
 function ColorCircle({ color }: Color) {

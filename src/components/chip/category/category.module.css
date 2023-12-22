@@ -11,26 +11,32 @@
   border-radius: 4px;
 }
 
-.orangeTheme {
+.orange {
   composes: wrapper;
   background-color: var(--orange-10);
   color: var(--orange-70);
 }
 
-.greenTheme {
+.green {
   composes: wrapper;
   background-color: var(--green-10);
   color: var(--green-70);
 }
 
-.pinkTheme {
+.pink {
   composes: wrapper;
   background-color: var(--pink-10);
   color: var(--pink-70);
 }
 
-.blueTheme {
+.blue {
   composes: wrapper;
   background-color: var(--blue-10);
   color: var(--blue-70);
+}
+
+.purple {
+  composes: wrapper;
+  background-color: var(--violet-8);
+  color: var(--violet);
 }

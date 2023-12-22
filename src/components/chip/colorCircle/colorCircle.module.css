@@ -7,27 +7,27 @@
   border-radius: 50%;
 }
 
-.greenCircle {
+.green {
   composes: wrapper;
   background-color: var(--green);
 }
 
-.purpleCircle {
+.purple {
   composes: wrapper;
   background-color: var(--purple);
 }
 
-.orangeCircle {
+.orange {
   composes: wrapper;
   background-color: var(--orange);
 }
 
-.blueCircle {
+.blue {
   composes: wrapper;
   background-color: var(--blue);
 }
 
-.pinkCircle {
+.pink {
   composes: wrapper;
   background-color: var(--pink);
 }
