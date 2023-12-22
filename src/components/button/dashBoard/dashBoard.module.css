@@ -7,7 +7,7 @@
 
   border-radius: 8px;
   border: 1px solid var(--gray-30);
-  background: var(--white);
+  background-color: var(--white);
   font-weight: var(--font-normal);
   font-size: 1.6rem;
 }

@@ -7,9 +7,9 @@ interface Category {
 
 function AddButton({ device }: Category) {
   return (
-    <div className={S[device]}>
+    <button className={S[device]}>
       <PlusChip />
-    </div>
+    </button>
   );
 }
 

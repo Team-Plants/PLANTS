@@ -5,7 +5,7 @@ interface Category {
 }
 
 function DeleteDashBoardButton({ device }: Category) {
-  return <div className={S[device]}>대시보드 삭제하기</div>;
+  return <button className={S[device]}>대시보드 삭제하기</button>;
 }
 
 export default DeleteDashBoardButton;

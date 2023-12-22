@@ -7,10 +7,10 @@ interface Category {
 
 function CreateDashBoardButton({ device }: Category) {
   return (
-    <div className={S[device]}>
+    <button className={S[device]}>
       새로운 대시보드
       <PlusChip />
-    </div>
+    </button>
   );
 }
 

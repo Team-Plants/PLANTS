@@ -7,9 +7,9 @@ interface Category {
 
 function ColumnButton({ device }: Category) {
   return (
-    <div className={S[device]}>
+    <button className={S[device]}>
       새로운 컬럼 추가하기 <PlusChip />
-    </div>
+    </button>
   );
 }
 

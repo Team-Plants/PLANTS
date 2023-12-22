@@ -10,7 +10,7 @@
   width: 100%;
 
   border: 1px solid var(--gray-30);
-  background: var(--white);
+  background-color: var(--white);
 }
 
 .leftWrapper {

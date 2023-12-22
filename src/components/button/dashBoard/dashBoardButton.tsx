@@ -13,14 +13,14 @@ interface Category {
 //TODO: 대시보드 생성 시 선택한 color로 Circle img 색상 변경
 function DashBoardButton({ content, device, madeByOwner = false }: Category) {
   return (
-    <div className={S[device]}>
+    <button className={S[device]}>
       <div className={S.contentWrapper}>
         <Image src={Circle} alt="동그라미" />
         {content}
         {madeByOwner && <Image src={Crown} alt="왕관" />}
       </div>
       <Image src={ArrowForwardImg} alt="오른쪽 화살표" />
-    </div>
+    </button>
   );
 }
 

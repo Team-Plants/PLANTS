@@ -10,12 +10,12 @@ interface Category {
 function InActiveArrowButton({ size }: Category) {
   return (
     <div className={S[size]}>
-      <div className={S.leftWrapper}>
+      <button className={S.leftWrapper}>
         <Image src={InActiveArrowLeftImg} alt="왼쪽 화살표" />
-      </div>
-      <div className={S.rightWrapper}>
+      </button>
+      <button className={S.rightWrapper}>
         <Image src={InActiveArrowRightImg} alt="오른쪽 화살표" />
-      </div>
+      </button>
     </div>
   );
 }
