@@ -1,0 +1,38 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.eachWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  border: 1px solid var(--gray-30);
+  background: var(--white);
+}
+
+.leftWrapper {
+  composes: eachWrapper;
+  border-radius: 4px 0px 0px 4px;
+}
+
+.rightWrapper {
+  composes: eachWrapper;
+  border-radius: 0px 4px 4px 0px;
+}
+
+.large {
+  composes: wrapper;
+  width: 80px;
+  height: 40px;
+}
+
+.small {
+  composes: wrapper;
+  width: 72px;
+  height: 36px;
+}
+
+
