@@ -63,7 +63,11 @@ function SideMenu({ pageId, data }: SideMenuProps) {
                   <div
                     className={S.dashBoardColor}
                     style={{ backgroundColor: `${dashboard.color}` }}></div>
-                  <div className={S.dashBoardTitle}>{dashboard.title}</div>
+                  <div className={S.dashBoardTitle}>
+                    {dashboard.createdByMe
+                      ? dashboard.title + '  👑'
+                      : dashboard.title}
+                  </div>
                 </li>
               </Link>
             ))}

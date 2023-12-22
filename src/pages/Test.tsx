@@ -51,7 +51,7 @@ const data = {
     },
   ],
 };
-const pageId = 2;
+const pageId = 1;
 function Test() {
   return <SideMenu data={data} pageId={pageId} />;
 }
