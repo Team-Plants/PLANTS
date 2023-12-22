@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.greenCircle {
+  composes: wrapper;
+  background-color: var(--green);
+}
+
+.purpleCircle {
+  composes: wrapper;
+  background-color: var(--purple);
+}
+
+.orangeCircle {
+  composes: wrapper;
+  background-color: var(--orange);
+}
+
+.blueCircle {
+  composes: wrapper;
+  background-color: var(--blue);
+}
+
+.pinkCircle {
+  composes: wrapper;
+  background-color: var(--pink);
+}
