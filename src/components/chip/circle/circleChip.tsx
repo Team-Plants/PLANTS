@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 interface Color {
-  color: Theme;
+  color: ThemeType;
 }
 
 function CircleChip({ color }: Color) {
