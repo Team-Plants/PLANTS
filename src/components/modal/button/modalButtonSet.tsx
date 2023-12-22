@@ -7,6 +7,10 @@ interface ModalButtonSetState {
   onClickCancel: () => void;
 }
 
+// 모달에서 사용하는 기본 버튼 세트
+// 취소, 확인버튼 세트 (+ 삭제하기)
+// isDelete: true -> 칼럼관리 모달 내 삭제하기 버튼
+// onClickCancel -> 취소 버튼 클릭 시 이벤트
 function ModalButtonSet({
   isDelete,
   submitmButtonTitle = '확인',

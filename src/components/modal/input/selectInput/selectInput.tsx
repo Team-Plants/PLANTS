@@ -22,6 +22,9 @@ interface SelectInputProps {
   setValue: UseFormSetValue<FieldValues>;
 }
 
+// 모달 내 담당자, 상태 선택 옵션 컴포넌트
+// type에 따라 내부 렌더링되는 칩이 다름, 이후 chip 컴포넌트로 변경 필요
+// 선택된 값을 setValue를 통해 form에 저장
 function SelectInput({
   optionData,
   type = 'manager',

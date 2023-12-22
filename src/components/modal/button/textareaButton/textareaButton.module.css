@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .buttonContainer {
   composes: buttonContainer from '@/components/modal/button/modalDefaultButton.module.css';
   width: 83px;
@@ -7,6 +9,10 @@
   right: 12px;
   padding: 9px 0;
   border-radius: 4px;
+
+  @media all and (mobile) {
+    height: 28px;
+  }
 }
 
 .buttonTitle {

@@ -7,6 +7,8 @@ interface InputLayoutProps {
   children: ReactNode;
 }
 
+// 모달 내부 label + input 구성 레이아웃
+// isNessary: true -> * 추가됨
 function InputLayout({ label, isNessary, children }: InputLayoutProps) {
   return (
     <div className={S.inputContainer}>

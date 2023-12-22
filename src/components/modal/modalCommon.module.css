@@ -1,4 +1,4 @@
-@value tablet, mobile from "@/styles/breakpoints.css";
+@value mobile from "@/styles/breakpoints.css";
 
 .modalMainContainer {
   display: flex;
@@ -17,6 +17,10 @@
   align-items: center;
   justify-content: center;
   gap: 28px;
+
+  @media all and (mobile) {
+    width: 327px;
+  }
 }
 
 .modalButtonContainer {

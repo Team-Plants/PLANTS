@@ -1,4 +1,4 @@
-@value tablet, mobile from "@/styles/breakpoints.css";
+@value mobile from "@/styles/breakpoints.css";
 
 .alertModalMainContainer {
   composes: modalMainContainer from '@/components/modal/modalCommon.module.css';

@@ -6,6 +6,7 @@ interface InputModalProps {
   children: ReactNode;
 }
 
+// 모달 내부 제목 + form(children) 구성 레이아웃
 function InputModalLayout({ children, title }: InputModalProps) {
   return (
     <div className={S.inputModalMainContainer}>

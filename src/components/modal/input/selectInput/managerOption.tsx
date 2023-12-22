@@ -6,6 +6,8 @@ interface ManagerOptionProps {
   profileImg?: string;
 }
 
+// 모달 내 담당자 선택 옵션 내부 컴포넌트
+// 전달받은 이미지가 없는 경우 기본원으로 처리, api 연동 후 추가 확인 필요
 function ManagerOption({ name, profileImg }: ManagerOptionProps) {
   return (
     <div className={S.managerOptionContainer}>

@@ -14,12 +14,12 @@ interface TagInputProps {
   setValue: UseFormSetValue<FieldValues>;
 }
 
+// 모달 내 태그 옵션 컴포넌트
 function TagInput({ control, name, setValue }: TagInputProps) {
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
 
   const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    console.log('in');
     if (tagItem.length !== 0 && e.key === 'Enter') {
       submitTagItem();
     }

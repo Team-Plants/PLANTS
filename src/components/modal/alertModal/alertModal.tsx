@@ -9,6 +9,7 @@ interface alertModalProp {
   onClick: () => void;
 }
 
+// 단순 알림 및 버튼 모달(예, 비밀 번호가 일치 하지 않습니다. 칼럼의 모든 카드가 삭제됩니다. 등)
 function AlertModal({ children, buttonItem, onClick }: alertModalProp) {
   return (
     <ModalLayout onClick={onClick}>

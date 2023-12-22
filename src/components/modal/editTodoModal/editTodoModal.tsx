@@ -27,6 +27,7 @@ const ManagerOptions = [
   { value: '배유철1', label: '배유철1' },
 ];
 
+// 할 일 수정 모달
 function EditTodoModal({ onClick }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -100,6 +101,7 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
           <InputLayout label="이미지" isNessary={false}>
             <ImgInput control={control} name="img" setValue={setValue} />
           </InputLayout>
+
           <ModalButtonSet
             isDelete={false}
             submitmButtonTitle="수정"

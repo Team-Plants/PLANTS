@@ -16,6 +16,7 @@ interface ImgInputProps {
   setValue: UseFormSetValue<FieldValues>;
 }
 
+// 할 일 생성, 할 일 수정 내부 이미지 업로드 컴포넌트
 function ImgInput({ control, name, setValue }: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);

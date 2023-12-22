@@ -13,6 +13,7 @@ interface DefaultInputProps {
   name: FieldPath<FieldValues>;
 }
 
+// 모달 내 기본 input
 function DefaultInput({
   placeholder,
   type = 'text',

@@ -1,3 +1,5 @@
+@value mobile from "@/styles/breakpoints.css";
+
 .tagBox {
   display: flex;
   align-items: center;
@@ -6,6 +8,11 @@
   padding: 14px 16px;
   border: 1px solid var(--gray-30);
   border-radius: 6px;
+
+  @media all and (mobile) {
+    height: 42px;
+    padding: 11px 16px;
+  }
 }
 .tagBox:focus-within {
   border: 1px solid var(--violet);
@@ -16,6 +23,10 @@
   display: flex;
   gap: 8px;
   margin-right: 8px;
+
+  @media all and (mobile) {
+    gap: 6px;
+  }
 }
 
 .tagItem {
@@ -28,6 +39,10 @@
   font-family: Pretendard;
   font-size: 1.2rem;
   font-weight: 400;
+
+  @media all and (mobile) {
+    font-size: 1rem;
+  }
 }
 
 .tagInput {

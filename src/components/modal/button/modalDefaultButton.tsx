@@ -7,6 +7,7 @@ interface ModalDefaultButtonProps {
   onClick?: () => void;
 }
 
+// 모달에서 사용하는 기본 버튼
 function ModalDefaultButton({
   children,
   type = 'button',

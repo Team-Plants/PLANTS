@@ -14,21 +14,13 @@ interface AddTodoModalProps {
   onClick: () => void;
 }
 
-export interface TodoData {
-  manager: string;
-  title: string;
-  explain: string;
-  date: string;
-  tag: string[];
-  img: string | null;
-}
-
 const ManagerOptions = [
   { value: '배유철', label: '배유철' },
   { value: '배동석', label: '배동석' },
   { value: '배유철1', label: '배유철1' },
 ];
 
+// 할 일 생성 모달
 function AddTodoModal({ onClick }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -93,7 +85,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
           </InputLayout>
           <ModalButtonSet
             isDelete={false}
-            submitmButtonTitle="확인"
+            submitmButtonTitle="생성"
             onClickCancel={onClick}
           />
         </form>
