@@ -1,11 +1,11 @@
-import s from '@/components/chip/number/number.module.css';
+import S from '@/components/chip/number/number.module.css';
 
 interface Number {
   num: number;
 }
 
 function NumberChip({ num }: Number) {
-  return <div className={s.wrapper}>{num}</div>;
+  return <div className={S.wrapper}>{num}</div>;
 }
 
 export default NumberChip;

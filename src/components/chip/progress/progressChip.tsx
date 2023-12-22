@@ -1,5 +1,5 @@
 import CircleImg from '@/assets/icons/Circle.svg';
-import s from '@/components/chip/progress/progress.module.css';
+import S from '@/components/chip/progress/progress.module.css';
 import Image from 'next/image';
 
 type StatusType = 'ToDo' | 'On Progress' | 'Done';
@@ -10,9 +10,9 @@ interface Status {
 
 function ProgressChip({ progress }: Status) {
   return (
-    <div className={s.wrapper}>
+    <div className={S.wrapper}>
       <Image src={CircleImg} alt="동그라미" />
-      <span className={s.text}>{progress}</span>
+      <span className={S.text}>{progress}</span>
     </div>
   );
 }

@@ -1,0 +1,36 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 23px;
+  width: fit-content;
+
+  padding: 4px 6px;
+  gap: 10px;
+  border-radius: 4px;
+}
+
+.orangeTheme {
+  composes: wrapper;
+  background-color: var(--orange-10);
+  color: var(--orange-70);
+}
+
+.greenTheme {
+  composes: wrapper;
+  background-color: var(--green-10);
+  color: var(--green-70);
+}
+
+.pinkTheme {
+  composes: wrapper;
+  background-color: var(--pink-10);
+  color: var(--pink-70);
+}
+
+.blueTheme {
+  composes: wrapper;
+  background-color: var(--blue-10);
+  color: var(--blue-70);
+}
