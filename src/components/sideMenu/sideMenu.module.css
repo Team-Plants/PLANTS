@@ -1,8 +1,7 @@
 .main {
   background: var(--white);
   width: 67px;
-  min-height: 1859px;
-  height: auto;
+  height: 100vh;
   border-right: 3px solid;
   border-color: var(--gray-40);
   @media (min-width: 768px) {
