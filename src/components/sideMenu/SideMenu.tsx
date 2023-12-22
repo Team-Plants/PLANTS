@@ -4,6 +4,7 @@ import Link from 'next/link';
 import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
+import CrownImg from '@/assets/icons/Crown.svg';
 import { MouseEvent } from 'react';
 import { DashBoardData } from '@/types/DashBoard';
 
@@ -64,9 +65,15 @@ function SideMenu({ pageId, data }: SideMenuProps) {
                     className={S.dashBoardColor}
                     style={{ backgroundColor: `${dashboard.color}` }}></div>
                   <div className={S.dashBoardTitle}>
-                    {dashboard.createdByMe
-                      ? dashboard.title + '  👑'
-                      : dashboard.title}
+                    {dashboard.title + ' '}
+                    {dashboard.createdByMe && (
+                      <Image
+                        src={CrownImg}
+                        alt="왕관 이미지"
+                        width={17.6}
+                        height={14}
+                      />
+                    )}
                   </div>
                 </li>
               </Link>
