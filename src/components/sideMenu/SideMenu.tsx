@@ -16,7 +16,6 @@ interface SideMenuProps {
 function SideMenu({ pageId }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  // const [page, setPage] = useState(1);
   const [cursorId, setCursorId] = useState();
 
   async function fetchMoreDashboards() {
@@ -25,7 +24,6 @@ function SideMenu({ pageId }: SideMenuProps) {
       {
         params: {
           navigationMethod: 'infiniteScroll',
-          // page: page,
           size: 10,
           cursorId: cursorId,
         },
@@ -37,7 +35,6 @@ function SideMenu({ pageId }: SideMenuProps) {
     );
     const data = await response?.data;
     setCursorId(data.cursorId + 8);
-    // setPage((page) => page + 1);
     setDashboards((prev) => [...prev, ...data.dashboards]);
   }
 
@@ -58,7 +55,7 @@ function SideMenu({ pageId }: SideMenuProps) {
       observer.observe(target);
     }
     return () => observer && observer.disconnect();
-  }, [target]);
+  }, [cursorId, target]);
 
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
