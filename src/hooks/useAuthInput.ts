@@ -8,21 +8,19 @@ import {
   EMAIL_STANDARD,
   ERROR_EMAIL_CHECK,
   ERROR_EMAIL_EMPTY,
+  ERROR_NICKNAME_CHECK,
+  ERROR_NICKNAME_EMPTY,
   ERROR_PASSWORD_CHECK,
   ERROR_PASSWORD_EMPTY,
   ERROR_PASSWORD_SECOND_EMPTY,
   ERROR_PASSWORD_VALIDATION,
+  NICKNAME_STANDARD,
   PASSWORD_STANDARD,
 } from '@/constants/auth';
-
-interface FormValue {
-  email: string;
-  password: string;
-  passwordCheck: string;
-}
+import { SignFormValuesType } from '@/types/SignFormValue';
 
 interface AuthInput {
-  register: UseFormRegister<FormValue>;
+  register: UseFormRegister<SignFormValuesType>;
   errors: FieldErrors<FieldValues>;
   required: string | undefined;
   pattern: {
@@ -40,7 +38,7 @@ function useAuthInput(type: string): AuthInput {
   const {
     register,
     formState: { errors },
-  } = useForm<FormValue>({ mode: 'onBlur' });
+  } = useForm<SignFormValuesType>({ mode: 'onBlur' });
 
   const required = matchInput?.required;
 
@@ -74,5 +72,10 @@ const authInput = [
     type: 'passwordCheck',
     required: ERROR_PASSWORD_SECOND_EMPTY,
     validate: ERROR_PASSWORD_CHECK,
+  },
+  {
+    type: 'nickname',
+    required: ERROR_NICKNAME_EMPTY,
+    pattern: { value: NICKNAME_STANDARD, message: ERROR_NICKNAME_CHECK },
   },
 ];

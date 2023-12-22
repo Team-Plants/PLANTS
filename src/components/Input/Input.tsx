@@ -7,8 +7,8 @@ import EyeOpenImg from '@/assets/icons/EyeOpen.svg';
 import S from './Input.module.css';
 
 interface InputProps {
-  type: 'email' | 'password' | 'passwordCheck';
-  label: '이메일' | '비밀번호' | '비밀번호 확인';
+  type: 'email' | 'password' | 'passwordCheck' | 'nickname';
+  label: '이메일' | '비밀번호' | '비밀번호 확인' | '닉네임';
 }
 
 function Input({ type, label }: InputProps) {
