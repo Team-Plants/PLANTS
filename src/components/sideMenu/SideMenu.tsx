@@ -6,25 +6,28 @@ import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
 import { MouseEvent, useEffect, useState } from 'react';
-import { DashBoardData } from '@/types/DashBoard';
+import { DashBoardList } from '@/types/DashBoard';
 import axios, { AxiosResponse } from 'axios';
 
 interface SideMenuProps {
   pageId: number;
-  data: DashBoardData;
 }
 
-function SideMenu({ pageId, data }: SideMenuProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [dashboards, setDashboards] = useState([]);
+function SideMenu({ pageId }: SideMenuProps) {
+  const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
+  const [target, setTarget] = useState<HTMLDivElement | null>(null);
+  // const [page, setPage] = useState(1);
+  const [cursorId, setCursorId] = useState();
+
   async function fetchMoreDashboards() {
-    setIsLoading(true);
     const response: AxiosResponse = await axios.get(
       'https://sp-taskify-api.vercel.app/5/dashboards',
       {
         params: {
           navigationMethod: 'infiniteScroll',
+          // page: page,
           size: 10,
+          cursorId: cursorId,
         },
         headers: {
           Authorization:
@@ -32,15 +35,30 @@ function SideMenu({ pageId, data }: SideMenuProps) {
         },
       },
     );
-    const data = await response.data;
-    setDashboards((prev) => prev.concat(data));
-    setIsLoading(false);
+    const data = await response?.data;
+    setCursorId(data.cursorId + 8);
+    // setPage((page) => page + 1);
+    setDashboards((prev) => [...prev, ...data.dashboards]);
   }
 
   useEffect(() => {
-    fetchMoreDashboards();
-  }, []);
-  console.log(dashboards);
+    let observer: IntersectionObserver;
+    if (target) {
+      const onIntersect: IntersectionObserverCallback = async (
+        [entry],
+        observer,
+      ) => {
+        if (entry.isIntersecting) {
+          observer.unobserve(entry.target);
+          await fetchMoreDashboards();
+          observer.observe(entry.target);
+        }
+      };
+      observer = new IntersectionObserver(onIntersect, { threshold: 1 });
+      observer.observe(target);
+    }
+    return () => observer && observer.disconnect();
+  }, [target]);
 
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
@@ -80,8 +98,8 @@ function SideMenu({ pageId, data }: SideMenuProps) {
       </div>
       <div className={S.dashBoardOuter}>
         <ul className={S.dashBoardContainer}>
-          {data &&
-            data.dashboards.map((dashboard) => (
+          {dashboards &&
+            dashboards.map((dashboard) => (
               <Link href={`/myboard/${dashboard.id}`} key={dashboard.id}>
                 <li
                   className={S.dashBoardLi}
@@ -106,8 +124,9 @@ function SideMenu({ pageId, data }: SideMenuProps) {
                 </li>
               </Link>
             ))}
-          {isLoading && <div>Loading...</div>}
-          {!isLoading && <div></div>}
+          <div ref={setTarget} className={S.refContainer}>
+            Loading...
+          </div>
         </ul>
       </div>
     </div>
