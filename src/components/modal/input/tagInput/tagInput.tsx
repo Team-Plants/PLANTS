@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import S from '@/components/modal/input/tagInput/tagInput.module.css';
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  UseFormSetValue,
+  useController,
+} from 'react-hook-form';
 
-function TagInput() {
+interface TagInputProps {
+  control: Control<FieldValues>;
+  name: FieldPath<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
+}
+
+function TagInput({ control, name, setValue }: TagInputProps) {
   const [tagItem, setTagItem] = useState('');
   const [tagList, setTagList] = useState<string[]>([]);
 
   const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    console.log('in');
     if (tagItem.length !== 0 && e.key === 'Enter') {
       submitTagItem();
     }
@@ -15,8 +29,14 @@ function TagInput() {
     const updatedTagList = [...tagList];
     updatedTagList.push(tagItem);
     setTagList(updatedTagList);
+    setValue('tag', updatedTagList);
     setTagItem('');
   };
+
+  const { field } = useController({
+    name,
+    control,
+  });
 
   return (
     <div className={S.tagBox}>
@@ -31,6 +51,8 @@ function TagInput() {
         })}
       </div>
 
+      <input hidden={true} />
+
       <input
         className={S.tagInput}
         type="text"
@@ -39,6 +61,8 @@ function TagInput() {
         onChange={(e) => setTagItem(e.target.value)}
         value={tagItem}
         onKeyDown={onKeyPress}
+        id={field.name}
+        name={field.name}
       />
     </div>
   );

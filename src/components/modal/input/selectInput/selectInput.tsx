@@ -3,6 +3,7 @@ import S from '@/components/modal/input/selectInput/selectInput.module.css';
 import CheckImg from '@/assets/icons/Check.svg';
 import Image from 'next/image';
 import ManagerOption from './managerOption';
+import { FieldValues, UseFormSetValue } from 'react-hook-form';
 
 // chip 컴포넌트로 교체 예정
 const Chip = (props: { content: string }) => {
@@ -18,19 +19,23 @@ interface SelectInputProps {
   optionData: option[];
   type: 'manager' | 'state';
   placeholder: string;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
 function SelectInput({
   optionData,
   type = 'manager',
   placeholder,
+  setValue,
 }: SelectInputProps) {
   const [selected, setSelected] = useState(placeholder);
   const [showOptions, setShowOptions] = useState(false);
 
   const onChangeSelect = (e: string) => {
-    if (e) setSelected(e);
-    else setSelected('');
+    if (e) {
+      setSelected(e);
+      setValue('manager', e);
+    } else setSelected('');
   };
 
   return (

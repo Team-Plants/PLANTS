@@ -8,7 +8,7 @@ import TodoImg from '@/assets/images/Todo2.png';
 import TextArea from '../textarea/textarea';
 import Comment from './comment';
 import TextareaButton from '../button/textareaButton/textareaButton';
-import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 
 interface TodoModalProps {
   onClick: () => void;
@@ -33,10 +33,17 @@ const dummyComment = [
 ];
 
 function TodoModal({ onClick }: TodoModalProps) {
-  const [comment, setComment] = useState('');
+  const methods = useForm<FieldValues>({
+    mode: 'onChange',
+    defaultValues: {
+      comment: '',
+    },
+  });
+  const { handleSubmit, control } = methods;
 
-  function handleCommentSubmit() {
+  function handleCommentSubmit(data: FieldValues) {
     //이후 구현 필요
+    console.log(data);
   }
 
   return (
@@ -76,14 +83,16 @@ function TodoModal({ onClick }: TodoModalProps) {
 
             <div className={S.commentInputContainer}>
               <div className={S.commentTitle}>댓글</div>
-              <div className={S.textareaContainer}>
+              <form
+                className={S.textareaContainer}
+                onSubmit={handleSubmit(handleCommentSubmit)}>
                 <TextArea
                   placeholder="댓글 작성하기"
-                  value={comment}
-                  onChange={setComment}
+                  control={control}
+                  name="comment"
                 />
-                <TextareaButton onClick={handleCommentSubmit} />
-              </div>
+                <TextareaButton />
+              </form>
             </div>
 
             <div className={S.commentContainer}>

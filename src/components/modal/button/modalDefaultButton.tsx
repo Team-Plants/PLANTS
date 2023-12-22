@@ -3,23 +3,24 @@ import { ReactNode } from 'react';
 
 interface ModalDefaultButtonProps {
   children: ReactNode;
-  type: 'default' | 'violet';
-  onClick: () => void;
+  type?: 'submit' | 'button';
+  onClick?: () => void;
 }
 
 function ModalDefaultButton({
   children,
-  type,
+  type = 'button',
   onClick,
 }: ModalDefaultButtonProps) {
   return (
-    <div
+    <button
       className={
-        type === 'violet' ? S.violetButtonContainer : S.buttonContainer
+        type === 'submit' ? S.violetButtonContainer : S.buttonContainer
       }
+      type={type}
       onClick={onClick}>
       <div className={S.buttonTitle}>{children}</div>
-    </div>
+    </button>
   );
 }
 

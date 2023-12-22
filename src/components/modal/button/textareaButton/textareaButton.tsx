@@ -1,14 +1,10 @@
 import S from '@/components/modal/button/textareaButton/textareaButton.module.css';
 
-interface TextareaButtonProps {
-  onClick: () => void;
-}
-
-function TextareaButton({ onClick }: TextareaButtonProps) {
+function TextareaButton() {
   return (
-    <div className={S.buttonContainer} onClick={onClick}>
+    <button className={S.buttonContainer} type="submit">
       <div className={S.buttonTitle}>입력</div>
-    </div>
+    </button>
   );
 }
 

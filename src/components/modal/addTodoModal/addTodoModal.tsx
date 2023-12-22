@@ -1,4 +1,3 @@
-import ModalDefaultButton from '../button/modalDefaultButton';
 import DefaultInput from '../input/defaultInput/defaultInput';
 import InputLayout from '../input/inputLayout';
 import TagInput from '../input/tagInput/tagInput';
@@ -8,10 +7,20 @@ import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '../textarea/textarea';
 import SelectInput from '../input/selectInput/selectInput';
 import ImgInput from '../input/imgInput/imgInput';
-import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import ModalButtonSet from '../button/modalButtonSet';
 
 interface AddTodoModalProps {
   onClick: () => void;
+}
+
+export interface TodoData {
+  manager: string;
+  title: string;
+  explain: string;
+  date: string;
+  tag: string[];
+  img: string | null;
 }
 
 const ManagerOptions = [
@@ -21,51 +30,72 @@ const ManagerOptions = [
 ];
 
 function AddTodoModal({ onClick }: AddTodoModalProps) {
-  const [explain, setExplain] = useState('');
+  const methods = useForm<FieldValues>({
+    mode: 'onChange',
+    defaultValues: {
+      manager: '',
+      title: '',
+      explain: '',
+      date: '',
+      tag: [],
+      img: '',
+    },
+  });
+
+  const { handleSubmit, control, setValue } = methods;
+
+  function handleAddTodo(data: FieldValues) {
+    // 구현 필요
+    console.log(data);
+  }
 
   return (
     <ModalLayout onClick={onClick}>
-      <InputModalLayout
-        title="할 일 생성"
-        buttonItem={
-          <div className={CommonStyle.modalButtonContainer}>
-            <div className={CommonStyle.rightButtonContainer}>
-              <ModalDefaultButton type="default" onClick={onClick}>
-                취소
-              </ModalDefaultButton>
-              <ModalDefaultButton type="violet" onClick={onClick}>
-                확인
-              </ModalDefaultButton>
-            </div>
-          </div>
-        }>
-        <form className={CommonStyle.form}>
+      <InputModalLayout title="할 일 생성">
+        <form
+          className={CommonStyle.form}
+          onSubmit={handleSubmit(handleAddTodo)}>
           <InputLayout label="담당자" isNessary={false}>
             <SelectInput
               optionData={ManagerOptions}
               type="manager"
               placeholder="이름을 입력해주세요"
+              setValue={setValue}
             />
           </InputLayout>
           <InputLayout label="제목" isNessary={true}>
-            <DefaultInput placeholder="제목을 입력해 주세요" />
+            <DefaultInput
+              placeholder="제목을 입력해 주세요"
+              control={control}
+              name="title"
+            />
           </InputLayout>
           <InputLayout label="설명" isNessary={true}>
             <TextArea
               placeholder="설명을 입력해 주세요"
-              value={explain}
-              onChange={setExplain}
+              control={control}
+              name="explain"
             />
           </InputLayout>
           <InputLayout label="마감일" isNessary={false}>
-            <DefaultInput placeholder="설명을 입력해 주세요" type="date" />
+            <DefaultInput
+              placeholder="설명을 입력해 주세요"
+              type="date"
+              control={control}
+              name="date"
+            />
           </InputLayout>
           <InputLayout label="태그" isNessary={false}>
-            <TagInput />
+            <TagInput setValue={setValue} control={control} name="tag" />
           </InputLayout>
-          <InputLayout label="태그" isNessary={false}>
-            <ImgInput />
+          <InputLayout label="이미지" isNessary={false}>
+            <ImgInput control={control} name="img" setValue={setValue} />
           </InputLayout>
+          <ModalButtonSet
+            isDelete={false}
+            submitmButtonTitle="확인"
+            onClickCancel={onClick}
+          />
         </form>
       </InputModalLayout>
     </ModalLayout>

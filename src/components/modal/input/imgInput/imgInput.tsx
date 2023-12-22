@@ -2,8 +2,21 @@ import S from '@/components/modal/input/imgInput/imgInput.module.css';
 import Image from 'next/image';
 import { useCallback, useRef, useState } from 'react';
 import ImgPlusImg from '@/assets/icons/imgPlus.svg';
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  UseFormSetValue,
+  useController,
+} from 'react-hook-form';
 
-function ImgInput() {
+interface ImgInputProps {
+  control: Control<FieldValues>;
+  name: FieldPath<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
+}
+
+function ImgInput({ control, name, setValue }: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -18,6 +31,7 @@ function ImgInput() {
       reader.onload = () => {
         const reuslt = String(reader.result);
         setImageSrc(reuslt || null); // 파일의 컨텐츠
+        setValue('img', reuslt || null);
         resolve();
       };
     });
@@ -29,6 +43,11 @@ function ImgInput() {
     }
     inputRef.current.click();
   }, []);
+
+  const { field } = useController({
+    name,
+    control,
+  });
 
   return (
     <div className={S.imgInputContainer}>
@@ -46,6 +65,8 @@ function ImgInput() {
         onChange={(e) => onUpload(e)}
         className={S.input}
         ref={inputRef}
+        id={field.name}
+        name={field.name}
       />
     </div>
   );

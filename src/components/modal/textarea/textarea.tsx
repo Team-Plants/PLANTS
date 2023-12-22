@@ -1,22 +1,31 @@
 import S from '@/components/modal/textarea/textarea.module.css';
+import {
+  Control,
+  FieldPath,
+  FieldValues,
+  useController,
+} from 'react-hook-form';
 
 interface TextareaProps {
   placeholder: string;
-  onChange: (value: string) => void;
-  value: string;
+  control: Control<FieldValues>;
+  name: FieldPath<FieldValues>;
 }
 
-function TextArea({ placeholder, onChange, value }: TextareaProps) {
-  function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const value = e.target.value;
-    onChange(value);
-  }
+function TextArea({ placeholder, control, name }: TextareaProps) {
+  const { field } = useController({
+    name,
+    control,
+  });
+
   return (
     <textarea
       className={S.textarea}
       placeholder={placeholder}
-      value={value}
-      onChange={handleChange}
+      id={field.name}
+      name={field.name}
+      value={field.value}
+      onChange={field.onChange}
     />
   );
 }

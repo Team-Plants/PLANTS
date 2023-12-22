@@ -11,14 +11,17 @@ import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
 import { useState } from 'react';
-// import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 // import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
-import TodoModal from '@/components/modal/todoModal/todoModal';
+// import TodoModal from '@/components/modal/todoModal/todoModal';
 // import AlertModal from '@/components/modal/alertModal/alertModal';
 // import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 // import InputModal from '@/components/modal/inputModal/inputModal';
 // import InputLayout from '@/components/modal/input/inputLayout';
 // import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+// import { useForm } from 'react-hook-form';
+// import CommonStyle from '@/components/modal/modalCommon.module.css';
+// import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +29,20 @@ export default function Home() {
   function handleModal() {
     setIsModalOpen((prev) => !prev);
   }
+
+  // const methods = useForm<{ name: string }>({
+  //   mode: 'onChange',
+  //   defaultValues: {
+  //     name: '',
+  //   },
+  // });
+
+  // const { handleSubmit, control } = methods;
+
+  // function handleAddTodo(data: any) {
+  //   // 구현 필요
+  //   console.log(data);
+  // }
 
   return (
     <>
@@ -160,18 +177,25 @@ export default function Home() {
           비밀번호가 일치하지 않습니다.
         </AlertModal>
       )} */}
-      {/* {isModalOpen && <AddTodoModal onClick={handleModal} />} */}
+      {isModalOpen && <AddTodoModal onClick={handleModal} />}
       {/* {isModalOpen && <EditTodoModal onClick={handleModal} />} */}
       {/* {isModalOpen && (
-        <InputModal onClick={handleModal} title={'칼럼 관리'} isDelete={true}>
-          <form>
-            <InputLayout label="이름" isNessary={false}>
-              <DefaultInput placeholder="이름을 입력해 주세요" />
-            </InputLayout>
-          </form>
+        <InputModal onClick={handleModal} title={'칼럼 관리'}>
+          <InputLayout label="이름" isNessary={false}>
+            <form
+              onSubmit={handleSubmit(handleAddTodo)}
+              className={CommonStyle.form}>
+              <DefaultInput
+                placeholder="이름을 입력해 주세요"
+                control={control}
+                name="name"
+              />
+              <ModalButtonSet isDelete={true} submitmButtonTitle="변경" />
+            </form>
+          </InputLayout>
         </InputModal>
       )} */}
-      {isModalOpen && <TodoModal onClick={handleModal} />}
+      {/* {isModalOpen && <TodoModal onClick={handleModal} />} */}
     </>
   );
 }
