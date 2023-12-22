@@ -29,9 +29,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: 38.8px;
+  margin-bottom: 38.8px;
   @media (min-width: 768px) {
-    padding-bottom: 59.9px;
+    margin-bottom: 59.9px;
   }
   @media (min-width: 1200px) {
     justify-content: left;

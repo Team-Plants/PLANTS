@@ -22,16 +22,20 @@ function SideMenu({ pageId, data }: SideMenuProps) {
     <div className={S.main}>
       <div className={S.headerOuter}>
         <div className={S.imgContainer}>
-          <Image
-            src={SmallLogoImg}
-            alt="로고 이미지"
-            className={S.smallLogoImg}
-          />
-          <Image
-            src={TaskifyImg}
-            alt="Taskify 이미지"
-            className={S.taskifyImg}
-          />
+          <Link href="/myboard">
+            <Image
+              src={SmallLogoImg}
+              alt="로고 이미지"
+              className={S.smallLogoImg}
+            />
+          </Link>
+          <Link href="/myboard">
+            <Image
+              src={TaskifyImg}
+              alt="Taskify 이미지"
+              className={S.taskifyImg}
+            />
+          </Link>
         </div>
         <div className={S.headerContainer}>
           <p className={S.headerDescription}>Dash Boards</p>
