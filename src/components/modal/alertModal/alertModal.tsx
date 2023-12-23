@@ -1,6 +1,6 @@
 import S from '@/components/modal/alertModal/alertModal.module.css';
 import { ReactNode } from 'react';
-import ModalLayout from '../modalLayout';
+import ModalLayout from '@/components/modal/modalLayout';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 
 interface alertModalProp {

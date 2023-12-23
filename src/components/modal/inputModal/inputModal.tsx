@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import ModalLayout from '../modalLayout';
-import InputModalLayout from './inputModalLayout';
+import ModalLayout from '@/components/modal/modalLayout';
+import InputModalLayout from '@/components/modal/inputModal/inputModalLayout';
 
 interface InputModalLayoutProps {
   onClick: () => void;

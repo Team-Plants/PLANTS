@@ -2,7 +2,7 @@ import { useState } from 'react';
 import S from '@/components/modal/input/selectInput/selectInput.module.css';
 import CheckImg from '@/assets/icons/Check.svg';
 import Image from 'next/image';
-import ManagerOption from './managerOption';
+import ManagerOption from '@/components/modal/input/selectInput/managerOption';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
 
 // chip 컴포넌트로 교체 예정

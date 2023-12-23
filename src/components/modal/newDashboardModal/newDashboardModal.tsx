@@ -1,9 +1,9 @@
 import { FieldValues, useForm } from 'react-hook-form';
-import ModalButtonSet from '../button/modalButtonSet';
-import ColorChipInput from '../input/colorChipInput/colorChipInput';
-import DefaultInput from '../input/defaultInput/defaultInput';
-import InputLayout from '../input/inputLayout';
-import InputModal from '../inputModal/inputModal';
+import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
+import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+import InputLayout from '@/components/modal/input/inputLayout';
+import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 
 interface NewDashboardModalProps {

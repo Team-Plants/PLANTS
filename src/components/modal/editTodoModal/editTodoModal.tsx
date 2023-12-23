@@ -7,8 +7,8 @@ import S from '@/components/modal/editTodoModal/editTodoModal.module.css';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import TextArea from '@/components/modal/textarea/textarea';
 import SelectInput from '@/components/modal/input/selectInput/selectInput';
-import ImgInput from '../input/imgInput/imgInput';
-import ModalButtonSet from '../button/modalButtonSet';
+import ImgInput from '@/components/modal/input/imgInput/imgInput';
+import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface AddTodoModalProps {

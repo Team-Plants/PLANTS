@@ -1,5 +1,5 @@
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import ModalDefaultButton from './modalDefaultButton';
+import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 
 interface ModalButtonSetState {
   isDelete: boolean;
