@@ -17,5 +17,5 @@
 .modalContent {
   color: var(--gray-70);
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: var(--font-normal);
 }

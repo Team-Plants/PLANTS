@@ -11,7 +11,7 @@
   color: var(--gray-70);
   font-family: Pretendard;
   font-size: 1.8rem;
-  font-weight: 500;
+  font-weight: var(--font-normal);
 
   @media all and (mobile) {
     font-size: 1.6rem;

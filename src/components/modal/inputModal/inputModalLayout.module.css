@@ -13,7 +13,7 @@
   color: var(--gray-70);
   font-family: Pretendard;
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   align-self: flex-start;
   margin-bottom: 4px;
 
