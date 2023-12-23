@@ -55,7 +55,7 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
           className={CommonStyle.form}
           onSubmit={handleSubmit(handleEditTodo)}>
           <div className={S.inputContainer}>
-            <InputLayout label="상태" isNessary={false}>
+            <InputLayout label="상태" isNecessary={false}>
               <SelectInput
                 optionData={stateOptions}
                 type="state"
@@ -63,7 +63,7 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
                 setValue={setValue}
               />
             </InputLayout>
-            <InputLayout label="담당자" isNessary={false}>
+            <InputLayout label="담당자" isNecessary={false}>
               <SelectInput
                 optionData={ManagerOptions}
                 type="manager"
@@ -73,21 +73,21 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
             </InputLayout>
           </div>
 
-          <InputLayout label="제목" isNessary={true}>
+          <InputLayout label="제목" isNecessary={true}>
             <DefaultInput
               placeholder="제목을 입력해 주세요"
               control={control}
               name="title"
             />
           </InputLayout>
-          <InputLayout label="설명" isNessary={true}>
+          <InputLayout label="설명" isNecessary={true}>
             <TextArea
               placeholder="설명을 입력해 주세요"
               control={control}
               name="explain"
             />
           </InputLayout>
-          <InputLayout label="마감일" isNessary={false}>
+          <InputLayout label="마감일" isNecessary={false}>
             <DefaultInput
               placeholder="설명을 입력해 주세요"
               type="date"
@@ -95,10 +95,10 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
               name="date"
             />
           </InputLayout>
-          <InputLayout label="태그" isNessary={false}>
+          <InputLayout label="태그" isNecessary={false}>
             <TagInput setValue={setValue} control={control} name="tag" />
           </InputLayout>
-          <InputLayout label="이미지" isNessary={false}>
+          <InputLayout label="이미지" isNecessary={false}>
             <ImgInput control={control} name="img" setValue={setValue} />
           </InputLayout>
 

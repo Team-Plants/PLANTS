@@ -183,7 +183,7 @@ export default function Home() {
       {/* 기본 입력 모달 */}
       {isModalOpen && (
         <InputModal onClick={handleModal} title={'칼럼 관리'}>
-          <InputLayout label="이름" isNessary={false}>
+          <InputLayout label="이름" isNecessary={false}>
             <form
               onSubmit={handleSubmit(handleAddTodo)}
               className={CommonStyle.form}>
