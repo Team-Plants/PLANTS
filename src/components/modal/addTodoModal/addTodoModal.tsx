@@ -1,14 +1,14 @@
-import DefaultInput from '../input/defaultInput/defaultInput';
-import InputLayout from '../input/inputLayout';
-import TagInput from '../input/tagInput/tagInput';
-import InputModalLayout from '../inputModal/inputModalLayout';
-import ModalLayout from '../modalLayout';
+import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+import InputLayout from '@/components/modal/input/inputLayout';
+import TagInput from '@/components/modal/input/tagInput/tagInput';
+import InputModalLayout from '@/components/modal/inputModal/inputModalLayout';
+import ModalLayout from '@/components/modal/modalLayout';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import TextArea from '../textarea/textarea';
-import SelectInput from '../input/selectInput/selectInput';
-import ImgInput from '../input/imgInput/imgInput';
+import TextArea from '@/components/modal/textarea/textarea';
+import SelectInput from '@/components/modal/input/selectInput/selectInput';
+import ImgInput from '@/components/modal/input/imgInput/imgInput';
 import { FieldValues, useForm } from 'react-hook-form';
-import ModalButtonSet from '../button/modalButtonSet';
+import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 
 interface AddTodoModalProps {
   onClick: () => void;
