@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 16px;
+
+  @media all and (min-width: 768px) and (max-width: 1199px) {
+    gap: 12px;
+  }
+
+  @media all and (max-width: 767px) {
+    gap: 6px;
+  }
+}
+
+.vectorImage {
+  margin-right: 12px;
+  margin-left: 16px;
+}
+
+.button {
+  composes: wrapper from '@/components/button/button.module.css';
+  gap: 8px;
+  border-radius: 8px;
+  border-color: var(--gray-30);
+  font-size: 1.6rem;
+  color: var(--gray-50);
+
+  @media all and (min-width: 768px) and (max-width: 1199px) {
+    font-size: 1.4rem;
+  }
+}
+
+.buttonImg {
+  @media all and (max-width: 767px) {
+    display: none;
+  }
+}
+
+.folderName {
+  
+}
