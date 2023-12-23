@@ -17,7 +17,6 @@ import InputLayout from '@/components/modal/input/inputLayout';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import TodoModal from '@/components/modal/todoModal/todoModal';
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -182,7 +181,7 @@ export default function Home() {
       {/* {isModalOpen && <EditTodoModal onClick={handleModal} />} */}
 
       {/* 기본 입력 모달 */}
-      {/* {isModalOpen && (
+      {isModalOpen && (
         <InputModal onClick={handleModal} title={'칼럼 관리'}>
           <InputLayout label="이름" isNecessary={false}>
             <form
@@ -201,10 +200,13 @@ export default function Home() {
             </form>
           </InputLayout>
         </InputModal>
-      )} */}
+      )}
 
       {/* 할일 카드 모달 */}
-      {isModalOpen && <TodoModal onClick={handleModal} />}
+      {/* {isModalOpen && <TodoModal onClick={handleModal} />} */}
+
+      {/* 새로운 대시보드 모달 */}
+      {/* {isModalOpen && <NewDashboardModal onClick={handleModal} />} */}
     </>
   );
 }
