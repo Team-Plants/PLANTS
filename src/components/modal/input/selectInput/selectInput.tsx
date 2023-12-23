@@ -1,14 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import S from '@/components/modal/input/selectInput/selectInput.module.css';
-import CheckImg from '@/assets/icons/Check.svg';
+import CheckImg from '@/assets/icons/CheckG.svg';
 import Image from 'next/image';
 import ManagerOption from '@/components/modal/input/selectInput/managerOption';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
-
-// chip 컴포넌트로 교체 예정
-const Chip = (props: { content: string }) => {
-  return <div className={S.a}>{props.content}</div>;
-};
+import ProgressChip from '@/components/chip/progress/progressChip';
+import { StatusType } from '../../editTodoModal/editTodoModal';
 
 interface option {
   value: string;
@@ -50,7 +47,7 @@ function SelectInput({
           type === 'manager' ? (
             <ManagerOption name={selected} />
           ) : (
-            <Chip content={selected} />
+            <ProgressChip progress={selected as StatusType} />
           )
         ) : (
           <div className={S.placeholder}>{placeholder}</div>
@@ -78,7 +75,7 @@ function SelectInput({
                 {type === 'manager' ? (
                   <ManagerOption name={e.value} />
                 ) : (
-                  <Chip content={e.value} />
+                  <ProgressChip progress={e.value as StatusType} />
                 )}
               </li>
             );

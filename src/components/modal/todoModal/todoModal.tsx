@@ -87,7 +87,6 @@ function TodoModal({ onClick }: TodoModalProps) {
 
         <div className={S.mainContainer}>
           <div className={S.mainContentContainer}>
-            {/* chip 컴포넌트 추가된 후 수정 필요 */}
             <div className={S.chipContainer}>
               <ProgressChip progress="ToDo" />
               <div>|</div>

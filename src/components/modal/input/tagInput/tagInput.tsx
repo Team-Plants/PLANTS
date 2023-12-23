@@ -7,6 +7,7 @@ import {
   UseFormSetValue,
   useController,
 } from 'react-hook-form';
+import CategoryChip from '@/components/chip/category/categoryChip';
 
 interface TagInputProps {
   control: Control<FieldValues>;
@@ -42,12 +43,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
     <div className={S.tagBox}>
       <div className={S.tagItemContainer}>
         {tagList.map((tagItem, index) => {
-          return (
-            // chip 컴포넌트로 교체 예정
-            <div className={S.tagItem} key={index}>
-              <div>{tagItem}</div>
-            </div>
-          );
+          return <CategoryChip content={tagItem} key={index} color={'green'} />;
         })}
       </div>
 

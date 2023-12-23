@@ -15,8 +15,15 @@ interface AddTodoModalProps {
   onClick: () => void;
 }
 
-const stateOptions = [
-  { value: 'To Do', label: 'To Do' },
+export type StatusType = 'ToDo' | 'On Progress' | 'Done';
+
+interface StateOptions {
+  value: StatusType;
+  label: StatusType;
+}
+
+const stateOptions: StateOptions[] = [
+  { value: 'ToDo', label: 'ToDo' },
   { value: 'On Progress', label: 'On Progress' },
   { value: 'Done', label: 'Done' },
 ];
