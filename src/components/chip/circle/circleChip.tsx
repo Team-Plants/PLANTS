@@ -1,12 +1,12 @@
 import CheckImg from '@/assets/icons/Check.svg';
 import S from '@/components/chip/circle/circle.module.css';
 import Image from 'next/image';
-import { Dispatch } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Color {
   color: Theme;
   isChecked: boolean;
-  setIsChecked: Dispatch<React.SetStateAction<boolean>>;
+  setIsChecked: Dispatch<SetStateAction<boolean>>;
   onClick: (e: string) => void;
 }
 

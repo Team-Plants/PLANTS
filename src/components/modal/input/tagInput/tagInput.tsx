@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import S from '@/components/modal/input/tagInput/tagInput.module.css';
 import {
   Control,
@@ -25,7 +25,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
   const [tagItem, setTagItem] = useState<TagItem | null>();
   const [tagList, setTagList] = useState<TagItem[]>([]);
 
-  const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const onKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (tagItem?.content.length !== 0 && e.key === 'Enter') {
       submitTagItem();
     }
