@@ -4,7 +4,7 @@ import { ErrorMessage } from '@hookform/error-message';
 import useAuthInput from '@/hooks/useAuthInput';
 import EyeCloseImg from '@/assets/icons/EyeClose.svg';
 import EyeOpenImg from '@/assets/icons/EyeOpen.svg';
-import S from './Input.module.css';
+import S from '@/components/Input/Input.module.css';
 
 interface InputProps {
   type: 'email' | 'password' | 'passwordCheck' | 'nickname';
@@ -12,8 +12,7 @@ interface InputProps {
 }
 
 function Input({ type, label }: InputProps) {
-  const { register, errors, required } = useAuthInput(type);
-  // const { register, errors, required, pattern, maxLength } = useAuthInput(type); 31-32번줄 에러때문에 주석처리
+  const { register, errors, rules } = useAuthInput(type);
   const [eye, setEye] = useState(false);
 
   return (
@@ -31,10 +30,10 @@ function Input({ type, label }: InputProps) {
           id={type}
           type={type.includes('password') ? (eye ? 'text' : 'password') : type}
           className={S.input}
-          placeholder={required}
+          placeholder={rules.required}
           {...register(type, {
-            // pattern: pattern,
-            // maxLength : maxLength, 타입에러 해결이 안됨.
+            pattern: rules.pattern,
+            maxLength: rules.maxLength,
           })}
         />
         <Image

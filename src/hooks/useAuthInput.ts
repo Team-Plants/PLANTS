@@ -22,14 +22,16 @@ import { SignFormValuesType } from '@/types/SignFormValue';
 interface AuthInput {
   register: UseFormRegister<SignFormValuesType>;
   errors: FieldErrors<FieldValues>;
-  required: string | undefined;
-  pattern: {
-    value: RegExp | undefined;
-    message: string | undefined;
-  };
-  maxLength: {
-    value: number | undefined;
-    message: string | undefined;
+  rules: {
+    required?: string;
+    pattern: {
+      value: RegExp;
+      message: string;
+    };
+    maxLength: {
+      value: number;
+      message: string;
+    };
   };
 }
 
@@ -43,15 +45,22 @@ function useAuthInput(type: string): AuthInput {
   const required = matchInput?.required;
 
   const pattern = {
-    value: matchInput?.pattern?.value,
-    message: matchInput?.pattern?.message,
+    value: matchInput?.pattern?.value as RegExp,
+    message: matchInput?.pattern?.message as string,
   };
 
   const maxLength = {
-    value: matchInput?.maxLength?.value,
-    message: matchInput?.maxLength?.message,
+    value: matchInput?.maxLength?.value as number,
+    message: matchInput?.maxLength?.message as string,
   };
-  return { required, pattern, maxLength, register, errors };
+
+  const rules = {
+    required: required,
+    pattern: pattern,
+    maxLength: maxLength,
+  };
+
+  return { rules, register, errors };
 }
 
 export default useAuthInput;

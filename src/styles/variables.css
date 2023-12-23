@@ -14,12 +14,23 @@
   --primary: var(--gray-80);
 
   --pink: #e876ea;
+  --pink-lg: #f4d7da;
+
   --red: #d6173a;
+
+  --yellow-lg: #ffc85a;
   --orange: #ffa500;
+  --orange-lg: #fdd446;
+
   --green: #7ac555;
+  --green-lg: #a3c4a2;
+
   --blue: #76a5ea;
+  --blue-lg: #9dd7ed;
   --purple: #760dde;
   --violet: #5534da;
+
+  --brown-lg:#c4b1a2;
   --violet-8: #f1effd;
 
   --font-bold: 700;

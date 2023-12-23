@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 6px;
+}
+
+.vectorImage {
+  margin-right: 12px;
+  margin-left: 16px; 
+}
+
+.badge {
+  border-radius: 100%;
+  background-color: aqua;
+  margin-right: 12px;
+}

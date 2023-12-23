@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.yellow {
+  composes: container;
+  background-color: 'var(--yellow-lg)';
+}
+
+.orange {
+  composes: container;
+  background-color: 'var(--orange-lg)';
+}
+
+.green {
+  composes: container;
+  background-color: 'var(--green-lg)';
+}
+
+.blue {
+  composes: container;
+  background-color: 'var(--blue-lg)';
+}
+
+.brown {
+  composes: container;
+  background-color: 'var(--brown-lg)';
+}
+
+.pink {
+  composes: container;
+  background-color: 'var(--pink-lg)';
+}
