@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import S from '@/components/modal/input/tagInput/tagInput.module.css';
 import {
   Control,
@@ -15,24 +15,44 @@ interface TagInputProps {
   setValue: UseFormSetValue<FieldValues>;
 }
 
+interface TagItem {
+  content: string;
+  color?: Theme;
+}
+
+const color: Theme[] = ['green', 'blue', 'orange', 'pink', 'purple'];
+
 // 모달 내 태그 옵션 컴포넌트
 function TagInput({ control, name, setValue }: TagInputProps) {
-  const [tagItem, setTagItem] = useState('');
-  const [tagList, setTagList] = useState<string[]>([]);
+  const [tagItem, setTagItem] = useState<TagItem | null>();
+  const [tagList, setTagList] = useState<TagItem[]>([]);
 
   const onKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (tagItem.length !== 0 && e.key === 'Enter') {
+    if (tagItem?.content.length !== 0 && e.key === 'Enter') {
       submitTagItem();
     }
   };
 
   const submitTagItem = () => {
     const updatedTagList = [...tagList];
-    updatedTagList.push(tagItem);
+    updatedTagList.push(tagItem!);
     setTagList(updatedTagList);
-    setValue('tag', updatedTagList);
-    setTagItem('');
+    setValue(
+      'tag',
+      updatedTagList.map((i) => i.content),
+    );
+    setTagItem({ content: '' });
   };
+
+  function handleRandomChipColor() {
+    const num = Math.floor(Math.random() * 6);
+    return color[num];
+  }
+
+  function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
+    const color = handleRandomChipColor();
+    setTagItem({ content: e.target.value, color: color });
+  }
 
   const { field } = useController({
     name,
@@ -43,7 +63,13 @@ function TagInput({ control, name, setValue }: TagInputProps) {
     <div className={S.tagBox}>
       <div className={S.tagItemContainer}>
         {tagList.map((tagItem, index) => {
-          return <CategoryChip content={tagItem} key={index} color={'green'} />;
+          return (
+            <CategoryChip
+              content={tagItem.content}
+              key={index}
+              color={tagItem.color || 'green'}
+            />
+          );
         })}
       </div>
 
@@ -54,8 +80,8 @@ function TagInput({ control, name, setValue }: TagInputProps) {
         type="text"
         placeholder="입력 후 Enter"
         tabIndex={2}
-        onChange={(e) => setTagItem(e.target.value)}
-        value={tagItem}
+        onChange={(e) => handleChangeInput(e)}
+        value={tagItem?.content}
         onKeyDown={onKeyPress}
         id={field.name}
         name={field.name}
