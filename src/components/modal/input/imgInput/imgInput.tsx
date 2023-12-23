@@ -9,6 +9,7 @@ import {
   UseFormSetValue,
   useController,
 } from 'react-hook-form';
+import { fileToString } from '@/utils/utility';
 
 interface ImgInputProps {
   control: Control<FieldValues>;
@@ -21,21 +22,10 @@ function ImgInput({ control, name, setValue }: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const onUpload = (e: React.FormEvent<HTMLInputElement>) => {
-    const target = e.currentTarget;
-    const files = (target.files as FileList)[0];
-
-    const reader = new FileReader();
-    reader.readAsDataURL(files);
-
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        const reuslt = String(reader.result);
-        setImageSrc(reuslt || null); // 파일의 컨텐츠
-        setValue('img', reuslt || null);
-        resolve();
-      };
-    });
+  const onUpload = async (e: React.FormEvent<HTMLInputElement>) => {
+    const fileString = await fileToString(e);
+    setImageSrc(fileString);
+    setValue('img', fileString);
   };
 
   const handleUploadImg = useCallback(() => {

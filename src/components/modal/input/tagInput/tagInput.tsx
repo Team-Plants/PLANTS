@@ -8,6 +8,7 @@ import {
   useController,
 } from 'react-hook-form';
 import CategoryChip from '@/components/chip/category/categoryChip';
+import { randomChipColor } from '@/utils/utility';
 
 interface TagInputProps {
   control: Control<FieldValues>;
@@ -19,9 +20,6 @@ interface TagItem {
   content: string;
   color?: Theme;
 }
-
-const color: Theme[] = ['green', 'blue', 'orange', 'pink', 'purple'];
-
 // 모달 내 태그 옵션 컴포넌트
 function TagInput({ control, name, setValue }: TagInputProps) {
   const [tagItem, setTagItem] = useState<TagItem | null>();
@@ -44,13 +42,8 @@ function TagInput({ control, name, setValue }: TagInputProps) {
     setTagItem({ content: '' });
   };
 
-  function handleRandomChipColor() {
-    const num = Math.floor(Math.random() * 6);
-    return color[num];
-  }
-
   function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
-    const color = handleRandomChipColor();
+    const color = randomChipColor();
     setTagItem({ content: e.target.value, color: color });
   }
 

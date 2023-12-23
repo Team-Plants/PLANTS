@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import S from '@/components/modal/input/selectInput/selectInput.module.css';
 import CheckImg from '@/assets/icons/CheckG.svg';
 import Image from 'next/image';
