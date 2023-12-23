@@ -9,6 +9,8 @@ import TextArea from '../textarea/textarea';
 import Comment from './comment';
 import TextareaButton from '../button/textareaButton/textareaButton';
 import { FieldValues, useForm } from 'react-hook-form';
+import ProgressChip from '@/components/chip/progress/progressChip';
+import CategoryChip from '@/components/chip/category/categoryChip';
 
 interface TodoModalProps {
   onClick: () => void;
@@ -29,6 +31,26 @@ const dummyComment = [
     name: '정만철',
     date: '2022.12.27 14:00',
     comment: '오늘안에 CCC 까지 만들 수 있을까요?',
+  },
+];
+
+interface Category {
+  content: string;
+  color: Theme;
+}
+
+const dummyCategory: Category[] = [
+  {
+    content: '프로젝트',
+    color: 'orange',
+  },
+  {
+    content: '일반',
+    color: 'green',
+  },
+  {
+    content: '백엔드',
+    color: 'pink',
   },
 ];
 
@@ -67,9 +89,19 @@ function TodoModal({ onClick }: TodoModalProps) {
           <div className={S.mainContentContainer}>
             {/* chip 컴포넌트 추가된 후 수정 필요 */}
             <div className={S.chipContainer}>
-              <div></div>
+              <ProgressChip progress="ToDo" />
               <div>|</div>
-              <div></div>
+              <div className={S.categoryChipContainer}>
+                {dummyCategory.map((e, index) => {
+                  return (
+                    <CategoryChip
+                      content={e.content}
+                      key={index}
+                      color={e.color}
+                    />
+                  );
+                })}
+              </div>
             </div>
 
             <div className={S.mainContent}>
