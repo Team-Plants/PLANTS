@@ -1,8 +1,19 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
 import { BASE_URL } from '@/constants/common';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 
 export const instance = axios.create({
   baseURL: BASE_URL,
+  headers: {
+    'Content-type': 'application/json',
+  },
+});
+
+export const instanceFiles = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+  withCredentials: true,
 });
 
 instance.interceptors.request.use(
