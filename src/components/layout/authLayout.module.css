@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,10 +16,10 @@
   font-weight: var(--font-normal);
 }
 
-.inputWrapper {
+.inputContainer {
 }
 
-.memberStatusWrapper {
+.memberStatusContainer {
   display: flex;
   flex-direction: row;
   font-size: 1.6rem;

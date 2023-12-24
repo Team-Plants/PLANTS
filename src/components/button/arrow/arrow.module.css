@@ -1,9 +1,9 @@
-.wrapper {
+.container {
   display: flex;
   flex-direction: row;
 }
 
-.eachWrapper {
+.eachContainer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,26 +13,24 @@
   background-color: var(--white);
 }
 
-.leftWrapper {
-  composes: eachWrapper;
+.leftContainer {
+  composes: eachContainer;
   border-radius: 4px 0px 0px 4px;
 }
 
-.rightWrapper {
-  composes: eachWrapper;
+.rightContainer {
+  composes: eachContainer;
   border-radius: 0px 4px 4px 0px;
 }
 
 .large {
-  composes: wrapper;
+  composes: container;
   width: 80px;
   height: 40px;
 }
 
 .small {
-  composes: wrapper;
+  composes: container;
   width: 72px;
   height: 36px;
 }
-
-

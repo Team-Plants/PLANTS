@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,26 +12,26 @@
   font-size: 1.6rem;
 }
 
-.contentWrapper {
+.contentContainer {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .desktop {
-  composes: wrapper;
+  composes: container;
   width: 332px;
   height: 70px;
 }
 
 .tablet {
-  composes: wrapper;
+  composes: container;
   width: 247px;
   height: 68px;
 }
 
 .mobile {
-  composes: wrapper;
+  composes: container;
   width: 260px;
   height: 58px;
 }
