@@ -10,41 +10,14 @@ import HomeImg6 from '@/assets/images/Home6.png';
 import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
-import { useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import InputModal from '@/components/modal/inputModal/inputModal';
-import InputLayout from '@/components/modal/input/inputLayout';
-import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
-import CommonStyle from '@/components/modal/modalCommon.module.css';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  function handleModal() {
-    setIsModalOpen((prev) => !prev);
-  }
-
-  const methods = useForm<FieldValues>({
-    mode: 'onChange',
-    defaultValues: {
-      name: '',
-    },
-  });
-
-  const { handleSubmit, control } = methods;
-
-  function handleAddTodo(data: FieldValues) {
-    // 구현 필요
-    console.log(data);
-  }
-
   return (
     <>
       {/* <header></header> */}
       <div className={S.body}>
         <div className={S.article}>
-          <div className={S.imgContainer} onClick={() => handleModal()}>
+          <div className={S.imgContainer}>
             <Image src={HomeImg} alt="홈이미지1" fill={true} />
           </div>
           <div className={S.h1Container}>
@@ -159,54 +132,6 @@ export default function Home() {
           </Link>
         </div>
       </footer>
-
-      {/* 모달관련 사용 예시입니다. 리뷰 마무리되면 삭제 후 머지하겠습니다. 참고해주세요. */}
-      {/* 확인하고자 하는 부분 주석 풀고, 필요한 내용 import 후 사용가능합니다.  */}
-
-      {/* 단순 안내 모달 */}
-      {/* {isModalOpen && (
-        <AlertModal
-          onClick={handleModal}
-          buttonItem={
-            <ModalDefaultButton type="submit" onClick={handleModal}>
-              확인
-            </ModalDefaultButton>
-          }>
-          비밀번호가 일치하지 않습니다.
-        </AlertModal>
-      )} */}
-
-      {/* 할 일 생성, 할 일 수정 모달 */}
-      {/* {isModalOpen && <AddTodoModal onClick={handleModal} />} */}
-      {/* {isModalOpen && <EditTodoModal onClick={handleModal} />} */}
-
-      {/* 기본 입력 모달 */}
-      {isModalOpen && (
-        <InputModal onClick={handleModal} title={'칼럼 관리'}>
-          <InputLayout label="이름" isNecessary={false}>
-            <form
-              onSubmit={handleSubmit(handleAddTodo)}
-              className={CommonStyle.form}>
-              <DefaultInput
-                placeholder="이름을 입력해 주세요"
-                control={control}
-                name="name"
-              />
-              <ModalButtonSet
-                isDelete={true}
-                submitmButtonTitle="변경"
-                onClickCancel={handleModal}
-              />
-            </form>
-          </InputLayout>
-        </InputModal>
-      )}
-
-      {/* 할일 카드 모달 */}
-      {/* {isModalOpen && <TodoModal onClick={handleModal} />} */}
-
-      {/* 새로운 대시보드 모달 */}
-      {/* {isModalOpen && <NewDashboardModal onClick={handleModal} />} */}
     </>
   );
 }
