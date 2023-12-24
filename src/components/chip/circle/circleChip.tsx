@@ -1,17 +1,19 @@
 import CheckImg from '@/assets/icons/Check.svg';
 import S from '@/components/chip/circle/circle.module.css';
 import Image from 'next/image';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 interface Color {
-  color: Theme;
+  color: ThemeType;
+  isChecked: boolean;
+  setIsChecked: Dispatch<SetStateAction<boolean>>;
+  onClick: (e: string) => void;
 }
 
-function CircleChip({ color }: Color) {
-  const [isChecked, setIsChecked] = useState(false);
-
+function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
   function onClickChip() {
     setIsChecked(!isChecked);
+    onClick(color);
   }
 
   return (

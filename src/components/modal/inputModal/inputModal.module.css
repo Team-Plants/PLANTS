@@ -1,0 +1,8 @@
+.deleteButton {
+  color: var(--gray-gray_9FA6B2, #9fa6b2);
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: var(--font-light);
+  text-decoration-line: underline;
+  cursor: pointer;
+}

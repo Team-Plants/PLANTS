@@ -1,0 +1,62 @@
+@value mobile from "@/styles/breakpoints.css";
+
+.tagBox {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 48px;
+  padding: 14px 16px;
+  border: 1px solid var(--gray-30);
+  border-radius: 6px;
+
+  @media all and (mobile) {
+    height: 42px;
+    padding: 11px 16px;
+  }
+}
+.tagBox:focus-within {
+  border: 1px solid var(--violet);
+  outline: none;
+}
+
+.tagItemContainer {
+  display: flex;
+  gap: 8px;
+  margin-right: 8px;
+
+  @media all and (mobile) {
+    gap: 6px;
+  }
+}
+
+.tagItem {
+  display: flex;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: #f9eee3;
+  color: #d58d49;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.2rem;
+  font-weight: var(--font-light);
+
+  @media all and (mobile) {
+    font-size: 1rem;
+  }
+}
+
+.tagInput {
+  display: inline-flex;
+  min-width: 150px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: text;
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: var(--font-light);
+  color: var(--gray-80);
+}
+.tagInput::placeholder {
+  color: var(--gray-40);
+}

@@ -2,7 +2,7 @@ import S from '@/components/chip/category/category.module.css';
 
 interface Category {
   content: string;
-  color: Theme;
+  color: ThemeType;
 }
 
 function CategoryChip({ content, color }: Category) {

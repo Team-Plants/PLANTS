@@ -2,6 +2,7 @@ import ReactQueryProviders from '@/libs/reactQueryProvider';
 import '@/styles/globals.css';
 import '@/styles/variables.css';
 import { NextPage } from 'next';
+import '@/constants/common';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 
