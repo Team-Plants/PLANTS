@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
 
 interface Color {
-  color: Theme;
+  color: ThemeType;
   isChecked: boolean;
   setIsChecked: Dispatch<SetStateAction<boolean>>;
   onClick: (e: string) => void;

@@ -1,0 +1,1 @@
+type SizeType = 'large' | 'small';

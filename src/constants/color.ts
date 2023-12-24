@@ -1,1 +1,1 @@
-type Theme = 'green' | 'purple' | 'orange' | 'blue' | 'pink';
+type ThemeType = 'green' | 'purple' | 'orange' | 'blue' | 'pink';
