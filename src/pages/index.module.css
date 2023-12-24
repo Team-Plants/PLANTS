@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   padding: 50px 16px;
+
   @media (min-width: 768px) {
     padding: 100px 40px;
   }
@@ -43,10 +44,10 @@
   color: var(--white);
   text-align: center;
   font-size: 3.7rem;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: normal;
   letter-spacing: -2px;
+
   @media (min-width: 768px) {
     font-size: 5.6rem;
     line-height: 100%;
@@ -60,10 +61,10 @@
   color: var(--violet);
   text-align: center;
   font-size: 4.2rem;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: normal;
   letter-spacing: -1px;
+
   @media (min-width: 768px) {
     font-size: 5.6rem;
     line-height: 100%;
@@ -78,11 +79,11 @@
   color: var(--white);
   text-align: center;
   font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: var(--font-light);
   line-height: normal;
   letter-spacing: -1px;
   padding-bottom: 35px;
+
   @media (min-width: 768px) {
     font-size: 1.6rem;
   }
@@ -106,6 +107,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -117,6 +119,7 @@
 
 .pointHeader {
   text-align: center;
+
   @media (min-width: 768px) {
     text-align: left;
     padding-left: 60px;
@@ -127,9 +130,10 @@
   color: var(--gray-40);
   font-size: 1.8rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-normal);
   line-height: normal;
   padding: 60px 0;
+  
   @media (min-width: 1200px) {
     padding: 120px 0;
   }
@@ -139,9 +143,10 @@
   color: var(--white);
   font-size: 3.6rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: 50px;
   padding-bottom: 250px;
+
   @media (min-width: 768px) {
     padding-bottom: 200px;
   }
@@ -153,6 +158,7 @@
 
 .pointDescriptionSpan {
   composes: pointDescription;
+
   @media (min-width: 1200px) {
     color: var(--gray-30);
   }
@@ -163,6 +169,7 @@
   width: 100%;
   height: 65vw;
   max-height: 497px;
+
   @media (min-width: 1200px) {
     margin-top: 103px;
   }
@@ -187,6 +194,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -198,6 +206,7 @@
 
 .pointHeader2 {
   text-align: center;
+
   @media (min-width: 768px) {
     text-align: left;
     padding-left: 60px;
@@ -211,6 +220,7 @@
   display: flex;
   position: relative;
   justify-content: center;
+
   @media (min-width: 1200px) {
     padding-top: 100px;
     padding-right: 45px;
@@ -228,10 +238,10 @@
   color: var(--white);
   text-align: center;
   font-size: 2.2rem;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: normal;
   padding-bottom: 36px;
+
   @media (min-width: 768px) {
     font-size: 2.8rem;
   }
@@ -253,6 +263,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+
   @media (min-width: 768px) {
     margin: 45px 0;
   }
@@ -266,6 +277,7 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
+
   @media (min-width: 1200px) {
     flex-direction: row;
     justify-content: center;
@@ -279,6 +291,7 @@
   width: 100%;
   max-width: 448px;
   height: auto;
+
   @media (min-width: 768px) {
     max-width: 470px;
   }
@@ -297,6 +310,7 @@
   justify-content: center;
   position: relative;
   min-height: 280px;
+
   @media (min-width: 1200px) {
     padding: 20px 20px;
     min-height: 260px;
@@ -326,6 +340,7 @@
   background: var(--gray-80);
   border-radius: 0 0 8px 8px;
   gap: 20px;
+
   @media (min-width: 1200px) {
     padding: 20px 22px;
   }
@@ -334,15 +349,14 @@
 .h3 {
   color: var(--white);
   font-size: 1.8rem;
-  font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: normal;
 }
 
 .h4 {
   composes: h3;
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: var(--font-normal);
 }
 
 .footer {
@@ -352,13 +366,13 @@
   padding-top: 40px;
   padding-bottom: 90.82px;
   font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
+  font-weight: var(--font-light);
   line-height: normal;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 26px;
+
   @media (min-width: 768px) {
     gap: 0;
     font-size: 1.6rem;
@@ -374,6 +388,7 @@
 .footerGap {
   display: flex;
   gap: 22px;
+  
   @media (min-width: 768px) {
     padding-left: 35px;
   }
@@ -385,6 +400,7 @@
   gap: 22px;
   align-items: center;
   justify-content: center;
+
   @media (min-width: 768px) {
     margin: 0;
   }
