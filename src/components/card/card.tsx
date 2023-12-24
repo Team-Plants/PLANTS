@@ -12,7 +12,7 @@ interface CardProps {
 
 interface Chip {
   content: string;
-  color: Theme;
+  color: ThemeType;
 }
 
 const dummyChip: Chip[] = [
