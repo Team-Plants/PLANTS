@@ -18,7 +18,7 @@ interface TagInputProps {
 
 interface TagItem {
   content: string;
-  color?: Theme;
+  color?: ThemeType;
 }
 // 모달 내 태그 옵션 컴포넌트
 function TagInput({ control, name, setValue }: TagInputProps) {

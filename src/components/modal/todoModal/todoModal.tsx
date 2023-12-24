@@ -36,7 +36,7 @@ const dummyComment = [
 
 interface Category {
   content: string;
-  color: Theme;
+  color: ThemeType;
 }
 
 const dummyCategory: Category[] = [

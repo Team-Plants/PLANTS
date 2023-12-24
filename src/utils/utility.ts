@@ -1,6 +1,6 @@
 import { FormEvent } from 'react';
 
-const color: Theme[] = ['green', 'blue', 'orange', 'pink', 'purple'];
+const color: ThemeType[] = ['green', 'blue', 'orange', 'pink', 'purple'];
 
 export function randomChipColor() {
   const num = Math.floor(Math.random() * 6);
