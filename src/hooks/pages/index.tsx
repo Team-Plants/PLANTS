@@ -1,20 +1,21 @@
-import S from './index.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
+import EmailImg from '@/assets/icons/Email.svg';
+import FacebookImg from '@/assets/icons/Facebook.svg';
+import InstagramImg from '@/assets/icons/Instagram.svg';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
 import HomeImg3 from '@/assets/images/Home3.png';
 import HomeImg4 from '@/assets/images/Home4.png';
 import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
-import EmailImg from '@/assets/icons/Email.svg';
-import FacebookImg from '@/assets/icons/Facebook.svg';
-import InstagramImg from '@/assets/icons/Instagram.svg';
+import DarkHeader from '@/components/header/DarkHeader';
+import S from '@/pages/index.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+function Home() {
   return (
     <>
-      {/* <header></header> */}
+      <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
           <div className={S.imgContainer}>
@@ -135,3 +136,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

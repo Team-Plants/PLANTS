@@ -1,0 +1,34 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
+.inputModalMainContainer {
+  composes: modalMainContainer from '@/components/modal/modalCommon.module.css';
+  padding: 28px;
+
+  @media all and (mobile) {
+    width: 327px;
+  }
+}
+
+.modalTitle {
+  color: var(--gray-70);
+  font-family: Pretendard;
+  font-size: 2.4rem;
+  font-weight: var(--font-bold);
+  align-self: flex-start;
+  margin-bottom: 4px;
+
+  @media all and (mobile) {
+    font-size: 2rem;
+  }
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media all and (mobile) {
+    gap: 24px;
+    width: 100%;
+  }
+}

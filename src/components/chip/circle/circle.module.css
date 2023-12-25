@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.green {
+  composes: wrapper;
+  background-color: var(--green);
+}
+
+.purple {
+  composes: wrapper;
+  background-color: var(--purple);
+}
+
+.orange {
+  composes: wrapper;
+  background-color: var(--orange);
+}
+
+.blue {
+  composes: wrapper;
+  background-color: var(--blue);
+}
+
+.pink {
+  composes: wrapper;
+  background-color: var(--pink);
+}

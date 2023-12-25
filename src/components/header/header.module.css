@@ -5,7 +5,7 @@
   height: 70px;
   padding: 16px;
   flex-shrink: 0;
-  background: var(--white, #fff);
+  background: var(--white);
 }
 
 .logo {
@@ -34,7 +34,7 @@
   display: flex;
   align-items: center;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
   gap: 20px;
 
   @media (min-width: 768px) {
@@ -43,11 +43,11 @@
 }
 
 .darkBg {
-  background: var(--black, #000);
-  color: var(--white, #fff);
+  background: var(--black);
+  color: var(--white);
 }
 
 .lightBg {
-  background: var(--white, #fff);
-  color: var(--black, #333236);
+  background: var(--white);
+  color: var(--gray-70);
 }

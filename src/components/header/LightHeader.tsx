@@ -19,7 +19,7 @@ function LightHeader() {
         <Image src={SmallLogoImg} alt="이미지 로고 " width={23} height={27} />
       </div>
       <div className={`${S.links} ${S.lightBg}`}>
-        <Link href="/signin">로그인</Link>
+        <Link href="/login">로그인</Link>
         <Link href="/signup">회원가입</Link>
       </div>
     </div>

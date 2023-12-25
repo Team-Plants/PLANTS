@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 6px;
+  border: 1px solid var(--gray-30);
+  background-color: var(--white);
+}
+
+.desktop {
+  composes: wrapper;
+  width: 314px;
+  height: 40px;
+}
+
+.tablet {
+  composes: wrapper;
+  width: 544px;
+  height: 40px;
+}
+
+.mobile {
+  composes: wrapper;
+  width: 284px;
+  height: 32px;
+}
