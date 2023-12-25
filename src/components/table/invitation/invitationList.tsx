@@ -3,7 +3,7 @@ import InvitationItem from '@/components/table/invitation/invitationItem';
 import ArrowButton from '@/components/button/arrow/arrowButton';
 import Button from '@/components/button/button';
 
-interface InvitationProps {
+interface InvitationListProps {
   id: number;
   dashboard: {
     title: string;
@@ -17,10 +17,10 @@ interface InvitationProps {
   inviteAccepted: boolean;
 }
 
-function InvitationTableList({
+function InvitationList({
   invitations,
 }: {
-  invitations: InvitationProps[];
+  invitations: InvitationListProps[];
 }) {
   return (
     <div className={S.container}>
@@ -49,4 +49,4 @@ function InvitationTableList({
   );
 }
 
-export default InvitationTableList;
+export default InvitationList;

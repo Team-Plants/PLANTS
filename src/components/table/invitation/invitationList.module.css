@@ -65,3 +65,7 @@
 .tableItem {
   border-bottom: 1px solid var(--gray-20);
 }
+
+.tableItem:last-child {
+  border-bottom: none;
+}

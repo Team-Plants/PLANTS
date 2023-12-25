@@ -1,28 +1,43 @@
-interface tableListProps {
-  name: string;
-  label: string;
-  tableData: string; // data[]
-  pagination?: string; // 임시
-  inviteButton?: string; // 임시
+import S from '@/components/table/member/memberList.module.css';
+import MemberItem from './memberItem';
+import ArrowButton from '@/components/button/arrow/arrowButton';
+
+interface MemberListProps {
+  id: number;
+  userId: number;
+  email: string;
+  nickname: string;
+  profileImageUrl?: string;
+  createdAt: string;
+  updatedAt: string;
+  isOwner: boolean;
 }
 
-function tableList({
-  name,
-  label,
-  tableData,
-  pagination,
-  inviteButton,
-}: tableListProps) {
+function MemberList({ members }: { members: MemberListProps[] }) {
   return (
-    <>
-      <div>
-        {name}, {pagination}, {inviteButton}
+    <div className={S.container}>
+      <div className={S.header}>
+        구성원
+        <div className={S.pagination}>
+          1페이지 중 1
+          <ArrowButton size="small" />
+        </div>
       </div>
-      <div>{label}</div>
-      <div>{tableData}</div>
-      {/* 첫번째랑 마지막 child만 스타일 조정 */}
-    </>
+      <div className={S.label}>이름</div>
+      <div>
+        {members.map((member: MemberListProps) => {
+          return (
+            <div className={S.tableItem} key={member.userId}>
+              <MemberItem
+                nickname={member.nickname}
+                profileImageUrl={member.profileImageUrl}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 
-export default tableList;
+export default MemberList;
