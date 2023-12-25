@@ -1,5 +1,5 @@
-name: Q&A
-description: 질문이 있어요
+name: 'Q&A'
+description: '질문이 있어요'
 title: '❓ '
 body:
   - type: textarea
