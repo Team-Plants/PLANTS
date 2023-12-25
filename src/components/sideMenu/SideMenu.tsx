@@ -5,9 +5,10 @@ import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import axios, { AxiosResponse } from 'axios';
+import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 
 interface SideMenuProps {
   pageId: number;
@@ -51,26 +52,11 @@ function SideMenu({ pageId }: SideMenuProps) {
       setIsLoading(false);
     }
   }
-
-  useEffect(() => {
-    let observer: IntersectionObserver;
-    if (target) {
-      const onIntersect: IntersectionObserverCallback = async (
-        [entry],
-        observer,
-      ) => {
-        if (entry.isIntersecting) {
-          observer.unobserve(entry.target);
-          await fetchMoreDashboards();
-        } else {
-          observer.observe(target);
-        }
-      };
-      observer = new IntersectionObserver(onIntersect, { threshold: 1 });
-      observer.observe(target);
-    }
-    return () => observer && observer.disconnect();
-  }, [cursorId, target]);
+  useIntersectionObserver({
+    target: target,
+    fetchCallback: fetchMoreDashboards,
+    props: cursorId,
+  });
 
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
