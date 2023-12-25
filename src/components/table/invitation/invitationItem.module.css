@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  margin: 12px 0;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+
+  @media (min-width: 768px) {
+    height: 38px;
+  }
+}
+
+.nameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--purple);
+}
+
+.email {
+  font-size: 1.4rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
