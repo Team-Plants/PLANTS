@@ -15,21 +15,21 @@ function AuthLayout({
   children,
 }: PropsWithChildren<AuthLayoutType>) {
   return (
-    <div className={S.wrapper}>
+    <div className={S.container}>
       <Link href="/">
         <Image src={LogoImg} alt="로고" />
       </Link>
 
       <span className={S.greetings}>{greetingsContent}</span>
       {/* input component */}
-      <div className={S.inputWrapper}>{children}</div>
+      <div className={S.inputContainer}>{children}</div>
 
       {/* auth button component */}
       <Link href={submitButtonLink}>
         <div>{submitButtonTitle}</div>
       </Link>
 
-      <div className={S.memberStatusWrapper}>
+      <div className={S.memberStatusContainer}>
         {memberStatus}
         <Link href={link}>
           <span className={S.linkTitle}>{linkTitle}</span>

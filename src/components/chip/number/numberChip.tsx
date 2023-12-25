@@ -5,7 +5,7 @@ interface Content {
 }
 
 function NumberChip({ num }: Content) {
-  return <div className={S.wrapper}>{num}</div>;
+  return <div className={S.container}>{num}</div>;
 }
 
 export default NumberChip;
