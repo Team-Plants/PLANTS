@@ -1,0 +1,67 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    gap: 0;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 5fr 3fr 4fr;
+  }
+}
+
+.label {
+  color: var(--gray-40, #9fa6b2);
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+.title {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  color: var(--gray-70);
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    color: var(--gray-70);
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+.inviter {
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  color: var(--gray-70);
+  font-size: 1.4rem;
+  font-weight: 400;
+
+  @media (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    color: var(--gray-70);
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+.buttonGroup {
+  margin-top: 6px;
+}
