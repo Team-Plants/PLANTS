@@ -2,6 +2,7 @@
   background: var(--white);
   width: 67px;
   height: auto;
+  min-height: 100vh;
   border-right: 3px solid;
   border-color: var(--gray-40);
   @media (min-width: 768px) {
@@ -135,8 +136,22 @@
 }
 
 .refContainer {
-  height: 5px;
+  background: var(--white);
+  width: 70px;
+  height: auto;
+  border-right: 3px solid;
+  border-color: var(--gray-40);
+  @media (min-width: 768px) {
+    width: 148px;
+  }
+  @media (min-width: 1200px) {
+    width: 288px;
+  }
+}
+
+.loading {
   width: auto;
+  text-align: center;
 }
 
 .warning {

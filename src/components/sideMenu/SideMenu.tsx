@@ -137,10 +137,12 @@ function SideMenu({ pageId }: SideMenuProps) {
               </Link>
             ))}
           <div ref={setTarget} className={S.refContainer}>
-            {isLoading && 'loading...'}
+            <div className={S.loading}>{isLoading && 'loading...'}</div>
           </div>
           <div className={S.warning}>
-            {totalCount === currentLength ? 'no more data!' : null}
+            {totalCount === currentLength && !isLoading
+              ? 'no more data!'
+              : null}
           </div>
         </ul>
       </div>
