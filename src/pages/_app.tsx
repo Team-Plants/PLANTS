@@ -1,8 +1,11 @@
+import Error from '@/components/error/error';
+import ErrorBoundary from '@/components/error/errorBoundary';
+
+import '@/constants/common';
 import ReactQueryProviders from '@/libs/reactQueryProvider';
 import '@/styles/globals.css';
 import '@/styles/variables.css';
 import { NextPage } from 'next';
-import '@/constants/common';
 import type { AppProps } from 'next/app';
 import { ReactElement, ReactNode } from 'react';
 
@@ -19,7 +22,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
 
   return (
     <ReactQueryProviders>
-      {getLayout(<Component {...pageProps} />)}
+      <ErrorBoundary fallback={<Error />}>
+        {getLayout(<Component {...pageProps} />)}
+      </ErrorBoundary>
     </ReactQueryProviders>
   );
 }
