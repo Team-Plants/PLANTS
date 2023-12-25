@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--gray-30);
+  background-color: var(--gray-10);
+  font-weight: var(--font-normal);
+  font-size: 1.8rem;
+}
+
+.desktop {
+  composes: wrapper;
+  width: 320px;
+  height: 62px;
+}
+
+.tablet {
+  composes: wrapper;
+  width: 320px;
+  height: 62px;
+}
+
+.mobile {
+  composes: wrapper;
+  width: 284px;
+  height: 52px;
+}

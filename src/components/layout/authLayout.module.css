@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var(--gray-10);
+}
+
+.greetings {
+  margin: 10px 0;
+  font-size: 2rem;
+  font-weight: var(--font-normal);
+}
+
+.inputWrapper {
+}
+
+.memberStatusWrapper {
+  display: flex;
+  flex-direction: row;
+  font-size: 1.6rem;
+  gap: 7px;
+}
+
+.linkTitle {
+  color: var(--violet);
+  font-size: 1.6rem;
+}
