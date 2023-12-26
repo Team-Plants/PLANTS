@@ -1,10 +1,10 @@
-@value tablet, pc from "@/styles/breakpoints.css";
+@value tablet, desktop from "@/styles/breakpoints.css";
 
 .mainOuter {
   display: flex;
   @media all and (tablet) {
   }
-  @media all and (pc) {
+  @media all and (desktop) {
   }
 }
 
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
   }
-  @media all and (pc) {
+  @media all and (desktop) {
     display: flex;
     flex-direction: column;
   }
@@ -33,7 +33,7 @@
     width: calc(100vw - 176.6px);
     padding: 20px 20px 48px 20px;
   }
-  @media all and (pc) {
+  @media all and (desktop) {
     width: calc(100vw - 316.6px);
     padding: 20px 20px 48px 20px;
   }
@@ -44,7 +44,7 @@
   @media all and (tablet) {
     margin-bottom: 36px;
   }
-  @media all and (pc) {
+  @media all and (desktop) {
     margin-bottom: 28px;
   }
 }

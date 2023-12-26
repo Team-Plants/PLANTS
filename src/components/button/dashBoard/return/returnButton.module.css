@@ -1,3 +1,5 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
 .returnButton {
   color: var(--gray-70);
   font-size: 14px;
@@ -11,7 +13,7 @@
     font-size: 16px;
     margin-bottom: 13px;
   }
-  @media all and (pc) {
+  @media all and (desktop) {
     font-size: 16px;
     margin-bottom: 13px;
   }
