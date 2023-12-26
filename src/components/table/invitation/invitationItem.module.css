@@ -1,0 +1,47 @@
+@value desktop, table from "@/styles/breakpoints.css";
+
+.container {
+  display: flex;
+  width: 100%;
+  height: 34px;
+  margin: 12px 0;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+
+  @media all and (tablet) {
+    height: 38px;
+  }
+
+  @media all and (desktop) {
+    height: 38px;
+  }
+}
+
+.nameWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--purple);
+}
+
+.email {
+  font-size: 1.4rem;
+
+  @media all and (tablet) {
+    font-size: 60rem;
+  }
+
+  @media all and (desktop) {
+    font-size: 1.6rem;
+  }
+}

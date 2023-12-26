@@ -1,0 +1,70 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
+.container {
+  width: 260px;
+  height: 836px;
+  padding: 24px 16px;
+  border-radius: 8px;
+  background: var(--white);
+
+  @media all and (tablet) {
+    width: 504px;
+    height: 592px;
+    padding: 32px 28px;
+  }
+
+  @media all and (desktop) {
+    width: 1022px;
+    height: 600px;
+  }
+}
+
+.header {
+  color: var(--gray-70);
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+
+  @media all and (tablet) {
+    font-size: 2.4rem;
+  }
+
+  @media all and (desktop) {
+    font-size: 2.4rem;
+  }
+}
+
+.searchBar {
+  margin: 20px 0 8px;
+}
+
+.label {
+  display: none;
+  color: var(--gray-40);
+  font-size: 1.4rem;
+  font-weight: var(--font-light);
+
+  @media all and (tablet) {
+    display: grid;
+    grid-template-columns: 5fr 3fr 4fr;
+    font-size: 1.6rem;
+  }
+
+  @media all and (desktop) {
+    display: grid;
+    grid-template-columns: 5fr 3fr 4fr;
+    font-size: 1.6rem;
+  }
+}
+
+.inviteAccepted {
+  display: none;
+}
+
+.tableItem {
+  padding: 16px 0 8px;
+  border-bottom: 1px solid var(--gray-20);
+}
+
+.tableItem:last-child {
+  border-bottom: none;
+}
