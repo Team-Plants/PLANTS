@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   padding: 32px 20px 16px;
+  border-radius: 8px;
+  background: var(--white);
 
   @media all and (tablet) {
     width: 620px;

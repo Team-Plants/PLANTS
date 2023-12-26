@@ -3,6 +3,8 @@ import S from '@/pages/[id]/mydashboard.module.css';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
+import InvitationList from '@/components/table/invitation/invitationList';
+import MemberList from '@/components/table/member/memberList';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -33,8 +35,8 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
         <div className={S.mainContainer}>
           <ReturnButton url={`/${dashboardId}`} />
           <div>대시보드 수정 섹터</div>
-          <div>구성원 섹터</div>
-          <div>초대 내역 섹터</div>
+          <MemberList members={[]} />
+          <InvitationList invitations={[]} />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton device="mobile" />
         </div>
