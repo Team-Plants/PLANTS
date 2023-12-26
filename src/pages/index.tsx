@@ -10,20 +10,10 @@ import HomeImg6 from '@/assets/images/Home6.png';
 import EmailImg from '@/assets/icons/Email.svg';
 import FacebookImg from '@/assets/icons/Facebook.svg';
 import InstagramImg from '@/assets/icons/Instagram.svg';
-import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
 
 export default function Home() {
-  const folder = '비브리지';
-  const user = { letter: 'C', color: 'yellow', ownerFolder: [] };
-  const users = [
-    { letter: 'A', color: 'yellow' },
-    { letter: 'D', color: 'orange' },
-    { letter: 'C', color: 'green' },
-  ];
-
   return (
     <>
-      <DashboardHeader folder={folder} user={user} users={users} />
       <div className={S.body}>
         <div className={S.article}>
           <div className={S.imgContainer}>

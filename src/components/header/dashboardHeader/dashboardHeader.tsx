@@ -14,8 +14,9 @@ interface DashboardProps {
   }[];
   user: {
     letter: string;
+    name: string;
     color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
-    ownerFolder: string[];
+    ownerFolder: { folder: string };
   };
 }
 
@@ -23,7 +24,7 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
   return (
     <div className={S.container}>
       <p className={S.folderName}>
-        {user.ownerFolder[folder] === folder ? '👑`${folder}`' : folder}
+        {user.ownerFolder['folder'] === folder ? `${folder} 👑` : folder}
       </p>
       <div className={S.buttonContainer}>
         <button className={S.button}>
@@ -49,7 +50,12 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
       </div>
       {users && <UsersImage users={users} />}
       <Image className={S.vectorImage} src={VectorImg} alt="구분이미지" />
-      {user && <NameBadge color={user.color} letter={user.letter} />}
+      {user && (
+        <>
+          <NameBadge color={user.color} letter={user.letter} />
+          <p className={S.userName}>{user.name}</p>
+        </>
+      )}
     </div>
   );
 }

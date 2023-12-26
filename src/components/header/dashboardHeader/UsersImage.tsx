@@ -1,7 +1,13 @@
 import NameBadge from '@/components/nameBadge/nameBadge';
 
-function UsersImage({ users }) {
-  console.log(users);
+interface UserImageProps {
+  users: {
+    color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
+    letter: string;
+  }[];
+}
+
+function UsersImage({ users }: UserImageProps) {
   return (
     <>
       {users.map((user) => {
