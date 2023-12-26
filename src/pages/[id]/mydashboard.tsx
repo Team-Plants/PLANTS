@@ -45,11 +45,13 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
         />
         <div className={S.mainContainer}>
           <ReturnButton url={`/${dashboardId}`} />
-          <EditDashboard />
-          <MemberList members={[]} />
-          <InvitationList invitations={[]} />
-          <div className={S.marginDiv}></div>
-          <DeleteDashBoardButton device="mobile" />
+          <div className={S.tableContainer}>
+            <EditDashboard />
+            <MemberList members={[]} />
+            <InvitationList invitations={[]} />
+            <div className={S.marginDiv}></div>
+            <DeleteDashBoardButton device="mobile" />
+          </div>
         </div>
       </div>
     </div>

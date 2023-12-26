@@ -41,6 +41,19 @@
   }
 }
 
+.tableContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  @media all and (tablet) {
+    align-items: start;
+  }
+  @media all and (desktop) {
+    align-items: start;
+  }
+}
+
 .marginDiv {
   margin-bottom: 31px;
   @media all and (tablet) {
