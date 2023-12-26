@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 function PlusChip() {
   return (
-    <div className={S.wrapper}>
+    <div className={S.container}>
       <Image src={PlusImg} alt="플러스" />
     </div>
   );

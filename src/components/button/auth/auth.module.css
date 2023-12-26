@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -11,18 +11,18 @@
 }
 
 .large {
-  composes: wrapper;
+  composes: container;
   width: 520px;
   height: 50px;
 }
 
 .small {
-  composes: wrapper;
+  composes: container;
   width: 351px;
   height: 50px;
 }
 
 .inActive {
-  composes: wrapper;
+  composes: container;
   background-color: var(--gray-40);
 }

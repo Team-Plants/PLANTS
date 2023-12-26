@@ -1,0 +1,21 @@
+@value mobile from "@/styles/breakpoints.css";
+
+.alertModalMainContainer {
+  composes: modalMainContainer from '@/components/modal/modalCommon.module.css';
+  height: 250px;
+  gap: 45px;
+  justify-content: flex-end;
+
+  @media all and (mobile) {
+    width: 327px;
+    height: 220px;
+    padding: 28px 20px;
+    gap: 50px;
+  }
+}
+
+.modalContent {
+  color: var(--gray-70);
+  font-size: 1.8rem;
+  font-weight: var(--font-normal);
+}
