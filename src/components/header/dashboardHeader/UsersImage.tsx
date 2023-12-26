@@ -1,4 +1,5 @@
 import NameBadge from '@/components/nameBadge/nameBadge';
+import S from '@/components/header/dashboardHeader/usersImage.module.css';
 
 interface UserImageProps {
   users: {
@@ -8,12 +9,23 @@ interface UserImageProps {
 }
 
 function UsersImage({ users }: UserImageProps) {
+  let layer: 'layer' | null;
+  if (users.length > 1) {
+    layer = 'layer';
+  }
+
   return (
-    <>
-      {users.map((user) => {
-        <NameBadge color={user.color} letter={user.letter} />;
-      })}
-    </>
+    <div className={S.container}>
+      {users.slice(0, 4).map((user, index) => (
+        <NameBadge
+          key={index}
+          color={user.color}
+          letter={user.letter}
+          layer={layer}
+          index={index + 1}
+        />
+      ))}
+    </div>
   );
 }
 

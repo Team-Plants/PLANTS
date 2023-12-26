@@ -6,6 +6,15 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
+  font-size: 1.4rem;
+  font-weight: var(--font-Mbold);
+  color: var(--white);
+}
+
+.layer {
+  border: 1px solid white;
+  position: absolute;
+  margin: 0;
 }
 
 .yellow {
@@ -35,5 +44,5 @@
 
 .pink {
   composes: container;
-  background-color: 'var(--pink-20)';
+  background-color: var(--pink-20);
 }

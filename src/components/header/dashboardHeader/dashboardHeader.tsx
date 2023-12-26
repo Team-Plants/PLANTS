@@ -5,6 +5,7 @@ import UsersImage from '@/components/header/dashboardHeader/UsersImage';
 import VectorImg from '@/assets/icons/Vector.svg';
 import SettingImg from '@/assets/icons/Setting.svg';
 import AddImg from '@/assets/icons/AddBox.svg';
+import CrownImg from '@/assets/icons/Crown.svg';
 
 interface DashboardProps {
   folder: string;
@@ -24,7 +25,14 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
   return (
     <div className={S.container}>
       <p className={S.folderName}>
-        {user.ownerFolder['folder'] === folder ? `${folder} 👑` : folder}
+        {folder}
+        {user.ownerFolder['folder'] === folder && (
+          <Image
+            src={CrownImg}
+            alt="내가 만든 보드 표시"
+            width={20}
+            height={16}></Image>
+        )}
       </p>
       <div className={S.buttonContainer}>
         <button className={S.button}>
@@ -35,7 +43,7 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
             height={20}
             alt="관리하기"
           />{' '}
-          관리하기
+          관리
         </button>
         <button className={S.button}>
           <Image

@@ -8,13 +8,39 @@ import HomeImg4 from '@/assets/images/Home4.png';
 import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
 import DarkHeader from '@/components/header/DarkHeader';
+import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
+const users = [
+  {
+    letter: 'a',
+    color: 'yellow',
+  },
+  {
+    letter: 'a',
+    color: 'yellow',
+  },
+  {
+    letter: 'a',
+    color: 'yellow',
+  },
+];
+
+const user = {
+  letter: 'B',
+  name: '수빈',
+  color: 'green',
+  ownerFolder: {
+    folder: '비브리지',
+  },
+};
+
 function Home() {
   return (
     <>
+      <DashboardHeader users={users} user={user} folder="비브리지" />
       <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
