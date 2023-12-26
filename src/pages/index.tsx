@@ -26,6 +26,18 @@ const users = [
     letter: 'a',
     color: 'yellow',
   },
+  {
+    letter: 'b',
+    color: 'green',
+  },
+  {
+    letter: 'c',
+    color: 'pink',
+  },
+  {
+    letter: 'd',
+    color: 'blue',
+  },
 ];
 
 const user = {
