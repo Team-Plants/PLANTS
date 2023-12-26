@@ -1,8 +1,0 @@
-name: 'Q&A'
-description: 질문이 있어요
-title: '❓ '
-body:
-  - type: textarea
-    attributes:
-      label: 🥹 작성자명
-      description: 궁금한 내용을 자세히 기록해서 물어봐요.

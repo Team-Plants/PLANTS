@@ -15,20 +15,26 @@
 
   --pink: #e876ea;
   --pink-10: #f7dbf0;
+  --pink-20: #f4d7da;
   --pink-70: #d549b6;
 
   --red: #d6173a;
 
+  --yellow-20: #FDD446;
+
   --orange: #ffa500;
   --orange-10: #f9eee3;
+  --orange-20: #FFC85A;
   --orange-70: #d58d49;
 
   --green: #7ac555;
   --green-10: #e7f7db;
+  --green-20:  #A3C4A2;
   --green-70: #86d549;
 
   --blue: #76a5ea;
   --blue-10: #dbe6f7;
+  --blue-20: #9DD7ED;
   --blue-70: #4981d5;
 
   --purple: #760dde;
@@ -36,6 +42,8 @@
 
   --brown-lg:#c4b1a2;
   --violet-8: #f1effd;
+
+  --brown-20: #C4B1A2;
 
   --font-bold: 700;
   --font-normal: 500;
