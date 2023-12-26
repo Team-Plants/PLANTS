@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+}
+
+.sideMenu {
+}
+
+.columnContainer {
+  flex-direction: column;
+}
+
+.header {
+}
+
+.rowContainer {
+  flex-direction: row;
+  /* 그리드 쓸까? */
+}
+
+.toDo {
+  width: 308px;
+  height: 470px;
+  flex-shrink: 0;
+}
+
+.onProgress {
+  width: 308px;
+  height: 470px;
+  flex-shrink: 0;
+}
+
+.done {
+  width: 308px;
+  height: 470px;
+  flex-shrink: 0;
+}
+
+.addColumn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
