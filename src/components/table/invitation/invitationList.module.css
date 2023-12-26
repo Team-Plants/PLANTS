@@ -1,0 +1,95 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
+.container {
+  width: 284px;
+  height: 406px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 20px 16px;
+
+  @media all and (tablet) {
+    width: 620px;
+    height: 477px;
+    padding: 28px 28px 20px;
+  }
+
+  @media all and (desktop) {
+    width: 620px;
+    height: 477px;
+    padding: 28px 28px 20px;
+  }
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--black);
+  font-size: 2rem;
+  font-weight: var(--font-bold);
+}
+
+.headerButtons {
+  @media all and (tablet) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media all and (desktop) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.inviteButton {
+  position: absolute;
+  right: 0;
+  top: 48px;
+
+  @media all and (tablet) {
+    position: static;
+  }
+
+  @media all and (desktop) {
+    position: static;
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  color: var(--gray-70);
+  font-size: 1.2rem;
+  font-weight: var(--font-light);
+  gap: 12px;
+
+  @media all and (tablet) {
+    font-size: 1.4rem;
+    gap: 16px;
+  }
+
+  @media all and (desktop) {
+    font-size: 1.4rem;
+    gap: 16px;
+  }
+}
+
+.label {
+  color: var(--gray40, #9fa6b2);
+  font-size: 1.4rem;
+  margin: 18px 0 20px;
+}
+
+.tableItem {
+  border-bottom: 1px solid var(--gray-20);
+}
+
+.tableItem:last-child {
+  border-bottom: none;
+}
