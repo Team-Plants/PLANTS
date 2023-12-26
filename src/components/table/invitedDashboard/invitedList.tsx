@@ -36,8 +36,8 @@ function InvitedList({ invitations }: { invitations: InvitedListProps[] }) {
             return (
               <div key={invitation.id} className={S.tableItem}>
                 <InvitedItem
-                  dashBoardTitle="프로덕트 디자인"
-                  inviter="손동희"
+                  dashBoardTitle={invitation.dashboard.title}
+                  inviter={invitation.invitee.nickname}
                 />
               </div>
             );

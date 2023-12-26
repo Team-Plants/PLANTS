@@ -34,7 +34,7 @@
 .label {
   color: var(--gray-40, #9fa6b2);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
 
   @media all and (tablet) {
     display: none;
@@ -50,14 +50,13 @@
   grid-template-columns: 2fr 4fr;
   color: var(--gray-70);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
 
   @media all and (tablet) {
     display: flex;
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
-    font-weight: 400;
   }
 
   @media all and (desktop) {
@@ -65,7 +64,6 @@
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
-    font-weight: 400;
   }
 }
 
@@ -74,14 +72,13 @@
   grid-template-columns: 2fr 4fr;
   color: var(--gray-70);
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: var(--font-light);
 
   @media all and (tablet) {
     display: flex;
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
-    font-weight: 400;
   }
 
   @media all and (desktop) {
@@ -89,7 +86,6 @@
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
-    font-weight: 400;
   }
 }
 
