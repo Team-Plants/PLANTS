@@ -2,7 +2,8 @@
 
 .container {
   width: 284px;
-  height: 211px;
+  height: auto;
+  min-height: 211px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -12,26 +13,32 @@
 
   @media all and (tablet) {
     width: 555px;
-    height: 256px;
+    min-height: 256px;
     padding: 28px 28px 20px;
   }
 
   @media all and (desktop) {
     width: 620px;
-    height: 256px;
+    min-height: 256px;
     padding: 28px 28px 20px;
   }
 }
 
 .header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  color: var(--gray-70);
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  flex-direction: column;
+  gap: 10px;
+  @media all and (tablet) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0px;
+  }
+
+  @media all and (desktop) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0px;
+  }
 }
 
 .p {
@@ -50,5 +57,52 @@
   @media all and (desktop) {
     font-size: 18px;
     padding-top: 37px;
+  }
+}
+
+.headerTitle {
+  color: var(--gray-70);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.chipContainer {
+  width: auto;
+  height: auto;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: right;
+}
+
+.submitButton {
+  margin-top: 16px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  background: var(--violet);
+  width: 34px;
+  height: 20px;
+  padding: 7px 25px;
+  color: var(--white);
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  @media all and (tablet) {
+    height: 24px;
+    font-size: 14px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+
+  @media all and (desktop) {
+    height: 24px;
+    font-size: 14px;
+    margin-top: 28px;
+    margin-bottom: 10px;
   }
 }
