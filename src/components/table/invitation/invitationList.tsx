@@ -2,20 +2,7 @@ import S from '@/components/table/invitation/invitationList.module.css';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import ArrowButton from '@/components/button/arrow/arrowButton';
 import Button from '@/components/button/button';
-
-interface InvitationListProps {
-  id: number;
-  dashboard: {
-    title: string;
-    id: number;
-  };
-  invitee: {
-    nickname: string;
-    email: string;
-    id: number;
-  };
-  inviteAccepted: boolean;
-}
+import { InvitationListProps } from '@/types/Invitation';
 
 function InvitationList({
   invitations,

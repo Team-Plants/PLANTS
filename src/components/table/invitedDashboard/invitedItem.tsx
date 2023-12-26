@@ -2,14 +2,11 @@ import ButtonGroup from '@/components/button/buttonGroup';
 import S from '@/components/table/invitedDashboard/invitedItem.module.css';
 
 interface InvitedItemProps {
-  dashBoardTitle: string;
-  inviter: string;
+  dashBoardTitle?: string;
+  inviter?: string;
 }
 
-function InvitedItem({
-  dashBoardTitle = '프로덕트 디자인',
-  inviter = '손동희',
-}: InvitedItemProps) {
+function InvitedItem({ dashBoardTitle, inviter }: InvitedItemProps) {
   return (
     <div className={S.container}>
       <div className={S.info}>

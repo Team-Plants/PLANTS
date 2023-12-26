@@ -1,19 +1,9 @@
 import S from '@/components/table/member/memberList.module.css';
 import MemberItem from './memberItem';
 import ArrowButton from '@/components/button/arrow/arrowButton';
+import { MemberProps } from '@/types/Member';
 
-interface MemberListProps {
-  id: number;
-  userId: number;
-  email: string;
-  nickname: string;
-  profileImageUrl?: string;
-  createdAt: string;
-  updatedAt: string;
-  isOwner: boolean;
-}
-
-function MemberList({ members }: { members: MemberListProps[] }) {
+function MemberList({ members }: { members: MemberProps[] }) {
   return (
     <div className={S.container}>
       <div className={S.header}>
@@ -25,7 +15,7 @@ function MemberList({ members }: { members: MemberListProps[] }) {
       </div>
       <div className={S.label}>이름</div>
       <div>
-        {members.map((member: MemberListProps) => {
+        {members.map((member: MemberProps) => {
           return (
             <div className={S.tableItem} key={member.userId}>
               <MemberItem

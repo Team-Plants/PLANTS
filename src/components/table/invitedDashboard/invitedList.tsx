@@ -1,26 +1,13 @@
 import S from '@/components/table/invitedDashboard/invitedList.module.css';
 import SearchBar from '@/components/search/searchBar';
 import InvitedItem from './invitedItem';
+import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 
-interface InvitedListProps {
-  id: number;
-  inviterUserId: number;
-  teamId: number;
-  dashboard: {
-    title: string;
-    id: number;
-  };
-  invitee: {
-    nickname: string;
-    email: string;
-    id: number;
-  };
-  inviteAccepted: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-function InvitedList({ invitations }: { invitations: InvitedListProps[] }) {
+function InvitedList({
+  invitations,
+}: {
+  invitations: InvitedDashBoardProps[];
+}) {
   return (
     <div className={S.container}>
       <div className={S.header}>초대받은 대시보드</div>
