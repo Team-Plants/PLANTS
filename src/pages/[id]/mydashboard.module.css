@@ -1,0 +1,34 @@
+@value tablet, pc from "@/styles/breakpoints.css";
+
+.mainOuter {
+  display: flex;
+  @media all and (tablet) {
+  }
+  @media all and (pc) {
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  @media all and (tablet) {
+    display: flex;
+    flex-direction: column;
+  }
+  @media all and (pc) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.mainContainer {
+  background: var(--gray-10);
+  width: calc(100vw - 83.6px);
+  flex-grow: 1;
+  @media all and (tablet) {
+    width: calc(100vw - 176.6px);
+  }
+  @media all and (pc) {
+    width: calc(100vw - 316.6px);
+  }
+}
