@@ -5,6 +5,7 @@ import Image from 'next/image';
 import ArrowLeftImage from '@/assets/icons/ArrowLeft.svg';
 import { MouseEvent } from 'react';
 import { useRouter } from 'next/router';
+import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -51,7 +52,8 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
           <div>대시보드 수정 섹터</div>
           <div>구성원 섹터</div>
           <div>초대 내역 섹터</div>
-          <div>대시보드 삭제하기 버튼</div>
+          <div className={S.marginDiv}></div>
+          <DeleteDashBoardButton device="mobile" />
         </div>
       </div>
     </div>

@@ -57,3 +57,13 @@
     margin-bottom: 13px;
   }
 }
+
+.marginDiv {
+  margin-bottom: 31px;
+  @media all and (tablet) {
+    margin-bottom: 36px;
+  }
+  @media all and (pc) {
+    margin-bottom: 28px;
+  }
+}
