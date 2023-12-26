@@ -5,6 +5,7 @@ import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDa
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
+import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -31,7 +32,16 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
     <div className={S.mainOuter}>
       <SideMenu pageId={Number(dashboardId)} />
       <div className={S.main}>
-        {/* 헤더 컴포넌트 위치 */}헤더
+        <DashboardHeader
+          folder="1"
+          users={[]}
+          user={{
+            letter: '1',
+            name: 'kim',
+            color: 'yellow',
+            ownerFolder: { folder: '1' },
+          }}
+        />
         <div className={S.mainContainer}>
           <ReturnButton url={`/${dashboardId}`} />
           <div>대시보드 수정 섹터</div>

@@ -11,7 +11,7 @@
   background: var(--white);
 
   @media all and (tablet) {
-    width: 620px;
+    width: 555px;
     height: 477px;
     padding: 28px 28px 20px;
   }
