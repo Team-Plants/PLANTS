@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -11,12 +13,24 @@
 }
 
 .greetings {
-  margin: 10px 0;
+  margin: 10px 0 38px;
   font-size: 2rem;
   font-weight: var(--font-normal);
+
+  @media all and (tablet) {
+    margin: 8px 0 60px;
+  }
+
+  @media all and (mobile) {
+    margin: 8px 0 40px;
+  }
 }
 
 .inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
 .memberStatusContainer {
@@ -24,6 +38,8 @@
   flex-direction: row;
   font-size: 1.6rem;
   gap: 7px;
+  margin-top: 24px;
+  align-items: center;
 }
 
 .linkTitle {

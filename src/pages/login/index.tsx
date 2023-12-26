@@ -1,8 +1,15 @@
+import EmailInput from '@/components/Input/emailInput';
+import PasswordInput from '@/components/Input/passwordInput';
 import AuthLayout from '@/components/layout/authLayout';
 import { ReactElement } from 'react';
 
 function Login() {
-  return <></>;
+  return (
+    <>
+      <EmailInput />
+      <PasswordInput />
+    </>
+  );
 }
 
 export default Login;

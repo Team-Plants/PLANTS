@@ -1,8 +1,8 @@
 import {
-  useForm,
   UseFormRegister,
   FieldValues,
   FieldErrors,
+  useFormContext,
 } from 'react-hook-form';
 import {
   EMAIL_STANDARD,
@@ -15,7 +15,6 @@ import {
   ERROR_PASSWORD_SECOND_EMPTY,
   ERROR_PASSWORD_VALIDATION,
   NICKNAME_STANDARD,
-  PASSWORD_STANDARD,
 } from '@/constants/auth';
 import { SignFormValuesType } from '@/types/SignFormValue';
 
@@ -28,7 +27,7 @@ interface AuthInput {
       value: RegExp;
       message: string;
     };
-    maxLength: {
+    minLength: {
       value: number;
       message: string;
     };
@@ -40,7 +39,7 @@ function useAuthInput(type: string): AuthInput {
   const {
     register,
     formState: { errors },
-  } = useForm<SignFormValuesType>({ mode: 'onBlur' });
+  } = useFormContext<SignFormValuesType>();
 
   const required = matchInput?.required;
 
@@ -49,15 +48,15 @@ function useAuthInput(type: string): AuthInput {
     message: matchInput?.pattern?.message as string,
   };
 
-  const maxLength = {
-    value: matchInput?.maxLength?.value as number,
-    message: matchInput?.maxLength?.message as string,
+  const minLength = {
+    value: matchInput?.minLength?.value as number,
+    message: matchInput?.minLength?.message as string,
   };
 
   const rules = {
     required: required,
     pattern: pattern,
-    maxLength: maxLength,
+    minLength: minLength,
   };
 
   return { rules, register, errors };
@@ -74,8 +73,8 @@ const authInput = [
   {
     type: 'password',
     required: ERROR_PASSWORD_EMPTY,
-    pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
-    maxLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
+    // pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
+    minLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
   },
   {
     type: 'passwordCheck',

@@ -4,11 +4,12 @@ import { AuthLayoutType } from '@/types/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
+import AuthButton from '../button/auth/authButton';
+import SignFormProvider from '../formProvider/SignFormProvider';
 
 function AuthLayout({
   greetingsContent,
   submitButtonTitle,
-  submitButtonLink,
   memberStatus,
   linkTitle,
   link,
@@ -21,16 +22,17 @@ function AuthLayout({
       </Link>
 
       <span className={S.greetings}>{greetingsContent}</span>
-      {/* input component */}
-      <div className={S.inputContainer}>{children}</div>
 
-      {/* auth button component */}
-      <Link href={submitButtonLink}>
-        <div>{submitButtonTitle}</div>
-      </Link>
+      <SignFormProvider>
+        <div className={S.inputContainer}>{children}</div>
+
+        {/* TODO: 버튼 수정되면 prop 수정 필요 */}
+        <AuthButton content={submitButtonTitle} size="large" type="submit" />
+      </SignFormProvider>
 
       <div className={S.memberStatusContainer}>
         {memberStatus}
+
         <Link href={link}>
           <span className={S.linkTitle}>{linkTitle}</span>
         </Link>

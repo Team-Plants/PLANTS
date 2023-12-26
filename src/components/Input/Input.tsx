@@ -33,7 +33,7 @@ function Input({ type, label }: InputProps) {
           placeholder={rules.required}
           {...register(type, {
             pattern: rules.pattern,
-            maxLength: rules.maxLength,
+            minLength: rules.minLength,
           })}
         />
         <Image

@@ -1,8 +1,17 @@
+import EmailInput from '@/components/Input/emailInput';
+import PasswordCheckInput from '@/components/Input/passwordCheck';
+import PasswordInput from '@/components/Input/passwordInput';
 import AuthLayout from '@/components/layout/authLayout';
 import { ReactElement } from 'react';
 
 function Signup() {
-  return <></>;
+  return (
+    <>
+      <EmailInput />
+      <PasswordInput />
+      <PasswordCheckInput />
+    </>
+  );
 }
 
 export default Signup;

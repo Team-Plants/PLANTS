@@ -1,8 +1,14 @@
+@value mobile from "@/styles/breakpoints.css";
+
 .formContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 520px;
+
+  @media all and (mobile) {
+    width: 351px;
+  }
 }
 
 .formLabel {
