@@ -1,0 +1,18 @@
+.returnButton {
+  color: var(--gray-70);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 9px;
+  display: flex;
+  gap: 6px;
+  @media all and (tablet) {
+    font-size: 16px;
+    margin-bottom: 13px;
+  }
+  @media all and (pc) {
+    font-size: 16px;
+    margin-bottom: 13px;
+  }
+}
