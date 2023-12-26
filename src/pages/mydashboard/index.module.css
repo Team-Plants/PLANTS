@@ -1,0 +1,71 @@
+@value tablet, mobile from '@/styles/breakpoints.css';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 300px;
+  width: 100vw;
+  height: 70px;
+  border: 1px solid var(--blue-20);
+
+  /* 지울예정 */
+  font-size: 4rem;
+  text-align: center;
+  background-color: var(--pink-20);
+
+
+
+  @media all and (tablet){
+    left: 160px;
+  }
+
+  @media all and (mobile){
+    left: 67px;
+  }
+}
+
+.boardContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  top: 70px;
+  left: 300px;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px 558px 122px 40px;
+
+  @media all and (tablet){
+    left: 160px;
+    padding: 40px 40px 117px 40px; 
+  }
+
+  @media all and (mobile){
+    left: 67px;
+    padding: 24px;
+  }
+}
+
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(33%, auto));
+  grid-template-rows: repeat(2, minmax(70px, auto));
+  row-gap: 12px;
+  column-gap: 13px;
+  height: 152px;
+  width: 1022px;
+
+  /* button device props 수정 후 media query 수정필요*/
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 96px;
+  width: 1022px;
+  gap: 12px;
+  font-size: 1.4rem;
+}
+
+

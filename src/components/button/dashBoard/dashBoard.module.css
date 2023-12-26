@@ -10,12 +10,19 @@
   background-color: var(--white);
   font-weight: var(--font-normal);
   font-size: 1.6rem;
+  box-sizing: border-box;
 }
 
 .contentContainer {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
 
 .desktop {
