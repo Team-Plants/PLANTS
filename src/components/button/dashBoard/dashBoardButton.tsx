@@ -14,7 +14,7 @@ interface Category {
 function DashBoardButton({ content, device, madeByOwner = false }: Category) {
   return (
     <button className={S[device]}>
-      <div className={S.contentWrapper}>
+      <div className={S.contentContainer}>
         <Image src={Circle} alt="동그라미" />
         {content}
         {madeByOwner && <Image src={Crown} alt="왕관" />}

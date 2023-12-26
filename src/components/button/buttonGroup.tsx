@@ -13,7 +13,7 @@ function ButtonGroup({
   device,
 }: ButtonProps) {
   return (
-    <div className={S.groupWrapper}>
+    <div className={S.groupContainer}>
       <Button content={secondaryContent} device={device} status="secondary" />
       <Button content={primaryContent} device={device} status="primary" />
     </div>

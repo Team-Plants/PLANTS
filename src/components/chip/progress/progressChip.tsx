@@ -10,7 +10,7 @@ interface Status {
 
 function ProgressChip({ progress }: Status) {
   return (
-    <div className={S.wrapper}>
+    <div className={S.container}>
       <Image src={CircleImg} alt="동그라미" />
       <span className={S.text}>{progress}</span>
     </div>

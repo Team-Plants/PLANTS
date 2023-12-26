@@ -1,4 +1,4 @@
-.wrapper {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,26 +8,26 @@
 }
 
 .green {
-  composes: wrapper;
+  composes: container;
   background-color: var(--green);
 }
 
 .purple {
-  composes: wrapper;
+  composes: container;
   background-color: var(--purple);
 }
 
 .orange {
-  composes: wrapper;
+  composes: container;
   background-color: var(--orange);
 }
 
 .blue {
-  composes: wrapper;
+  composes: container;
   background-color: var(--blue);
 }
 
 .pink {
-  composes: wrapper;
+  composes: container;
   background-color: var(--pink);
 }

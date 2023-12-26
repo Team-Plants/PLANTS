@@ -1,0 +1,159 @@
+.main {
+  background: var(--white);
+  width: 67px;
+  height: auto;
+  min-height: 100vh;
+  border-right: 3px solid;
+  border-color: var(--gray-40);
+  @media (min-width: 768px) {
+    width: 160px;
+  }
+  @media (min-width: 1200px) {
+    width: 300px;
+  }
+}
+
+.headerOuter {
+  height: auto;
+  padding: 20px 22px 0 22px;
+  @media (min-width: 768px) {
+    padding: 20px 25px 0 25px;
+  }
+  @media (min-width: 1200px) {
+    padding: 20px 24px 0 24px;
+  }
+}
+
+.imgContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 38.8px;
+  @media (min-width: 768px) {
+    margin-bottom: 59.9px;
+  }
+  @media (min-width: 1200px) {
+    justify-content: left;
+  }
+}
+
+.smallLogoImg {
+  width: 23.6px;
+  height: 27.1px;
+  @media (min-width: 768px) {
+    width: 28.8px;
+    height: 33px;
+  }
+}
+
+.taskifyImg {
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+    width: 80px;
+    height: 22px;
+  }
+}
+
+.headerContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 24px;
+  @media (min-width: 768px) {
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+}
+
+.headerDescription {
+  display: none;
+  color: var(--gray-50);
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-bottom: 3px;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.dashBoardOuter {
+  height: auto;
+  padding: 0 12px;
+}
+
+.dashBoardContainer {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 768px) {
+    align-items: stretch;
+  }
+}
+
+.dashBoardLi {
+  width: 40px;
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  padding: 0 12px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  @media (min-width: 768px) {
+    width: auto;
+    justify-content: left;
+    height: 43px;
+  }
+  @media (min-width: 1200px) {
+    height: 45px;
+  }
+}
+
+.dashBoardColor {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: var(--gray-50);
+}
+
+.dashBoardTitle {
+  color: var(--gray-50);
+  font-size: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+}
+
+.refContainer {
+  background: var(--white);
+  width: 70px;
+  height: auto;
+  border-right: 3px solid;
+  border-color: var(--gray-40);
+  @media (min-width: 768px) {
+    width: 148px;
+  }
+  @media (min-width: 1200px) {
+    width: 288px;
+  }
+}
+
+.loading {
+  width: auto;
+  text-align: center;
+}
+
+.warning {
+  text-align: center;
+}
