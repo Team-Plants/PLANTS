@@ -1,0 +1,24 @@
+@value mobile from "@/styles/breakpoints.css";
+
+.inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  color: var(--gray-70);
+  font-family: Pretendard;
+  font-size: 1.8rem;
+  font-weight: var(--font-normal);
+
+  @media all and (mobile) {
+    font-size: 1.6rem;
+  }
+}
+
+.violetLabel {
+  composes: label;
+  color: var(--violet);
+}

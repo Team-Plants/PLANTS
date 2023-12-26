@@ -31,7 +31,6 @@
     "@typescript-eslint/parser": "^6.15.0",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "eslint-plugin-storybook": "^0.6.15",
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "typescript": "^5"

@@ -1,20 +1,21 @@
-import S from './index.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
+import EmailImg from '@/assets/icons/Email.svg';
+import FacebookImg from '@/assets/icons/Facebook.svg';
+import InstagramImg from '@/assets/icons/Instagram.svg';
 import HomeImg from '@/assets/images/Home1.png';
 import HomeImg2 from '@/assets/images/Home2.png';
 import HomeImg3 from '@/assets/images/Home3.png';
 import HomeImg4 from '@/assets/images/Home4.png';
 import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
-import EmailImg from '@/assets/icons/Email.svg';
-import FacebookImg from '@/assets/icons/Facebook.svg';
-import InstagramImg from '@/assets/icons/Instagram.svg';
+import DarkHeader from '@/components/header/DarkHeader';
+import S from '@/pages/index.module.css';
+import Image from 'next/image';
+import Link from 'next/link';
 
-export default function Home() {
+function Home() {
   return (
     <>
-      {/* <header></header> */}
+      <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
           <div className={S.imgContainer}>
@@ -32,7 +33,7 @@ export default function Home() {
             <div className={S.pointHeader}>
               <p className={S.pointH1}>Point 1</p>
               <p className={S.pointDescription}>
-                일의 <span className={S.pointDescriptionSpan}>우선순위를</span>
+                일의 <span className={S.pointDescriptionSpan}>우선순위</span>를
                 <br />
                 관리하세요
               </p>
@@ -111,10 +112,10 @@ export default function Home() {
           <div>FAQ</div>
         </div>
         <div className={S.linkList}>
-          <Link href="https://mail.google.com">
+          <Link href="https://mail.google.com" target="_blank">
             <Image src={EmailImg} alt="이메일이미지" width={17} height={17} />
           </Link>
-          <Link href="https://www.facebook.com">
+          <Link href="https://www.facebook.com" target="_blank">
             <Image
               src={FacebookImg}
               alt="페이스북이미지"
@@ -122,7 +123,7 @@ export default function Home() {
               height={17}
             />
           </Link>
-          <Link href="https://www.instagram.com">
+          <Link href="https://www.instagram.com" target="_blank">
             <Image
               src={InstagramImg}
               alt="인스타그램이미지"
@@ -135,3 +136,5 @@ export default function Home() {
     </>
   );
 }
+
+export default Home;

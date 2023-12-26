@@ -3,10 +3,10 @@
   display: flex;
   flex-direction: column;
   padding: 50px 16px;
+
   @media (min-width: 768px) {
     padding: 100px 40px;
   }
-
   @media (min-width: 1200px) {
     padding: 100px auto;
   }
@@ -38,44 +38,39 @@
     gap: 20px;
     padding-top: 50px;
   }
-
-  @media (min-width: 1200px) {
-  }
 }
 
 .h1 {
   color: var(--white);
   text-align: center;
-  font-size: 37px;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 3.7rem;
+  font-weight: var(--font-bold);
   line-height: normal;
   letter-spacing: -2px;
 
   @media (min-width: 768px) {
-    font-size: 56px;
+    font-size: 5.6rem;
     line-height: 100%;
   }
   @media (min-width: 1200px) {
-    font-size: 76px;
+    font-size: 7.6rem;
   }
 }
 
 .h1Violet {
   color: var(--violet);
-  font-family: Montserrat;
   text-align: center;
-  font-size: 42px;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 4.2rem;
+  font-weight: var(--font-bold);
   line-height: normal;
   letter-spacing: -1px;
+
   @media (min-width: 768px) {
-    font-size: 56px;
+    font-size: 5.6rem;
     line-height: 100%;
   }
   @media (min-width: 1200px) {
-    font-size: 76px;
+    font-size: 7.6rem;
   }
 }
 
@@ -83,17 +78,17 @@
   padding-top: 35px;
   color: var(--white);
   text-align: center;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: var(--font-light);
   line-height: normal;
   letter-spacing: -1px;
   padding-bottom: 35px;
+
   @media (min-width: 768px) {
-    font-size: 16px;
+    font-size: 1.6rem;
   }
   @media (min-width: 1200px) {
-    font-size: 18px;
+    font-size: 1.8rem;
   }
 }
 
@@ -117,7 +112,7 @@
     margin: 45px 0;
   }
   @media (min-width: 1200px) {
-    margin: 55px 0;
+    margin: 45px 0;
     flex-direction: row;
   }
 }
@@ -129,21 +124,16 @@
     text-align: left;
     padding-left: 60px;
   }
-  @media (min-width: 1200px) {
-  }
 }
 
 .pointH1 {
   color: var(--gray-40);
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-  font-family: Pretendard;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-normal);
   line-height: normal;
   padding: 60px 0;
+  
   @media (min-width: 1200px) {
     padding: 120px 0;
   }
@@ -151,13 +141,9 @@
 
 .pointDescription {
   color: var(--white);
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
-  font-family: Pretendard;
-  font-size: 36px;
+  font-size: 3.6rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: 50px;
   padding-bottom: 250px;
 
@@ -172,6 +158,7 @@
 
 .pointDescriptionSpan {
   composes: pointDescription;
+
   @media (min-width: 1200px) {
     color: var(--gray-30);
   }
@@ -182,6 +169,7 @@
   width: 100%;
   height: 65vw;
   max-height: 497px;
+
   @media (min-width: 1200px) {
     margin-top: 103px;
   }
@@ -211,7 +199,7 @@
     margin: 45px 0;
   }
   @media (min-width: 1200px) {
-    margin: 55px 0;
+    margin: 45px 0;
     flex-direction: row-reverse;
   }
 }
@@ -232,8 +220,10 @@
   display: flex;
   position: relative;
   justify-content: center;
+
   @media (min-width: 1200px) {
     padding-top: 100px;
+    padding-right: 45px;
   }
 }
 
@@ -247,14 +237,13 @@
 .h2 {
   color: var(--white);
   text-align: center;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: var(--font-bold);
   line-height: normal;
-  padding-top: 55px;
   padding-bottom: 36px;
+
   @media (min-width: 768px) {
-    font-size: 28px;
+    font-size: 2.8rem;
   }
   @media (min-width: 1200px) {
     text-align: left;
@@ -288,6 +277,7 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
+
   @media (min-width: 1200px) {
     flex-direction: row;
     justify-content: center;
@@ -301,6 +291,7 @@
   width: 100%;
   max-width: 448px;
   height: auto;
+
   @media (min-width: 768px) {
     max-width: 470px;
   }
@@ -329,17 +320,17 @@
 .configImg1 {
   width: 100%;
   max-width: 380px;
-  max-height: 165px;
+  max-height: 155px;
 }
 
 .configImg2 {
   composes: configImg1;
-  max-height: 240px;
+  max-height: 190px;
 }
 
 .configImg3 {
   composes: configImg1;
-  max-height: 390px;
+  max-height: 220px;
 }
 
 .configDescriptionContainer {
@@ -348,7 +339,8 @@
   padding: 27px 32px;
   background: var(--gray-80);
   border-radius: 0 0 8px 8px;
-  gap: 25px;
+  gap: 20px;
+
   @media (min-width: 1200px) {
     padding: 20px 22px;
   }
@@ -356,35 +348,34 @@
 
 .h3 {
   color: var(--white);
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
   line-height: normal;
 }
 
 .h4 {
   composes: h3;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: var(--font-normal);
 }
 
 .footer {
   background: var(--black);
   color: var(--gray-40);
   width: 100%;
-  padding-bottom: 100px;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
+  padding-top: 40px;
+  padding-bottom: 90.82px;
+  font-size: 1.2rem;
+  font-weight: var(--font-light);
   line-height: normal;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 26px;
 
   @media (min-width: 768px) {
     gap: 0;
-    font-size: 16px;
+    font-size: 1.6rem;
     flex-direction: row;
     justify-content: space-between;
     padding: 0 60px 35px 60px;
@@ -397,6 +388,7 @@
 .footerGap {
   display: flex;
   gap: 22px;
+  
   @media (min-width: 768px) {
     padding-left: 35px;
   }
@@ -408,6 +400,7 @@
   gap: 22px;
   align-items: center;
   justify-content: center;
+
   @media (min-width: 768px) {
     margin: 0;
   }

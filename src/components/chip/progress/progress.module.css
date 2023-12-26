@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+
+  min-width: 60px;
+  width: fit-content;
+  height: 22px;
+  padding: 0px 8px;
+  gap: 6px;
+  border-radius: 11px;
+  background-color: var(--violet-8);
+}
+
+.text {
+  color: var(--violet);
+  font-size: 1.2rem;
+}

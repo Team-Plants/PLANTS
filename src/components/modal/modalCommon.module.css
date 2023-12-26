@@ -1,0 +1,64 @@
+@value mobile from "@/styles/breakpoints.css";
+
+.modalMainContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  width: 540px;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  border: 1px solid #dee2e6;
+  padding: 28px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+
+  @media all and (mobile) {
+    width: 327px;
+  }
+}
+
+.modalButtonContainer {
+  display: flex;
+  width: 100%;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  @media all and (mobile) {
+    gap: 11px;
+    justify-content: center;
+  }
+}
+
+.rightButtonContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.isDeleteModalButtonContainer {
+  justify-content: space-between;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @media all and (mobile) {
+    gap: 24px;
+  }
+}
+
+.deleteButton {
+  color: var(--gray-40);
+  font-family: Pretendard;
+  font-size: 1.4rem;
+  font-weight: var(--font-light);
+  text-decoration-line: underline;
+  cursor: pointer;
+}

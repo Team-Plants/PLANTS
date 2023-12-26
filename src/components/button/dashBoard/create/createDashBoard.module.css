@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  border: 1px solid var(--gray-30);
+  background-color: var(--white);
+  font-weight: var(--font-normal);
+  font-size: 1.6rem;
+  gap: 12px;
+}
+
+.desktop {
+  composes: container;
+  width: 332px;
+  height: 70px;
+}
+
+.tablet {
+  composes: container;
+  width: 247px;
+  height: 68px;
+}
+
+.mobile {
+  composes: container;
+  width: 260px;
+  height: 58px;
+}

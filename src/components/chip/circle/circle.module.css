@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.green {
+  composes: container;
+  background-color: var(--green);
+}
+
+.purple {
+  composes: container;
+  background-color: var(--purple);
+}
+
+.orange {
+  composes: container;
+  background-color: var(--orange);
+}
+
+.blue {
+  composes: container;
+  background-color: var(--blue);
+}
+
+.pink {
+  composes: container;
+  background-color: var(--pink);
+}

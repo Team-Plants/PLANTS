@@ -1,40 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=2000&color=478D5F&center=true&vCenter=true&random=false&width=435&lines=Play+Planning+Plants+%F0%9F%8C%B1" alt="Typing SVG">
+</p>
 
-First, run the development server:
+###### <p align="center">Plant는 계획과 조화로운 실행을 통해 목표를 성취하고 일정을 관리합니다</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<p align="center">
+  <a >
+    <img src="https://img.shields.io/badge/github%20actions-%232671E5.svg?style=plastic&logo=githubactions&logoColor=white"/>
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/Next-black?style=plastic&logo=next.js&logoColor=white">
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=plastic&logo=javascript&logoColor=black">
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/React-61DAFB?style=plastic&logo=React&logoColor=white"/>
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/-React%20Query-FF4154?style=plastic&logo=react%20query&logoColor=white"/>
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=plastic&logo=reacthookform&logoColor=white"/>
+  </a>
+  <a >
+    <img src="https://img.shields.io/badge/github-181717?style=plastic&logo=github&logoColor=white">
+  </a>
+  <a>
+    <img src="https://img.shields.io/badge/ESLint-4B3263?style=plastic&logo=eslint&logoColor=white">
+  </a>
+  <a>
+    <img src="https://img.shields.io/badge/vercel-%23000000.svg?style=plastic&logo=vercel&logoColor=white">
+  </a>
+</p>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+</br>
+</br>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+<br />
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### <span id="1">🌵서비스 소개</span>
+###### 칸반보드를 사용하여 일정을 계획하고 관리하는 웹사이트 입니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### <span id="2">🌵팀원</span>
+<div align="center">
 
-## Learn More
+|                            [김윤후](https://github.com/K-Y-Hoo)                            |                      [손민혁](https://github.com/BeMatthewsong)                       |                           [안혜정](https://github.com/hyejungan)                           |                              [전수빈](https://github.com/SoobinJ)                               |                           [한슬희](https://github.com/hanseulhee)                            |
+| :----------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------: |
+| <img src="https://avatars.githubusercontent.com/u/127609484?v=4" width="150" height="160"> | <img src="https://avatars.githubusercontent.com/u/98685266?v=4" width="150" height="160"> | <img src="https://avatars.githubusercontent.com/u/138510303?v=4" width="150" height="160"> | <img src="https://avatars.githubusercontent.com/u/77039033?v=4" width="150" height="160"> | <img src="https://avatars.githubusercontent.com/u/63100352?v=4" width="150" height="160"> |
 
-To learn more about Next.js, take a look at the following resources:
+</div>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### <span id="4">🌵개발일정</span>
+###### 2023.12.18 ~ 2024.01.04
+  

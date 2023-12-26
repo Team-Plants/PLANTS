@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 8px;
+  background-color: var(--violet);
+  color: var(--white);
+  font-size: 1.8rem;
+}
+
+.large {
+  composes: container;
+  width: 520px;
+  height: 50px;
+}
+
+.small {
+  composes: container;
+  width: 351px;
+  height: 50px;
+}
+
+.inActive {
+  composes: container;
+  background-color: var(--gray-40);
+}

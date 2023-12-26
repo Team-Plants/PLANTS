@@ -1,0 +1,79 @@
+@value mobile from "@/styles/breakpoints.css";
+
+.a {
+  background: var(--violet);
+  background-color: blue;
+  border-radius: 11px;
+  width: fit-content;
+  padding: 0 8px;
+  color: #5534da;
+  background: #f1effd;
+  display: flex;
+  height: 22px;
+  align-items: center;
+}
+
+.selectContainer {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: 217px;
+  height: 48px;
+  padding: 13px 16px;
+  border-radius: 6px;
+  background-color: var(--white);
+  border: 1px solid var(--gray-30);
+  cursor: pointer;
+  align-self: center;
+
+  @media all and (mobile) {
+    width: 100%;
+  }
+}
+.selectContainer::before {
+  content: url('../../../../assets/icons/ArrowDrop.svg');
+  position: absolute;
+  transform: translate(0, -50%);
+  width: 26px;
+  height: 26px;
+  top: 50%;
+  right: 11px;
+  color: var(--black);
+  font-size: 2rem;
+}
+
+.selectedLabel {
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.placeholder {
+  color: var(--gray-40);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: var(--font-light);
+}
+
+.selectOptionContainer {
+  position: absolute;
+  list-style: none;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  height: fit-content;
+  padding: 13px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--gray-30);
+  background: var(--white);
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.selectOption {
+  display: flex;
+  gap: 6px;
+}

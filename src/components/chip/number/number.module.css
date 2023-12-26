@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 20px;
+  width: fit-content;
+  height: 20px;
+  padding: 3px 6px;
+  font-size: 1.2rem;
+
+  background-color: var(--gary-20);
+  border-radius: 4px;
+}
