@@ -1,3 +1,5 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
 .container {
   width: 284px;
   height: 406px;
@@ -6,7 +8,13 @@
   flex-direction: column;
   padding: 32px 20px 16px;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    width: 620px;
+    height: 477px;
+    padding: 28px 28px 20px;
+  }
+
+  @media all and (desktop) {
     width: 620px;
     height: 477px;
     padding: 28px 28px 20px;
@@ -24,7 +32,14 @@
 }
 
 .headerButtons {
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  @media all and (desktop) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -37,7 +52,11 @@
   right: 0;
   top: 48px;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    position: static;
+  }
+
+  @media all and (desktop) {
     position: static;
   }
 }
@@ -50,7 +69,12 @@
   font-weight: 400;
   gap: 12px;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    font-size: 1.4rem;
+    gap: 16px;
+  }
+
+  @media all and (desktop) {
     font-size: 1.4rem;
     gap: 16px;
   }

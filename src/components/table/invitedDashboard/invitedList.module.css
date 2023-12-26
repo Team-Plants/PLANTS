@@ -1,3 +1,5 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
 .container {
   width: 260px;
   height: 836px;
@@ -5,13 +7,13 @@
   border-radius: 8px;
   background: var(--white);
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
     width: 504px;
     height: 592px;
     padding: 32px 28px;
   }
 
-  @media (min-width: 1080px) {
+  @media all and (desktop) {
     width: 1022px;
     height: 600px;
   }
@@ -22,7 +24,11 @@
   font-size: 2rem;
   font-weight: 700;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    font-size: 2.4rem;
+  }
+
+  @media all and (desktop) {
     font-size: 2.4rem;
   }
 }
@@ -37,7 +43,13 @@
   font-size: 1.4rem;
   font-weight: 400;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    display: grid;
+    grid-template-columns: 5fr 3fr 4fr;
+    font-size: 1.6rem;
+  }
+
+  @media all and (desktop) {
     display: grid;
     grid-template-columns: 5fr 3fr 4fr;
     font-size: 1.6rem;

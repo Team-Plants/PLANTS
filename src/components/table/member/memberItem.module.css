@@ -1,3 +1,5 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
   width: 100%;
@@ -7,7 +9,11 @@
   align-items: center;
   flex-shrink: 0;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    height: 38px;
+  }
+
+  @media all and (desktop) {
     height: 38px;
   }
 }
@@ -16,7 +22,12 @@
   font-size: 1.4rem;
   gap: 8px;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    gap: 12px;
+    font-size: 1.6rem;
+  }
+
+  @media all and (desktop) {
     gap: 12px;
     font-size: 1.6rem;
   }

@@ -1,3 +1,5 @@
+@value desktop, table from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
   width: 100%;
@@ -7,7 +9,11 @@
   align-items: center;
   flex-shrink: 0;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    height: 38px;
+  }
+
+  @media all and (desktop) {
     height: 38px;
   }
 }
@@ -31,7 +37,11 @@
 .email {
   font-size: 1.4rem;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    font-size: 60rem;
+  }
+
+  @media all and (desktop) {
     font-size: 1.6rem;
   }
 }
