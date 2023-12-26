@@ -8,7 +8,8 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
 
     res.setHeader('Set-Cookie', `session=${accessToken}; path=/;`);
     res.status(200).json({ user });
-  } catch (e) {
-    res.status(400).send(e);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
+    res.status(404).send({ message: e.response.data.message });
   }
 }

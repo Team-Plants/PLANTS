@@ -14,6 +14,7 @@ function AuthLayout({
   linkTitle,
   link,
   children,
+  onSubmit,
 }: PropsWithChildren<AuthLayoutType>) {
   return (
     <div className={S.container}>
@@ -23,7 +24,7 @@ function AuthLayout({
 
       <span className={S.greetings}>{greetingsContent}</span>
 
-      <SignFormProvider>
+      <SignFormProvider onSubmit={onSubmit}>
         <div className={S.inputContainer}>{children}</div>
 
         {/* TODO: 버튼 수정되면 prop 수정 필요 */}

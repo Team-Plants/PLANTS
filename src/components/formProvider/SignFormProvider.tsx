@@ -1,15 +1,16 @@
 import { SignFormValuesType } from '@/types/SignFormValue';
 import { DevTool } from '@hookform/devtools';
-import { PropsWithChildren, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-function SignFormProvider({ children }: PropsWithChildren) {
+interface SignFormProviderProps {
+  children: ReactNode;
+  onSubmit: (e: SignFormValuesType) => void;
+}
+
+function SignFormProvider({ children, onSubmit }: SignFormProviderProps) {
   const [mounted, setMounted] = useState(false);
   const methods = useForm<SignFormValuesType>({ mode: 'onSubmit' });
-
-  function onSubmit(data: SignFormValuesType) {
-    console.log(data);
-  }
 
   useEffect(() => {
     setMounted(true);

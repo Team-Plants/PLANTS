@@ -1,6 +1,8 @@
+import { handleLogin } from '@/api/user';
 import EmailInput from '@/components/Input/emailInput';
 import PasswordInput from '@/components/Input/passwordInput';
 import AuthLayout from '@/components/layout/authLayout';
+
 import { ReactElement } from 'react';
 
 function Login() {
@@ -21,7 +23,8 @@ Login.getLayout = (page: ReactElement) => (
     submitButtonLink="/boards"
     memberStatus="회원이 아니신가요?"
     linkTitle="회원가입하기"
-    link="/signup">
+    link="/signup"
+    onSubmit={handleLogin}>
     {page}
   </AuthLayout>
 );
