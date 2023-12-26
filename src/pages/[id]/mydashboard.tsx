@@ -6,6 +6,7 @@ import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
 import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
+import EditDashboard from '@/components/table/editDashboard/editDashboard';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -44,7 +45,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
         />
         <div className={S.mainContainer}>
           <ReturnButton url={`/${dashboardId}`} />
-          <div>대시보드 수정 섹터</div>
+          <EditDashboard />
           <MemberList members={[]} />
           <InvitationList invitations={[]} />
           <div className={S.marginDiv}></div>
