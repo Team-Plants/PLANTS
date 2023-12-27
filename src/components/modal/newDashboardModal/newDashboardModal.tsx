@@ -5,12 +5,17 @@ import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
+import { useEffect, useState } from 'react';
 
 interface NewDashboardModalProps {
   onClick: () => void;
 }
 
 function NewDashboardModal({ onClick }: NewDashboardModalProps) {
+  const [isColorValid, setIsColorValid] = useState(false);
+  const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
@@ -19,12 +24,25 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
     },
   });
 
-  const { handleSubmit, control, setValue } = methods;
+  const { handleSubmit, control, setValue, watch } = methods;
 
   function handleNewDashboard(data: FieldValues) {
     console.log(data);
   }
 
+  useEffect(() => {
+    if (watch('color') === '') setIsColorValid(false);
+    else setIsColorValid(true);
+
+    if (watch('dashboardName') === '') setIsDashboardNameValid(false);
+    else setIsDashboardNameValid(true);
+  }, [watch()]);
+
+  useEffect(() => {
+    if (isColorValid && isDashboardNameValid) setIsActive(true);
+    else setIsActive(false);
+  }, [isColorValid, isDashboardNameValid]);
+  console.log(isActive);
   return (
     <InputModal onClick={onClick} title={'새로운 대시보드'}>
       <InputLayout label="대시보드 이름" isNecessary={false}>
