@@ -2,11 +2,13 @@ import NameBadge from '@/components/nameBadge/nameBadge';
 import MediaQuery from 'react-responsive';
 import S from '@/components/header/dashboardHeader/usersImage.module.css';
 
+export interface Users {
+  color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
+  letter: string;
+}
+
 interface UserImageProps {
-  users: {
-    color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
-    letter: string;
-  }[];
+  users: Users[];
 }
 
 function UsersImage({ users }: UserImageProps) {

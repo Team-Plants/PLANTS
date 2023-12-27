@@ -1,7 +1,9 @@
 import S from '@/components/header/dashboardHeader/dashboardHeader.module.css';
 import Image from 'next/image';
 import NameBadge from '@/components/nameBadge/nameBadge';
-import UsersImage from '@/components/header/dashboardHeader/UsersImage';
+import UsersImage, {
+  Users,
+} from '@/components/header/dashboardHeader/UsersImage';
 import VectorImg from '@/assets/icons/Vector.svg';
 import SettingImg from '@/assets/icons/Setting.svg';
 import AddImg from '@/assets/icons/AddBox.svg';
@@ -9,10 +11,7 @@ import CrownImg from '@/assets/icons/Crown.svg';
 
 interface DashboardProps {
   folder: string;
-  users: {
-    letter: string;
-    color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
-  }[];
+  users: Users[];
   user: {
     letter: string;
     name: string;
