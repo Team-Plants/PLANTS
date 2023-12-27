@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 import SignFormProvider from '../formProvider/SignFormProvider';
-import useAuthInput from '@/hooks/useAuthInput';
 
 function AuthLayout({
   greetingsContent,
@@ -30,9 +29,6 @@ function AuthLayout({
         submitLink={submitLink}
         submitButtonTitle={submitButtonTitle}>
         <div className={S.inputContainer}>{children}</div>
-
-        {/* TODO: 버튼 수정되면 prop 수정 필요 */}
-        {/* <AuthButton content={submitButtonTitle} size="large" type="submit" /> */}
       </SignFormProvider>
 
       <div className={S.memberStatusContainer}>
