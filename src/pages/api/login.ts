@@ -1,15 +1,19 @@
 import { instance } from '@/libs/api';
+import { AxiosError } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const loginResult = await instance.post('/auth/login', req.body);
-    const { accessToken, user } = loginResult.data;
+    const result = await instance.post('/auth/login', req.body);
 
-    res.setHeader('Set-Cookie', `session=${accessToken}; path=/;`);
-    res.status(200).json({ user });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (e: any) {
-    res.status(404).send({ message: e.response.data.message });
+    if (result.status === 201) {
+      const { accessToken } = result.data;
+      res.setHeader('Set-Cookie', `accessToken=${accessToken}; path=/;`);
+    }
+    return res.status(result.status).json(result.data);
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      return res.status(e.response?.status || 404).json(e.response?.data);
+    }
   }
 }

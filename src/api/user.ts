@@ -1,21 +1,13 @@
 import { SignFormValuesType } from '@/types/SignFormValue';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export const handleLogin = async (data: SignFormValuesType) => {
   try {
-    const result = await axios.post('/api/login', data);
-    if (result.status === 200) {
-      const { user } = result.data;
-      localStorage.setItem('user', JSON.stringify(user));
-      return;
+    await axios.post('/api/login', data);
+    //TODO: user 관리
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      alert(e.response?.data.message || e.message);
     }
-    throw new Error();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (e: any) {
-    if (e.response.data) {
-      alert(e.response.data.message);
-      return;
-    }
-    alert('문제가 발생했습니다. 다시 시도해주세요.');
   }
 };

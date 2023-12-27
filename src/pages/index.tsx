@@ -9,20 +9,10 @@ import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
 import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
-import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 
 function Home() {
-  const handle = async () => {
-    const data = {
-      email: 'test@test.com',
-      password: 'test1234!',
-    };
-    const result = await axios.post('/api/login', data);
-
-    console.log(result);
-  };
   return (
     <>
       <DarkHeader />
@@ -33,9 +23,7 @@ function Home() {
           </div>
           <div className={S.h1Container}>
             <p className={S.h1}>새로운 일정 관리</p>
-            <p className={S.h1Violet} onClick={() => handle()}>
-              Taskify
-            </p>
+            <p className={S.h1Violet}>Taskify</p>
           </div>
           <p className={S.serviceDescription}>서비스에 대한 설명</p>
           {/* <button></button> */}
