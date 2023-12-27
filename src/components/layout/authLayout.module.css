@@ -30,7 +30,25 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+}
+
+.checkboxInputContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.checkboxInput {
+  width: 20px;
+  height: 20px;
+}
+
+.checkboxContent {
+  color: var(--gray-70);
+  font-family: Pretendard;
+  font-size: 1.6rem;
+  font-weight: var(--font-light);
 }
 
 .memberStatusContainer {

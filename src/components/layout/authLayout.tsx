@@ -4,8 +4,8 @@ import { AuthLayoutType } from '@/types/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
-import AuthButton from '../button/auth/authButton';
 import SignFormProvider from '../formProvider/SignFormProvider';
+import useAuthInput from '@/hooks/useAuthInput';
 
 function AuthLayout({
   greetingsContent,
@@ -25,11 +25,14 @@ function AuthLayout({
 
       <span className={S.greetings}>{greetingsContent}</span>
 
-      <SignFormProvider onSubmit={handleSubmit} submitLink={submitLink}>
+      <SignFormProvider
+        onSubmit={handleSubmit}
+        submitLink={submitLink}
+        submitButtonTitle={submitButtonTitle}>
         <div className={S.inputContainer}>{children}</div>
 
         {/* TODO: 버튼 수정되면 prop 수정 필요 */}
-        <AuthButton content={submitButtonTitle} size="large" type="submit" />
+        {/* <AuthButton content={submitButtonTitle} size="large" type="submit" /> */}
       </SignFormProvider>
 
       <div className={S.memberStatusContainer}>

@@ -3,4 +3,5 @@ export interface SignFormValuesType {
   password: string;
   nickname?: string;
   passwordCheck?: string;
+  checkbox?: boolean;
 }

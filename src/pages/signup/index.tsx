@@ -5,6 +5,8 @@ import PasswordCheckInput from '@/components/Input/passwordCheck';
 import PasswordInput from '@/components/Input/passwordInput';
 import AuthLayout from '@/components/layout/authLayout';
 import { ReactElement } from 'react';
+import S from '@/components/layout/authLayout.module.css';
+import CheckboxInput from '@/components/Input/checkboxInput';
 
 function Signup() {
   return (
@@ -13,6 +15,10 @@ function Signup() {
       <NicknameInput />
       <PasswordInput />
       <PasswordCheckInput />
+      <div className={S.checkboxInputContainer}>
+        <CheckboxInput />
+        <div className={S.checkboxContent}>이용약관에 동의합니다.</div>
+      </div>
     </>
   );
 }

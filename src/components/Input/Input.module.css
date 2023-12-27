@@ -42,6 +42,11 @@
   color: var(--gray-80);
 }
 
+.checkbox {
+  width: 20px;
+  height: 20px;
+}
+
 .image {
   position: absolute;
   display: flex;

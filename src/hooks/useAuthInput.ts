@@ -17,7 +17,6 @@ import {
   NICKNAME_STANDARD,
 } from '@/constants/auth';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import SignFormProvider from '@/components/formProvider/SignFormProvider';
 
 interface AuthInput {
   register: UseFormRegister<SignFormValuesType>;
@@ -85,5 +84,8 @@ const authInput = [
     type: 'nickname',
     required: ERROR_NICKNAME_EMPTY,
     pattern: { value: NICKNAME_STANDARD, message: ERROR_NICKNAME_CHECK },
+  },
+  {
+    type: 'checkbox',
   },
 ];
