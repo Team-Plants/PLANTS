@@ -1,7 +1,7 @@
-import S from '@/components/table/invitation/invitationList.module.css';
-import InvitationItem from '@/components/table/invitation/invitationItem';
 import ArrowButton from '@/components/button/arrow/arrowButton';
 import Button from '@/components/button/button';
+import InvitationItem from '@/components/table/invitation/invitationItem';
+import S from '@/components/table/invitation/invitationList.module.css';
 import { InvitationListProps } from '@/types/Invitation';
 
 function InvitationList({
@@ -19,7 +19,7 @@ function InvitationList({
             <ArrowButton size="small" />
           </div>
           <div className={S.inviteButton}>
-            <Button content="초대하기" device="small" status="primary" />
+            <Button content="초대하기" status="primary" />
           </div>
         </div>
       </div>

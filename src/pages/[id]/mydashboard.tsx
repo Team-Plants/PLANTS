@@ -1,12 +1,12 @@
-import { GetServerSidePropsContext } from 'next';
-import S from '@/pages/[id]/mydashboard.module.css';
-import SideMenu from '@/components/sideMenu/SideMenu';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
+import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
+import SideMenu from '@/components/sideMenu/SideMenu';
+import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
-import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
-import EditDashboard from '@/components/table/editDashboard/editDashboard';
+import S from '@/pages/[id]/mydashboard.module.css';
+import { GetServerSidePropsContext } from 'next';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -50,7 +50,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             <MemberList members={[]} />
             <InvitationList invitations={[]} />
             <div className={S.marginDiv}></div>
-            <DeleteDashBoardButton device="mobile" />
+            <DeleteDashBoardButton />
           </div>
         </div>
       </div>

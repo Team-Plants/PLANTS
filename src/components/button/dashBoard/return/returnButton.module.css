@@ -3,12 +3,12 @@
 .returnButton {
   color: var(--gray-70);
   font-size: 1.4rem;
-  font-style: normal;
   font-weight: var(--font-normal);
   line-height: normal;
   margin-bottom: 9px;
   display: flex;
   gap: 6px;
+
   @media all and (tablet) {
     font-size: 1.6rem;
     margin-bottom: 13px;
