@@ -1,5 +1,6 @@
-import { handleLogin } from '@/api/user';
+import { postSignup } from '@/api/user';
 import EmailInput from '@/components/Input/emailInput';
+import NicknameInput from '@/components/Input/nickName';
 import PasswordCheckInput from '@/components/Input/passwordCheck';
 import PasswordInput from '@/components/Input/passwordInput';
 import AuthLayout from '@/components/layout/authLayout';
@@ -9,6 +10,7 @@ function Signup() {
   return (
     <>
       <EmailInput />
+      <NicknameInput />
       <PasswordInput />
       <PasswordCheckInput />
     </>
@@ -19,7 +21,7 @@ export default Signup;
 
 Signup.getLayout = (page: ReactElement) => (
   <AuthLayout
-    handleSubmit={handleLogin}
+    handleSubmit={postSignup}
     greetingsContent="첫 방문을 환영합니다!"
     submitButtonTitle="가입하기"
     submitLink="/login"

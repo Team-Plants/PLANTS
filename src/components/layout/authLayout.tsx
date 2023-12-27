@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 import AuthButton from '../button/auth/authButton';
 import SignFormProvider from '../formProvider/SignFormProvider';
-import { SignFormValuesType } from '@/types/SignFormValue';
-import { useRouter } from 'next/router';
 
 function AuthLayout({
   greetingsContent,
@@ -19,16 +17,6 @@ function AuthLayout({
   children,
   handleSubmit,
 }: PropsWithChildren<AuthLayoutType>) {
-  const router = useRouter();
-
-  const onSubmit = async (data: SignFormValuesType) => {
-    const result = await handleSubmit(data);
-
-    if (result) {
-      router.push(submitLink);
-    }
-  };
-
   return (
     <div className={S.container}>
       <Link href="/">
@@ -37,7 +25,7 @@ function AuthLayout({
 
       <span className={S.greetings}>{greetingsContent}</span>
 
-      <SignFormProvider onSubmit={onSubmit}>
+      <SignFormProvider onSubmit={handleSubmit} submitLink={submitLink}>
         <div className={S.inputContainer}>{children}</div>
 
         {/* TODO: 버튼 수정되면 prop 수정 필요 */}
