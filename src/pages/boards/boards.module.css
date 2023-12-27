@@ -12,25 +12,24 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   flex-shrink: 0;
-  width: calc(100vw - 67px);
+  width: auto;
   padding: 17px 12px 24px 12px;
   background: var(--gray-10);
-  border-top: 3px solid;
   align-items: center;
-  gap: 10px;
+  border-top: 1px solid var(--gray-30);
 
   @media all and (tablet) {
-    width: calc(100vw - 176.6px);
+    width: auto;
     padding: 20px 20px 48px 20px;
     flex-direction: column;
   }
 
   @media all and (desktop) {
-    width: calc(100vw - 316.6px);
+    width: auto;
     padding: 20px 20px 48px 20px;
     flex-direction: row;
+    align-items: start;
   }
 }
 
@@ -42,7 +41,15 @@
 
 .info {
   display: flex;
+  align-items: center;
   gap: 12px;
+}
+
+.chip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: var(--purple);
 }
 
 .sectionName {
@@ -52,13 +59,54 @@
 }
 
 .toDo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 17px 12px 12px;
+  border-bottom: 1px solid var(--gray-30);
+
+  @media all and (desktop) {
+    border-bottom: none;
+    border-right: 1px solid var(--gray-30);
+  }
 }
 
 .onProgress {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--gray-30);
+
+  @media all and (desktop) {
+    border-bottom: none;
+    border-right: 1px solid var(--gray-30);
+  }
 }
 
 .done {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--gray-30);
+
+  @media all and (desktop) {
+    border-bottom: none;
+    border-right: 1px solid var(--gray-30);
+  }
 }
 
-.addColumn {
+.addButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 12px;
+
+  @media all and (desktop) {
+    margin-top: 48px;
+  }
 }

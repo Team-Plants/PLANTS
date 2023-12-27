@@ -6,11 +6,16 @@ import { Dispatch, SetStateAction } from 'react';
 interface Color {
   color: ThemeType;
   isChecked: boolean;
-  setIsChecked: Dispatch<SetStateAction<boolean>>;
-  onClick: (e: string) => void;
+  setIsChecked?: Dispatch<SetStateAction<boolean>>;
+  onClick?: (e: string) => void;
 }
 
-function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
+function CircleChip({
+  color,
+  isChecked,
+  setIsChecked = () => {},
+  onClick = () => {},
+}: Color) {
   function onClickChip() {
     setIsChecked(!isChecked);
     onClick(color);
