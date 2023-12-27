@@ -42,7 +42,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
     if (isColorValid && isDashboardNameValid) setIsActive(true);
     else setIsActive(false);
   }, [isColorValid, isDashboardNameValid]);
-  console.log(isActive);
+
   return (
     <InputModal onClick={onClick} title={'새로운 대시보드'}>
       <InputLayout label="대시보드 이름" isNecessary={false}>
@@ -60,6 +60,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
             isDelete={false}
             submitButtonTitle="생성"
             onClickCancel={onClick}
+            isActive={isActive}
           />
         </form>
       </InputLayout>
