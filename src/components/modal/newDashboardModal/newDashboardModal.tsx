@@ -1,11 +1,11 @@
 import { FieldValues, useForm } from 'react-hook-form';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { useEffect, useState } from 'react';
+import DashboardModalButtonSet from '../button/dashboardModalButtonSet';
 
 interface NewDashboardModalProps {
   onClick: () => void;
@@ -56,7 +56,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
           />
           <ColorChipInput setValue={setValue} />
 
-          <ModalButtonSet
+          <DashboardModalButtonSet
             isDelete={false}
             submitButtonTitle="생성"
             onClickCancel={onClick}

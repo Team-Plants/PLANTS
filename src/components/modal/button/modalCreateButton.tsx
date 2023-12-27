@@ -5,7 +5,7 @@ interface ModalCreateButtonProps {
   children: ReactNode;
   type?: 'submit' | 'button';
   onClick?: () => void;
-  isActive: boolean;
+  isActive: boolean | undefined;
 }
 
 // 모달에서 사용하는 기본 버튼
