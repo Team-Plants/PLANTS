@@ -1,25 +1,16 @@
-import { getDashboards } from '@/api/dashboard';
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import DashBoardButton from '@/components/button/dashBoard/dashBoardButton';
 import ArrowButton from '@/components/button/arrow/arrowButton';
-import { DashBoardData } from '@/types/DashBoard';
 import S from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard.module.css';
+import { DashBoardData } from '@/types/DashBoard';
 
-export async function getServerSideProps() {
-  const dashboardData = await getDashboards('pagination');
-
-  return {
-    props: {
-      dashboardData,
-    },
-  };
-}
-
-interface DashBoardProps {
+interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
 }
 
-function PaginationCreateDashboard({ dashboardData }: DashBoardProps) {
+function PaginationCreateDashboard({
+  dashboardData,
+}: PaginationCreateDashboardProps) {
   const { dashboards, totalCount } = dashboardData;
   const pageCount = Math.ceil((totalCount + 1) / 6);
 
