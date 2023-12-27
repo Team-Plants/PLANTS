@@ -17,6 +17,7 @@ import {
   NICKNAME_STANDARD,
 } from '@/constants/auth';
 import { SignFormValuesType } from '@/types/SignFormValue';
+import SignFormProvider from '@/components/formProvider/SignFormProvider';
 
 interface AuthInput {
   register: UseFormRegister<SignFormValuesType>;
@@ -73,7 +74,6 @@ const authInput = [
   {
     type: 'password',
     required: ERROR_PASSWORD_EMPTY,
-    // pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
     minLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
   },
   {

@@ -16,10 +16,30 @@ function SignFormProvider({
   submitLink,
 }: SignFormProviderProps) {
   const [mounted, setMounted] = useState(false);
-  const methods = useForm<SignFormValuesType>({ mode: 'onSubmit' });
+  const methods = useForm<SignFormValuesType>({ mode: 'onChange' });
   const router = useRouter();
 
+  const handleIsValidPasswordCheck = (passwordCheck: string) => {
+    const password = methods.getValues('password');
+    if (password !== passwordCheck) {
+      methods.setError('passwordCheck', {
+        type: 'validate',
+        message: '비밀번호가 일치하지 않습니다.',
+      });
+      return false;
+    }
+    return true;
+  };
+
   const handleOnSubmit = async (data: SignFormValuesType) => {
+    const passwordCheck = methods.getValues('passwordCheck');
+    let isValidPasswordCheck: boolean = true;
+
+    if (passwordCheck !== undefined) {
+      isValidPasswordCheck = handleIsValidPasswordCheck(passwordCheck);
+    }
+    if (!isValidPasswordCheck) return;
+
     const result = await onSubmit(data);
 
     if (result) {

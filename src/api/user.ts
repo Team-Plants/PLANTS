@@ -21,6 +21,7 @@ export async function postSignup(data: SignFormValuesType) {
   try {
     const response = await instance.post('/users', data);
     if (response.status === 201) {
+      alert('가입이 완료되었습니다.');
       return true;
     }
   } catch (e: unknown) {
