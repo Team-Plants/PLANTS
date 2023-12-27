@@ -1,0 +1,72 @@
+@value mobile, tablet from "@/styles/breakpoints.css";
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 16px;
+
+  @media all and (tablet) {
+    gap: 12px;
+  }
+
+  @media all and (mobile) {
+    gap: 6px;
+  }
+}
+
+.vectorImage {
+  margin-right: 12px;
+  margin-left: 16px;
+}
+
+.button {
+  composes: wrapper from '@/components/button/button.module.css';
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-30);
+  padding: 11px 16px 10px;
+  font-size: 1.6rem;
+  color: var(--gray-50);
+
+  @media all and (tablet) {
+    padding: 10px 16px 9px;
+    font-size: 1.4rem;
+  }
+}
+
+.buttonImg {
+  @media all and (mobile) {
+    display: none;
+  }
+}
+
+.folderName {
+  position: absolute;
+  left: 340px;
+  font-size: 20px;
+  font-weight: var(--font-bold);
+
+  @media all and (tablet) {
+    display : none;
+  }
+
+  @media all and (mobile) {
+    display : none;
+  }
+}
+
+.userName {
+  padding: 26px 80px 25px 12px;
+  font-size: 16px;
+  font-weight: var(--font-normal);
+
+  @media all and (mobile) {
+    display: none;
+  }
+}
