@@ -10,7 +10,7 @@ export async function getDashboards(method: Method) {
     },
     headers: {
       Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQzLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2MDk5NzAsImlzcyI6InNwLXRhc2tpZnkifQ.vkUa5DYy-heqbWPJC1M2ifFgpgC_D3zHuq3fLyy0Edc',
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQzLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2NzA3NjQsImlzcyI6InNwLXRhc2tpZnkifQ.OsDU9VIW0vm88UIA7Indt_rrV3_0Y7Q2TGeOSduyD9Q',
     },
   });
 

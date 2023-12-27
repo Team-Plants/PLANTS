@@ -32,6 +32,7 @@
   width: 100vw;
   height: 100vh;
   padding: 40px 558px 122px 40px;
+  background-color: var(--gray-10);
 
   @media all and (tablet) {
     left: 160px;
