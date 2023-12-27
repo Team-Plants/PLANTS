@@ -64,7 +64,7 @@
   align-items: center;
   gap: 8px;
   left: 340px;
-  font-size: 20px;
+  font-size: 2rem;
   font-weight: var(--font-bold);
 
   @media all and (tablet) {
