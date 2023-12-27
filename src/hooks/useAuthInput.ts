@@ -1,16 +1,11 @@
 import {
-  useForm,
-  UseFormRegister,
-  FieldValues,
-  FieldErrors,
-} from 'react-hook-form';
-import {
   EMAIL_STANDARD,
   ERROR_EMAIL_CHECK,
   ERROR_EMAIL_EMPTY,
   ERROR_NICKNAME_CHECK,
   ERROR_NICKNAME_EMPTY,
   ERROR_PASSWORD_CHECK,
+  ERROR_PASSWORD_CURRENT,
   ERROR_PASSWORD_EMPTY,
   ERROR_PASSWORD_SECOND_EMPTY,
   ERROR_PASSWORD_VALIDATION,
@@ -18,6 +13,12 @@ import {
   PASSWORD_STANDARD,
 } from '@/constants/auth';
 import { SignFormValuesType } from '@/types/SignFormValue';
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  useForm,
+} from 'react-hook-form';
 
 interface AuthInput {
   register: UseFormRegister<SignFormValuesType>;
@@ -86,5 +87,22 @@ const authInput = [
     type: 'nickname',
     required: ERROR_NICKNAME_EMPTY,
     pattern: { value: NICKNAME_STANDARD, message: ERROR_NICKNAME_CHECK },
+  },
+  {
+    type: 'currentPassword',
+    required: '현재 비밀번호 입력',
+    //TODO: 로직 추가
+    validate: ERROR_PASSWORD_CURRENT,
+  },
+  {
+    type: 'newPassword',
+    required: '새 비밀번호 입력',
+    pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
+    maxLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
+  },
+  {
+    type: 'newPasswordCheck',
+    required: '새 비밀번호 입력',
+    validate: ERROR_PASSWORD_CHECK,
   },
 ];

@@ -16,13 +16,9 @@ function InvitedItem({ dashBoardTitle, inviter }: InvitedItemProps) {
         <div className={S.inviter}>
           <span className={S.label}>초대자</span> {inviter}
         </div>
-        {/* 디바이스에 따른 크기 조절 */}
+
         <div className={S.buttonGroup}>
-          <ButtonGroup
-            primaryContent="수락"
-            secondaryContent="거절"
-            device="small"
-          />
+          <ButtonGroup primaryContent="수락" secondaryContent="거절" />
         </div>
       </div>
     </div>
