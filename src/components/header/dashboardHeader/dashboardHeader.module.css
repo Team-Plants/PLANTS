@@ -48,16 +48,16 @@
 
 .folderName {
   position: absolute;
-  left: 340px;
+  left: 40px;
   font-size: 20px;
   font-weight: var(--font-bold);
 
   @media all and (tablet) {
-    display : none;
+    display: none;
   }
 
   @media all and (mobile) {
-    display : none;
+    display: none;
   }
 }
 
