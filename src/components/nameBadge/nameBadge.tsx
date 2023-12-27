@@ -3,8 +3,8 @@ import S from '@/components/nameBadge/nameBadge.module.css';
 interface NameBadgeProps {
   color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
   letter: string;
-  layer?: 'layer' | null;
-  index?: number | undefined;
+  layer?: 'layer';
+  index?: number;
 }
 
 function NameBadge({ color, letter, layer, index }: NameBadgeProps) {
