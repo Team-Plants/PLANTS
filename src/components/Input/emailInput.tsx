@@ -1,11 +1,11 @@
-import Input from './Input';
+import Input from '@/components/Input/Input';
 
-function EmailInput() {
-  return (
-    <>
-      <Input type="email" label="이메일" />
-    </>
-  );
+interface Props {
+  size?: 'shortContainer';
+}
+
+function EmailInput({ size }: Props) {
+  return <Input type="email" label="이메일" size={size} />;
 }
 
 export default EmailInput;

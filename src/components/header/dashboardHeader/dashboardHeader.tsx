@@ -34,7 +34,7 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
             width={20}
             height={20}
             alt="관리하기"
-          />{' '}
+          />
           관리하기
         </button>
         <button className={S.button}>
@@ -44,8 +44,8 @@ function DashboardHeader({ folder, users, user }: DashboardProps) {
             width={20}
             height={20}
             alt="초대하기"
-          />{' '}
-          초대하기{' '}
+          />
+          초대하기
         </button>
       </div>
       {users && <UsersImage users={users} />}

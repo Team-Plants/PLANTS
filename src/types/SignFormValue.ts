@@ -3,4 +3,7 @@ export interface SignFormValuesType {
   password: string;
   nickname?: string;
   passwordCheck?: string;
+  currentPassword?: string;
+  newPassword?: string;
+  newPasswordCheck?: string;
 }
