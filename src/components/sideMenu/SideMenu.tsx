@@ -9,6 +9,7 @@ import { MouseEvent, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import axios, { AxiosResponse } from 'axios';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+import NewDashboardModal from '../modal/newDashboardModal/newDashboardModal';
 
 interface SideMenuProps {
   pageId: number;
@@ -21,6 +22,7 @@ function SideMenu({ pageId }: SideMenuProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
+  const [isModalClicked, setIsModalClicked] = useState(false);
 
   async function fetchMoreDashboards() {
     if (isLoading) return;
@@ -58,9 +60,13 @@ function SideMenu({ pageId }: SideMenuProps) {
     props: cursorId,
   });
 
+  function handleCancelClick() {
+    setIsModalClicked(false);
+  }
+
   function handleAddClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    // 버튼을 누르면 대시보드 생성하기 모달이 트리거 되어야함
+    setIsModalClicked(true);
   }
 
   return (
@@ -132,6 +138,7 @@ function SideMenu({ pageId }: SideMenuProps) {
           </div>
         </ul>
       </div>
+      {isModalClicked && <NewDashboardModal onClick={handleCancelClick} />}
     </div>
   );
 }
