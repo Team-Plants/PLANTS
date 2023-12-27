@@ -1,43 +1,64 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
 }
 
-.sideMenu {
-}
-
-.columnContainer {
+.main {
+  display: flex;
   flex-direction: column;
 }
 
-.header {
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  width: calc(100vw - 67px);
+  padding: 17px 12px 24px 12px;
+  background: var(--gray-10);
+  border-top: 3px solid;
+  align-items: center;
+  gap: 10px;
+
+  @media all and (tablet) {
+    width: calc(100vw - 176.6px);
+    padding: 20px 20px 48px 20px;
+    flex-direction: column;
+  }
+
+  @media all and (desktop) {
+    width: calc(100vw - 316.6px);
+    padding: 20px 20px 48px 20px;
+    flex-direction: row;
+  }
 }
 
-.rowContainer {
-  flex-direction: row;
-  /* 그리드 쓸까? */
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px;
+}
+
+.info {
+  display: flex;
+  gap: 12px;
+}
+
+.sectionName {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: var(--font-bold);
 }
 
 .toDo {
-  width: 308px;
-  height: 470px;
-  flex-shrink: 0;
 }
 
 .onProgress {
-  width: 308px;
-  height: 470px;
-  flex-shrink: 0;
 }
 
 .done {
-  width: 308px;
-  height: 470px;
-  flex-shrink: 0;
 }
 
 .addColumn {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
 }
