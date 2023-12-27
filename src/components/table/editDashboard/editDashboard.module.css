@@ -43,28 +43,28 @@
 
 .p {
   color: var(--gray-70);
-  font-size: 16px;
+  font-size: 1.6rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-normal);
   line-height: normal;
   padding-top: 24px;
   padding-bottom: 10px;
   @media all and (tablet) {
-    font-size: 18px;
+    font-size: 1.8rem;
     padding-top: 37px;
   }
 
   @media all and (desktop) {
-    font-size: 18px;
+    font-size: 1.8rem;
     padding-top: 37px;
   }
 }
 
 .headerTitle {
   color: var(--gray-70);
-  font-size: 20px;
+  font-size: 2rem;
   font-style: normal;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   line-height: normal;
 }
 
@@ -88,20 +88,20 @@
   padding: 7px 25px;
   color: var(--white);
   text-align: center;
-  font-size: 12px;
+  font-size: 1.2rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: var(--font-normal);
   line-height: normal;
   @media all and (tablet) {
     height: 24px;
-    font-size: 14px;
+    font-size: 1.4rem;
     margin-top: 28px;
     margin-bottom: 10px;
   }
 
   @media all and (desktop) {
     height: 24px;
-    font-size: 14px;
+    font-size: 1.4rem;
     margin-top: 28px;
     margin-bottom: 10px;
   }
