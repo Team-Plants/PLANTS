@@ -12,11 +12,9 @@ interface UserImageProps {
 }
 
 function UsersImage({ users }: UserImageProps) {
-  let layer: 'layer' | null;
+  let layer: 'layer';
   if (users.length > 1) {
     layer = 'layer';
-  } else {
-    layer = null;
   }
 
   const small = users.length - 2;
