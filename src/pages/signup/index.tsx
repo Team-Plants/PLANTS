@@ -19,6 +19,7 @@ export default Signup;
 
 Signup.getLayout = (page: ReactElement) => (
   <AuthLayout
+    handleSubmit={handleLogin}
     greetingsContent="첫 방문을 환영합니다!"
     submitButtonTitle="가입하기"
     submitLink="/login"

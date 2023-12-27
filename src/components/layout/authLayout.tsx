@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 import AuthButton from '../button/auth/authButton';
 import SignFormProvider from '../formProvider/SignFormProvider';
-import { handleLogin } from '@/api/user';
 import { SignFormValuesType } from '@/types/SignFormValue';
 import { useRouter } from 'next/router';
 
@@ -18,14 +17,18 @@ function AuthLayout({
   linkTitle,
   link,
   children,
+  handleSubmit,
 }: PropsWithChildren<AuthLayoutType>) {
   const router = useRouter();
+
   const onSubmit = async (data: SignFormValuesType) => {
-    const result = await handleLogin(data);
+    const result = await handleSubmit(data);
+
     if (result) {
       router.push(submitLink);
     }
   };
+
   return (
     <div className={S.container}>
       <Link href="/">
