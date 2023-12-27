@@ -11,7 +11,7 @@ function PasswordTable() {
       <Input type="newPasswordCheck" label="새 비밀번호 확인" />
 
       <div className={S.buttonContainer}>
-        <Button content="변경" status="primary" device="tablet" />
+        <Button content="변경" status="primary" />
       </div>
     </div>
   );
