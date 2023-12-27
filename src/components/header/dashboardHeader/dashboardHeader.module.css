@@ -5,6 +5,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: var(--white);
 }
 
 .buttonContainer {
@@ -34,12 +35,15 @@
 
 .button {
   composes: container from '@/components/button/button.module.css';
+  display: flex;
   gap: 8px;
   border-radius: 8px;
   border: 1px solid var(--gray-30);
   padding: 11px 16px 10px;
   font-size: 1.6rem;
   color: var(--gray-50);
+  align-items: center;
+  justify-content: center;
 
   @media all and (tablet) {
     padding: 10px 16px 9px;
@@ -63,8 +67,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  left: 340px;
   font-size: 2rem;
+  left: 40px;
   font-weight: var(--font-bold);
 
   @media all and (tablet) {
