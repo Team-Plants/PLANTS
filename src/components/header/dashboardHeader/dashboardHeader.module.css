@@ -5,6 +5,7 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  background-color: var(--white);
 }
 
 .buttonContainer {
@@ -27,12 +28,15 @@
 
 .button {
   composes: wrapper from '@/components/button/button.module.css';
+  display: flex;
   gap: 8px;
   border-radius: 8px;
   border: 1px solid var(--gray-30);
   padding: 11px 16px 10px;
   font-size: 1.6rem;
   color: var(--gray-50);
+  align-items: center;
+  justify-content: center;
 
   @media all and (tablet) {
     padding: 10px 16px 9px;
@@ -48,16 +52,16 @@
 
 .folderName {
   position: absolute;
-  left: 340px;
+  left: 40px;
   font-size: 20px;
   font-weight: var(--font-bold);
 
   @media all and (tablet) {
-    display : none;
+    display: none;
   }
 
   @media all and (mobile) {
-    display : none;
+    display: none;
   }
 }
 
