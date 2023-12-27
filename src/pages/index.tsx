@@ -11,14 +11,23 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
 
 function Home() {
+  const handle = async () => {
+    const option = {
+      endpoint: '/users/me',
+      method: 'GET',
+    };
+    const result = await axios.post('/api/withAuthHandler', option);
+    console.log(result);
+  };
   return (
     <>
       <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
-          <div className={S.imgContainer}>
+          <div className={S.imgContainer} onClick={handle}>
             <Image src={HomeImg} alt="홈이미지1" fill={true} />
           </div>
           <div className={S.h1Container}>
