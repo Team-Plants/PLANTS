@@ -1,6 +1,6 @@
 export interface SignFormValuesType {
-  email: string;
-  password: string;
+  email?: string;
+  password?: string;
   nickname?: string;
   passwordCheck?: string;
   checkbox?: boolean;

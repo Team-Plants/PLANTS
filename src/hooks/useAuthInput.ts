@@ -2,6 +2,7 @@ import {
   UseFormRegister,
   FieldValues,
   FieldErrors,
+  useForm,
   useFormContext,
 } from 'react-hook-form';
 import {
@@ -38,6 +39,7 @@ interface AuthInput {
 
 function useAuthInput(type: string): AuthInput {
   const matchInput = authInput.find((input) => input.type === type);
+
   const {
     register,
     formState: { errors },
