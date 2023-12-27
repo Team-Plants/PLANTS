@@ -7,6 +7,7 @@ import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { useEffect, useState } from 'react';
 import DashboardModalButtonSet from '../button/dashboardModalButtonSet';
 import { postDashboards } from '@/api/dashboard';
+import { useRouter } from 'next/router';
 
 interface NewDashboardModalProps {
   onClick: () => void;
@@ -16,6 +17,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
   const [isColorValid, setIsColorValid] = useState(false);
   const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const router = useRouter();
 
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -28,8 +30,13 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
   const { handleSubmit, control, setValue, watch } = methods;
 
   async function handleNewDashboard(data: FieldValues) {
-    const result = await postDashboards(data.dashboardName, data.color);
-    console.log(result);
+    try {
+      const result = await postDashboards(data.dashboardName, data.color);
+      const dashboardId = result?.id;
+      router.push(`/${dashboardId}`);
+    } catch (error) {
+      console.error('서버 오류로 대시보드 생성에 실패했습니다', error);
+    }
   }
 
   useEffect(() => {

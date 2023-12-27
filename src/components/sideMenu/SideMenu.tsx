@@ -104,7 +104,7 @@ function SideMenu({ pageId }: SideMenuProps) {
         <ul className={S.dashBoardContainer}>
           {dashboards &&
             dashboards.map((dashboard) => (
-              <Link href={`/myboard/${dashboard.id}`} key={dashboard.id}>
+              <Link href={`/${dashboard.id}`} key={dashboard.id}>
                 <li
                   className={S.dashBoardLi}
                   style={{
