@@ -25,7 +25,6 @@ function PaginationCreateDashboard({
               content={board.title}
               color={board.color}
               madeByOwner={true}
-              device="desktop"
             />
           ))}
       </div>

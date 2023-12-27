@@ -23,7 +23,6 @@
     grid-template-rows: repeat(6, minmax(17%, auto));
     height: 388px;
     width: 260px;
-
   }
 }
 
@@ -44,8 +43,4 @@
     width: 388px;
     height: 68px;
   }
-
 }
-
-
-

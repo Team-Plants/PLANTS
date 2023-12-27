@@ -15,7 +15,7 @@ export interface InvitedDashBoardProps {
     email: string;
     nickname: string;
   };
-  inviteAccepted: null;
+  inviteAccepted: boolean;
   createdAt: string;
   updatedAt: string;
 }
