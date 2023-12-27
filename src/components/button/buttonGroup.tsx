@@ -4,18 +4,13 @@ import S from '@/components/button/button.module.css';
 interface ButtonProps {
   primaryContent: string;
   secondaryContent: string;
-  device: DeviceType | 'small';
 }
 
-function ButtonGroup({
-  primaryContent,
-  secondaryContent,
-  device,
-}: ButtonProps) {
+function ButtonGroup({ primaryContent, secondaryContent }: ButtonProps) {
   return (
     <div className={S.groupContainer}>
-      <Button content={secondaryContent} device={device} status="secondary" />
-      <Button content={primaryContent} device={device} status="primary" />
+      <Button content={secondaryContent} status="secondary" />
+      <Button content={primaryContent} status="primary" />
     </div>
   );
 }
