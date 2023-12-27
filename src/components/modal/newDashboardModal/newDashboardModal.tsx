@@ -6,6 +6,7 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { useEffect, useState } from 'react';
 import DashboardModalButtonSet from '../button/dashboardModalButtonSet';
+import { postDashboards } from '@/api/dashboard';
 
 interface NewDashboardModalProps {
   onClick: () => void;
@@ -26,8 +27,9 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
 
   const { handleSubmit, control, setValue, watch } = methods;
 
-  function handleNewDashboard(data: FieldValues) {
-    console.log(data);
+  async function handleNewDashboard(data: FieldValues) {
+    const result = await postDashboards(data.dashboardName, data.color);
+    console.log(result);
   }
 
   useEffect(() => {

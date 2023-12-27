@@ -30,7 +30,7 @@ function SideMenu({ pageId }: SideMenuProps) {
 
     try {
       const response: AxiosResponse = await axios.get(
-        'https://sp-taskify-api.vercel.app/5/dashboards',
+        'https://sp-taskify-api.vercel.app/1-5/dashboards',
         {
           params: {
             navigationMethod: 'infiniteScroll',
@@ -39,7 +39,7 @@ function SideMenu({ pageId }: SideMenuProps) {
           },
           headers: {
             Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NjYsInRlYW1JZCI6IjUiLCJpYXQiOjE3MDMxNTM0MjEsImlzcyI6InNwLXRhc2tpZnkifQ.EymSG57SnaoeMZQ79mPVpzMbk8FB7Vyr_Hb0P_yFZvY',
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUyLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2NjA1MTcsImlzcyI6InNwLXRhc2tpZnkifQ.R6um2x6h1rguhyKds0EEF8L7BtfSMrRGIpKNL9z-rg4',
           },
         },
       );
