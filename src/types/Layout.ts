@@ -1,11 +1,8 @@
-import { SignFormValuesType } from './SignFormValue';
-
 export interface AuthLayoutType {
   greetingsContent: string;
   submitButtonTitle: string;
-  submitButtonLink: string;
+  submitLink: string;
   memberStatus: string;
   linkTitle: string;
   link: string;
-  onSubmit: (e: SignFormValuesType) => void;
 }
