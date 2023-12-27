@@ -1,0 +1,21 @@
+.boardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(33%, auto));
+  grid-template-rows: repeat(2, minmax(70px, auto));
+  row-gap: 12px;
+  column-gap: 13px;
+  height: 152px;
+  width: 1022px;
+
+  /* button device props 수정 후 media query 수정필요*/
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 96px;
+  width: 1022px;
+  gap: 12px;
+  font-size: 1.4rem;
+}
