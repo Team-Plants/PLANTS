@@ -11,10 +11,12 @@ import {
   ERROR_NICKNAME_CHECK,
   ERROR_NICKNAME_EMPTY,
   ERROR_PASSWORD_CHECK,
+  ERROR_PASSWORD_CURRENT,
   ERROR_PASSWORD_EMPTY,
   ERROR_PASSWORD_SECOND_EMPTY,
   ERROR_PASSWORD_VALIDATION,
   NICKNAME_STANDARD,
+  PASSWORD_STANDARD,
 } from '@/constants/auth';
 import { SignFormValuesType } from '@/types/SignFormValue';
 
@@ -87,5 +89,22 @@ const authInput = [
   },
   {
     type: 'checkbox',
+  },
+  {
+    type: 'currentPassword',
+    required: '현재 비밀번호 입력',
+    //TODO: 로직 추가
+    validate: ERROR_PASSWORD_CURRENT,
+  },
+  {
+    type: 'newPassword',
+    required: '새 비밀번호 입력',
+    pattern: { value: PASSWORD_STANDARD, message: ERROR_PASSWORD_VALIDATION },
+    maxLength: { value: 8, message: ERROR_PASSWORD_VALIDATION },
+  },
+  {
+    type: 'newPasswordCheck',
+    required: '새 비밀번호 입력',
+    validate: ERROR_PASSWORD_CHECK,
   },
 ];

@@ -1,21 +1,39 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import { ErrorMessage } from '@hookform/error-message';
-import useAuthInput from '@/hooks/useAuthInput';
 import EyeCloseImg from '@/assets/icons/EyeClose.svg';
 import EyeOpenImg from '@/assets/icons/EyeOpen.svg';
 import S from '@/components/Input/Input.module.css';
+import useAuthInput from '@/hooks/useAuthInput';
+import { ErrorMessage } from '@hookform/error-message';
+import Image from 'next/image';
+import { useState } from 'react';
 
 interface InputProps {
-  type: 'email' | 'password' | 'passwordCheck' | 'nickname' | 'checkbox';
-  label: '이메일' | '비밀번호' | '비밀번호 확인' | '닉네임' | '';
+  type:
+    | 'email'
+    | 'password'
+    | 'passwordCheck'
+    | 'nickname'
+    | 'currentPassword'
+    | 'newPassword'
+    | 'newPasswordCheck'
+    | 'checkbox';
+  label:
+    | '이메일'
+    | '비밀번호'
+    | '비밀번호 확인'
+    | '닉네임'
+    | '현재 비밀번호'
+    | '새 비밀번호'
+    | '새 비밀번호 확인'
+    | '';
+  size?: 'shortContainer';
 }
 
-function Input({ type, label }: InputProps) {
+function Input({ type, label, size }: InputProps) {
   const { register, errors, rules } = useAuthInput(type);
   const [eye, setEye] = useState(false);
   return (
-    <div className={type === 'checkbox' ? '' : S.formContainer}>
+    <div
+      className={type === 'checkbox' ? '' : size ? S[size] : S.formContainer}>
       {type === 'checkbox' ? (
         <input
           id={type}

@@ -11,6 +11,11 @@
   }
 }
 
+.shortContainer {
+  composes: formContainer;
+  width: 366px;
+}
+
 .formLabel {
   font-size: 1.6rem;
   color: var(--gray-70);

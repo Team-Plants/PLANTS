@@ -1,3 +1,5 @@
+@value tablet, mobile from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
   flex-direction: row;
@@ -10,22 +12,17 @@
   background-color: var(--white);
   font-weight: var(--font-bold);
   font-size: 1.8rem;
-}
 
-.desktop {
-  composes: container;
   width: 354px;
   height: 70px;
-}
 
-.tablet {
-  composes: container;
-  width: 544px;
-  height: 70px;
-}
+  @media all and (tablet) {
+    width: 544px;
+    height: 70px;
+  }
 
-.mobile {
-  composes: container;
-  width: 284px;
-  height: 60px;
+  @media all and (mobile) {
+    width: 284px;
+    height: 60px;
+  }
 }
