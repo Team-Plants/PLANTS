@@ -7,10 +7,6 @@ async function sendApiRequest(
   option: {
     endpoint: string;
     method: 'GET' | 'POST' | 'DELETE' | 'PUT';
-    params?: {
-      navigationMethod: string;
-      size: number;
-    };
   },
 ) {
   const token = req.cookies.accessToken;
@@ -27,7 +23,6 @@ async function sendApiRequest(
   const response: AxiosResponse = await instance({
     method: option.method,
     url: option.endpoint,
-    params: option.params,
     headers,
   });
 
