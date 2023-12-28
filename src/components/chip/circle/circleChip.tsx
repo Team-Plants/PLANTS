@@ -12,8 +12,10 @@ interface Color {
 
 function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
   function onClickChip() {
-    setIsChecked(!isChecked);
-    onClick(color);
+    if (setIsChecked && onClick) {
+      setIsChecked(!isChecked);
+      onClick(color);
+    }
   }
 
   return (
