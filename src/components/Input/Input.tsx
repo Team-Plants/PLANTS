@@ -14,7 +14,8 @@ interface InputProps {
     | 'nickname'
     | 'currentPassword'
     | 'newPassword'
-    | 'newPasswordCheck';
+    | 'newPasswordCheck'
+    | 'checkbox';
   label:
     | '이메일'
     | '비밀번호'
@@ -22,46 +23,63 @@ interface InputProps {
     | '닉네임'
     | '현재 비밀번호'
     | '새 비밀번호'
-    | '새 비밀번호 확인';
+    | '새 비밀번호 확인'
+    | '';
   size?: 'shortContainer';
 }
 
 function Input({ type, label, size }: InputProps) {
   const { register, errors, rules } = useAuthInput(type);
   const [eye, setEye] = useState(false);
-
   return (
-    <div className={size ? S[size] : S.formContainer}>
-      <label className={S.formLabel} htmlFor={type}>
-        {label}
-      </label>
-      <div
-        className={
-          errors[type]?.message
-            ? `${S.inputContainer} ${S.errorBorder}`
-            : `${S.inputContainer}`
-        }>
+    <div
+      className={type === 'checkbox' ? '' : size ? S[size] : S.formContainer}>
+      {type === 'checkbox' ? (
         <input
           id={type}
-          type={type.includes('password') ? (eye ? 'text' : 'password') : type}
-          className={S.input}
-          placeholder={rules.required}
-          {...register(type, {
-            pattern: rules.pattern,
-            maxLength: rules.maxLength,
-          })}
+          type="checkbox"
+          className={S.checkbox}
+          {...register(type)}
         />
-        <Image
-          className={
-            type.includes('password') ? `${S.image}` : `${S.image} ${S.display}`
-          }
-          src={eye ? EyeOpenImg : EyeCloseImg}
-          onClick={() => setEye(!eye)}
-          width={24}
-          height={24}
-          alt="비밀번호 보기"
-        />
-      </div>
+      ) : (
+        <>
+          <label className={S.formLabel} htmlFor={type}>
+            {label}
+          </label>
+          <div
+            className={
+              errors[type]?.message
+                ? `${S.inputContainer} ${S.errorBorder}`
+                : `${S.inputContainer}`
+            }>
+            <input
+              id={type}
+              type={
+                type.includes('password') ? (eye ? 'text' : 'password') : type
+              }
+              className={S.input}
+              placeholder={rules.required}
+              {...register(type, {
+                pattern: rules.pattern,
+                minLength: rules.minLength,
+              })}
+            />
+            <Image
+              className={
+                type.includes('password')
+                  ? `${S.image}`
+                  : `${S.image} ${S.display}`
+              }
+              src={eye ? EyeOpenImg : EyeCloseImg}
+              onClick={() => setEye(!eye)}
+              width={24}
+              height={24}
+              alt="비밀번호 보기"
+            />
+          </div>
+        </>
+      )}
+
       <ErrorMessage
         name={type}
         errors={errors}
