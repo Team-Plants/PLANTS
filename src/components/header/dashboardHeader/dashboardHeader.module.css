@@ -36,6 +36,7 @@
 .button {
   composes: container from '@/components/button/button.module.css';
   display: flex;
+  width: auto;
   gap: 8px;
   border-radius: 8px;
   border: 1px solid var(--gray-30);
