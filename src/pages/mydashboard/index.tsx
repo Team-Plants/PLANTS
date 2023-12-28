@@ -8,6 +8,7 @@ import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import S from '@/pages/mydashboard/index.module.css';
 import { useEffect, useState } from 'react';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 
 function MyDashboard() {
   const [dashboards, setDashboards] = useState<DashBoardData>();
@@ -20,6 +21,10 @@ function MyDashboard() {
     const invitedData = response.invitations;
     setInvitation(invitedData);
   }
+  const [modalOpen, setModalOpen] = useState(false);
+  function handleClick() {
+    setModalOpen((prev) => !prev);
+  }
 
   useEffect(() => {
     getDashboardsData();
@@ -28,7 +33,9 @@ function MyDashboard() {
   return (
     <>
       <SideMenu pageId={2} />
-      <div className={S.header}>헤더</div>
+      <div className={S.header} onClick={handleClick}>
+        헤더
+      </div>
       <div className={S.boardContainer}>
         {dashboards && <PaginationCreateDashboard dashboardData={dashboards} />}
         {invitation ? (
@@ -37,6 +44,7 @@ function MyDashboard() {
           <EmptyInvitation />
         )}
       </div>
+      {modalOpen && <AddTodoModal onClick={handleClick} />}
     </> //레이아웃 만들고 없앨 프래그먼트
   );
 }

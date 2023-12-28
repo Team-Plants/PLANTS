@@ -9,6 +9,7 @@ import SelectInput from '@/components/modal/input/selectInput/selectInput';
 import ImgInput from '@/components/modal/input/imgInput/imgInput';
 import { FieldValues, useForm } from 'react-hook-form';
 import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import { useEffect, useState } from 'react';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -34,12 +35,21 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
     },
   });
 
-  const { handleSubmit, control, setValue } = methods;
+  const { handleSubmit, control, setValue, watch } = methods;
+  const watchAll = Object.values(watch(['title', 'explain']));
+  const [isButtonActive, setIsButtonActive] = useState(true);
 
   function handleAddTodo(data: FieldValues) {
-    // 구현 필요
     console.log(data);
   }
+
+  useEffect(() => {
+    if (watchAll.every((el) => el)) {
+      setIsButtonActive(false);
+    } else {
+      setIsButtonActive(true);
+    }
+  }, [watchAll]);
 
   return (
     <ModalLayout onClick={onClick}>
@@ -75,6 +85,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
               type="date"
               control={control}
               name="date"
+              isRequired={false}
             />
           </InputLayout>
           <InputLayout label="태그" isNecessary={false}>
@@ -87,6 +98,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
             isDelete={false}
             submitmButtonTitle="생성"
             onClickCancel={onClick}
+            isButtonActive={isButtonActive}
           />
         </form>
       </InputModalLayout>

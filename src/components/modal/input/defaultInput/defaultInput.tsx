@@ -11,6 +11,7 @@ interface DefaultInputProps {
   type?: 'text' | 'date';
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
+  isRequired?: boolean;
 }
 
 // 모달 내 기본 input
@@ -19,13 +20,16 @@ function DefaultInput({
   type = 'text',
   name,
   control,
+  isRequired = true,
 }: DefaultInputProps) {
   const { field } = useController({
     name,
     control,
-    rules: {
-      required: { value: true, message: '입력해주세요' },
-    },
+    rules: isRequired
+      ? {
+          required: { value: true, message: '입력해주세요' },
+        }
+      : {},
   });
   return (
     <input

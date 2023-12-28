@@ -8,7 +8,6 @@
   border-radius: 8px;
   border: 1px solid var(--gray-30);
   background: var(--white);
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,6 +16,10 @@
     width: 138px;
     height: 42px;
   }
+}
+
+.buttonContainer:disabled {
+  cursor:default;
 }
 
 .buttonTitle {
@@ -33,7 +36,11 @@
 
 .violetButtonContainer {
   composes: buttonContainer;
-  background: var(--violet-violet_5534DA, #5534da);
+  background: var(--violet);
+}
+
+.violetButtonContainer:disabled {
+  background: var(--gray-40);
 }
 
 .violetButtonContainer > .buttonTitle {
