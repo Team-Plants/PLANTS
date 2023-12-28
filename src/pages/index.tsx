@@ -12,12 +12,19 @@ import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { getUsers } from '@/api/user';
+import { useRouter } from 'next/router';
+import axios from 'axios';
 
 function Home() {
+  const router = useRouter();
   // api 호출 예시
   const handle = async () => {
-    const result = await getUsers();
-    console.log(result);
+    const option = {
+      endpoint: '/users/me',
+      method: 'GET',
+    };
+    const result = await axios.post('/api/withAuthHandler', option);
+    return result;
   };
   return (
     <>
@@ -139,6 +146,7 @@ function Home() {
           </Link>
         </div>
       </footer>
+      {/* {<AddTodoModal onClick={() => console.log('a')} />} */}
     </>
   );
 }

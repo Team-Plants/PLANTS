@@ -12,8 +12,8 @@ async function sendApiRequest(
   const token = req.cookies.accessToken;
 
   if (!token) {
-    //TODO: redirect 처리
-    //return NextResponse.redirect('http://localhost:3000/login');
+    console.log('in');
+    return null;
   }
 
   const headers = {
@@ -33,7 +33,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const result: AxiosResponse = await sendApiRequest(req, req.body);
+  const result: AxiosResponse | null = await sendApiRequest(req, req.body);
 
-  return res.status(result.status).json(result.data);
+  if (result) {
+    return res.status(result.status).json(result.data);
+  }
+  res.status(200).redirect('/login');
 }
