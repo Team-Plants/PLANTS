@@ -18,8 +18,8 @@ import { MemberProps } from '@/types/Member';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  assigneeUserId: number;
-  columnId: number;
+  assigneeUserId?: number;
+  columnId?: number;
 }
 
 export interface DashBoardData {
