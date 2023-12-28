@@ -3,7 +3,7 @@ import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 
 interface ModalButtonSetState {
   isDelete: boolean;
-  submitmButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정';
+  submitmButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정' | '초대';
   onClickCancel: () => void;
 }
 
