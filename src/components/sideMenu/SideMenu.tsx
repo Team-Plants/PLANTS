@@ -9,7 +9,7 @@ import { MouseEvent, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import axios, { AxiosResponse } from 'axios';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
-import NewDashboardModal from '../modal/newDashboardModal/newDashboardModal';
+import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 
 interface SideMenuProps {
   pageId: number;

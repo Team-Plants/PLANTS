@@ -5,7 +5,7 @@ import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { useEffect, useState } from 'react';
-import DashboardModalButtonSet from '../button/dashboardModalButtonSet';
+import DashboardModalButtonSet from '@/components/modal/button/dashboardModalButtonSet';
 import { postDashboards } from '@/api/dashboard';
 import { useRouter } from 'next/router';
 
