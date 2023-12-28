@@ -1,4 +1,5 @@
 import { instance } from '@/libs/api';
+import axios from 'axios';
 
 export async function getDashboards() {
   const response = await instance.get('/dashboards');
@@ -11,11 +12,12 @@ export async function postDashboards(title: string, color: string) {
     color: color,
   };
 
-  const headers = {
-    Authorization:
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUyLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2NjA1MTcsImlzcyI6InNwLXRhc2tpZnkifQ.R6um2x6h1rguhyKds0EEF8L7BtfSMrRGIpKNL9z-rg4',
+  const option = {
+    endpoint: '/dashboards',
+    method: 'POST',
+    data: data,
   };
 
-  const response = await instance.post('/dashboards', data, { headers });
-  return response.data;
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
 }

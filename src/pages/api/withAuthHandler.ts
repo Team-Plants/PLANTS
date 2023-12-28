@@ -7,6 +7,7 @@ async function sendApiRequest(
   option: {
     endpoint: string;
     method: 'GET' | 'POST' | 'DELETE' | 'PUT';
+    data: object;
   },
 ) {
   const token = req.cookies.accessToken;
@@ -23,6 +24,7 @@ async function sendApiRequest(
   const response: AxiosResponse = await instance({
     method: option.method,
     url: option.endpoint,
+    data: option.data,
     headers,
   });
 
