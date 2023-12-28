@@ -6,7 +6,7 @@ async function sendApiRequest(
   req: NextApiRequest,
   option: {
     endpoint: string;
-    method: 'GET' | 'POST' | 'DELETE';
+    method: 'GET' | 'POST' | 'DELETE' | 'PUT';
   },
 ) {
   const token = req.cookies.accessToken;

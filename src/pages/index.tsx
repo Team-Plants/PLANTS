@@ -11,15 +11,12 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios from 'axios';
+import { getUsers } from '@/api/user';
 
 function Home() {
+  // api 호출 예시
   const handle = async () => {
-    const option = {
-      endpoint: '/users/me',
-      method: 'GET',
-    };
-    const result = await axios.post('/api/withAuthHandler', option);
+    const result = await getUsers();
     console.log(result);
   };
   return (
