@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  width: fit-content;
+  border-radius: 8px;
+  gap: 8px;
+  padding: 30px 17px;
+}
+
+.title {
+  font-weight: var(--font-bold);
+  font-size: 2.6rem;
+  margin-bottom: 40px;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 30px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}

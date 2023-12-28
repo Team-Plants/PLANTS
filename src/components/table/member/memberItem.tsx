@@ -1,5 +1,5 @@
-import S from '@/components/table/member/memberItem.module.css';
 import Button from '@/components/button/button';
+import S from '@/components/table/member/memberItem.module.css';
 
 interface MemberItemProps {
   nickname: string;
@@ -11,8 +11,8 @@ function MemberItem({ nickname, profileImageUrl }: MemberItemProps) {
     <div className={S.container}>
       {/* TODO: 아바타 배지 넣기 */}
       <div className={S.infoGroup}>아바타 {nickname}</div>
-      {/* TODO: 디바이스형 버튼 크기 넣기 */}
-      <Button content="삭제" device="small" status="secondary" />
+
+      <Button content="삭제" status="secondary" />
     </div>
   );
 }

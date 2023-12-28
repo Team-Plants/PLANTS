@@ -8,6 +8,8 @@ export const ERROR_PASSWORD_EMPTY = '비밀번호를 입력해 주세요.';
 
 export const ERROR_PASSWORD_SECOND_EMPTY = '비밀번호를 한번 더 입력해 주세요.';
 
+export const ERROR_PASSWORD_CURRENT = '현재 비밀번호가 틀립니다.';
+
 export const ERROR_NICKNAME_CHECK =
   '총 2~10글자, 알파벳과 한글을 포함해 작성해 주세요.';
 export const ERROR_NICKNAME_EMPTY = '닉네임을 입력해 주세요.';

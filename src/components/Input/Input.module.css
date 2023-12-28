@@ -1,8 +1,19 @@
+@value mobile from "@/styles/breakpoints.css";
+
 .formContainer {
   display: flex;
   flex-direction: column;
   gap: 8px;
   width: 520px;
+
+  @media all and (mobile) {
+    width: 351px;
+  }
+}
+
+.shortContainer {
+  composes: formContainer;
+  width: 366px;
 }
 
 .formLabel {
@@ -34,6 +45,11 @@
   width: 100%;
   font-size: 1.6rem;
   color: var(--gray-80);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
 }
 
 .image {

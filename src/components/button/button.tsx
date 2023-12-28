@@ -1,13 +1,20 @@
 import S from '@/components/button/button.module.css';
+import { EventHandler, MouseEvent } from 'react';
+
+type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 
 interface ButtonProps {
   content: string;
-  device: DeviceType | 'small';
   status: 'primary' | 'secondary';
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-function Button({ content, device, status }: ButtonProps) {
-  return <button className={`${S[device]} ${S[status]}`}>{content}</button>;
+function Button({ content, status, onClick }: ButtonProps) {
+  return (
+    <button className={`${S[status]}`} onClick={onClick}>
+      {content}
+    </button>
+  );
 }
 
 export default Button;

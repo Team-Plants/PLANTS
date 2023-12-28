@@ -7,34 +7,32 @@ import { getInvitations } from '@/api/invitations';
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import S from '@/pages/mydashboard/index.module.css';
+import { useEffect, useState } from 'react';
 
-export async function getServerSideProps() {
-  const dashboardData = await getDashboards('pagination');
-  const response = await getInvitations();
-  const invitedData = response.invitations;
+function MyDashboard() {
+  const [dashboards, setDashboards] = useState<DashBoardData>();
+  const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
 
-  return {
-    props: {
-      dashboardData,
-      invitedData,
-    },
-  };
-}
+  async function getDashboardsData() {
+    const dashboardData = await getDashboards('pagination');
+    setDashboards(dashboardData);
+    const response = await getInvitations();
+    const invitedData = response.invitations;
+    setInvitation(invitedData);
+  }
 
-interface MyDashBoardProps {
-  dashboardData: DashBoardData;
-  invitedData: InvitedDashBoardProps[];
-}
+  useEffect(() => {
+    getDashboardsData();
+  }, []);
 
-function MyDashboard({ dashboardData, invitedData }: MyDashBoardProps) {
   return (
     <>
       <SideMenu pageId={2} />
       <div className={S.header}>헤더</div>
       <div className={S.boardContainer}>
-        <PaginationCreateDashboard dashboardData={dashboardData} />
-        {invitedData ? (
-          <InvitedList invitations={invitedData} />
+        {dashboards && <PaginationCreateDashboard dashboardData={dashboards} />}
+        {invitation ? (
+          <InvitedList invitations={invitation} />
         ) : (
           <EmptyInvitation />
         )}

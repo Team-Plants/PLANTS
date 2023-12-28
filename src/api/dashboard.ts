@@ -1,18 +1,17 @@
-import { instance } from '@/libs/api';
+import axios from 'axios';
 
 type Method = 'pagination' | 'infiniteScroll';
 
-export async function getDashboards(method: Method) {
-  const response = await instance.get('/dashboards', {
+export async function getDashboards(navigationMethod: Method) {
+  const option = {
+    endpoint: '/dashboards',
+    method: 'GET',
     params: {
-      navigationMethod: `${method}`,
+      navigationMethod: `${navigationMethod}`,
       size: 5,
     },
-    headers: {
-      Authorization:
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTQzLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2NzA3NjQsImlzcyI6InNwLXRhc2tpZnkifQ.OsDU9VIW0vm88UIA7Indt_rrV3_0Y7Q2TGeOSduyD9Q',
-    },
-  });
+  };
 
-  return response?.data;
+  const result = await axios.post('api/withAuthHandler', option);
+  return result.data;
 }
