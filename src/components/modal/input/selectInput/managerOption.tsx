@@ -12,7 +12,13 @@ function ManagerOption({ name, profileImg }: ManagerOptionProps) {
   return (
     <div className={S.managerOptionContainer}>
       {profileImg ? (
-        <Image width={26} height={26} src={profileImg} alt="사용자 프로필" />
+        <Image
+          width={26}
+          height={26}
+          src={profileImg}
+          alt="사용자 프로필"
+          style={{ borderRadius: 50 }}
+        />
       ) : (
         <div className={S.circle}></div>
       )}

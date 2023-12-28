@@ -25,7 +25,7 @@ function ImgInput({ control, name, setValue }: ImgInputProps) {
   const onUpload = async (e: FormEvent<HTMLInputElement>) => {
     const fileString = await fileToString(e);
     setImageSrc(fileString);
-    setValue('img', fileString);
+    setValue('imageUrl', fileString);
   };
 
   const handleUploadImg = useCallback(() => {

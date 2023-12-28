@@ -8,7 +8,7 @@ import {
 
 interface DefaultInputProps {
   placeholder: string;
-  type?: 'text' | 'date';
+  type?: 'text' | 'date' | 'datetime-local';
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
   isRequired?: boolean;
