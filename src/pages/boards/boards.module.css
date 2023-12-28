@@ -67,6 +67,7 @@
   border-bottom: 1px solid var(--gray-30);
 
   @media all and (desktop) {
+    height: 100vh;
     border-bottom: none;
     border-right: 1px solid var(--gray-30);
   }
@@ -81,6 +82,7 @@
   border-bottom: 1px solid var(--gray-30);
 
   @media all and (desktop) {
+    height: 100vh;
     border-bottom: none;
     border-right: 1px solid var(--gray-30);
   }
@@ -95,6 +97,7 @@
   border-bottom: 1px solid var(--gray-30);
 
   @media all and (desktop) {
+    height: 100vh;
     border-bottom: none;
     border-right: 1px solid var(--gray-30);
   }

@@ -51,7 +51,7 @@ function boards() {
             </div>
             <AddButton />
             <Card title="송민혁 천재" date="12월 27일" />
-            <Card title="송민혁 천재" date="12월 27일" cardImg={TodoImg} />
+            <Card title="송민혁 천재" date="12월 27일" />
           </div>
           <div className={S.onProgress}>
             <div className={S.infoContainer}>

@@ -10,12 +10,7 @@ interface Color {
   onClick?: (e: string) => void;
 }
 
-function CircleChip({
-  color,
-  isChecked,
-  setIsChecked = () => {},
-  onClick = () => {},
-}: Color) {
+function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
   function onClickChip() {
     setIsChecked(!isChecked);
     onClick(color);
