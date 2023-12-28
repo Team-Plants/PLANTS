@@ -15,7 +15,7 @@ function ProfileTable() {
           <NicknameInput size="shortContainer" />
 
           <div className={S.buttonContainer}>
-            <Button content="저장" status="primary" device="tablet" />
+            <Button content="저장" status="primary" />
           </div>
         </div>
       </div>
