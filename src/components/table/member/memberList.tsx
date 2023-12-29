@@ -81,6 +81,7 @@ function MemberList({
             return (
               <div className={S.tableItem} key={member.userId}>
                 <MemberItem
+                  isOwner={member.isOwner}
                   nickname={member.nickname}
                   profileImageUrl={member.profileImageUrl}
                   memberId={member.id}
