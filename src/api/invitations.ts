@@ -27,3 +27,16 @@ export async function getInvitationList(
   const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
+
+export async function DeleteInvitation(
+  dashboardId: string,
+  invitationId: string,
+) {
+  const option = {
+    endpoint: `/dashboards/${dashboardId}/invitations/${invitationId}`,
+    method: 'DELETE',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result;
+}

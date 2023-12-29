@@ -1,13 +1,38 @@
+import { DeleteInvitation } from '@/api/invitations';
 import WhiteSmileLogoImg from '@/assets/icons/WhiteSmileLogo.svg';
 import Button from '@/components/button/button';
 import S from '@/components/table/invitation/invitationItem.module.css';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 interface InvitationItemProps {
   email: string;
+  invitationId: number;
+  dashboardId: string;
 }
 
-function InvitationItem({ email }: InvitationItemProps) {
+function InvitationItem({
+  email,
+  invitationId,
+  dashboardId,
+}: InvitationItemProps) {
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.deleteInvitation],
+    queryFn: () => DeleteInvitation(dashboardId, String(invitationId)),
+    enabled: false,
+  });
+
+  async function fetchDeleteInvitation() {
+    if (isLoading) return;
+    await refetch();
+  }
+
+  async function handleCancelClick() {
+    const response = await fetchDeleteInvitation();
+    console.log(response);
+  }
+
   return (
     <div className={S.container}>
       <div className={S.nameWrapper}>
@@ -22,7 +47,7 @@ function InvitationItem({ email }: InvitationItemProps) {
         <div className={S.email}>{email}</div>
       </div>
       <div className={S.button}>
-        <Button status="secondary" content="취소" />
+        <Button status="secondary" content="취소" onClick={handleCancelClick} />
       </div>
     </div>
   );

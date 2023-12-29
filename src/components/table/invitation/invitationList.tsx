@@ -70,7 +70,11 @@ function InvitationList({
         data?.invitations.map((invitation: Invitation) => {
           return (
             <div className={S.tableItem} key={invitation.id}>
-              <InvitationItem email={invitation.invitee.email} />
+              <InvitationItem
+                email={invitation.invitee.email}
+                invitationId={invitation.id}
+                dashboardId={dashboardId}
+              />
             </div>
           );
         })}
