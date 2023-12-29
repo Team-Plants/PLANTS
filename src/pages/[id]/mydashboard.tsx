@@ -102,7 +102,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             <ReturnButton url={`/${dashboardId}`} />
             <div className={S.tableContainer}>
               <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
-              <MemberList members={[]} />
+              <MemberList dashboardId={dashboardId} />
               <InvitationList invitations={[]} onClick={handleModal} />
               <div className={S.marginDiv}></div>
               <DeleteDashBoardButton />
