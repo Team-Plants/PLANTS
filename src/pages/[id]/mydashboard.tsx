@@ -40,7 +40,8 @@ interface DashboardEditPageProps {
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const mutation = useMutation({
-    mutationFn: (data: FieldValues) => postDashboardsInvitations('612', data),
+    mutationFn: (data: FieldValues) =>
+      postDashboardsInvitations(dashboardId, data),
     onError: (error) => {
       alert(error);
     },
