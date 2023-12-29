@@ -14,7 +14,7 @@ interface ModalButtonSetState {
 // isDelete: true -> 칼럼관리 모달 내 삭제하기 버튼
 // onClickCancel -> 취소 버튼 클릭 시 이벤트
 // isActive -> 생성하기 버튼 활성/비활성 관리할 상태값
-function DashboardModalButtonSet({
+function ActiveModalButtonSet({
   isDelete,
   submitButtonTitle = '확인',
   onClickCancel,
@@ -36,4 +36,4 @@ function DashboardModalButtonSet({
   );
 }
 
-export default DashboardModalButtonSet;
+export default ActiveModalButtonSet;

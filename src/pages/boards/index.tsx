@@ -8,19 +8,21 @@ import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import InputLayout from '@/components/modal/input/inputLayout';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { FieldValues, useForm } from 'react-hook-form';
 import { postColumnAdd } from '@/api/column';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import Column from '@/components/column/column';
+import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [isOpenColumnModal, setIsOpenColumnModal] = useState(false);
   const [formData, setFormData] = useState({});
+  const [isColumnNameValid, setIsColumnNameValid] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const { error, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
@@ -35,7 +37,7 @@ function boards() {
     },
   });
 
-  const { handleSubmit, control, reset } = methods;
+  const { handleSubmit, control, reset, watch } = methods;
 
   function handleClick() {
     setIsOpenAddTodoModal((prev) => !prev);
@@ -48,10 +50,10 @@ function boards() {
   async function handleAddColumn(data: FieldValues) {
     const newData = {
       title: data.title,
-      // 대시보드 id는 나중에 바꾸셈
+      // 대시보드 id는 나중에 바꿔야 함
       dashboardId: 412,
     };
-    setFormData(newData);
+    setFormData(() => newData);
     refetch();
     setIsOpenColumnModal(false);
     reset();
@@ -66,6 +68,16 @@ function boards() {
       alert(error);
     }
   }, [error]);
+
+  useEffect(() => {
+    if (watch('title') === '') setIsColumnNameValid(false);
+    else setIsColumnNameValid(true);
+  }, [watch()]);
+
+  useEffect(() => {
+    if (isColumnNameValid) setIsActive(true);
+    else setIsActive(false);
+  }, [isColumnNameValid]);
 
   return (
     mounted && (
@@ -103,7 +115,8 @@ function boards() {
               columnName="To Do"
               cardNum={1}
               addClick={handleClick}
-              settingClick={handleClick}
+              // TODO: 편집 버튼 추가
+              settingClick={() => {}}
             />
             <div className={S.addButton}>
               <ColumnButton onClick={handleAddColumnModal} />
@@ -124,10 +137,11 @@ function boards() {
                   name="title"
                 />
                 {/* 빈값일 경우 생성버튼 제한 */}
-                <ModalButtonSet
+                <ActiveModalButtonSet
                   isDelete={false}
                   submitButtonTitle="생성"
                   onClickCancel={handleAddColumnModal}
+                  isActive={isActive}
                 />
               </form>
             </InputLayout>
