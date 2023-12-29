@@ -23,3 +23,13 @@ export async function deleteMember(memberId: string) {
   const response = await instance.delete(`/members/${memberId}`);
   return response.data;
 }
+
+export async function DeleteMember(memberId: string) {
+  const option = {
+    endpoint: `/members/${memberId}`,
+    method: 'DELETE',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result;
+}

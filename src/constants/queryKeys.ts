@@ -4,6 +4,7 @@ const QUERY_KEYS = {
   deleteInvitation: 'deleteInvitation',
   dashboards: 'dashboards',
   members: 'members',
+  deleteMember: 'deleteMember',
 } as const;
 
 export default QUERY_KEYS;

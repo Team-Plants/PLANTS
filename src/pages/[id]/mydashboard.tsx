@@ -43,6 +43,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [formData, setFormData] = useState({});
   const [flag, setFlag] = useState(false);
   const [invitationFlag, setInvitationFlag] = useState(false);
+  const [memberFlag, setMemberFlag] = useState(false);
   const { error, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
     queryFn: () => postDashboardsInvitations(dashboardId, formData),
@@ -103,7 +104,11 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             <ReturnButton url={`/${dashboardId}`} />
             <div className={S.tableContainer}>
               <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
-              <MemberList dashboardId={dashboardId} />
+              <MemberList
+                dashboardId={dashboardId}
+                memberFlag={memberFlag}
+                setMemberFlag={setMemberFlag}
+              />
               <InvitationList
                 dashboardId={dashboardId}
                 onClick={handleModal}

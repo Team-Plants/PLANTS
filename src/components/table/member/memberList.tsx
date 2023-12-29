@@ -9,9 +9,15 @@ import PaginationArrowButton from '@/components/button/arrow/paginationArrowButt
 
 interface MemberListProps {
   dashboardId: string;
+  memberFlag: boolean;
+  setMemberFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function MemberList({ dashboardId }: MemberListProps) {
+function MemberList({
+  dashboardId,
+  memberFlag,
+  setMemberFlag,
+}: MemberListProps) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
@@ -43,6 +49,17 @@ function MemberList({ dashboardId }: MemberListProps) {
     }
   }, [totalCount]);
 
+  useEffect(() => {
+    if (memberFlag) {
+      fetchMoreMembers();
+      setMemberFlag(false);
+    }
+  }, [memberFlag]);
+
+  useEffect(() => {
+    if (totalPage !== 0 && totalPage < page) setPage((prev) => prev - 1);
+  }, [totalPage]);
+
   return (
     <div className={S.container}>
       <div className={S.header}>
@@ -66,6 +83,8 @@ function MemberList({ dashboardId }: MemberListProps) {
                 <MemberItem
                   nickname={member.nickname}
                   profileImageUrl={member.profileImageUrl}
+                  memberId={member.id}
+                  setMemberFlag={setMemberFlag}
                 />
               </div>
             );
