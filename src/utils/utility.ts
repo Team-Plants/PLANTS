@@ -19,11 +19,10 @@ export function fileToString(e: FormEvent<HTMLInputElement>) {
 
   const reader = new FileReader();
   reader.readAsDataURL(files);
-
   return new Promise<string>((resolve) => {
     reader.onload = () => {
-      const reuslt = String(reader.result);
-      resolve(reuslt);
+      const result = String(reader.result);
+      resolve(result);
     };
   });
 }

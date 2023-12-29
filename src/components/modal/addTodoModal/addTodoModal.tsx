@@ -14,6 +14,7 @@ import { dateFormat } from '@/utils/utility';
 import { postCard } from '@/api/card';
 import { getMembers } from '@/api/member';
 import { MemberProps } from '@/types/Member';
+import { postColumnImage } from '@/api/column';
 // import { useRouter } from 'next/router';
 
 interface AddTodoModalProps {
@@ -85,6 +86,11 @@ function AddTodoModal({
     if (data.dueDate) {
       const date = dateFormat(data.dueDate);
       newData.dueDate = date;
+    }
+
+    if (data.imageUrl) {
+      const response = await postColumnImage(data.imageUrl, `${columnId}`);
+      console.log(response);
     }
 
     const response = await postCard(newData);
