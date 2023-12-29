@@ -103,7 +103,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             <div className={S.tableContainer}>
               <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
               <MemberList dashboardId={dashboardId} />
-              <InvitationList invitations={[]} onClick={handleModal} />
+              <InvitationList dashboardId={dashboardId} onClick={handleModal} />
               <div className={S.marginDiv}></div>
               <DeleteDashBoardButton />
             </div>

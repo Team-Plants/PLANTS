@@ -1,4 +1,4 @@
-export interface InvitationListProps {
+export interface Invitation {
   id: number;
   dashboard: {
     title: string;
