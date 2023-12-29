@@ -7,9 +7,10 @@ import { FieldValues, useForm } from 'react-hook-form';
 
 interface EditDashboardProps {
   dashboardId: string;
+  setFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function EditDashboard({ dashboardId }: EditDashboardProps) {
+function EditDashboard({ dashboardId, setFlag }: EditDashboardProps) {
   const [isColorValid, setIsColorValid] = useState(false);
   const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -23,7 +24,12 @@ function EditDashboard({ dashboardId }: EditDashboardProps) {
   });
 
   async function handleEditDashboard(data: FieldValues) {
-    await putDashboard(dashboardId, data.dashboardTitle, data.color);
+    const result = await putDashboard(
+      dashboardId,
+      data.dashboardTitle,
+      data.color,
+    );
+    if (result) setFlag(true);
   }
 
   const { handleSubmit, control, setValue, watch } = methods;

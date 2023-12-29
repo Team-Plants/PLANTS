@@ -5,41 +5,56 @@ import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 import { getSideMenuDashboards } from '@/api/dashboard';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 interface SideMenuProps {
   pageId: number;
+  flag: boolean;
 }
 
-function SideMenu({ pageId }: SideMenuProps) {
+function SideMenu({ pageId, flag }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [cursorId, setCursorId] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
 
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.dashboards],
+    queryFn: () => getSideMenuDashboards(10, cursorId),
+    enabled: false,
+  });
+
   async function fetchMoreDashboards() {
     if (isLoading) return;
-    setIsLoading(true);
+    refetch();
+  }
 
-    try {
-      const data = await getSideMenuDashboards(10, cursorId);
+  useEffect(() => {
+    if (flag) {
+      setDashboards([]);
+      setCursorId(undefined);
+      setCurrentLength(0);
+      setTotalCount(0);
+      refetch();
+    }
+  }, [flag]);
+
+  useEffect(() => {
+    if (data) {
       setCursorId(data.cursorId + 8);
       setDashboards((prev) => [...prev, ...data.dashboards]);
       setCurrentLength((prev) => prev + data.dashboards.length);
       setTotalCount(data.totalCount);
-    } catch (error) {
-      console.error('데이터를 불러오는 중 에러가 발생했습니다:', error);
-    } finally {
-      setIsLoading(false);
     }
-  }
+  }, [data]);
 
   useIntersectionObserver({
     target: target,

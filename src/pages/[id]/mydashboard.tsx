@@ -41,6 +41,7 @@ interface DashboardEditPageProps {
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({});
+  const [flag, setFlag] = useState(false);
   const { error, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
     queryFn: () => postDashboardsInvitations(dashboardId, formData),
@@ -85,7 +86,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   return (
     <>
       <div className={S.mainOuter}>
-        <SideMenu pageId={Number(dashboardId)} />
+        <SideMenu pageId={Number(dashboardId)} flag={flag} />
         <div className={S.main}>
           <DashboardHeader
             folder="1"
@@ -100,7 +101,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
           <div className={S.mainContainer}>
             <ReturnButton url={`/${dashboardId}`} />
             <div className={S.tableContainer}>
-              <EditDashboard dashboardId={dashboardId} />
+              <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
               <MemberList members={[]} />
               <InvitationList invitations={[]} onClick={handleModal} />
               <div className={S.marginDiv}></div>
