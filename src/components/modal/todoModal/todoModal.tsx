@@ -1,86 +1,78 @@
-import S from '@/components/modal/todoModal/todoModal.module.css';
-import ModalLayout from '@/components/modal/modalLayout';
-import Image from 'next/image';
-import KebabImg from '@/assets/icons/Kebab.svg';
+import { getComments, postComments } from '@/api/comment';
 import CloseImg from '@/assets/icons/Close.svg';
-import ManagerOption from '@/components/modal/input/selectInput/managerOption';
+import KebabImg from '@/assets/icons/Kebab.svg';
 import TodoImg from '@/assets/images/Todo2.png';
-import TextArea from '@/components/modal/textarea/textarea';
-import Comment from '@/components/modal/todoModal/comment';
-import TextareaButton from '@/components/modal/button/textareaButton/textareaButton';
-import { FieldValues, useForm } from 'react-hook-form';
-import ProgressChip from '@/components/chip/progress/progressChip';
+import KebabButton from '@/components/button/card/kebabButton';
 import CategoryChip from '@/components/chip/category/categoryChip';
+import ProgressChip from '@/components/chip/progress/progressChip';
+import TextareaButton from '@/components/modal/button/textareaButton/textareaButton';
+import ManagerOption from '@/components/modal/input/selectInput/managerOption';
+import ModalLayout from '@/components/modal/modalLayout';
+import TextArea from '@/components/modal/textarea/textarea';
+import S from '@/components/modal/todoModal/todoModal.module.css';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { Card } from '@/types/Card';
+import { CommentData } from '@/types/Comment';
+import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
+import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import Comment from './comment';
 
 interface TodoModalProps {
-  onClick: () => void;
+  state: boolean;
+  cardData: Card;
 }
 
-const dummyComment = [
-  {
-    name: '정만철',
-    date: '2022.12.27 14:00',
-    comment: '오늘안에 CCC 까지 만들 수 있을까요?',
-  },
-  {
-    name: '정만철',
-    date: '2022.12.27 14:00',
-    comment: '오늘안에 CCC 까지 만들 수 있을까요?',
-  },
-  {
-    name: '정만철',
-    date: '2022.12.27 14:00',
-    comment: '오늘안에 CCC 까지 만들 수 있을까요?',
-  },
-];
+function TodoModal({ state, cardData }: TodoModalProps) {
+  const [openKebab, setOpenKebab] = useState(false);
+  const [isOpenState, setIsOpenState] = useState<boolean>(state);
 
-interface Category {
-  content: string;
-  color: ThemeType;
-}
-
-const dummyCategory: Category[] = [
-  {
-    content: '프로젝트',
-    color: 'orange#FFA500',
-  },
-  {
-    content: '일반',
-    color: 'green#00FF00',
-  },
-  {
-    content: '백엔드',
-    color: 'pink#FFC0CB',
-  },
-];
-
-function TodoModal({ onClick }: TodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
       comment: '',
     },
   });
+
   const { handleSubmit, control } = methods;
 
-  function handleCommentSubmit(data: FieldValues) {
-    //이후 구현 필요
-    console.log(data);
+  const { data } = useQuery<CommentData>({
+    queryKey: [QUERY_KEYS.comment],
+    queryFn: () => getComments(172),
+  });
+
+  function handleCommentSubmit(d: FieldValues) {
+    postComments();
   }
 
   return (
-    <ModalLayout onClick={onClick}>
+    <ModalLayout
+      onClick={() => {
+        setIsOpenState(!false);
+      }}
+      isOpen={isOpenState}>
       <div className={S.todoModalContainer}>
         <div className={S.headerContainer}>
-          <div className={S.modalTitle}>새로운 일정 관리 Taskify</div>
+          <div className={S.modalTitle}>{cardData?.title}</div>
           <div className={S.modalToolContainer}>
-            <Image src={KebabImg} alt="케밥 아이콘" width={28} height={28} />
+            <div>
+              <Image
+                src={KebabImg}
+                alt="케밥 아이콘"
+                width={28}
+                height={28}
+                onClick={() => setOpenKebab(!openKebab)}
+              />
+              {openKebab && <KebabButton cardId={cardData.id} />}
+            </div>
+
             <Image
               src={CloseImg}
               alt="닫힘 아이콘"
               width={32}
               height={32}
-              onClick={onClick}
+              onClick={() => setIsOpenState(false)}
             />
           </div>
         </div>
@@ -91,27 +83,20 @@ function TodoModal({ onClick }: TodoModalProps) {
               <ProgressChip progress="ToDo" />
               <div>|</div>
               <div className={S.categoryChipContainer}>
-                {dummyCategory.map((e, index) => {
+                {cardData?.tags?.map((e, index) => {
                   return (
                     <CategoryChip
-                      content={e.content}
+                      content={e}
                       key={index}
-                      color={e.color}
+                      color="green#00FF00"
                     />
                   );
                 })}
               </div>
             </div>
 
-            <div className={S.mainContent}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum finibus nibh arcu, quis consequat ante cursus eget.
-              Cras mattis, nulla non laoreet porttitor, diam justo laoreet eros,
-              vel aliquet diam elit at leo.
-            </div>
-
+            <div className={S.mainContent}>{cardData?.description}</div>
             <Image className={S.mainImg} src={TodoImg} alt="할 일 이미지" />
-
             <div className={S.commentInputContainer}>
               <div className={S.commentTitle}>댓글</div>
               <form
@@ -127,8 +112,8 @@ function TodoModal({ onClick }: TodoModalProps) {
             </div>
 
             <div className={S.commentContainer}>
-              {dummyComment.map((e, index) => {
-                return <Comment data={e} key={index} />;
+              {data?.comments.map((item, index) => {
+                return <Comment data={item} key={index} />;
               })}
             </div>
           </div>
@@ -136,11 +121,14 @@ function TodoModal({ onClick }: TodoModalProps) {
           <div className={S.mainInfoContainer}>
             <div className={S.mainInfoItemContainer}>
               <div className={S.mainInfoTitle}>담당자</div>
-              <ManagerOption name="배윤철"></ManagerOption>
+              <ManagerOption
+                name={cardData?.assignee.nickname}
+                profileImg={cardData?.assignee?.profileImageUrl}
+              />
             </div>
             <div className={S.mainInfoItemContainer}>
               <div className={S.mainInfoTitle}>마감일</div>
-              <div className={S.mainInfoContent}>2022.12.30 19:00</div>
+              <div className={S.mainInfoContent}>{cardData?.dueDate}</div>
             </div>
           </div>
         </div>
