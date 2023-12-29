@@ -15,8 +15,8 @@ import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { useRouter } from 'next/router';
-import { AxiosError } from 'axios';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -39,9 +39,13 @@ interface DashboardEditPageProps {
 }
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
-  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { id } = router.query;
+  const [formData, setFormData] = useState({});
+  const { error, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.invitations],
+    queryFn: () => postDashboardsInvitations(dashboardId, formData),
+    enabled: false,
+  });
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -57,16 +61,18 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const { handleSubmit, control } = methods;
 
   async function handleAddTodo(data: FieldValues) {
-    try {
-      const dashboardId = id || '412';
-      await postDashboardsInvitations(dashboardId, data);
-    } catch (e) {
-      if (e instanceof AxiosError) {
-        alert(e.response?.data.message || e.message);
-      }
-    }
+    setFormData(data);
+    refetch();
+    setIsModalOpen(false);
   }
 
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
+
+  // 모달이 열릴 경우 백그라운드 스크롤 방지
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflowY = 'hidden';

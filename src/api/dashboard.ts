@@ -1,5 +1,5 @@
 import { instance } from '@/libs/api';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 export async function getDashboards() {
   const response = await instance.get('/dashboards');
@@ -7,7 +7,7 @@ export async function getDashboards() {
 }
 
 export async function postDashboardsInvitations(
-  dashboardId: string | string[],
+  dashboardId: string,
   data: object,
 ) {
   const option = {
@@ -15,6 +15,12 @@ export async function postDashboardsInvitations(
     method: 'POST',
     data: data,
   };
-  const response = await axios.post('/api/withAuthHandler', option);
-  return response;
+  try {
+    const response = await axios.post('/api/withAuthHandler', option);
+    return response;
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data.message);
+    }
+  }
 }
