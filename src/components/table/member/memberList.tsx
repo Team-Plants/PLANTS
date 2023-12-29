@@ -1,11 +1,11 @@
 import S from '@/components/table/member/memberList.module.css';
 import MemberItem from './memberItem';
-import ArrowButton from '@/components/button/arrow/arrowButton';
 import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getMembers } from '@/api/member';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 
 interface MemberListProps {
   dashboardId: string;
@@ -13,7 +13,8 @@ interface MemberListProps {
 
 function MemberList({ dashboardId }: MemberListProps) {
   const [page, setPage] = useState(1);
-  const [target, setTarget] = useState<HTMLDivElement | null>(null);
+  const [totalPage, setTotalPage] = useState<number>(0);
+  const [totalCount, setTotalCount] = useState();
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.members],
     queryFn: () => getMembers(page, 4, Number(dashboardId)),
@@ -22,16 +23,38 @@ function MemberList({ dashboardId }: MemberListProps) {
 
   async function fetchMoreMembers() {
     if (isLoading) return;
-    refetch();
+    await refetch();
   }
+
+  useEffect(() => {
+    fetchMoreMembers();
+  }, [page]);
+
+  useEffect(() => {
+    setTotalCount(data?.totalCount);
+  }, [data]);
+
+  useEffect(() => {
+    if (totalCount === undefined) return;
+    if (totalCount <= 4) {
+      setTotalPage(1);
+    } else if (totalCount > 4) {
+      setTotalPage(Math.ceil(totalCount / 4));
+    }
+  }, [totalCount]);
 
   return (
     <div className={S.container}>
       <div className={S.header}>
         구성원
         <div className={S.pagination}>
-          {`1페이지 중 ${page}`}
-          <ArrowButton size="small" />
+          {`${totalPage} 페이지 중 ${page}`}
+          <PaginationArrowButton
+            size="small"
+            totalPage={totalPage}
+            page={page}
+            setPage={setPage}
+          />
         </div>
       </div>
       <div className={S.label}>이름</div>
