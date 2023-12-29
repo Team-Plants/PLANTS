@@ -18,11 +18,11 @@ interface Chip {
 const dummyChip: Chip[] = [
   {
     content: '프로젝트',
-    color: 'orange',
+    color: 'orange#FFA500',
   },
   {
     content: '백엔드',
-    color: 'pink',
+    color: 'pink#FFC0CB',
   },
 ];
 

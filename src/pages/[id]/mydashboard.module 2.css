@@ -23,20 +23,20 @@
 
 .mainContainer {
   background: var(--gray-10);
-  width: calc(100vw - 89.1px);
+  width: calc(100vw - 83.6px);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   padding: 17px 12px 24px 12px;
   gap: 12px;
-  border-top: 2px solid;
-  border-color: var(--gray-30);
+  border-top: 3px solid;
+  border-color: var(--gray-40);
   @media all and (tablet) {
-    width: calc(100vw - 182.1px);
+    width: calc(100vw - 176.6px);
     padding: 20px 20px 48px 20px;
   }
   @media all and (desktop) {
-    width: calc(100vw - 322.1px);
+    width: calc(100vw - 316.6px);
     padding: 20px 20px 48px 20px;
   }
 }

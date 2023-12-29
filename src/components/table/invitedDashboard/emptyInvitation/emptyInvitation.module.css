@@ -1,0 +1,56 @@
+@value mobile, tablet from '@/styles/breakpoints.css';
+
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 1030px;
+  height: 400px;
+  background-color: var(--white);
+
+  @media all and (tablet) {
+    width: 504px;
+    height: 500px;
+  }
+  @media all and (mobile) {
+    width: 260px;
+    height: 400px;
+  }
+
+}
+
+.title {
+  position: absolute;
+  top: 32px;
+  left: 28px;
+  color: var(--gray-70);
+  font-size: 2.4rem;
+  font-weight: var(--font-bold);
+
+  @media all and (mobile) {
+    top: 24px;
+    left: 16px;
+    font-size: 2rem;
+  }
+}
+
+.image {
+  @media all and (mobile) {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.description {
+  margin-top: 24px;
+  color: var(--gray-40);
+  font-size: 1.8rem;
+  font-weight: var(--font-light);
+
+  @media all and (mobile) {
+    margin-top: 16px;
+    font-size: 1.4rem;
+  }
+}

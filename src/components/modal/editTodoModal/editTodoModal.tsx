@@ -111,7 +111,7 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
 
           <ModalButtonSet
             isDelete={false}
-            submitmButtonTitle="수정"
+            submitButtonTitle="수정"
             onClickCancel={onClick}
           />
         </form>

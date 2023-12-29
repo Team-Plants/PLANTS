@@ -1,6 +1,11 @@
-import { instance } from '@/libs/api';
+import axios from 'axios';
 
 export async function getInvitations() {
-  const response = await instance.get('/invitations');
-  return response.data;
+  const option = {
+    endpoint: '/invitations',
+    method: 'GET',
+  };
+
+  const result = await axios.post('api/withAuthHandler', option);
+  return result.data;
 }
