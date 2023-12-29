@@ -1,4 +1,4 @@
-import { getInvitations } from '@/api/invitations';
+import { getInvitationList } from '@/api/invitations';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 import Button from '@/components/button/button';
 import InvitationItem from '@/components/table/invitation/invitationItem';
@@ -20,7 +20,7 @@ function InvitationList({
   const [totalCount, setTotalCount] = useState();
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
-    queryFn: () => getInvitations(page, 5, dashboardId),
+    queryFn: () => getInvitationList(page, 5, dashboardId),
     enabled: false,
   });
 
