@@ -1,9 +1,14 @@
+import { putDashboard } from '@/api/dashboard';
 import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import S from '@/components/table/editDashboard/editDashboard.module.css';
 import { FieldValues, useForm } from 'react-hook-form';
 
-function EditDashboard() {
+interface EditDashboardProps {
+  dashboardId: string;
+}
+
+function EditDashboard({ dashboardId }: EditDashboardProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
@@ -12,8 +17,8 @@ function EditDashboard() {
     },
   });
 
-  function handleEditDashboard(data: FieldValues) {
-    console.log(data);
+  async function handleEditDashboard(data: FieldValues) {
+    await putDashboard(dashboardId, data.dashboardTitle, data.color);
   }
 
   const { handleSubmit, control, setValue } = methods;
@@ -29,7 +34,7 @@ function EditDashboard() {
       <DefaultInput
         placeholder="수정할 이름을 입력해 주세요."
         control={control}
-        name="dashboardName"
+        name="dashboardTitle"
       />
       <div className={S.buttonContainer}>
         <button className={S.submitButton}>변경</button>

@@ -50,3 +50,27 @@ export async function postDashboardsInvitations(
     }
   }
 }
+
+export async function putDashboard(
+  dashboardId: string,
+  title: string,
+  color: string,
+) {
+  const data = {
+    title: title,
+    color: color,
+  };
+  const option = {
+    endpoint: `/dashboards/${dashboardId}`,
+    method: 'PUT',
+    data: data,
+  };
+  try {
+    const response = await axios.post('/api/withAuthHandler', option);
+    return response.data;
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data.message);
+    }
+  }
+}

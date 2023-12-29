@@ -100,7 +100,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
           <div className={S.mainContainer}>
             <ReturnButton url={`/${dashboardId}`} />
             <div className={S.tableContainer}>
-              <EditDashboard />
+              <EditDashboard dashboardId={dashboardId} />
               <MemberList members={[]} />
               <InvitationList invitations={[]} onClick={handleModal} />
               <div className={S.marginDiv}></div>
