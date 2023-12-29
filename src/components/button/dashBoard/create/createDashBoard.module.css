@@ -12,7 +12,7 @@
   font-weight: var(--font-normal);
   font-size: 1.6rem;
   gap: 12px;
-
+  box-sizing: border-box;
   width: 332px;
   height: 70px;
   

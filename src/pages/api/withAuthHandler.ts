@@ -21,7 +21,6 @@ async function sendApiRequest(
   const headers = {
     Authorization: `Bearer ${token}`,
   };
-
   try {
     const response: AxiosResponse = await instance({
       method: option.method,

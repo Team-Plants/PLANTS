@@ -11,20 +11,13 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getUsers } from '@/api/user';
-
 function Home() {
-  // api 호출 예시
-  const handle = async () => {
-    const result = await getUsers();
-    console.log(result);
-  };
   return (
     <>
       <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
-          <div className={S.imgContainer} onClick={handle}>
+          <div className={S.imgContainer}>
             <Image src={HomeImg} alt="홈이미지1" fill={true} />
           </div>
           <div className={S.h1Container}>
