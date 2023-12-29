@@ -11,9 +11,13 @@ import { useEffect, useState } from 'react';
 function InvitationList({
   dashboardId,
   onClick,
+  invitationFlag,
+  setInvitationFlag,
 }: {
   dashboardId: string;
   onClick?: () => void;
+  invitationFlag: boolean;
+  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
@@ -46,6 +50,17 @@ function InvitationList({
     }
   }, [totalCount]);
 
+  useEffect(() => {
+    if (invitationFlag) {
+      fetchMoreInvitations();
+      setInvitationFlag(false);
+    }
+  }, [invitationFlag]);
+
+  useEffect(() => {
+    if (totalPage !== 0 && totalPage < page) setPage((prev) => prev - 1);
+  }, [totalPage]);
+
   return (
     <div className={S.container}>
       <div className={S.header}>
@@ -74,6 +89,7 @@ function InvitationList({
                 email={invitation.invitee.email}
                 invitationId={invitation.id}
                 dashboardId={dashboardId}
+                setInvitationFlag={setInvitationFlag}
               />
             </div>
           );

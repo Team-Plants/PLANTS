@@ -10,12 +10,14 @@ interface InvitationItemProps {
   email: string;
   invitationId: number;
   dashboardId: string;
+  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function InvitationItem({
   email,
   invitationId,
   dashboardId,
+  setInvitationFlag,
 }: InvitationItemProps) {
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.deleteInvitation],
@@ -29,8 +31,12 @@ function InvitationItem({
   }
 
   async function handleCancelClick() {
-    const response = await fetchDeleteInvitation();
-    console.log(response);
+    try {
+      await fetchDeleteInvitation();
+      setInvitationFlag(true);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
