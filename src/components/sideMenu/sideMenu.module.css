@@ -3,8 +3,8 @@
   width: 67px;
   height: auto;
   min-height: 100vh;
-  border-right: 3px solid;
-  border-color: var(--gray-40);
+  border-right: 2px solid;
+  border-color: var(--gray-30);
   @media (min-width: 768px) {
     width: 160px;
   }
