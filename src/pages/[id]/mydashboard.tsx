@@ -15,8 +15,7 @@ import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { useQuery } from '@tanstack/react-query';
-import QUERY_KEYS from '@/constants/queryKeys';
+import { useMutation } from '@tanstack/react-query';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -40,13 +39,13 @@ interface DashboardEditPageProps {
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState({});
-  const { error, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.invitations],
-    queryFn: () => postDashboardsInvitations(dashboardId, formData),
-    enabled: false,
+  const mutation = useMutation({
+    mutationFn: (data: FieldValues) =>
+      postDashboardsInvitations(dashboardId, data),
+    onError: (error) => {
+      alert(error);
+    },
   });
-
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -60,18 +59,11 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
 
   const { handleSubmit, control, reset } = methods;
 
-  async function handleAddTodo(data: FieldValues) {
-    setFormData(data);
-    refetch();
+  function handleAddTodo(data: FieldValues) {
+    mutation.mutate(data);
     setIsModalOpen(false);
     reset();
   }
-
-  useEffect(() => {
-    if (error) {
-      alert(error);
-    }
-  }, [error]);
 
   // 모달이 열릴 경우 백그라운드 스크롤 방지
   useEffect(() => {
