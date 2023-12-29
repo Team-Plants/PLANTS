@@ -148,7 +148,7 @@ function AddTodoModal({
           </InputLayout>
           <ModalButtonSet
             isDelete={false}
-            submitmButtonTitle="생성"
+            submitButtonTitle="생성"
             onClickCancel={onClick}
             isButtonActive={isButtonActive}
           />

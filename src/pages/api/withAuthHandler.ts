@@ -7,6 +7,7 @@ async function sendApiRequest<T>(
   option: {
     endpoint: string;
     method: 'GET' | 'POST' | 'DELETE' | 'PUT';
+    data?: object;
     params?: {
       navigationMethod: string;
       size: number;
@@ -28,6 +29,7 @@ async function sendApiRequest<T>(
   const response: AxiosResponse = await instance({
     method: option.method,
     url: option.endpoint,
+    data: option.data,
     params: option.params,
     headers,
     data: option.data,

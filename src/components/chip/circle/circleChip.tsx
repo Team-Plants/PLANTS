@@ -19,7 +19,7 @@ function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
   }
 
   return (
-    <div className={S[color]} onClick={onClickChip}>
+    <div className={S[color.slice(0, -7)]} onClick={onClickChip}>
       {isChecked && <Image src={CheckImg} alt="체크 아이콘" />}
     </div>
   );
