@@ -16,6 +16,10 @@ import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { FieldValues, useForm } from 'react-hook-form';
+import { postColumnAdd } from '@/api/column';
+
+// 리액트 쿼리로 바꾸기
+// setState 리셋
 
 function boards() {
   const [mounted, setMounted] = useState(false);
@@ -25,7 +29,7 @@ function boards() {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
-      newProjectName: '',
+      title: '',
     },
   });
 
@@ -37,6 +41,17 @@ function boards() {
 
   function handleAddColumnModal() {
     setIsOpenColumnModal((prev) => !prev);
+  }
+
+  async function handleAddColumn(data: FieldValues) {
+    const newData = {
+      title: data.title,
+      // 대시보드 id는 나중에 바꾸셈
+      dashboardId: 412,
+    };
+
+    postColumnAdd(newData);
+    setIsOpenColumnModal(false);
   }
 
   useEffect(() => {
@@ -53,11 +68,11 @@ function boards() {
             users={[
               {
                 letter: '한',
-                color: 'yellow',
+                color: 'green',
               },
               {
                 letter: '안',
-                color: 'yellow',
+                color: 'blue',
               },
               {
                 letter: '전',
@@ -132,17 +147,18 @@ function boards() {
         </div>
         {modalOpen && <AddTodoModal onClick={handleClick} />}
         {isOpenColumnModal && (
-          <InputModal onClick={() => {}} title={'새 컬럼 생성'}>
+          <InputModal onClick={handleAddColumnModal} title={'새 컬럼 생성'}>
             <InputLayout label="이름" isNecessary={false}>
               <form
-                // onSubmit 동작 구현
-                onSubmit={handleSubmit(() => {})}
+                onSubmit={handleSubmit(handleAddColumn)}
                 className={CommonStyle.form}>
+                {/* 중복된 컬럼인지 확인 */}
                 <DefaultInput
                   placeholder="새 프로젝트 이름"
                   control={control}
-                  name="newProjectName"
+                  name="title"
                 />
+                {/* 빈값일 경우 생성버튼 제한 */}
                 <ModalButtonSet
                   isDelete={false}
                   submitButtonTitle="생성"
