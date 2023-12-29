@@ -11,38 +11,7 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import InputModal from '@/components/modal/inputModal/inputModal';
-import InputLayout from '@/components/modal/input/inputLayout';
-import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import { FieldValues, useForm } from 'react-hook-form';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
-import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { postDashboardsInvitations } from '@/api/dashboard';
-
 function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-  const methods = useForm<FieldValues>({
-    mode: 'onChange',
-    defaultValues: {
-      email: '',
-    },
-  });
-
-  const { handleSubmit, control } = methods;
-
-  async function handleAddTodo(data: FieldValues) {
-    // 구현 필요
-    try {
-      const result = await postDashboardsInvitations('1', data);
-      console.log(result);
-    } catch (e) {
-      alert('에러');
-    }
-  }
   return (
     <>
       <DarkHeader />
@@ -163,27 +132,6 @@ function Home() {
           </Link>
         </div>
       </footer>
-      {/* 초대하기 모달 */}
-      {!isModalOpen && (
-        <InputModal onClick={handleModal} title={'초대하기'}>
-          <InputLayout label="이메일" isNecessary={false}>
-            <form
-              onSubmit={handleSubmit(handleAddTodo)}
-              className={CommonStyle.form}>
-              <DefaultInput
-                placeholder="이메일을 입력해 주세요"
-                control={control}
-                name="email"
-              />
-              <ModalButtonSet
-                isDelete={false}
-                submitmButtonTitle="초대"
-                onClickCancel={handleModal}
-              />
-            </form>
-          </InputLayout>
-        </InputModal>
-      )}
     </>
   );
 }

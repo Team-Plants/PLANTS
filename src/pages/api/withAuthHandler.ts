@@ -1,7 +1,6 @@
 import { instance } from '@/libs/api';
 import { AxiosError, AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { NextResponse } from 'next/server';
 
 async function sendApiRequest(
   req: NextApiRequest,
@@ -48,8 +47,6 @@ export default async function handler(
   if (!(result instanceof AxiosError)) {
     return res.status(result.status).json(result.data);
   }
-
-  console.log(result.response?.status);
 
   return res.status(result.response?.status || 404).json(result.response?.data);
 }

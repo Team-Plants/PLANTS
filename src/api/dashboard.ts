@@ -7,11 +7,11 @@ export async function getDashboards() {
 }
 
 export async function postDashboardsInvitations(
-  dashboardId: string,
+  dashboardId: string | string[],
   data: object,
 ) {
   const option = {
-    endpoint: `/dashboards/${dashboardId}/incitations`,
+    endpoint: `/dashboards/${dashboardId}/invitations`,
     method: 'POST',
     data: data,
   };

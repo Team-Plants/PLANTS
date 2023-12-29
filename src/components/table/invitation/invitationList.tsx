@@ -6,8 +6,10 @@ import { InvitationListProps } from '@/types/Invitation';
 
 function InvitationList({
   invitations,
+  onClick,
 }: {
   invitations: InvitationListProps[];
+  onClick: () => void;
 }) {
   return (
     <div className={S.container}>
@@ -19,7 +21,7 @@ function InvitationList({
             <ArrowButton size="small" />
           </div>
           <div className={S.inviteButton}>
-            <Button content="초대하기" status="primary" />
+            <Button content="초대하기" status="primary" onClick={onClick} />
           </div>
         </div>
       </div>
