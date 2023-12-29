@@ -15,7 +15,7 @@ import QUERY_KEYS from '@/constants/queryKeys';
 
 interface SideMenuProps {
   pageId: number;
-  flag: boolean;
+  flag?: boolean;
 }
 
 function SideMenu({ pageId, flag }: SideMenuProps) {
