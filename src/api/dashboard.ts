@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 type Method = 'pagination' | 'infiniteScroll';
 
@@ -30,4 +30,23 @@ export async function postDashboards(title: string, color: string) {
 
   const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
+}
+
+export async function postDashboardsInvitations(
+  dashboardId: string,
+  data: object,
+) {
+  const option = {
+    endpoint: `/dashboards/${dashboardId}/invitations`,
+    method: 'POST',
+    data: data,
+  };
+  try {
+    const response = await axios.post('/api/withAuthHandler', option);
+    return response;
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data.message);
+    }
+  }
 }
