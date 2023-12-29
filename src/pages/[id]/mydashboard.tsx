@@ -58,7 +58,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
 
   const { handleSubmit, control, reset } = methods;
 
-  async function handleAddTodo(data: FieldValues) {
+  function handleAddTodo(data: FieldValues) {
     mutation.mutate(data);
     setIsModalOpen(false);
     reset();
