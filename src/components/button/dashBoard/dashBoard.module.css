@@ -12,7 +12,7 @@
   background-color: var(--white);
   font-weight: var(--font-normal);
   font-size: 1.6rem;
-
+  box-sizing: border-box;
   width: 332px;
   height: 70px;
 
@@ -20,15 +20,19 @@
     width: 247px;
     height: 68px;
   }
-
   @media all and (mobile) {
     width: 260px;
     height: 58px;
   }
 }
-
 .contentContainer {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.circle {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }

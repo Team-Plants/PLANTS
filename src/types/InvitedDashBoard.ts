@@ -1,15 +1,19 @@
 export interface InvitedDashBoardProps {
   id: number;
-  inviterUserId: number;
-  teamId: number;
-  dashboard: {
-    title: string;
+  inviter: {
     id: number;
+    email: string;
+    nickname: string;
+  };
+  teamId: string;
+  dashboard: {
+    id: number;
+    title: string;
   };
   invitee: {
-    nickname: string;
-    email: string;
     id: number;
+    email: string;
+    nickname: string;
   };
   inviteAccepted: boolean;
   createdAt: string;

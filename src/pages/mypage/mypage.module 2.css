@@ -1,0 +1,31 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
+.container {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+}
+
+.sideBarContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 17px 12px 24px 40px;
+  gap: 20px;
+
+  @media all and (tablet) {
+    width: calc(100vw - 176.6px);
+    padding: 20px 20px 48px 20px;
+  }
+
+  @media all and (desktop) {
+    width: calc(100vw - 316.6px);
+    padding: 20px 20px 48px 20px;
+  }
+}

@@ -1,11 +1,21 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
 .headerContainer {
   display: flex;
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  padding: 16px;
+  padding: 16px 24px 16px 16px;
   flex-shrink: 0;
   background: var(--white);
+
+  @media all and (tablet) {
+    padding: 16px 40px 16px 16px;
+  }
+
+  @media all and (desktop) {
+    padding: 16px 80px 16px 16px;
+  }
 }
 
 .logo {
@@ -14,7 +24,11 @@
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    display: inline-flex;
+  }
+
+  @media all and (desktop) {
     display: inline-flex;
   }
 }
@@ -25,7 +39,11 @@
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    display: none;
+  }
+
+  @media all and (desktop) {
     display: none;
   }
 }
@@ -37,7 +55,11 @@
   font-weight: var(--font-light);
   gap: 20px;
 
-  @media (min-width: 768px) {
+  @media all and (tablet) {
+    gap: 36px;
+  }
+
+  @media all and (desktop) {
     gap: 36px;
   }
 }
