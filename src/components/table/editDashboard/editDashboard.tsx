@@ -2,6 +2,7 @@ import { putDashboard } from '@/api/dashboard';
 import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import S from '@/components/table/editDashboard/editDashboard.module.css';
+import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface EditDashboardProps {
@@ -9,6 +10,10 @@ interface EditDashboardProps {
 }
 
 function EditDashboard({ dashboardId }: EditDashboardProps) {
+  const [isColorValid, setIsColorValid] = useState(false);
+  const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
@@ -21,7 +26,21 @@ function EditDashboard({ dashboardId }: EditDashboardProps) {
     await putDashboard(dashboardId, data.dashboardTitle, data.color);
   }
 
-  const { handleSubmit, control, setValue } = methods;
+  const { handleSubmit, control, setValue, watch } = methods;
+
+  useEffect(() => {
+    if (watch('color') === '') setIsColorValid(false);
+    else setIsColorValid(true);
+
+    if (watch('dashboardTitle') === '') setIsDashboardNameValid(false);
+    else setIsDashboardNameValid(true);
+  }, [watch()]);
+
+  useEffect(() => {
+    if (isColorValid && isDashboardNameValid) setIsActive(true);
+    else setIsActive(false);
+  }, [isColorValid, isDashboardNameValid]);
+
   return (
     <form className={S.container} onSubmit={handleSubmit(handleEditDashboard)}>
       <div className={S.header}>
@@ -37,7 +56,11 @@ function EditDashboard({ dashboardId }: EditDashboardProps) {
         name="dashboardTitle"
       />
       <div className={S.buttonContainer}>
-        <button className={S.submitButton}>변경</button>
+        <button
+          className={isActive ? S.submitButton : S.disabledSubmitButton}
+          disabled={isActive ? false : true}>
+          변경
+        </button>
       </div>
     </form>
   );
