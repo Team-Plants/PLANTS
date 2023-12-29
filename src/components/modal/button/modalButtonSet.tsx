@@ -3,7 +3,7 @@ import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
 
 interface ModalButtonSetState {
   isDelete: boolean;
-  submitmButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정';
+  submitButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정';
   onClickCancel: () => void;
   isButtonActive?: boolean;
 }
@@ -14,7 +14,7 @@ interface ModalButtonSetState {
 // onClickCancel -> 취소 버튼 클릭 시 이벤트
 function ModalButtonSet({
   isDelete,
-  submitmButtonTitle = '확인',
+  submitButtonTitle = '확인',
   onClickCancel,
   isButtonActive = false,
 }: ModalButtonSetState) {
@@ -27,7 +27,7 @@ function ModalButtonSet({
       <div className={CommonStyle.rightButtonContainer}>
         <ModalDefaultButton onClick={onClickCancel}>취소</ModalDefaultButton>
         <ModalDefaultButton type="submit" isButtonActive={isButtonActive}>
-          {submitmButtonTitle}
+          {submitButtonTitle}
         </ModalDefaultButton>
       </div>
     </div>
