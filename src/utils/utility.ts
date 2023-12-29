@@ -27,3 +27,16 @@ export function fileToString(e: FormEvent<HTMLInputElement>) {
     };
   });
 }
+
+export function dateFormat(dueDate: string) {
+  const selectedDateTime = new Date(dueDate);
+  const year = selectedDateTime.getFullYear();
+  const month = String(selectedDateTime.getMonth() + 1).padStart(2, '0');
+  const date = String(selectedDateTime.getDate()).padStart(2, '0');
+  const hours = String(selectedDateTime.getHours()).padStart(2, '0');
+  const minutes = String(selectedDateTime.getMinutes()).padStart(2, '0');
+
+  const formattedDateTime = `${year}-${month}-${date} ${hours}:${minutes}`;
+
+  return formattedDateTime;
+}

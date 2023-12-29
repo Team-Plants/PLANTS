@@ -9,37 +9,99 @@ import SelectInput from '@/components/modal/input/selectInput/selectInput';
 import ImgInput from '@/components/modal/input/imgInput/imgInput';
 import { FieldValues, useForm } from 'react-hook-form';
 import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import { useEffect, useState } from 'react';
+import { dateFormat } from '@/utils/utility';
+import { postCard } from '@/api/card';
+import { getMembers } from '@/api/member';
+import { MemberProps } from '@/types/Member';
+// import { useRouter } from 'next/router';
 
 interface AddTodoModalProps {
   onClick: () => void;
+  assigneeUserId?: number;
+  columnId?: number;
 }
 
-const ManagerOptions = [
-  { value: '배유철', label: '배유철' },
-  { value: '배동석', label: '배동석' },
-  { value: '배유철1', label: '배유철1' },
-];
+export interface DashBoardData {
+  [key: string]: string | number;
+}
+
+export interface Option {
+  value: string;
+  label: string;
+}
 
 // 할 일 생성 모달
-function AddTodoModal({ onClick }: AddTodoModalProps) {
+function AddTodoModal({
+  onClick,
+  assigneeUserId = 143, //임시
+  columnId = 814, //임시
+}: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
       manager: '',
       title: '',
-      explain: '',
-      date: '',
-      tag: [],
-      img: '',
+      description: '',
+      dueDate: '',
+      tags: [],
+      imageUrl: '',
     },
   });
 
-  const { handleSubmit, control, setValue } = methods;
+  const { handleSubmit, control, setValue, watch } = methods;
+  const watchAll = Object.values(watch(['title', 'description'])); //필수항목, 두개만 채워지면 제출가능
+  const [isButtonActive, setIsButtonActive] = useState(true);
+  const [managers, SetManagers] = useState<Option[]>();
+  // const dashboardId = useRouter();
+  const dashboardId = 259; //임시, 윗줄처럼 사용할 예정
 
-  function handleAddTodo(data: FieldValues) {
-    // 구현 필요
-    console.log(data);
+  async function getMembersData() {
+    const response = await getMembers(dashboardId);
+    const members = response.members;
+    const filtered = members.map((member: MemberProps) => ({
+      value: member.nickname,
+      label: member.profileImageUrl,
+    }));
+    SetManagers(filtered);
   }
+
+  async function handleAddTodo(data: FieldValues) {
+    onClick();
+
+    const newData: DashBoardData = {
+      assigneeUserId,
+      // dashboardId : dashboardId.pathname, //
+      dashboardId: dashboardId, //임시, dashboardId받아와서 윗줄처럼 사용하도록 수정필요
+      columnId,
+    };
+
+    for (const key in data) {
+      if (data[key].length) {
+        newData[key] = data[key];
+      }
+    }
+
+    if (data.dueDate) {
+      const date = dateFormat(data.dueDate);
+      newData.dueDate = date;
+    }
+
+    const response = await postCard(newData);
+    console.log(response); //카드만들 데이터
+  }
+
+  useEffect(() => {
+    getMembersData();
+  }, []);
+
+  useEffect(() => {
+    if (watchAll.every((el) => el)) {
+      setIsButtonActive(false);
+    } else {
+      setIsButtonActive(true);
+    }
+  }, [watchAll]);
 
   return (
     <ModalLayout onClick={onClick}>
@@ -49,7 +111,7 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
           onSubmit={handleSubmit(handleAddTodo)}>
           <InputLayout label="담당자" isNecessary={false}>
             <SelectInput
-              optionData={ManagerOptions}
+              optionData={managers}
               type="manager"
               placeholder="이름을 입력해주세요"
               setValue={setValue}
@@ -66,27 +128,29 @@ function AddTodoModal({ onClick }: AddTodoModalProps) {
             <TextArea
               placeholder="설명을 입력해 주세요"
               control={control}
-              name="explain"
+              name="description"
             />
           </InputLayout>
           <InputLayout label="마감일" isNecessary={false}>
             <DefaultInput
               placeholder="설명을 입력해 주세요"
-              type="date"
+              type="datetime-local"
               control={control}
-              name="date"
+              name="dueDate"
+              isRequired={false}
             />
           </InputLayout>
           <InputLayout label="태그" isNecessary={false}>
-            <TagInput setValue={setValue} control={control} name="tag" />
+            <TagInput setValue={setValue} control={control} name="tags" />
           </InputLayout>
           <InputLayout label="이미지" isNecessary={false}>
-            <ImgInput control={control} name="img" setValue={setValue} />
+            <ImgInput control={control} name="imageUrl" setValue={setValue} />
           </InputLayout>
           <ModalButtonSet
             isDelete={false}
             submitButtonTitle="생성"
             onClickCancel={onClick}
+            isButtonActive={isButtonActive}
           />
         </form>
       </InputModalLayout>

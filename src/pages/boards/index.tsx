@@ -9,9 +9,15 @@ import S from '@/pages/boards/boards.module.css';
 import Image from 'next/image';
 import SettingImg from '@/assets/icons/Setting.svg';
 import ColumnButton from '@/components/button/column/columnButton';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleClick() {
+    setModalOpen((prev) => !prev);
+  }
 
   useEffect(() => {
     setMounted(true);
@@ -62,7 +68,7 @@ function boards() {
                   height={22}
                 />
               </div>
-              <AddButton />
+              <AddButton onClick={handleClick} />
               <Card title="송민혁 천재" date="12월 27일" />
               <Card title="송민혁 천재" date="12월 27일" />
             </div>
@@ -80,7 +86,7 @@ function boards() {
                   height={22}
                 />
               </div>
-              <AddButton />
+              <AddButton onClick={handleClick} />
               <Card title="송민혁 대박" date="12월 27일" />
             </div>
             <div className={S.done}>
@@ -97,7 +103,7 @@ function boards() {
                   height={22}
                 />
               </div>
-              <AddButton />
+              <AddButton onClick={handleClick} />
               <Card title="송민혁 바보" date="12월 27일" />
             </div>
             <div className={S.addButton}>
@@ -105,6 +111,7 @@ function boards() {
             </div>
           </div>
         </div>
+        {modalOpen && <AddTodoModal onClick={handleClick} />}
       </div>
     )
   );
