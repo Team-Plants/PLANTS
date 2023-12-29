@@ -58,12 +58,13 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
     },
   });
 
-  const { handleSubmit, control } = methods;
+  const { handleSubmit, control, reset } = methods;
 
   async function handleAddTodo(data: FieldValues) {
     setFormData(data);
     refetch();
     setIsModalOpen(false);
+    reset();
   }
 
   useEffect(() => {
