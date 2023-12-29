@@ -13,20 +13,20 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: auto;
+  width: calc(100vw - 83.6px);
   padding: 17px 12px 24px 12px;
   background: var(--gray-10);
   align-items: center;
   border-top: 1px solid var(--gray-30);
 
   @media all and (tablet) {
-    width: auto;
+    width: calc(100vw - 176.6px);
     padding: 20px 20px 48px 20px;
     flex-direction: column;
   }
 
   @media all and (desktop) {
-    width: auto;
+    width: calc(100vw - 316.6px);
     padding: 20px 20px 48px 20px;
     flex-direction: row;
     align-items: start;
@@ -56,51 +56,6 @@
   color: var(--black);
   font-size: 1.6rem;
   font-weight: var(--font-bold);
-}
-
-.toDo {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 17px 12px 12px;
-  border-bottom: 1px solid var(--gray-30);
-
-  @media all and (desktop) {
-    height: 100vh;
-    border-bottom: none;
-    border-right: 1px solid var(--gray-30);
-  }
-}
-
-.onProgress {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 12px;
-  border-bottom: 1px solid var(--gray-30);
-
-  @media all and (desktop) {
-    height: 100vh;
-    border-bottom: none;
-    border-right: 1px solid var(--gray-30);
-  }
-}
-
-.done {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 10px;
-  padding: 12px;
-  border-bottom: 1px solid var(--gray-30);
-
-  @media all and (desktop) {
-    height: 100vh;
-    border-bottom: none;
-    border-right: 1px solid var(--gray-30);
-  }
 }
 
 .addButton {

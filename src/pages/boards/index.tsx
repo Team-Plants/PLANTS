@@ -1,13 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
-import AddButton from '@/components/button/add/addButton';
-import Card from '@/components/card/card';
-import NumberChip from '@/components/chip/number/numberChip';
 import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/pages/boards/boards.module.css';
-import Image from 'next/image';
-import SettingImg from '@/assets/icons/Setting.svg';
 import ColumnButton from '@/components/button/column/columnButton';
 import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 import InputModal from '@/components/modal/inputModal/inputModal';
@@ -17,14 +12,21 @@ import ModalButtonSet from '@/components/modal/button/modalButtonSet';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { FieldValues, useForm } from 'react-hook-form';
 import { postColumnAdd } from '@/api/column';
-
-// 리액트 쿼리로 바꾸기
-// setState 리셋
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
+import Column from '@/components/column/column';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [isOpenColumnModal, setIsOpenColumnModal] = useState(false);
+  const [formData, setFormData] = useState({});
+
+  const { error, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.columns],
+    queryFn: () => postColumnAdd(formData),
+    enabled: false,
+  });
 
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -33,10 +35,10 @@ function boards() {
     },
   });
 
-  const { handleSubmit, control } = methods;
+  const { handleSubmit, control, reset } = methods;
 
   function handleClick() {
-    setModalOpen((prev) => !prev);
+    setIsOpenAddTodoModal((prev) => !prev);
   }
 
   function handleAddColumnModal() {
@@ -49,14 +51,21 @@ function boards() {
       // 대시보드 id는 나중에 바꾸셈
       dashboardId: 412,
     };
-
-    postColumnAdd(newData);
+    setFormData(newData);
+    refetch();
     setIsOpenColumnModal(false);
+    reset();
   }
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+    }
+  }, [error]);
 
   return (
     mounted && (
@@ -89,63 +98,19 @@ function boards() {
             }}
           />
           <div className={S.mainContainer}>
-            <div className={S.toDo}>
-              <div className={S.infoContainer}>
-                <div className={S.info}>
-                  <div className={S.chip} />
-                  <span className={S.sectionName}>TO DO</span>
-                  <NumberChip num={2} />
-                </div>
-                <Image
-                  src={SettingImg}
-                  alt="설정 버튼"
-                  width={22}
-                  height={22}
-                />
-              </div>
-              <AddButton onClick={handleClick} />
-              <Card title="송민혁 천재" date="12월 27일" />
-            </div>
-            <div className={S.onProgress}>
-              <div className={S.infoContainer}>
-                <div className={S.info}>
-                  <div className={S.chip} />
-                  <span className={S.sectionName}>On Progress</span>
-                  <NumberChip num={3} />
-                </div>
-                <Image
-                  src={SettingImg}
-                  alt="설정 버튼"
-                  width={22}
-                  height={22}
-                />
-              </div>
-              <AddButton onClick={handleClick} />
-              <Card title="송민혁 대박" date="12월 27일" />
-            </div>
-            <div className={S.done}>
-              <div className={S.infoContainer}>
-                <div className={S.info}>
-                  <div className={S.chip} />
-                  <span className={S.sectionName}>Done</span>
-                  <NumberChip num={3} />
-                </div>
-                <Image
-                  src={SettingImg}
-                  alt="설정 버튼"
-                  width={22}
-                  height={22}
-                />
-              </div>
-              <AddButton onClick={handleClick} />
-              <Card title="송민혁 바보" date="12월 27일" />
-            </div>
+            {/* 컬럼 목록에 있는 데이터 뿌리기 */}
+            <Column
+              columnName="To Do"
+              cardNum={1}
+              addClick={handleClick}
+              settingClick={handleClick}
+            />
             <div className={S.addButton}>
               <ColumnButton onClick={handleAddColumnModal} />
             </div>
           </div>
         </div>
-        {modalOpen && <AddTodoModal onClick={handleClick} />}
+        {isOpenAddTodoModal && <AddTodoModal onClick={handleClick} />}
         {isOpenColumnModal && (
           <InputModal onClick={handleAddColumnModal} title={'새 컬럼 생성'}>
             <InputLayout label="이름" isNecessary={false}>
