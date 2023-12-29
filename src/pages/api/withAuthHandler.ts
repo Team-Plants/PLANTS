@@ -2,17 +2,16 @@ import { instance } from '@/libs/api';
 import { AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-async function sendApiRequest<T>(
+async function sendApiRequest(
   req: NextApiRequest,
   option: {
     endpoint: string;
     method: 'GET' | 'POST' | 'DELETE' | 'PUT';
-    data?: object;
     params?: {
       navigationMethod: string;
       size: number;
     };
-    data?: T;
+    data?: object;
   },
 ) {
   const token = req.cookies.accessToken;
@@ -32,7 +31,6 @@ async function sendApiRequest<T>(
     data: option.data,
     params: option.params,
     headers,
-    data: option.data,
   });
 
   return response;
