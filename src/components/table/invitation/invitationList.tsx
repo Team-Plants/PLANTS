@@ -9,7 +9,7 @@ function InvitationList({
   onClick,
 }: {
   invitations: InvitationListProps[];
-  onClick: () => void;
+  onClick?: () => void;
 }) {
   return (
     <div className={S.container}>

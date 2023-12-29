@@ -121,7 +121,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
               />
               <ModalButtonSet
                 isDelete={false}
-                submitmButtonTitle="초대"
+                submitButtonTitle="초대"
                 onClickCancel={handleModal}
               />
             </form>
