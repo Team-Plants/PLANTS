@@ -16,6 +16,9 @@ function TextArea({ placeholder, control, name }: TextareaProps) {
   const { field } = useController({
     name,
     control,
+    rules: {
+      required: { value: true, message: '입력해주세요' },
+    },
   });
 
   return (
