@@ -6,6 +6,7 @@
   justify-content: flex-end;
   align-items: center;
   background-color: var(--white);
+  border-bottom: 2px solid var(--gray-30);
 }
 
 .buttonContainer {
