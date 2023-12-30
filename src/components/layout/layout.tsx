@@ -12,36 +12,37 @@ function Layout({ children }: { children: ReactNode }) {
 
   return (
     <>
-      mounted &&
-      <div className={S.container}>
-        <SideMenu pageId={1} />
+      {mounted && (
+        <div className={S.container}>
+          <SideMenu pageId={1} />
 
-        <div className={S.sideBarContainer}>
-          <DashboardHeader
-            folder="계정관리"
-            users={[
-              {
-                letter: 'a',
-                color: 'yellow',
-              },
-              {
-                letter: 'a',
-                color: 'yellow',
-              },
-              { letter: 'a', color: 'yellow' },
-            ]}
-            user={{
-              letter: 'B',
-              name: '수빈',
-              color: 'green',
-              ownerFolder: {
-                folder: ' 비브리지',
-              },
-            }}
-          />
-          <div className={S.itemContainer}>{children}</div>
+          <div className={S.sideBarContainer}>
+            <DashboardHeader
+              folder="계정관리"
+              users={[
+                {
+                  letter: 'a',
+                  color: 'yellow',
+                },
+                {
+                  letter: 'a',
+                  color: 'yellow',
+                },
+                { letter: 'a', color: 'yellow' },
+              ]}
+              user={{
+                letter: 'B',
+                name: '수빈',
+                color: 'green',
+                ownerFolder: {
+                  folder: ' 비브리지',
+                },
+              }}
+            />
+            <div className={S.itemContainer}>{children}</div>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
