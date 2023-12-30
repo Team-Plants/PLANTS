@@ -1,9 +1,9 @@
 import S from '@/components/button/add/add.module.css';
 import PlusChip from '@/components/chip/plus/plusChip';
 
-function AddButton({ onClick }: { onClick: () => void }) {
+function AddButton() {
   return (
-    <button className={S.container} onClick={onClick}>
+    <button className={S.container}>
       <PlusChip />
     </button>
   );
