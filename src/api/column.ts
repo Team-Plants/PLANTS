@@ -1,4 +1,5 @@
 import { instanceFiles } from '@/libs/api';
+import { ColumnType } from '@/types/Column';
 import axios, { AxiosError } from 'axios';
 
 export async function postColumnImage(body: FormData, columnId: string) {
@@ -10,7 +11,6 @@ export async function postColumnImage(body: FormData, columnId: string) {
   return response.data;
 }
 
-// TODO: body 타입 명시하기
 export async function postColumnAdd(body: Object) {
   try {
     const option = {
@@ -29,4 +29,14 @@ export async function postColumnAdd(body: Object) {
     }
     return false;
   }
+}
+
+export async function getColumns(dashboardId: number) {
+  const option = {
+    endpoint: `/columns?dashboardId=${dashboardId}`,
+    method: 'GET',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
 }

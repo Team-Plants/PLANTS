@@ -10,17 +10,26 @@ import InputLayout from '@/components/modal/input/inputLayout';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { FieldValues, useForm } from 'react-hook-form';
-import { postColumnAdd } from '@/api/column';
-import { useMutation } from '@tanstack/react-query';
+import { getColumns, postColumnAdd } from '@/api/column';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Column from '@/components/column/column';
 import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
+import { ColumnType } from '@/types/Column';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
+  // const [columns, setColumns] = useState<ColumnType[]>([]);
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [isOpenColumnModal, setIsOpenColumnModal] = useState(false);
   const [isColumnNameValid, setIsColumnNameValid] = useState(false);
   const [isActive, setIsActive] = useState(false);
+
+  const { data: columns, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.columns],
+    queryFn: () => getColumns(612),
+    enabled: false,
+  });
 
   const mutation = useMutation({
     mutationFn: (data: FieldValues) => postColumnAdd(data),
@@ -52,19 +61,36 @@ function boards() {
     reset();
   }
 
+  // 마운트 처리 코드
   useEffect(() => {
     setMounted(true);
   }, []);
 
+  // 빈값 확인하는 코드
   useEffect(() => {
     if (watch('title') === '') setIsColumnNameValid(false);
     else setIsColumnNameValid(true);
   }, [watch()]);
 
+  // 버튼 비활성화 관련 코드
   useEffect(() => {
     if (isColumnNameValid) setIsActive(true);
     else setIsActive(false);
   }, [isColumnNameValid]);
+
+  // 칼럼 조회 하는 코드
+  useEffect(() => {
+    refetch();
+    console.log(columns);
+  }, [columns, refetch]);
+
+  // useEffect(() => {
+  //   async () => {
+  //     const newColumns = await getColumns(612);
+  //     setColumns([...newColumns]);
+  //     console.log(columns);
+  //   };
+  // }, []);
 
   return (
     mounted && (
@@ -97,14 +123,20 @@ function boards() {
             }}
           />
           <div className={S.mainContainer}>
-            {/* 컬럼 목록에 있는 데이터 뿌리기 */}
-            <Column
-              columnName="To Do"
-              cardNum={1}
-              addClick={handleTodoModal}
-              // TODO: 편집 버튼 추가
-              settingClick={() => {}}
-            />
+            {columns &&
+              columns?.map((column: ColumnType) => {
+                return (
+                  <div key={column.id}>
+                    <Column
+                      columnName={column.title}
+                      cardNum={1}
+                      addClick={handleTodoModal}
+                      // TODO: 편집 버튼 추가
+                      settingClick={() => {}}
+                    />
+                  </div>
+                );
+              })}
             <div className={S.addButton}>
               <ColumnButton onClick={handleAddColumnModal} />
             </div>
