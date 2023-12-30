@@ -1,4 +1,5 @@
 import Layout from '@/components/layout/layout';
+import NestedLayout from '@/components/layout/nestedLayout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
 import { SignFormValuesType } from '@/types/SignFormValue';
@@ -27,5 +28,9 @@ function Mypage() {
 export default Mypage;
 
 Mypage.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return (
+    <Layout>
+      <NestedLayout>{page}</NestedLayout>
+    </Layout>
+  );
 };

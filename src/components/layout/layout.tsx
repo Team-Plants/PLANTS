@@ -39,7 +39,7 @@ function Layout({ children }: { children: ReactNode }) {
                 },
               }}
             />
-            <div className={S.itemContainer}>{children}</div>
+            {children}
           </div>
         </div>
       )}

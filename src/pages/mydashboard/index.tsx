@@ -7,6 +7,7 @@ import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import { ReactElement, useEffect, useState } from 'react';
 import Layout from '@/components/layout/layout';
+import NestedLayout from '@/components/layout/nestedLayout';
 
 function MyDashboard() {
   const [dashboards, setDashboards] = useState<DashBoardData>();
@@ -39,5 +40,9 @@ function MyDashboard() {
 export default MyDashboard;
 
 MyDashboard.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
+  return (
+    <Layout>
+      <NestedLayout>{page}</NestedLayout>
+    </Layout>
+  );
 };
