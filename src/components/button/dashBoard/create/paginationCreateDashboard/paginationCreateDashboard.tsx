@@ -31,7 +31,7 @@ function PaginationCreateDashboard({
               key={index}
               content={board.title}
               color={board.color}
-              madeByOwner={true}
+              madeByOwner={board.createdByMe}
             />
           ))}
       </div>
