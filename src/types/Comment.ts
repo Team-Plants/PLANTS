@@ -1,7 +1,7 @@
 import { Assign } from '@/types/User';
 
 export interface CommentData {
-  comments: string[];
+  comments: CommentDetail[];
   cursorId?: number;
 }
 

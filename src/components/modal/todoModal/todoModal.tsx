@@ -11,7 +11,7 @@ import ModalLayout from '@/components/modal/modalLayout';
 import TextArea from '@/components/modal/textarea/textarea';
 import S from '@/components/modal/todoModal/todoModal.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
-import { Card } from '@/types/Card';
+import { CardData } from '@/types/Card';
 import { CommentData } from '@/types/Comment';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
@@ -21,10 +21,11 @@ import Comment from './comment';
 
 interface TodoModalProps {
   state: boolean;
-  cardData: Card;
+  cardData: CardData;
+  modal: () => void;
 }
 
-function TodoModal({ state, cardData }: TodoModalProps) {
+function TodoModal({ state, cardData, modal }: TodoModalProps) {
   const [openKebab, setOpenKebab] = useState(false);
   const [isOpenState, setIsOpenState] = useState<boolean>(state);
 
@@ -42,8 +43,8 @@ function TodoModal({ state, cardData }: TodoModalProps) {
     queryFn: () => getComments(172),
   });
 
-  function handleCommentSubmit(d: FieldValues) {
-    postComments();
+  async function handleCommentSubmit(data: FieldValues) {
+    await postComments(data.content, 172, 1012, 323); //  cardId, columnId, dashboardId,
   }
 
   return (
@@ -64,7 +65,9 @@ function TodoModal({ state, cardData }: TodoModalProps) {
                 height={28}
                 onClick={() => setOpenKebab(!openKebab)}
               />
-              {openKebab && <KebabButton cardId={cardData.id} />}
+              {openKebab && (
+                <KebabButton cardId={cardData.id} onClick={modal} />
+              )}
             </div>
 
             <Image
@@ -105,7 +108,7 @@ function TodoModal({ state, cardData }: TodoModalProps) {
                 <TextArea
                   placeholder="댓글 작성하기"
                   control={control}
-                  name="comment"
+                  name="content"
                 />
                 <TextareaButton />
               </form>

@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 interface ModalLayoutProp {
   children: ReactNode;
   onClick: () => void;
-  isOpen: boolean;
+  isOpen?: boolean;
 }
 
 function ModalLayout({ children, onClick, isOpen }: ModalLayoutProp) {

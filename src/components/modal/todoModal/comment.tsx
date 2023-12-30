@@ -1,21 +1,39 @@
+import { deleteComment, putComment } from '@/api/comment';
 import S from '@/components/modal/todoModal/comment.module.css';
+import { CommentDetail } from '@/types/Comment';
 import Image from 'next/image';
+import { useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import TextArea from '../textarea/textarea';
 
 interface CommentProps {
-  data: {
-    name: string;
-    date: string;
-    comment: string;
-    profileImg?: string;
-  };
+  data: CommentDetail;
 }
 
 function Comment({ data }: CommentProps) {
+  const [modifyInput, setModifyInput] = useState(false);
+  const { control } = useForm<FieldValues>({
+    mode: 'onChange',
+    defaultValues: {
+      content: data.content,
+    },
+  });
+
+  async function onClickCommentDeleteBtn(commentId: number) {
+    if (confirm('해당 댓글을 삭제하시겠습니까?')) {
+      await deleteComment(commentId);
+    }
+  }
+
+  async function onClickCommentModifyBtn(commentId: number, content: string) {
+    await putComment(commentId, content);
+  }
+
   return (
     <div className={S.commentContainer}>
-      {data.profileImg ? (
+      {data.author.profileImageUrl ? (
         <Image
-          src={data.profileImg}
+          src={data.author.profileImageUrl}
           alt="유저 프로필 이미지"
           className={S.profileImg}
         />
@@ -24,16 +42,50 @@ function Comment({ data }: CommentProps) {
       )}
       <div className={S.commentContentContainer}>
         <div className={S.commentTopContainer}>
-          <div className={S.name}>{data.name}</div>
-          <div className={S.date}>{data.date}</div>
+          <div className={S.name}>{data.author.nickname}</div>
+          <div className={S.date}>{data.createdAt}</div>
         </div>
 
-        <div className={S.commentContent}>{data.comment}</div>
-
-        <div className={S.commentToolContainer}>
-          <div className={S.commentToolItem}>수정</div>
-          <div className={S.commentToolItem}>삭제</div>
-        </div>
+        {modifyInput ? (
+          <>
+            <TextArea
+              placeholder="댓글을 수정하세요"
+              control={control}
+              name="content"
+            />
+            <div className={S.commentToolContainer}>
+              <button
+                className={S.commentToolItem}
+                onClick={() => {
+                  setModifyInput(!modifyInput),
+                    onClickCommentModifyBtn(data.id, data.content);
+                }}>
+                완료
+              </button>
+              <button
+                className={S.commentToolItem}
+                onClick={() => setModifyInput(!modifyInput)}>
+                취소
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={S.commentContent}>{data.content}</div>
+            <div className={S.commentToolContainer}>
+              <button
+                className={S.commentToolItem}
+                onClick={() => setModifyInput(!modifyInput)}>
+                수정
+              </button>
+              <button
+                className={S.commentToolItem}
+                onClick={() => onClickCommentDeleteBtn(data.id)}>
+                삭제
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

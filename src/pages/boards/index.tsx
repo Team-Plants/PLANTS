@@ -6,6 +6,7 @@ import ColumnButton from '@/components/button/column/columnButton';
 import Card from '@/components/card/card';
 import NumberChip from '@/components/chip/number/numberChip';
 import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
+import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
 import TodoModal from '@/components/modal/todoModal/todoModal';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import QUERY_KEYS from '@/constants/queryKeys';
@@ -15,9 +16,10 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-function boards() {
+function boards(cardId: number) {
   const [mounted, setMounted] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [openModifyModal, setOpenModifyModal] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -64,7 +66,7 @@ function boards() {
                 <div className={S.info}>
                   <div className={S.chip} />
                   <span className={S.sectionName}>TO DO</span>
-                  <NumberChip num={2} />
+                  <NumberChip num={data?.totalCount} />
                 </div>
                 <Image
                   src={SettingImg}
@@ -76,8 +78,22 @@ function boards() {
               <AddButton />
               {data?.cards.map((item, index) => (
                 <>
-                  {openModal && (
-                    <TodoModal state={openModal} cardData={item} key={index} />
+                  {openModifyModal ? (
+                    <EditTodoModal
+                      state={openModifyModal}
+                      onClick={() => setOpenModifyModal(!openModifyModal)}
+                      cardId={172}
+                      data={item}
+                    />
+                  ) : (
+                    openModal && (
+                      <TodoModal
+                        state={openModal}
+                        cardData={item}
+                        key={index}
+                        modal={() => setOpenModifyModal(!openModifyModal)}
+                      />
+                    )
                   )}
                   <Card
                     key={item.id}
