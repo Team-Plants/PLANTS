@@ -14,15 +14,15 @@ import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboard
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 
 function MyDashboard() {
-  const [size] = useState(5);
-  // const [Page, setPage] = useState(1);
+  const [size, setSize] = useState(5);
+  const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dashboard, setDashboard] = useState<DashBoardData>();
   const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
 
   const { data: dashboardsData } = useQuery({
-    queryKey: [QUERY_KEYS.dashboards],
-    queryFn: () => getDashboards('pagination', size),
+    queryKey: [QUERY_KEYS.dashboards, size, page],
+    queryFn: () => getDashboards('pagination', size, page),
     enabled: true,
   });
 
@@ -35,6 +35,14 @@ function MyDashboard() {
   function handleClick() {
     setIsOpenModal((prev) => !prev);
   }
+
+  useEffect(() => {
+    if (page > 1) {
+      setSize(6);
+    } else if (page === 1) {
+      setSize(5);
+    }
+  }, [page]);
 
   useEffect(() => {
     setDashboard(dashboardsData);
@@ -53,6 +61,8 @@ function MyDashboard() {
           <PaginationCreateDashboard
             dashboardData={dashboard}
             onClick={handleClick}
+            page={page}
+            setPage={setPage}
           />
         ) : (
           <CreateDashBoardButton onClick={handleClick} />

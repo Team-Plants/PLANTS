@@ -1,20 +1,25 @@
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import DashBoardButton from '@/components/button/dashBoard/dashBoardButton';
-import ArrowButton from '@/components/button/arrow/arrowButton';
+import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 import S from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard.module.css';
 import { DashBoardData } from '@/types/DashBoard';
+import { Dispatch, SetStateAction } from 'react';
 
 interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
   onClick: () => void;
+  page: number;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
 function PaginationCreateDashboard({
   dashboardData,
   onClick,
+  page,
+  setPage,
 }: PaginationCreateDashboardProps) {
   const { dashboards, totalCount } = dashboardData;
-  const pageCount = Math.ceil((totalCount + 1) / 6);
+  const totalPage = Math.ceil((totalCount + 1) / 6);
 
   return (
     <>
@@ -31,7 +36,13 @@ function PaginationCreateDashboard({
           ))}
       </div>
       <div className={S.pagination}>
-        {pageCount} 페이지 중 <ArrowButton size="large" />
+        {totalPage} 페이지 중 {page}
+        <PaginationArrowButton
+          size="small"
+          totalPage={totalPage}
+          page={page}
+          setPage={setPage}
+        />
       </div>
     </>
   );

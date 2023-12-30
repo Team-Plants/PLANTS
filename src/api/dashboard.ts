@@ -5,15 +5,17 @@ type Method = 'pagination' | 'infiniteScroll';
 export async function getDashboards(
   navigationMethod: Method,
   size: number,
+  page?: number,
   cursorId?: number,
 ) {
   const option = {
     endpoint: '/dashboards',
     method: 'GET',
     params: {
-      navigationMethod: navigationMethod,
-      size: size,
-      cursorId: cursorId,
+      navigationMethod,
+      page,
+      size,
+      cursorId,
     },
   };
 
