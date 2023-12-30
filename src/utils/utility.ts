@@ -13,20 +13,6 @@ export function randomChipColor() {
   return color[num];
 }
 
-export function fileToString(e: FormEvent<HTMLInputElement>) {
-  const target = e.currentTarget;
-  const files = (target.files as FileList)[0];
-
-  const reader = new FileReader();
-  reader.readAsDataURL(files);
-  return new Promise<string>((resolve) => {
-    reader.onload = () => {
-      const result = String(reader.result);
-      resolve(result);
-    };
-  });
-}
-
 export function dateFormat(dueDate: string) {
   const selectedDateTime = new Date(dueDate);
   const year = selectedDateTime.getFullYear();

@@ -9,7 +9,6 @@ import {
   UseFormSetValue,
   useController,
 } from 'react-hook-form';
-import { fileToString } from '@/utils/utility';
 
 interface ImgInputProps {
   control: Control<FieldValues>;
@@ -24,8 +23,9 @@ function ImgInput({ control, name, setValue }: ImgInputProps) {
 
   const onUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target && e.target.files) {
-      const fileString = await fileToString(e);
-      setImageSrc(fileString);
+      const targetFiles = e.target.files[0];
+      const selectedFiles = URL.createObjectURL(targetFiles);
+      setImageSrc(selectedFiles);
       setValue('imageUrl', e.target.files[0]);
     }
   };
