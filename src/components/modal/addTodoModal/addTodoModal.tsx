@@ -89,8 +89,10 @@ function AddTodoModal({
     }
 
     if (data.imageUrl) {
-      const response = await postColumnImage(data.imageUrl, `${columnId}`);
-      console.log(response);
+      const imgFormData = new FormData();
+      imgFormData.append('image', data.imageUrl);
+      const response = await postColumnImage(imgFormData, `${columnId}`);
+      newData.imageUrl = response.imageUrl;
     }
 
     const response = await postCard(newData);
