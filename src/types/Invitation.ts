@@ -11,3 +11,7 @@ export interface Invitation {
   };
   inviteAccepted: boolean;
 }
+
+export interface InvitationList {
+  invitations: Invitation[];
+}

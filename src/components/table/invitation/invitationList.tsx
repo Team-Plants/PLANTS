@@ -7,7 +7,7 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import S from '@/components/table/invitation/invitationList.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
-import { Invitation } from '@/types/Invitation';
+import { Invitation, InvitationList } from '@/types/Invitation';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -33,7 +33,8 @@ function InvitationList({
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
-  const { isLoading, data, refetch } = useQuery({
+  const [fullData, setFullData] = useState<InvitationList>();
+  const { data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
     queryFn: () => getInvitationList(page, 5, dashboardId),
     enabled: false,
@@ -58,15 +59,21 @@ function InvitationList({
 
   async function handleAddTodo(result: FieldValues) {
     await mutation.mutate(result);
-    setInvitationFlag(true);
     setIsModalOpen(false);
     reset();
   }
 
   async function fetchMoreInvitations() {
-    if (isLoading) return;
     await refetch();
   }
+
+  useEffect(() => {
+    setInvitationFlag(true);
+  }, [isModalOpen]);
+
+  useEffect(() => {
+    setFullData(data);
+  }, [data]);
 
   useEffect(() => {
     fetchMoreInvitations();
@@ -87,8 +94,8 @@ function InvitationList({
 
   useEffect(() => {
     if (invitationFlag) {
-      fetchMoreInvitations();
       setInvitationFlag(false);
+      fetchMoreInvitations();
     }
   }, [invitationFlag]);
 
@@ -117,8 +124,8 @@ function InvitationList({
           </div>
         </div>
         <div className={S.label}>이메일</div>
-        {data &&
-          data?.invitations.map((invitation: Invitation) => {
+        {fullData &&
+          fullData?.invitations.map((invitation: Invitation) => {
             return (
               <div className={S.tableItem} key={invitation.id}>
                 <InvitationItem
