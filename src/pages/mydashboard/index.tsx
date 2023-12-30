@@ -8,35 +8,64 @@ import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import S from '@/pages/mydashboard/index.module.css';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
+import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
+import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 
 function MyDashboard() {
-  const [dashboards, setDashboards] = useState<DashBoardData>();
+  const [size] = useState(5);
+  // const [Page, setPage] = useState(1);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [dashboard, setDashboard] = useState<DashBoardData>();
   const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
 
-  async function getDashboardsData() {
-    const dashboardData = await getDashboards('pagination');
-    setDashboards(dashboardData);
-    const response = await getInvitations();
-    const invitedData = response.invitations;
-    setInvitation(invitedData);
+  const { data: dashboardsData } = useQuery({
+    queryKey: [QUERY_KEYS.dashboards],
+    queryFn: () => getDashboards('pagination', size),
+    enabled: true,
+  });
+
+  const { data: invitationsData } = useQuery({
+    queryKey: [QUERY_KEYS.invitations],
+    queryFn: () => getInvitations(),
+    enabled: true,
+  });
+
+  function handleClick() {
+    setIsOpenModal((prev) => !prev);
   }
 
   useEffect(() => {
-    getDashboardsData();
-  }, []);
+    setDashboard(dashboardsData);
+  }, [dashboardsData]);
+
+  useEffect(() => {
+    setInvitation(invitationsData?.invitations);
+  }, [invitationsData]);
 
   return (
     <>
       <SideMenu pageId={2} />
       <div className={S.header}>헤더</div>
       <div className={S.boardContainer}>
-        {dashboards && <PaginationCreateDashboard dashboardData={dashboards} />}
+        {dashboard ? (
+          <PaginationCreateDashboard
+            dashboardData={dashboard}
+            onClick={handleClick}
+          />
+        ) : (
+          <CreateDashBoardButton onClick={handleClick} />
+        )}
         {invitation ? (
           <InvitedList invitations={invitation} />
         ) : (
           <EmptyInvitation />
         )}
       </div>
+      {isOpenModal && (
+        <NewDashboardModal onClick={handleClick} redirect={false} />
+      )}
     </> //레이아웃 만들고 없앨 프래그먼트
   );
 }

@@ -6,10 +6,12 @@ import { DashBoardData } from '@/types/DashBoard';
 
 interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
+  onClick: () => void;
 }
 
 function PaginationCreateDashboard({
   dashboardData,
+  onClick,
 }: PaginationCreateDashboardProps) {
   const { dashboards, totalCount } = dashboardData;
   const pageCount = Math.ceil((totalCount + 1) / 6);
@@ -17,7 +19,7 @@ function PaginationCreateDashboard({
   return (
     <>
       <div className={S.boardGrid}>
-        <CreateDashBoardButton />
+        <CreateDashBoardButton onClick={onClick} />
         {dashboards &&
           dashboards.map((board, index) => (
             <DashBoardButton
@@ -29,7 +31,7 @@ function PaginationCreateDashboard({
           ))}
       </div>
       <div className={S.pagination}>
-        {pageCount} 페이지 중<ArrowButton size="large" />{' '}
+        {pageCount} 페이지 중 <ArrowButton size="large" />
       </div>
     </>
   );

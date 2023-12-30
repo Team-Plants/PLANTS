@@ -8,12 +8,17 @@ import { useEffect, useState } from 'react';
 import DashboardModalButtonSet from '@/components/modal/button/dashboardModalButtonSet';
 import { postDashboards } from '@/api/dashboard';
 import { useRouter } from 'next/router';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface NewDashboardModalProps {
   onClick: () => void;
+  redirect?: boolean;
 }
 
-function NewDashboardModal({ onClick }: NewDashboardModalProps) {
+function NewDashboardModal({
+  onClick,
+  redirect = true,
+}: NewDashboardModalProps) {
   const [isColorValid, setIsColorValid] = useState(false);
   const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
   const [isActive, setIsActive] = useState(false);
@@ -27,16 +32,31 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
     },
   });
 
-  const { handleSubmit, control, setValue, watch } = methods;
+  const { handleSubmit, control, setValue, watch, reset } = methods;
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (data: FieldValues) =>
+      postDashboards(data.dashboardName, data.color),
+    onError: (error) => {
+      console.error('오류가 발생했습니다:', error);
+      alert('오류가 발생했습니다: ' + error);
+    },
+    onSuccess: (data) => {
+      const dashBoardId = data.id;
+      console.log("''");
+      queryClient.invalidateQueries(); //쿼리무효화
+
+      if (dashBoardId && redirect) {
+        router.push(dashBoardId);
+      }
+    },
+  });
 
   async function handleNewDashboard(data: FieldValues) {
-    try {
-      const result = await postDashboards(data.dashboardName, data.color);
-      const dashboardId = result?.id;
-      router.push(`/${dashboardId}`);
-    } catch (error) {
-      console.error('서버 오류로 대시보드 생성에 실패했습니다', error);
-    }
+    await mutation.mutate(data);
+    onClick();
+    reset();
   }
 
   useEffect(() => {

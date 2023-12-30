@@ -2,13 +2,18 @@ import axios, { AxiosError } from 'axios';
 
 type Method = 'pagination' | 'infiniteScroll';
 
-export async function getDashboards(navigationMethod: Method) {
+export async function getDashboards(
+  navigationMethod: Method,
+  size: number,
+  cursorId?: number,
+) {
   const option = {
     endpoint: '/dashboards',
     method: 'GET',
     params: {
-      navigationMethod: `${navigationMethod}`,
-      size: 5,
+      navigationMethod: navigationMethod,
+      size: size,
+      cursorId: cursorId,
     },
   };
 
