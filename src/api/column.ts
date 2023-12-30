@@ -38,5 +38,5 @@ export async function getColumns(dashboardId: number) {
   };
 
   const result = await axios.post('/api/withAuthHandler', option);
-  return result.data;
+  return result.data.data;
 }

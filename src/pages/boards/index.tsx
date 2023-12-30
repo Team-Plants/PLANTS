@@ -19,7 +19,6 @@ import QUERY_KEYS from '@/constants/queryKeys';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
-  // const [columns, setColumns] = useState<ColumnType[]>([]);
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [isOpenColumnModal, setIsOpenColumnModal] = useState(false);
   const [isColumnNameValid, setIsColumnNameValid] = useState(false);
@@ -81,16 +80,7 @@ function boards() {
   // 칼럼 조회 하는 코드
   useEffect(() => {
     refetch();
-    console.log(columns);
   }, [columns, refetch]);
-
-  // useEffect(() => {
-  //   async () => {
-  //     const newColumns = await getColumns(612);
-  //     setColumns([...newColumns]);
-  //     console.log(columns);
-  //   };
-  // }, []);
 
   return (
     mounted && (
@@ -149,7 +139,6 @@ function boards() {
               <form
                 onSubmit={handleSubmit(handleAddColumn)}
                 className={CommonStyle.form}>
-                {/* 중복된 컬럼인지 확인 */}
                 <DefaultInput
                   placeholder="새 프로젝트 이름"
                   control={control}
