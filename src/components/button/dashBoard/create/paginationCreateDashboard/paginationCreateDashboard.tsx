@@ -1,9 +1,9 @@
-import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
+import { Dispatch, SetStateAction } from 'react';
+import { DashBoardData } from '@/types/DashBoard';
 import DashBoardButton from '@/components/button/dashBoard/dashBoardButton';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
+import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import S from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard.module.css';
-import { DashBoardData } from '@/types/DashBoard';
-import { Dispatch, SetStateAction } from 'react';
 
 interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
@@ -32,6 +32,7 @@ function PaginationCreateDashboard({
               content={board.title}
               color={board.color}
               madeByOwner={board.createdByMe}
+              dashboardId={board.id}
             />
           ))}
       </div>

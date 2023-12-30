@@ -1,17 +1,28 @@
-import ArrowForwardImg from '@/assets/icons/ArrowForward.svg';
-import Crown from '@/assets/icons/Crown.svg';
-import S from '@/components/button/dashBoard/dashBoard.module.css';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import Crown from '@/assets/icons/Crown.svg';
+import ArrowForwardImg from '@/assets/icons/ArrowForward.svg';
+import S from '@/components/button/dashBoard/dashBoard.module.css';
 
 interface Category {
   content: string;
   color: string;
+  dashboardId: number;
   madeByOwner?: boolean;
 }
 
-function DashBoardButton({ content, color, madeByOwner = false }: Category) {
+function DashBoardButton({
+  content,
+  color,
+  dashboardId,
+  madeByOwner = false,
+}: Category) {
+  const router = useRouter();
+
   return (
-    <button className={S.container}>
+    <button
+      className={S.container}
+      onClick={() => router.push(`/${dashboardId}`)}>
       <div className={S.contentContainer}>
         <div className={S.circle} style={{ backgroundColor: color }} />
         {content}

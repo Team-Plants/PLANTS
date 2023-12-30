@@ -1,17 +1,17 @@
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { getDashboards } from '@/api/dashboard';
+import { getInvitations } from '@/api/invitations';
+import { DashBoardData } from '@/types/DashBoard';
+import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
+import QUERY_KEYS from '@/constants/queryKeys';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import InvitedList from '@/components/table/invitedDashboard/invitedList';
 import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
-import { getDashboards } from '@/api/dashboard';
-import { DashBoardData } from '@/types/DashBoard';
-import { getInvitations } from '@/api/invitations';
-import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
-import S from '@/pages/mydashboard/index.module.css';
-import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import QUERY_KEYS from '@/constants/queryKeys';
-import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
+import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
+import S from '@/pages/mydashboard/index.module.css';
 
 function MyDashboard() {
   const [size, setSize] = useState(5);
