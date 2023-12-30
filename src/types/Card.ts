@@ -1,12 +1,12 @@
 import { Assign } from '@/types/User';
 
 export interface CardList {
-  cards: Card[];
+  cards: CardData[];
   cursorId: null;
   totalCount: number;
 }
 
-export interface Card {
+export interface CardData {
   id: number;
   assignee: Assign;
   dashboardId: number;
