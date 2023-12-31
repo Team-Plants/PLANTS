@@ -49,3 +49,18 @@ export async function getColumns(dashboardId: number) {
   const result = await axios.post('/api/withAuthHandler', option);
   return result.data.data;
 }
+
+export async function putColumns(columnId: number, title: string) {
+  const data = {
+    title: title,
+  };
+
+  const option = {
+    endpoint: `/columns/${columnId}`,
+    method: 'PUT',
+    data: data,
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
+}

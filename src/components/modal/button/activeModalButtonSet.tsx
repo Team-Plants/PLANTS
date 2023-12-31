@@ -6,6 +6,7 @@ interface ModalButtonSetState {
   isDelete: boolean;
   submitButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정';
   onClickCancel: () => void;
+  onClickDelete?: () => void;
   isActive?: boolean;
 }
 
@@ -18,6 +19,7 @@ function ActiveModalButtonSet({
   isDelete,
   submitButtonTitle = '확인',
   onClickCancel,
+  onClickDelete,
   isActive,
 }: ModalButtonSetState) {
   return (
@@ -25,7 +27,11 @@ function ActiveModalButtonSet({
       className={`${CommonStyle.modalButtonContainer} ${
         isDelete ? CommonStyle.isDeleteModalButtonContainer : ''
       }`}>
-      {isDelete && <div className={CommonStyle.deleteButton}>삭제하기</div>}
+      {isDelete && (
+        <button className={CommonStyle.deleteButton} onClick={onClickDelete}>
+          삭제하기
+        </button>
+      )}
       <div className={CommonStyle.rightButtonContainer}>
         <ModalDefaultButton onClick={onClickCancel}>취소</ModalDefaultButton>
         <ModalCreateButton type="submit" isActive={isActive}>
