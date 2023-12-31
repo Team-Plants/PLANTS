@@ -20,6 +20,7 @@ function ButtonGroup({
     mutationFn: (status: boolean) => putInvitations(invitationId, status),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invitations'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboards'] });
     },
   });
 
