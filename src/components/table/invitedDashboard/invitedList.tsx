@@ -27,6 +27,7 @@ function InvitedList({
               <div key={invitation.id} className={S.tableItem}>
                 <InvitedItem
                   dashBoardTitle={invitation.dashboard.title}
+                  invitationId={invitation.id}
                   inviter={invitation.invitee.nickname}
                 />
               </div>
