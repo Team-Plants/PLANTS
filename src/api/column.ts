@@ -1,14 +1,23 @@
 import { instanceFiles } from '@/libs/api';
-import { ColumnType } from '@/types/Column';
 import axios, { AxiosError } from 'axios';
 
 export async function postColumnImage(body: FormData, columnId: string) {
-  const response = await instanceFiles.post(
-    `/columns/${columnId}/card-image`,
-    body,
-  );
+  const tokenResponse = await axios.post('/api/getToken');
+  const token = tokenResponse.data;
 
-  return response.data;
+  if (token) {
+    const response = await instanceFiles({
+      method: 'POST',
+      url: `/columns/${columnId}/card-image`,
+      data: body,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  }
+  return;
 }
 
 export async function postColumnAdd(body: Object) {

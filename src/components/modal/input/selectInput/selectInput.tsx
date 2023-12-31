@@ -5,15 +5,11 @@ import Image from 'next/image';
 import ManagerOption from '@/components/modal/input/selectInput/managerOption';
 import { FieldValues, UseFormSetValue } from 'react-hook-form';
 import ProgressChip from '@/components/chip/progress/progressChip';
-import { StatusType } from '../../editTodoModal/editTodoModal';
-
-interface option {
-  value: string;
-  label: string;
-}
+import { StatusType } from '@/components/modal/editTodoModal/editTodoModal';
+import { Option } from '@/components/modal/addTodoModal/addTodoModal';
 
 interface SelectInputProps {
-  optionData: option[];
+  optionData?: Option[];
   type: 'manager' | 'state';
   placeholder: string;
   setValue: UseFormSetValue<FieldValues>;
@@ -29,11 +25,13 @@ function SelectInput({
   setValue,
 }: SelectInputProps) {
   const [selected, setSelected] = useState(placeholder);
+  const [selectedImg, setSelectedImg] = useState('');
   const [showOptions, setShowOptions] = useState(false);
 
-  const onChangeSelect = (e: string) => {
+  const onChangeSelect = (e: Option) => {
     if (e) {
-      setSelected(e);
+      setSelected(e.value);
+      setSelectedImg(e.label);
       setValue('manager', e);
     } else setSelected('');
   };
@@ -45,7 +43,7 @@ function SelectInput({
       <label className={S.selectedLabel}>
         {selected !== placeholder ? (
           type === 'manager' ? (
-            <ManagerOption name={selected} />
+            <ManagerOption name={selected} profileImg={selectedImg} />
           ) : (
             <ProgressChip progress={selected as StatusType} />
           )
@@ -55,12 +53,12 @@ function SelectInput({
       </label>
       {showOptions && (
         <ul className={S.selectOptionContainer}>
-          {optionData.map((e, index) => {
+          {optionData?.map((e, index) => {
             return (
               <li
                 className={S.selectOption}
                 key={index}
-                onClick={() => onChangeSelect(e.value)}>
+                onClick={() => onChangeSelect(e)}>
                 {selected === e.value ? (
                   <Image
                     src={CheckImg}
@@ -73,7 +71,7 @@ function SelectInput({
                 )}
 
                 {type === 'manager' ? (
-                  <ManagerOption name={e.value} />
+                  <ManagerOption name={e.value} profileImg={e.label} />
                 ) : (
                   <ProgressChip progress={e.value as StatusType} />
                 )}

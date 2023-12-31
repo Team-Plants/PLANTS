@@ -14,8 +14,8 @@ import { getColumns, postColumnAdd } from '@/api/column';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Column from '@/components/column/column';
 import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
-import { ColumnType } from '@/types/Column';
 import QUERY_KEYS from '@/constants/queryKeys';
+import { ColumnType } from '@/types/Column';
 
 function boards() {
   const [mounted, setMounted] = useState(false);

@@ -77,3 +77,8 @@
   display: flex;
   gap: 6px;
 }
+
+.selectOption:hover {
+  background-color: var(--pink-20);
+  border-radius: 4px;
+}
