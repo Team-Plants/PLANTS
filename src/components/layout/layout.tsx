@@ -3,7 +3,12 @@ import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
 
-function Layout({ children }: { children: ReactNode }) {
+interface LayoutProps {
+  children: ReactNode;
+  flag?: boolean;
+}
+
+function Layout({ children, flag }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -14,7 +19,7 @@ function Layout({ children }: { children: ReactNode }) {
     <>
       {mounted && (
         <div className={S.container}>
-          <SideMenu pageId={1} />
+          <SideMenu pageId={1} flag={flag} />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
