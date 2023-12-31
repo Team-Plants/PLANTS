@@ -2,13 +2,17 @@ import S from '@/components/table/invitedDashboard/invitedList.module.css';
 import SearchBar from '@/components/search/searchBar';
 import InvitedItem from './invitedItem';
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MutableRefObject } from 'react';
+
+interface InvitedListProps {
+  invitations: InvitedDashBoardProps[];
+  // ref: MutableRefObject<HTMLDivElement | null>;
+}
 
 function InvitedList({
   invitations,
-}: {
-  invitations: InvitedDashBoardProps[];
-}) {
+  // ref
+}: InvitedListProps) {
   const [invitation, setInvitation] = useState(invitations);
 
   useEffect(() => {
@@ -37,6 +41,7 @@ function InvitedList({
               </div>
             );
           })}
+        {/* <div ref={ref} style={{width:200, height:100, border: '1px solid red'}}/> */}
       </div>
     </div>
   );

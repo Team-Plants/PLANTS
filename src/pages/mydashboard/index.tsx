@@ -1,5 +1,5 @@
-import { useEffect, useState, ReactElement } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState, ReactElement, useRef } from 'react';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { getDashboards } from '@/api/dashboard';
 import { getInvitations } from '@/api/invitations';
 import { DashBoardData } from '@/types/DashBoard';
@@ -14,21 +14,24 @@ import CreateDashBoardButton from '@/components/button/dashBoard/create/createDa
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 
 function MyDashboard() {
-  const [size, setSize] = useState(5);
+  // const ref = useRef(null);
+  const [DSize, setDSize] = useState(5);
+  const [ISize, setISize] = useState(6);
+  const [cursorId, setCursorId] = useState();
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dashboard, setDashboard] = useState<DashBoardData>();
   const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
 
   const { data: dashboardsData } = useQuery({
-    queryKey: [QUERY_KEYS.dashboards, size, page],
-    queryFn: () => getDashboards('pagination', size, page),
+    queryKey: [QUERY_KEYS.dashboards, DSize, page],
+    queryFn: () => getDashboards('pagination', DSize, page),
     enabled: true,
   });
 
-  const { data: invitationsData } = useQuery({
+  const { data: invitationsData, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
-    queryFn: () => getInvitations(),
+    queryFn: () => getInvitations(ISize, cursorId),
     enabled: true,
   });
 
@@ -38,9 +41,9 @@ function MyDashboard() {
 
   useEffect(() => {
     if (page > 1) {
-      setSize(6);
+      setDSize(6);
     } else if (page === 1) {
-      setSize(5);
+      setDSize(5);
     }
   }, [page]);
 
@@ -50,9 +53,8 @@ function MyDashboard() {
 
   useEffect(() => {
     setInvitation(invitationsData?.invitations);
+    setCursorId(invitationsData?.cursorId);
   }, [invitationsData]);
-
-  console.log(invitation);
 
   return (
     <>
@@ -67,7 +69,10 @@ function MyDashboard() {
         <CreateDashBoardButton onClick={handleClick} />
       )}
       {invitation ? (
-        <InvitedList invitations={invitation} />
+        <InvitedList
+          invitations={invitation}
+          // ref={ref}
+        />
       ) : (
         <EmptyInvitation />
       )}

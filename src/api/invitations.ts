@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-export async function getInvitations() {
+export async function getInvitations(size?: number, cursorId?: number) {
   const option = {
     endpoint: '/invitations',
     method: 'GET',
+    params: {
+      size,
+      cursorId,
+    },
   };
 
   const result = await axios.post('api/withAuthHandler', option);
