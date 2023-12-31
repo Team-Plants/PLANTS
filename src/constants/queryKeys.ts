@@ -1,10 +1,11 @@
 const QUERY_KEYS = {
   card: 'card',
-  dashboards: 'dashboards',
-  deleteInvitation: 'deleteInvitation',
-  deleteMember: 'deleteMember',
   invitations: 'invitations',
+  deleteInvitation: 'deleteInvitation',
+  sidemenuDashboards: 'sidemenuDashboards',
   members: 'members',
+  deleteMember: 'deleteMember',
+  dashboards: 'dashboards',
   search: 'search',
 } as const;
 

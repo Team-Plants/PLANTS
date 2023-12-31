@@ -23,6 +23,24 @@ export async function getDashboards(
   return result.data;
 }
 
+export async function getSideMenuDashboards(
+  size: number,
+  cursorId: number | undefined,
+) {
+  const option = {
+    endpoint: '/dashboards',
+    method: 'GET',
+    params: {
+      navigationMethod: 'infiniteScroll',
+      size: size,
+      cursorId: cursorId,
+    },
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
+}
+
 export async function postDashboards(title: string, color: string) {
   const data = {
     title,
