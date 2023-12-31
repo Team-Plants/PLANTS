@@ -16,10 +16,28 @@ export async function getDashboards(navigationMethod: Method) {
   return result.data;
 }
 
+export async function getSideMenuDashboards(
+  size: number,
+  cursorId: number | undefined,
+) {
+  const option = {
+    endpoint: '/dashboards',
+    method: 'GET',
+    params: {
+      navigationMethod: 'infiniteScroll',
+      size: size,
+      cursorId: cursorId,
+    },
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
+}
+
 export async function postDashboards(title: string, color: string) {
   const data = {
-    title: title,
-    color: color,
+    title,
+    color,
   };
 
   const option = {
@@ -44,6 +62,33 @@ export async function postDashboardsInvitations(
   try {
     const response = await axios.post('/api/withAuthHandler', option);
     return response;
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      throw new Error(e.response?.data.message);
+    }
+  }
+}
+
+export async function putDashboard(
+  dashboardId: string,
+  title: string,
+  color: string,
+) {
+  const data = {
+    title: title,
+    color: color,
+  };
+  const option = {
+    endpoint: `/dashboards/${dashboardId}`,
+    method: 'PUT',
+    data: data,
+  };
+  try {
+    const response = await axios.post('/api/withAuthHandler', option);
+    if (response.status === 200) {
+      alert('대시보드 수정이 완료되었습니다.');
+    }
+    return response.data;
   } catch (e: unknown) {
     if (e instanceof AxiosError) {
       throw new Error(e.response?.data.message);
