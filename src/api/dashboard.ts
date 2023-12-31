@@ -36,8 +36,8 @@ export async function getSideMenuDashboards(
 
 export async function postDashboards(title: string, color: string) {
   const data = {
-    title: title,
-    color: color,
+    title,
+    color,
   };
 
   const option = {
