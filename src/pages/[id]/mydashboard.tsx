@@ -1,3 +1,4 @@
+import { postDashboardsInvitations } from '@/api/dashboard';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
@@ -6,11 +7,10 @@ import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
 import S from '@/pages/[id]/mydashboard.module.css';
+import { useMutation } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { useMutation } from '@tanstack/react-query';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -41,6 +41,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
       alert(error);
     },
   });
+
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
