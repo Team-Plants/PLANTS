@@ -2,8 +2,8 @@
 
 .boardGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(33%, auto));
-  grid-template-rows: repeat(2, minmax(70px, auto));
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   grid-row-gap: 12px;
   grid-column-gap: 13px;
   height: 152px;
@@ -12,15 +12,17 @@
   /* button device props 수정 후 media query 수정필요*/
 
   @media all and (tablet) {
-    grid-template-columns: repeat(2, minmax(50%, auto));
-    grid-template-rows: repeat(3, minmax(68px, auto));
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 10px;
     height: 224px;
     width: 504px;
   }
 
   @media all and (mobile) {
     grid-template-columns: repeat(1, minmax(100%, auto));
-    grid-template-rows: repeat(6, minmax(17%, auto));
+    grid-template-rows: repeat(6, 1fr);
+    grid-row-gap: 8px;
     height: 388px;
     width: 260px;
   }
@@ -30,17 +32,17 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 96px;
   width: 1030px;
+  padding-bottom: 24px;
   gap: 12px;
   font-size: 1.4rem;
 
   @media all and (tablet) {
     width: 504px;
-    height: 90px;
+    padding-bottom: 20px;
   }
   @media all and (mobile) {
-    width: 388px;
-    height: 68px;
+    width: 260px;
+    
   }
 }
