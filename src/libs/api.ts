@@ -13,7 +13,6 @@ export const instanceFiles = axios.create({
   headers: {
     'Content-Type': 'multipart/form-data',
   },
-  withCredentials: true,
 });
 
 instance.interceptors.request.use(
