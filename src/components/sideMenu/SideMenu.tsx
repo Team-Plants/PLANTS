@@ -5,55 +5,57 @@ import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
-import { MouseEvent, useState } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
-import axios, { AxiosResponse } from 'axios';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
+import { getSideMenuDashboards } from '@/api/dashboard';
+import { useQuery } from '@tanstack/react-query';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 interface SideMenuProps {
   pageId: number;
+  flag?: boolean;
 }
 
-function SideMenu({ pageId }: SideMenuProps) {
+function SideMenu({ pageId, flag }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [cursorId, setCursorId] = useState();
-  const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
 
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.sidemenuDashboards],
+    queryFn: () => getSideMenuDashboards(10, cursorId),
+    enabled: false,
+  });
+
   async function fetchMoreDashboards() {
     if (isLoading) return;
-    setIsLoading(true);
+    refetch();
+  }
 
-    try {
-      const response: AxiosResponse = await axios.get(
-        'https://sp-taskify-api.vercel.app/1-5/dashboards',
-        {
-          params: {
-            navigationMethod: 'infiniteScroll',
-            size: 10,
-            cursorId: cursorId,
-          },
-          headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUyLCJ0ZWFtSWQiOiIxLTUiLCJpYXQiOjE3MDM2NjA1MTcsImlzcyI6InNwLXRhc2tpZnkifQ.R6um2x6h1rguhyKds0EEF8L7BtfSMrRGIpKNL9z-rg4',
-          },
-        },
-      );
-      const data = await response?.data;
+  useEffect(() => {
+    if (flag) {
+      setDashboards([]);
+      setCursorId(undefined);
+      setCurrentLength(0);
+      setTotalCount(0);
+      refetch();
+    }
+  }, [flag]);
+
+  useEffect(() => {
+    if (data) {
       setCursorId(data.cursorId + 8);
       setDashboards((prev) => [...prev, ...data.dashboards]);
       setCurrentLength((prev) => prev + data.dashboards.length);
       setTotalCount(data.totalCount);
-    } catch (error) {
-      console.error('데이터를 불러오는 중 에러가 발생했습니다:', error);
-    } finally {
-      setIsLoading(false);
     }
-  }
+  }, [data]);
+
   useIntersectionObserver({
     target: target,
     fetchCallback: fetchMoreDashboards,

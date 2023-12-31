@@ -1,15 +1,21 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { ReactElement, useState } from 'react';
-import AddButton from '@/components/button/add/addButton';
-import Card from '@/components/card/card';
-import NumberChip from '@/components/chip/number/numberChip';
-import S from '@/pages/boards/boards.module.css';
+import { useState, ReactElement } from 'react';
 import Image from 'next/image';
-import SettingImg from '@/assets/icons/Setting.svg';
+import AddButton from '@/components/button/add/addButton';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
+import Card from '@/components/card/card';
 import ColumnButton from '@/components/button/column/columnButton';
 import Layout from '@/components/layout/layout';
+import NumberChip from '@/components/chip/number/numberChip';
+import SettingImg from '@/assets/icons/Setting.svg';
+import S from '@/pages/boards/boards.module.css';
 
 function boards() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleClick() {
+    setModalOpen((prev) => !prev);
+  }
   return (
     <>
       <div className={S.mainContainer}>
@@ -22,7 +28,7 @@ function boards() {
             </div>
             <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
           </div>
-          <AddButton />
+          <AddButton onClick={handleClick} />
           <Card title="송민혁 천재" date="12월 27일" />
           <Card title="송민혁 천재" date="12월 27일" />
         </div>
@@ -35,7 +41,7 @@ function boards() {
             </div>
             <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
           </div>
-          <AddButton />
+          <AddButton onClick={handleClick} />
           <Card title="송민혁 대박" date="12월 27일" />
         </div>
         <div className={S.done}>
@@ -47,13 +53,14 @@ function boards() {
             </div>
             <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
           </div>
-          <AddButton />
+          <AddButton onClick={handleClick} />
           <Card title="송민혁 바보" date="12월 27일" />
         </div>
         <div className={S.addButton}>
           <ColumnButton />
         </div>
       </div>
+      {modalOpen && <AddTodoModal onClick={handleClick} />}
     </>
   );
 }
