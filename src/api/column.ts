@@ -50,7 +50,7 @@ export async function getColumns(dashboardId: number) {
   return result.data.data;
 }
 
-export async function putColumns(columnId: number, title: string) {
+export async function putColumn(columnId: number, title: string) {
   const data = {
     title: title,
   };
@@ -59,6 +59,16 @@ export async function putColumns(columnId: number, title: string) {
     endpoint: `/columns/${columnId}`,
     method: 'PUT',
     data: data,
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
+}
+
+export async function deleteColumn(columnId: number) {
+  const option = {
+    endpoint: `/columns/${columnId}`,
+    method: 'DELETE',
   };
 
   const result = await axios.post('/api/withAuthHandler', option);

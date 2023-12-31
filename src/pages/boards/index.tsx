@@ -1,22 +1,26 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useEffect, useState } from 'react';
-import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
-import SideMenu from '@/components/sideMenu/SideMenu';
-import S from '@/pages/boards/boards.module.css';
+import {
+  deleteColumn,
+  getColumns,
+  postColumnAdd,
+  putColumn,
+} from '@/api/column';
 import ColumnButton from '@/components/button/column/columnButton';
-import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
-import InputModal from '@/components/modal/inputModal/inputModal';
-import InputLayout from '@/components/modal/input/inputLayout';
-import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { FieldValues, useForm } from 'react-hook-form';
-import { getColumns, postColumnAdd, putColumns } from '@/api/column';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import Column from '@/components/column/column';
+import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
+import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+import InputLayout from '@/components/modal/input/inputLayout';
+import InputModal from '@/components/modal/inputModal/inputModal';
+import CommonStyle from '@/components/modal/modalCommon.module.css';
+import SideMenu from '@/components/sideMenu/SideMenu';
 import QUERY_KEYS from '@/constants/queryKeys';
+import S from '@/pages/boards/boards.module.css';
 import { ColumnType } from '@/types/Column';
-import useIntersectionObserver from '@/hooks/useIntersectionObserver';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 
 function boards() {
   const [mounted, setMounted] = useState(false);
@@ -67,15 +71,27 @@ function boards() {
   }
 
   async function handleAddColumn(data: FieldValues) {
+    // 대시보드 아이디를 어떻게 받을 것인가
     mutation.mutate({ title: data.title, dashboardId: 612 });
     setIsOpenColumnAddModal(false);
     reset();
   }
 
+  // async가 꼭 필요한 건가요? - putColumn에 이미 async/await가 있어서 궁금해요
   async function handleModifyColumn(data: FieldValues) {
     console.log(data);
-    putColumns(1967, data.title);
+    // 컬럼 아이디는 어떻게 받을 것인가?
+    putColumn(1967, data.title);
     setIsOpenColumnManageModal(false);
+    // 새로고침 필요
+  }
+
+  function handleDeleteColumn(columnId: number) {
+    // 컨펌이 여러 번 되는 걸 봐서는 이벤트 버블링인가?
+    // 컬럼 아이디는 어떻게 받을 것인가?
+    if (confirm('컬럼의 모든 카드가 삭제됩니다')) {
+      deleteColumn(columnId);
+    }
     // 새로고침 필요
   }
 
@@ -190,7 +206,8 @@ function boards() {
                   submitButtonTitle="변경"
                   onClickCancel={handleColumnManageModal}
                   // 삭제하기 누를 시 동작
-                  onClickDelete={() => {}}
+                  // 타입 에러
+                  onClickDelete={handleDeleteColumn(1967)}
                   isActive={isActive}
                 />
               </form>
