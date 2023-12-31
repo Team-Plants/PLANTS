@@ -3,7 +3,7 @@ import MemberItem from './memberItem';
 import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
-import { getMembers } from '@/api/member';
+import { getPaginationMembers } from '@/api/member';
 import { useEffect, useState } from 'react';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 
@@ -23,7 +23,7 @@ function MemberList({
   const [totalCount, setTotalCount] = useState();
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.members],
-    queryFn: () => getMembers(page, 4, Number(dashboardId)),
+    queryFn: () => getPaginationMembers(page, 4, Number(dashboardId)),
     enabled: false,
   });
 

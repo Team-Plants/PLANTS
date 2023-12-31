@@ -1,7 +1,7 @@
 import { instance } from '@/libs/api';
 import axios from 'axios';
 
-export async function getMembers(
+export async function getPaginationMembers(
   page: number,
   size: number,
   dashboardId: number,
@@ -16,6 +16,16 @@ export async function getMembers(
     },
   };
   const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
+}
+
+export async function getMembers(dashboardId: number) {
+  const option = {
+    endpoint: `/members?dashboardId=${dashboardId}`,
+    method: 'GET',
+  };
+
+  const result = await axios.post('api/withAuthHandler', option);
   return result.data;
 }
 
