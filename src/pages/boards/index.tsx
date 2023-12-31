@@ -15,11 +15,19 @@ import { CardList } from '@/types/Card';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import SettingImg from '@/assets/icons/Setting.svg';
+import ColumnButton from '@/components/button/column/columnButton';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 
 function boards(cardId: number) {
   const [mounted, setMounted] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [openModifyModal, setOpenModifyModal] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function handleClick() {
+    setModalOpen((prev) => !prev);
+  }
 
   useEffect(() => {
     setMounted(true);
@@ -75,7 +83,7 @@ function boards(cardId: number) {
                   height={22}
                 />
               </div>
-              <AddButton />
+
               {data?.cards.map((item, index) => (
                 <>
                   {openModifyModal ? (
@@ -103,6 +111,10 @@ function boards(cardId: number) {
                   />
                 </>
               ))}
+
+              <AddButton onClick={handleClick} />
+              <Card title="송민혁 천재" date="12월 27일" />
+              <Card title="송민혁 천재" date="12월 27일" />
             </div>
             <div className={S.onProgress}>
               <div className={S.infoContainer}>
@@ -118,7 +130,8 @@ function boards(cardId: number) {
                   height={22}
                 />
               </div>
-              <AddButton />
+              <AddButton onClick={handleClick} />
+              <Card title="송민혁 대박" date="12월 27일" />
             </div>
             <div className={S.done}>
               <div className={S.infoContainer}>
@@ -134,13 +147,15 @@ function boards(cardId: number) {
                   height={22}
                 />
               </div>
-              <AddButton />
+              <AddButton onClick={handleClick} />
+              <Card title="송민혁 바보" date="12월 27일" />
             </div>
             <div className={S.addButton}>
               <ColumnButton />
             </div>
           </div>
         </div>
+        {modalOpen && <AddTodoModal onClick={handleClick} />}
       </div>
     )
   );

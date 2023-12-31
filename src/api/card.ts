@@ -1,3 +1,4 @@
+import { DashBoardData } from '@/components/modal/addTodoModal/addTodoModal';
 import { instance } from '@/libs/api';
 import { CardData } from '@/types/Card';
 import axios from 'axios';
@@ -22,18 +23,14 @@ export async function getDetailCard(cardId: string) {
   return result.data;
 }
 
-export async function postCard(newData: CardData) {
-  const data = {
-    newData,
-  };
-
+export async function postCard(newData: DashBoardData) {
   const option = {
     endpoint: '/cards',
     method: 'POST',
-    data: data,
+    data: newData,
   };
 
-  const result = await axios.post('/api/withAuthHandler', option);
+  const result = await axios.post('api/withAuthHandler', option);
   return result.data;
 }
 
