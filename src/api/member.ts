@@ -29,11 +29,6 @@ export async function getMembers(dashboardId: number) {
   return result.data;
 }
 
-export async function deleteMember(memberId: string) {
-  const response = await instance.delete(`/members/${memberId}`);
-  return response.data;
-}
-
 export async function DeleteMember(memberId: string) {
   const option = {
     endpoint: `/members/${memberId}`,
