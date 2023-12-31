@@ -45,7 +45,7 @@ function NewDashboardModal({
     onSuccess: (data) => {
       const dashBoardId = data.id;
       console.log("''");
-      queryClient.invalidateQueries(); //쿼리무효화
+      queryClient.invalidateQueries({ queryKey: ['dashboards'] }); //쿼리무효화
 
       if (dashBoardId && redirect) {
         router.push(dashBoardId);

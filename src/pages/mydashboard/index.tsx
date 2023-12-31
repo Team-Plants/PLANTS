@@ -52,6 +52,8 @@ function MyDashboard() {
     setInvitation(invitationsData?.invitations);
   }, [invitationsData]);
 
+  console.log(invitation);
+
   return (
     <>
       {dashboard ? (

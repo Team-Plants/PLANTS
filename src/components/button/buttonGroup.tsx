@@ -19,7 +19,7 @@ function ButtonGroup({
   const mutation = useMutation({
     mutationFn: (status: boolean) => putInvitations(invitationId, status),
     onSuccess: () => {
-      queryClient.invalidateQueries();
+      queryClient.invalidateQueries({ queryKey: ['invitations'] });
     },
   });
 

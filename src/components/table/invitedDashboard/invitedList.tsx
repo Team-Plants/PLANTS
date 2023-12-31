@@ -2,7 +2,7 @@ import S from '@/components/table/invitedDashboard/invitedList.module.css';
 import SearchBar from '@/components/search/searchBar';
 import InvitedItem from './invitedItem';
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function InvitedList({
   invitations,
@@ -10,6 +10,10 @@ function InvitedList({
   invitations: InvitedDashBoardProps[];
 }) {
   const [invitation, setInvitation] = useState(invitations);
+
+  useEffect(() => {
+    setInvitation(invitations);
+  }, [invitations]);
 
   return (
     <div className={S.container}>
