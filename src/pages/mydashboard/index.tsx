@@ -12,8 +12,10 @@ import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 import S from '@/pages/mydashboard/index.module.css';
+import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
 
 function MyDashboard() {
+  const [mounted, setMounted] = useState(false);
   const [size, setSize] = useState(5);
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -37,6 +39,10 @@ function MyDashboard() {
   }
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (page > 1) {
       setSize(6);
     } else if (page === 1) {
@@ -53,30 +59,59 @@ function MyDashboard() {
   }, [invitationsData]);
 
   return (
-    <>
-      <SideMenu pageId={2} />
-      <div className={S.header}>헤더</div>
-      <div className={S.boardContainer}>
-        {dashboard ? (
-          <PaginationCreateDashboard
-            dashboardData={dashboard}
-            onClick={handleClick}
-            page={page}
-            setPage={setPage}
+    mounted && (
+      <div className={S.container}>
+        <SideMenu pageId={1} />
+
+        <div className={S.sideBarContainer}>
+          <DashboardHeader
+            folder="계정관리"
+            users={[
+              {
+                letter: 'a',
+                color: 'yellow',
+              },
+              {
+                letter: 'a',
+                color: 'yellow',
+              },
+              {
+                letter: 'a',
+                color: 'yellow',
+              },
+            ]}
+            user={{
+              letter: 'B',
+              name: '수빈',
+              color: 'green',
+              ownerFolder: {
+                folder: '비브리지',
+              },
+            }}
           />
-        ) : (
-          <CreateDashBoardButton onClick={handleClick} />
-        )}
-        {invitation ? (
-          <InvitedList invitations={invitation} />
-        ) : (
-          <EmptyInvitation />
-        )}
+          <div className={S.itemContainer}>
+            {dashboard ? (
+              <PaginationCreateDashboard
+                dashboardData={dashboard}
+                onClick={handleClick}
+                page={page}
+                setPage={setPage}
+              />
+            ) : (
+              <CreateDashBoardButton onClick={handleClick} />
+            )}
+            {invitation ? (
+              <InvitedList invitations={invitation} />
+            ) : (
+              <EmptyInvitation />
+            )}
+          </div>
+          {isOpenModal && (
+            <NewDashboardModal onClick={handleClick} redirect={false} />
+          )}
+        </div>
       </div>
-      {isOpenModal && (
-        <NewDashboardModal onClick={handleClick} redirect={false} />
-      )}
-    </> //레이아웃 만들고 없앨 프래그먼트
+    )
   );
 }
 

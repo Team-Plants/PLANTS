@@ -1,46 +1,31 @@
-@value tablet, mobile from '@/styles/breakpoints.css';
+@value desktop, tablet from "@/styles/breakpoints.css";
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 300px;
+.container {
   width: 100vw;
-  height: 70px;
-  border: 1px solid var(--blue-20);
-
-  /* 지울예정 */
-  font-size: 4rem;
-  text-align: center;
-  background-color: var(--pink-20);
-
-  @media all and (tablet) {
-    left: 160px;
-  }
-
-  @media all and (mobile) {
-    left: 67px;
-  }
+  height: 100%;
+  display: flex;
 }
 
-.boardContainer {
-  position: fixed;
+.sideBarContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  top: 70px;
-  left: 300px;
-  width: 100vw;
-  height: 100vh;
-  padding: 40px 558px 122px 40px;
-  background-color: var(--gray-10);
+}
+
+.itemContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 17px 12px 24px 40px;
+  gap: 20px;
 
   @media all and (tablet) {
-    left: 160px;
-    padding: 40px 40px 117px 40px;
+    width: calc(100vw - 176.6px);
+    padding: 20px 20px 48px 20px;
   }
 
-  @media all and (mobile) {
-    left: 67px;
-    padding: 24px;
+  @media all and (desktop) {
+    width: calc(100vw - 316.6px);
+    padding: 20px 20px 48px 20px;
   }
 }

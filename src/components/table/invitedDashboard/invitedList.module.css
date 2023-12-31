@@ -6,6 +6,7 @@
   padding: 24px 16px;
   border-radius: 8px;
   background: var(--white);
+  overflow: scroll;
 
   @media all and (tablet) {
     width: 504px;
