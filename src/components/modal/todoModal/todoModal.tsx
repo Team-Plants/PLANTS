@@ -9,6 +9,7 @@ import TextareaButton from '@/components/modal/button/textareaButton/textareaBut
 import ManagerOption from '@/components/modal/input/selectInput/managerOption';
 import ModalLayout from '@/components/modal/modalLayout';
 import TextArea from '@/components/modal/textarea/textarea';
+import Comment from '@/components/modal/todoModal/comment';
 import S from '@/components/modal/todoModal/todoModal.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { CardData } from '@/types/Card';
@@ -17,7 +18,6 @@ import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import Comment from './comment';
 
 interface TodoModalProps {
   state: boolean;
@@ -79,7 +79,6 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
             />
           </div>
         </div>
-
         <div className={S.mainContainer}>
           <div className={S.mainContentContainer}>
             <div className={S.chipContainer}>
