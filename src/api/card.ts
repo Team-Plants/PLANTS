@@ -1,5 +1,4 @@
 import { DashBoardData } from '@/components/modal/addTodoModal/addTodoModal';
-import { instance } from '@/libs/api';
 import { CardData } from '@/types/Card';
 import axios from 'axios';
 
@@ -51,6 +50,11 @@ export async function putCard(cardId: number, newData: CardData) {
 }
 
 export async function deleteCard(cardId: number) {
-  const response = await instance.delete(`/cards/${cardId}`);
-  return response.data;
+  const option = {
+    endpoint: `/cards/${cardId}}`,
+    method: 'DELETE',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result;
 }
