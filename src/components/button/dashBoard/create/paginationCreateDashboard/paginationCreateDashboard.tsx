@@ -3,6 +3,8 @@ import DashBoardButton from '@/components/button/dashBoard/dashBoardButton';
 import ArrowButton from '@/components/button/arrow/arrowButton';
 import S from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard.module.css';
 import { DashBoardData } from '@/types/DashBoard';
+import { useState } from 'react';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 
 interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
@@ -13,10 +15,13 @@ function PaginationCreateDashboard({
 }: PaginationCreateDashboardProps) {
   const { dashboards, totalCount } = dashboardData;
   const pageCount = Math.ceil((totalCount + 1) / 6);
-
+  const [mo, seMo] = useState(false);
+  function handleClick() {
+    seMo((pre) => !pre);
+  }
   return (
     <>
-      <div className={S.boardGrid}>
+      <div className={S.boardGrid} onClick={handleClick}>
         <CreateDashBoardButton />
         {dashboards &&
           dashboards.map((board, index) => (
@@ -30,6 +35,7 @@ function PaginationCreateDashboard({
       </div>
       <div className={S.pagination}>
         {pageCount} 페이지 중<ArrowButton size="large" />{' '}
+        {mo && <AddTodoModal onClick={handleClick} />}
       </div>
     </>
   );

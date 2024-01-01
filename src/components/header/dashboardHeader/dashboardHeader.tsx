@@ -1,6 +1,6 @@
 import S from '@/components/header/dashboardHeader/dashboardHeader.module.css';
 import Image from 'next/image';
-import NameBadge from '@/components/nameBadge/nameBadge';
+import NameBadge, { Colors } from '@/components/nameBadge/nameBadge';
 import UsersImage, {
   Users,
 } from '@/components/header/dashboardHeader/UsersImage';
@@ -17,8 +17,7 @@ interface DashboardProps {
   user: {
     letter: string;
     name: string;
-    color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
-    ownerFolder: { folder: string };
+    color: Colors;
   };
   folder?: string;
   Owner?: boolean;

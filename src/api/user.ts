@@ -39,5 +39,5 @@ export async function getUsers() {
     method: 'GET',
   };
   const result = await axios.post('/api/withAuthHandler', option);
-  return result;
+  return result.data;
 }

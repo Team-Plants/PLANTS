@@ -1,13 +1,15 @@
 import S from '@/components/nameBadge/nameBadge.module.css';
 
+export type Colors = 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
 interface NameBadgeProps {
-  color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
+  color: Colors;
   letter: string;
   layer?: 'layer';
   index?: number;
 }
 
 function NameBadge({ color, letter, layer, index }: NameBadgeProps) {
+  // console.log(color)
   return (
     <div
       className={layer ? `${S[color]} ${S[layer]}` : S[color]}

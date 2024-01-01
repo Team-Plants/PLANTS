@@ -7,6 +7,7 @@ const QUERY_KEYS = {
   members: 'members',
   deleteMember: 'deleteMember',
   myDashboard: 'myDashboard',
+  user: 'user',
 } as const;
 
 export default QUERY_KEYS;
