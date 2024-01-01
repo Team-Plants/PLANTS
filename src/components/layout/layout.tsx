@@ -2,8 +2,9 @@ import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
+import NestedLayout from './nestedLayout';
 
-interface LayoutProps {
+export interface LayoutProps {
   children: ReactNode;
   flag?: boolean;
 }
@@ -44,7 +45,7 @@ function Layout({ children, flag }: LayoutProps) {
                 },
               }}
             />
-            {children}
+            <NestedLayout>{children}</NestedLayout>
           </div>
         </div>
       )}
