@@ -55,7 +55,7 @@ export async function getColumns(dashboardId: string) {
   return result.data.data;
 }
 
-export async function putColumn(columnId: number, title: string) {
+export async function putColumn(title: string, columnId: number) {
   const data = {
     title: title,
   };

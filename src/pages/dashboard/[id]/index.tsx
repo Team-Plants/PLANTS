@@ -47,7 +47,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [isColumnNameValid, setIsColumnNameValid] = useState(false);
   const [columnId, setColumnId] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [flag, setFlag] = useState(false); // 삭제나 수정 누를시 flag 변경, flag에 따라 리패치한다
+  const [flag, setFlag] = useState(false);
+  const [fullData, setFullData] = useState([]);
 
   const { data: columns, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
@@ -88,12 +89,15 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     mutation.mutate(data);
     setIsOpenColumnAddModal(false);
     reset();
+    setFullData(columns);
+    // 새로고침 필요
   }
 
   async function handleModifyColumn(data: FieldValues) {
-    putColumn(1967, data.title);
+    putColumn(data.title, columnId);
     setIsOpenColumnManageModal(false);
     reset();
+    setFlag(true);
     // 새로고침 필요
   }
 
@@ -101,6 +105,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     if (confirm('컬럼의 모든 카드가 삭제됩니다')) {
       deleteColumn(columnId);
       setIsOpenColumnManageModal(false);
+      setFlag(true);
     }
     // 새로고침 필요
   }
@@ -122,10 +127,18 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     else setIsActive(false);
   }, [isColumnNameValid]);
 
-  // 칼럼 조회 하는 코드
   useEffect(() => {
+    if (flag) {
+      refetch();
+    }
+    setFlag(false);
+  }, [flag]);
+
+  // 컬럼 관리 코드
+  useEffect(() => {
+    setFullData(columns);
     refetch();
-  }, [columns, refetch]);
+  }, [columns]);
 
   return (
     mounted && (
@@ -158,8 +171,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
             }}
           />
           <div className={S.mainContainer}>
-            {columns &&
-              columns?.map((column: ColumnType) => {
+            {fullData &&
+              fullData?.map((column: ColumnType) => {
                 return (
                   <div key={column.id}>
                     <Column
@@ -213,7 +226,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
                     <ActiveModalButtonSet
                       isDelete={true}
                       submitButtonTitle="변경"
-                      onClickCancel={handleColumnManageModal}
+                      onClickCancel={() => handleColumnManageModal}
                       // TODO: 모달 더 추가해야 함
                       onClickDelete={() => handleDeleteColumn(columnId)}
                       isActive={isActive}
