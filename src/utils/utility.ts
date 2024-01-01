@@ -1,4 +1,4 @@
-import { Colors } from '@/components/nameBadge/nameBadge';
+import { Colors } from '@/components/header/dashboardHeader/dashboardHeader';
 
 const color: ThemeType[] = [
   'green#00FF00',
