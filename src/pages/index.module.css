@@ -95,6 +95,33 @@
   }
 }
 
+.loginButton {
+  display: flex;
+  width: 235.2px;
+  padding: 13px 0px 12px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--violet);
+  color: var(--white);
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: var(--font-normal);
+  line-height: normal;
+  margin: 45px 0 55px 0;
+  @media (min-width: 768px) {
+    width: 280px;
+    padding: 15px 0 16px 0;
+    font-size: 1.6rem;
+    margin-bottom: 155px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 1.8rem;
+    padding: 15px 0 14px 0;
+  }
+}
+
 .pointContainer {
   display: flex;
   flex-direction: column;

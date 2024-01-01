@@ -11,7 +11,14 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 function Home() {
+  const router = useRouter();
+  function handleLoginClick() {
+    router.push('/login');
+  }
+
   return (
     <>
       <DarkHeader />
@@ -38,7 +45,9 @@ function Home() {
             프로젝트는 간편한 사용자 경험과 효율적인 협업을 통해 업무 관리의
             품질을 높이는 것을 목표로 하여 개발되었습니다.
           </p>
-          {/* <button></button> */}
+          <button className={S.loginButton} onClick={handleLoginClick}>
+            로그인하기
+          </button>
         </div>
         <div className={S.pointContainer}>
           <div className={S.point}>
