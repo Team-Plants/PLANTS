@@ -1,18 +1,7 @@
 import { instance } from '@/libs/api';
 import { AxiosError, AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
-
-export class AuthError extends Error {
-  constructor(message: string, statusCode: number) {
-    super(message);
-    this.name = 'AuthError';
-    this.statusCode = statusCode;
-    this.isAuthError = true;
-  }
-
-  statusCode: number;
-  isAuthError: boolean;
-}
+import { AuthError, getToken } from './getToken';
 
 async function sendApiRequest(
   req: NextApiRequest,
@@ -23,11 +12,7 @@ async function sendApiRequest(
     params?: object;
   },
 ) {
-  const token = req.cookies.accessToken;
-
-  if (!token) {
-    throw new AuthError('로그인이 필요합니다.', 404);
-  }
+  const token = getToken(req);
 
   const headers = {
     Authorization: `Bearer ${token}`,

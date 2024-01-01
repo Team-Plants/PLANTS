@@ -1,20 +1,37 @@
+import { AxiosError } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-function getToken(req: NextApiRequest) {
+export class AuthError extends AxiosError {
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.name = 'AuthError';
+    this.statusCode = statusCode;
+    this.isAuthError = true;
+  }
+
+  statusCode: number;
+  isAuthError: boolean;
+}
+
+export function getToken(req: NextApiRequest) {
   const token = req.cookies.accessToken;
   if (token) return token;
-  return null;
+  throw new AuthError('로그인이 필요합니다.', 404);
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const result: string | null = getToken(req);
-
-  if (result) {
+  try {
+    const result: string | AxiosError = getToken(req);
     return res.status(200).json(result);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return res.status(error.statusCode).json({
+        message: error.message,
+        isAuthError: error.isAuthError,
+      });
+    }
   }
-
-  return res.status(404).json('토큰이 없습니다. ');
 }
