@@ -187,7 +187,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
               <ActiveModalButtonSet
                 isDelete={true}
                 submitButtonTitle="변경"
-                onClickCancel={() => handleColumnManageModal}
+                onClickCancel={() =>
+                  setIsOpenColumnManageModal((prev) => !prev)
+                }
                 // TODO: 모달 더 추가해야 함
                 onClickDelete={() => handleDeleteColumn(columnId)}
                 isActive={isActive}
