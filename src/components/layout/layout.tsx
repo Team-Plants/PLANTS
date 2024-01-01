@@ -1,4 +1,6 @@
-import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
+import DashboardHeader, {
+  Colors,
+} from '@/components/header/dashboardHeader/dashboardHeader';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
@@ -6,8 +8,8 @@ import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
 import { User } from '@/types/user';
-import { randomChipColor, randomNickNameColor } from '@/utils/utility';
-import { Colors } from '../nameBadge/nameBadge';
+import { randomNickNameColor } from '@/utils/utility';
+import { MemberProps } from '@/types/Member';
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,23 +18,34 @@ interface LayoutProps {
   Owner?: boolean;
   active?: boolean;
   id?: string;
+  member?: MemberProps[];
 }
 
-function Layout({ children, flag, folder, Owner, active, id }: LayoutProps) {
+function Layout({
+  children,
+  flag,
+  folder,
+  Owner,
+  active,
+  id,
+  member,
+}: LayoutProps) {
   const [mounted, setMounted] = useState(false);
   const [user, setUser] = useState<User>();
   const [color, setColor] = useState<Colors>('pink');
-  const { data } = useQuery({
+  const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],
     queryFn: () => getUsers(),
     enabled: true,
   });
 
   useEffect(() => {
-    setUser(data);
-    const rc = randomNickNameColor();
-    setColor(rc);
-  }, [data]);
+    setUser(userData);
+    if (!userData?.profileImageUrl) {
+      const rc = randomNickNameColor();
+      setColor(rc);
+    }
+  }, [userData]);
 
   useEffect(() => {
     setMounted(true);
@@ -46,26 +59,17 @@ function Layout({ children, flag, folder, Owner, active, id }: LayoutProps) {
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
+              user={{
+                letter: user.nickname.slice(0, 1),
+                name: user.nickname,
+                profile: user.profileImageUrl,
+                color: color,
+              }}
+              member={member}
               folder={folder}
               Owner={Owner}
               active={active}
               id={id}
-              users={[
-                {
-                  letter: 'a',
-                  color: 'yellow',
-                },
-                {
-                  letter: 'a',
-                  color: 'yellow',
-                },
-                { letter: 'a', color: 'yellow' },
-              ]}
-              user={{
-                letter: user.nickname.slice(0, 1),
-                name: user.nickname,
-                color: color,
-              }}
             />
             {children}
           </div>

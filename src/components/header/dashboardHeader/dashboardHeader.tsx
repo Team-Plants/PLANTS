@@ -1,9 +1,6 @@
 import S from '@/components/header/dashboardHeader/dashboardHeader.module.css';
 import Image from 'next/image';
-import NameBadge, { Colors } from '@/components/nameBadge/nameBadge';
-import UsersImage, {
-  Users,
-} from '@/components/header/dashboardHeader/UsersImage';
+import UsersImage from '@/components/header/dashboardHeader/UsersImage';
 import VectorImg from '@/assets/icons/Vector.svg';
 import SettingImg from '@/assets/icons/Setting.svg';
 import AddImg from '@/assets/icons/AddBox.svg';
@@ -11,14 +8,18 @@ import CrownImg from '@/assets/icons/Crown.svg';
 import Link from 'next/link';
 import { useState } from 'react';
 import TodoInvite from '@/components/modal/todoInvite/todoInvite';
+import NameBadge from '@/components/nameBadge/nameBadge';
+import { MemberProps } from '@/types/Member';
 
+export type Colors = 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
 interface DashboardProps {
-  users: Users[];
   user: {
     letter: string;
     name: string;
+    profile: string;
     color: Colors;
   };
+  member?: MemberProps[];
   folder?: string;
   Owner?: boolean;
   active?: boolean;
@@ -26,8 +27,8 @@ interface DashboardProps {
 }
 
 function DashboardHeader({
-  users,
   user,
+  member,
   folder,
   Owner = false,
   active = true,
@@ -78,13 +79,24 @@ function DashboardHeader({
           </>
         )}
       </div>
-      {Owner && users && <UsersImage users={users} />}
+      {member && <UsersImage member={member} />}
       {active && (
         <Image className={S.vectorImage} src={VectorImg} alt="구분이미지" />
       )}
       {user && (
         <>
-          <NameBadge color={user.color} letter={user.letter} />
+          {user.profile ? (
+            <Image
+              src={user.profile}
+              width={38}
+              height={38}
+              alt="프로필이미지"
+              style={{ borderRadius: 100 }}
+            />
+          ) : (
+            <NameBadge color={user.color} letter={user.letter} />
+          )}
+
           <p className={S.userName}>{user.name}</p>
         </>
       )}

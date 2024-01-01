@@ -18,13 +18,16 @@ export async function getPaginationMembers(
   return result.data;
 }
 
-export async function getMembers(dashboardId: number) {
+export async function getMembers(dashboardId: string) {
   const option = {
-    endpoint: `/members?dashboardId=${dashboardId}`,
+    endpoint: `/members`,
     method: 'GET',
+    params: {
+      dashboardId,
+    },
   };
 
-  const result = await axios.post('api/withAuthHandler', option);
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 

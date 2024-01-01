@@ -4,6 +4,7 @@ const QUERY_KEYS = {
   deleteInvitation: 'deleteInvitation',
   dashboards: 'dashboards',
   sidemenuDashboards: 'sidemenuDashboards',
+  member: 'member',
   members: 'members',
   deleteMember: 'deleteMember',
   myDashboard: 'myDashboard',
