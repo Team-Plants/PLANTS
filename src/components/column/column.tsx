@@ -1,24 +1,50 @@
-import S from '@/components/column/column.module.css';
-import NumberChip from '../chip/number/numberChip';
-import Image from 'next/image';
-import AddButton from '../button/add/addButton';
+import { getCards } from '@/api/card';
 import SettingImg from '@/assets/icons/Setting.svg';
+import S from '@/components/column/column.module.css';
+import QUERY_KEYS from '@/constants/queryKeys';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
-import { useState } from 'react';
+import { CardList } from '@/types/Card';
+import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import AddButton from '../button/add/addButton';
+import NumberChip from '../chip/number/numberChip';
 
 interface ColumnProps {
+  columnId: number;
   columnName: string;
-  cardNum: number;
   addClick: () => void;
   settingClick: () => void;
 }
 
-function Column({ columnName, cardNum, addClick, settingClick }: ColumnProps) {
+function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
+  const [cards, setCards] = useState<CardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [cursorId, setCursorId] = useState();
-  const [isLoading, setIsLoading] = useState(false);
 
-  // 만들어야 하는 것 card 호출 API / useQuery로 카드 가져오기 /
+  const { isLoading, data, refetch } = useQuery({
+    queryKey: [QUERY_KEYS.card],
+    queryFn: () => getCards(3, cursorId, columnId),
+    enabled: false,
+  });
+
+  async function fetchMoreCards() {
+    if (isLoading) return;
+    refetch();
+  }
+
+  useIntersectionObserver({
+    target: target,
+    fetchCallback: fetchMoreCards,
+    props: cursorId,
+  });
+
+  useEffect(() => {
+    if (data) {
+      setCursorId(data.cursorId + 3);
+      setCards((prev) => [...prev, ...data.cards]);
+    }
+  }, [data]);
 
   return (
     <div className={S.container}>
@@ -26,7 +52,7 @@ function Column({ columnName, cardNum, addClick, settingClick }: ColumnProps) {
         <div className={S.info}>
           <div className={S.chip} />
           <span className={S.sectionName}>{columnName}</span>
-          <NumberChip num={cardNum} />
+          <NumberChip num={cards.length} />
         </div>
         <button onClick={settingClick}>
           <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />

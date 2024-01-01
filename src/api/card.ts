@@ -2,9 +2,18 @@ import { DashBoardData } from '@/components/modal/addTodoModal/addTodoModal';
 import { instance } from '@/libs/api';
 import axios from 'axios';
 
-export async function getCards() {
-  const response = await instance.get('/cards');
-  return response.data;
+export async function getCards(
+  size: number,
+  cursorId: number | undefined,
+  columnId: number,
+) {
+  const option = {
+    endpoint: `/cards?columnId=${columnId}`,
+    method: 'GET',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
 }
 
 export async function getDetailCard(cardId: string) {

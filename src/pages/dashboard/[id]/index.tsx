@@ -15,7 +15,7 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
-import { ColumnType } from '@/types/Column';
+import { ColumnType } from '@/types/column';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ReactElement, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -140,9 +140,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           return (
             <div key={column.id}>
               <Column
+                columnId={column.id}
                 columnName={column.title}
-                // TODO: cardNum 연동하기
-                cardNum={1}
                 addClick={handleTodoModal}
                 settingClick={() => handleColumnManageModal(column.id)}
               />

@@ -4,5 +4,5 @@ export interface ColumnType {
   teamId: string;
   dashboardId: number;
   createdAt: string;
-  updateAt: string;
+  updatedAt: string;
 }
