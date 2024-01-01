@@ -46,7 +46,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   });
 
   function handleModal() {
-    setIsModalOpen(!isModalOpen);
+    setIsModalOpen((prev) => !prev);
   }
 
   useEffect(() => {
@@ -64,7 +64,11 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   }, [isModalOpen]);
 
   return (
-    <Layout folder={folderName} flag={flag} Owner={folderOwner}>
+    <Layout
+      folder={folderName}
+      flag={flag}
+      Owner={folderOwner}
+      id={dashboardId}>
       <NestedLayout>
         <ReturnButton url={`/${dashboardId}`} />
         <div className={S.tableContainer}>
@@ -80,7 +84,6 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             invitationFlag={invitationFlag}
             setInvitationFlag={setInvitationFlag}
             isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
           />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton />

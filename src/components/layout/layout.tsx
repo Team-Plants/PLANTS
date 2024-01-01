@@ -8,11 +8,12 @@ interface LayoutProps {
   flag?: boolean;
   folder?: string;
   Owner?: boolean;
+  active?: boolean;
+  id?: string;
 }
 
-function Layout({ children, flag, folder, Owner }: LayoutProps) {
+function Layout({ children, flag, folder, Owner, active, id }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -27,6 +28,8 @@ function Layout({ children, flag, folder, Owner }: LayoutProps) {
             <DashboardHeader
               folder={folder}
               Owner={Owner}
+              active={active}
+              id={id}
               users={[
                 {
                   letter: 'a',

@@ -61,8 +61,8 @@ export async function postDashboards(title: string, color: string) {
 }
 
 export async function postDashboardsInvitations(
-  dashboardId: string,
   data: object,
+  dashboardId?: string,
 ) {
   const option = {
     endpoint: `/dashboards/${dashboardId}/invitations`,

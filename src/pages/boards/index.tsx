@@ -14,6 +14,7 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import { getDashboard } from '@/api/dashboard';
 import S from '@/pages/boards/boards.module.css';
 
+//페이지 라우팅 변경한다치고 구현함
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
     return {
@@ -30,11 +31,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   };
 }
 
-interface DashboardEditPageProps {
-  dashboardId: string;
-}
-
-function boards({ dashboardId }: DashboardEditPageProps) {
+function boards({ dashboardId }: { dashboardId: string }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
