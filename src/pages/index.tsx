@@ -11,17 +11,24 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 function Home() {
   // api 호출 예시
   const handle = async () => {
-    const option = {
-      endpoint: '/users/me',
-      method: 'GET',
-    };
-    const result = await axios.post('/api/withAuthHandler', option);
-    return result;
+    try {
+      const option = {
+        endpoint: '/users/me',
+        method: 'GET',
+      };
+      const result = await axios.post('/api/withAuthHandler', option);
+      return result;
+    } catch (e) {
+      if (e instanceof AxiosError && e.response?.data.isAuthError) {
+        alert(e.response.data.message);
+        location.href = '/login';
+      }
+    }
   };
   return (
     <>
