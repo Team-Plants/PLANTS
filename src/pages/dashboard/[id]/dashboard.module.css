@@ -29,6 +29,7 @@
     width: calc(100vw - 316.6px);
     padding: 20px 20px 48px 20px;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: start;
   }
 }

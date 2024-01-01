@@ -16,34 +16,47 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import QUERY_KEYS from '@/constants/queryKeys';
-import S from '@/pages/boards/boards.module.css';
+import S from '@/pages/dashboard/[id]/dashboard.module.css';
 import { ColumnType } from '@/types/Column';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { GetServerSidePropsContext } from 'next';
 
-function boards() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (!context.params) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const dashboardId = context?.params['id'];
+
+  return {
+    props: {
+      dashboardId,
+    },
+  };
+}
+
+function dashboard({ dashboardId }: { dashboardId: string }) {
   const [mounted, setMounted] = useState(false);
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [isOpenColumnAddModal, setIsOpenColumnAddModal] = useState(false);
   const [isOpenColumnManageModal, setIsOpenColumnManageModal] = useState(false);
   const [isColumnNameValid, setIsColumnNameValid] = useState(false);
+  const [columnId, setColumnId] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  const [cursorId, setCursorId] = useState();
+  const [flag, setFlag] = useState(false); // 삭제나 수정 누를시 flag 변경, flag에 따라 리패치한다
 
-  const {
-    data: columns,
-    refetch,
-    isLoading,
-  } = useQuery({
+  const { data: columns, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
-    queryFn: () => getColumns(612),
+    queryFn: () => getColumns(dashboardId),
     enabled: false,
   });
 
   const mutation = useMutation({
-    mutationFn: (data: FieldValues) => postColumnAdd(data),
+    mutationFn: (data: FieldValues) => postColumnAdd(data.title, dashboardId),
     onError: (error) => {
       alert(error);
     },
@@ -66,31 +79,28 @@ function boards() {
     setIsOpenColumnAddModal((prev) => !prev);
   }
 
-  function handleColumnManageModal() {
+  function handleColumnManageModal(id: number) {
+    setColumnId(id);
     setIsOpenColumnManageModal((prev) => !prev);
   }
 
   async function handleAddColumn(data: FieldValues) {
-    // 대시보드 아이디를 어떻게 받을 것인가
-    mutation.mutate({ title: data.title, dashboardId: 612 });
+    mutation.mutate(data);
     setIsOpenColumnAddModal(false);
     reset();
   }
 
-  // async가 꼭 필요한 건가요? - putColumn에 이미 async/await가 있어서 궁금해요
   async function handleModifyColumn(data: FieldValues) {
-    console.log(data);
-    // 컬럼 아이디는 어떻게 받을 것인가?
     putColumn(1967, data.title);
     setIsOpenColumnManageModal(false);
+    reset();
     // 새로고침 필요
   }
 
-  function handleDeleteColumn(columnId: number) {
-    // 컨펌이 여러 번 되는 걸 봐서는 이벤트 버블링인가?
-    // 컬럼 아이디는 어떻게 받을 것인가?
+  function handleDeleteColumn(columnId: number): void {
     if (confirm('컬럼의 모든 카드가 삭제됩니다')) {
       deleteColumn(columnId);
+      setIsOpenColumnManageModal(false);
     }
     // 새로고침 필요
   }
@@ -157,7 +167,7 @@ function boards() {
                       // TODO: cardNum 연동하기
                       cardNum={1}
                       addClick={handleTodoModal}
-                      settingClick={handleColumnManageModal}
+                      settingClick={() => handleColumnManageModal(column.id)}
                     />
                   </div>
                 );
@@ -165,58 +175,58 @@ function boards() {
             <div className={S.addButton}>
               <ColumnButton onClick={handleColumnAddModal} />
             </div>
+            {isOpenAddTodoModal && <AddTodoModal onClick={handleTodoModal} />}
+            {isOpenColumnAddModal && (
+              <InputModal onClick={handleColumnAddModal} title={'새 컬럼 생성'}>
+                <InputLayout label="이름" isNecessary={false}>
+                  <form
+                    onSubmit={handleSubmit(handleAddColumn)}
+                    className={CommonStyle.form}>
+                    <DefaultInput
+                      placeholder="새 프로젝트 이름"
+                      control={control}
+                      name="title"
+                    />
+                    <ActiveModalButtonSet
+                      isDelete={false}
+                      submitButtonTitle="생성"
+                      onClickCancel={handleColumnAddModal}
+                      isActive={isActive}
+                    />
+                  </form>
+                </InputLayout>
+              </InputModal>
+            )}
+            {isOpenColumnManageModal && (
+              <InputModal
+                onClick={() => handleColumnManageModal}
+                title={'컬럼 관리'}>
+                <InputLayout label="이름" isNecessary={false}>
+                  <form
+                    onSubmit={handleSubmit(handleModifyColumn)}
+                    className={CommonStyle.form}>
+                    <DefaultInput
+                      placeholder="변경할 프로젝트 이름"
+                      control={control}
+                      name="title"
+                    />
+                    <ActiveModalButtonSet
+                      isDelete={true}
+                      submitButtonTitle="변경"
+                      onClickCancel={handleColumnManageModal}
+                      // TODO: 모달 더 추가해야 함
+                      onClickDelete={() => handleDeleteColumn(columnId)}
+                      isActive={isActive}
+                    />
+                  </form>
+                </InputLayout>
+              </InputModal>
+            )}
           </div>
         </div>
-        {isOpenAddTodoModal && <AddTodoModal onClick={handleTodoModal} />}
-        {isOpenColumnAddModal && (
-          <InputModal onClick={handleColumnAddModal} title={'새 컬럼 생성'}>
-            <InputLayout label="이름" isNecessary={false}>
-              <form
-                onSubmit={handleSubmit(handleAddColumn)}
-                className={CommonStyle.form}>
-                <DefaultInput
-                  placeholder="새 프로젝트 이름"
-                  control={control}
-                  name="title"
-                />
-                <ActiveModalButtonSet
-                  isDelete={false}
-                  submitButtonTitle="생성"
-                  onClickCancel={handleColumnAddModal}
-                  isActive={isActive}
-                />
-              </form>
-            </InputLayout>
-          </InputModal>
-        )}
-        {isOpenColumnManageModal && (
-          <InputModal onClick={handleColumnManageModal} title={'컬럼 관리'}>
-            <InputLayout label="이름" isNecessary={false}>
-              <form
-                // 변경하기 버튼 누를 시 동작
-                onSubmit={handleSubmit(handleModifyColumn)}
-                className={CommonStyle.form}>
-                <DefaultInput
-                  placeholder="변경할 프로젝트 이름"
-                  control={control}
-                  name="title"
-                />
-                <ActiveModalButtonSet
-                  isDelete={true}
-                  submitButtonTitle="변경"
-                  onClickCancel={handleColumnManageModal}
-                  // 삭제하기 누를 시 동작
-                  // 타입 에러
-                  onClickDelete={handleDeleteColumn(1967)}
-                  isActive={isActive}
-                />
-              </form>
-            </InputLayout>
-          </InputModal>
-        )}
       </div>
     )
   );
 }
 
-export default boards;
+export default dashboard;

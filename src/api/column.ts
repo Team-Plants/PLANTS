@@ -20,12 +20,17 @@ export async function postColumnImage(body: FormData, columnId: string) {
   return;
 }
 
-export async function postColumnAdd(body: Object) {
+export async function postColumnAdd(title: string, dashboardId: string) {
+  const data = {
+    title: title,
+    dashboardId: Number(dashboardId),
+  };
+
   try {
     const option = {
       endpoint: '/columns',
       method: 'POST',
-      data: body,
+      data: data,
     };
 
     const result = await axios.post('/api/withAuthHandler', option);
@@ -40,7 +45,7 @@ export async function postColumnAdd(body: Object) {
   }
 }
 
-export async function getColumns(dashboardId: number) {
+export async function getColumns(dashboardId: string) {
   const option = {
     endpoint: `/columns?dashboardId=${dashboardId}`,
     method: 'GET',

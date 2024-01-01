@@ -5,7 +5,7 @@ import ModalCreateButton from '@/components/modal/button/modalCreateButton';
 interface ModalButtonSetState {
   isDelete: boolean;
   submitButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정';
-  onClickCancel: () => void;
+  onClickCancel: (id: number) => void;
   onClickDelete?: () => void;
   isActive?: boolean;
 }
