@@ -3,6 +3,7 @@ import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
 import NestedLayout from './nestedLayout';
+import { useRouter } from 'next/router';
 
 export interface LayoutProps {
   children: ReactNode;
@@ -11,10 +12,15 @@ export interface LayoutProps {
 
 function Layout({ children, flag }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
+  const [isBoardPage, setIsBoardPage] = useState(false);
+  const { pathname } = useRouter();
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    if (pathname === '/boards') {
+      setIsBoardPage(true);
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -45,7 +51,11 @@ function Layout({ children, flag }: LayoutProps) {
                 },
               }}
             />
-            <NestedLayout>{children}</NestedLayout>
+            {isBoardPage ? (
+              <>{children}</>
+            ) : (
+              <NestedLayout>{children}</NestedLayout>
+            )}
           </div>
         </div>
       )}

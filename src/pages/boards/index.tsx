@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { useState, ReactElement } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import AddButton from '@/components/button/add/addButton';
 import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
@@ -9,8 +8,9 @@ import Layout from '@/components/layout/layout';
 import NumberChip from '@/components/chip/number/numberChip';
 import SettingImg from '@/assets/icons/Setting.svg';
 import S from '@/pages/boards/boards.module.css';
+import { withLayout } from '@/hooks/withAuth';
 
-function boards() {
+function Boards() {
   const [modalOpen, setModalOpen] = useState(false);
 
   function handleClick() {
@@ -65,8 +65,4 @@ function boards() {
   );
 }
 
-export default boards;
-
-boards.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
+export default withLayout(Boards, Layout);
