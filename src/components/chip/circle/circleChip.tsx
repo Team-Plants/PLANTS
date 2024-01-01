@@ -6,18 +6,20 @@ import { Dispatch, SetStateAction } from 'react';
 interface Color {
   color: ThemeType;
   isChecked: boolean;
-  setIsChecked: Dispatch<SetStateAction<boolean>>;
-  onClick: (e: string) => void;
+  setIsChecked?: Dispatch<SetStateAction<boolean>>;
+  onClick?: (e: string) => void;
 }
 
 function CircleChip({ color, isChecked, setIsChecked, onClick }: Color) {
   function onClickChip() {
-    setIsChecked(!isChecked);
-    onClick(color);
+    if (setIsChecked && onClick) {
+      setIsChecked(!isChecked);
+      onClick(color);
+    }
   }
 
   return (
-    <div className={S[color]} onClick={onClickChip}>
+    <div className={S[color.slice(0, -7)]} onClick={onClickChip}>
       {isChecked && <Image src={CheckImg} alt="체크 아이콘" />}
     </div>
   );

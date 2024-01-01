@@ -106,3 +106,8 @@
     margin-bottom: 10px;
   }
 }
+
+.disabledSubmitButton {
+  composes: submitButton;
+  background: var(--gray-40);
+}

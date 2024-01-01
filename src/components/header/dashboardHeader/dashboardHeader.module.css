@@ -6,6 +6,8 @@
   justify-content: flex-end;
   align-items: center;
   background-color: var(--white);
+  border-bottom: 2px solid var(--gray-30);
+  height: 70px;
 }
 
 .buttonContainer {
@@ -36,6 +38,7 @@
 .button {
   composes: container from '@/components/button/button.module.css';
   display: flex;
+  width: auto;
   gap: 8px;
   border-radius: 8px;
   border: 1px solid var(--gray-30);

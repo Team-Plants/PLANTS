@@ -70,8 +70,8 @@ function SignFormProvider({
   }, []);
 
   return (
-    mounted && (
-      <>
+    <>
+      {mounted && (
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(handleOnSubmit)}>
             {children}
@@ -83,9 +83,9 @@ function SignFormProvider({
             />
           </form>
         </FormProvider>
-        <DevTool control={methods.control} />
-      </>
-    )
+      )}
+      <DevTool control={methods.control} />
+    </>
   );
 }
 

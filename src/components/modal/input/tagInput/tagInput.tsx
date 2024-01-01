@@ -60,7 +60,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
             <CategoryChip
               content={tagItem.content}
               key={index}
-              color={tagItem.color || 'green'}
+              color={tagItem.color || 'green#00FF00'}
             />
           );
         })}

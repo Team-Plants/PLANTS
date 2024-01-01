@@ -1,4 +1,4 @@
-export interface InvitationListProps {
+export interface Invitation {
   id: number;
   dashboard: {
     title: string;
@@ -10,4 +10,8 @@ export interface InvitationListProps {
     id: number;
   };
   inviteAccepted: boolean;
+}
+
+export interface InvitationList {
+  invitations: Invitation[];
 }

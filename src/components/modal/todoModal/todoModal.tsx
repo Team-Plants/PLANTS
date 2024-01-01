@@ -42,15 +42,15 @@ interface Category {
 const dummyCategory: Category[] = [
   {
     content: '프로젝트',
-    color: 'orange',
+    color: 'orange#FFA500',
   },
   {
     content: '일반',
-    color: 'green',
+    color: 'green#00FF00',
   },
   {
     content: '백엔드',
-    color: 'pink',
+    color: 'pink#FFC0CB',
   },
 ];
 
