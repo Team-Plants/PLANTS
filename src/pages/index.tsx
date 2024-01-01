@@ -11,37 +11,15 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
-import axios, { AxiosError } from 'axios';
 
 function Home() {
-  // api 호출 예시
-  const handle = async () => {
-    try {
-      const option = {
-        endpoint: '/users/me',
-        method: 'GET',
-      };
-      const result = await axios.post('/api/withAuthHandler', option);
-      return result;
-    } catch (e) {
-      if (e instanceof AxiosError && e.response?.data.isAuthError) {
-        alert(e.response.data.message);
-        location.href = '/login';
-      }
-    }
-  };
   return (
     <>
       <DarkHeader />
       <div className={S.body}>
         <div className={S.article}>
           <div className={S.imgContainer}>
-            <Image
-              src={HomeImg}
-              alt="홈이미지1"
-              fill={true}
-              onClick={() => handle()}
-            />
+            <Image src={HomeImg} alt="홈이미지1" fill={true} />
           </div>
           <div className={S.h1Container}>
             <p className={S.h1}>새로운 일정 관리</p>
