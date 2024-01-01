@@ -1,4 +1,3 @@
-import { instance } from '@/libs/api';
 import axios from 'axios';
 
 export async function getPaginationMembers(

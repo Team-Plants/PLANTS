@@ -10,7 +10,6 @@ import AddImg from '@/assets/icons/AddBox.svg';
 import CrownImg from '@/assets/icons/Crown.svg';
 
 interface DashboardProps {
-  folder: string;
   users: Users[];
   user: {
     letter: string;
@@ -18,14 +17,21 @@ interface DashboardProps {
     color: 'yellow' | 'orange' | 'green' | 'blue' | 'brown' | 'pink';
     ownerFolder: { folder: string };
   };
+  folder?: string;
+  Owner?: boolean;
 }
 
-function DashboardHeader({ folder, users, user }: DashboardProps) {
+function DashboardHeader({
+  users,
+  user,
+  folder,
+  Owner = false,
+}: DashboardProps) {
   return (
     <div className={S.container}>
       <p className={S.folderName}>
         {folder}
-        {user.ownerFolder['folder'] === folder && (
+        {Owner && (
           <Image
             src={CrownImg}
             alt="내가 만든 보드 표시"

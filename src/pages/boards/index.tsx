@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState, ReactElement } from 'react';
+import { useState, useEffect } from 'react';
+import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
 import AddButton from '@/components/button/add/addButton';
 import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 import Card from '@/components/card/card';
@@ -8,16 +10,51 @@ import ColumnButton from '@/components/button/column/columnButton';
 import Layout from '@/components/layout/layout';
 import NumberChip from '@/components/chip/number/numberChip';
 import SettingImg from '@/assets/icons/Setting.svg';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { getDashboard } from '@/api/dashboard';
 import S from '@/pages/boards/boards.module.css';
 
-function boards() {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (!context.params) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const dashboardId = context?.params['id'];
+
+  return {
+    props: {
+      dashboardId,
+    },
+  };
+}
+
+interface DashboardEditPageProps {
+  dashboardId: string;
+}
+
+function boards({ dashboardId }: DashboardEditPageProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [folderName, setFolderName] = useState();
+  const [folderOwner, setFolderOwner] = useState();
+  const { data: myDashboard } = useQuery({
+    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
+    queryFn: () => getDashboard(dashboardId),
+    enabled: true,
+  });
 
   function handleClick() {
     setModalOpen((prev) => !prev);
   }
+
+  useEffect(() => {
+    setFolderName(myDashboard.title);
+    setFolderOwner(myDashboard.createdByMe);
+  }, [myDashboard]);
+
   return (
-    <>
+    <Layout folder={folderName} Owner={folderOwner}>
       <div className={S.mainContainer}>
         <div className={S.toDo}>
           <div className={S.infoContainer}>
@@ -61,12 +98,8 @@ function boards() {
         </div>
       </div>
       {modalOpen && <AddTodoModal onClick={handleClick} />}
-    </>
+    </Layout>
   );
 }
 
 export default boards;
-
-boards.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};

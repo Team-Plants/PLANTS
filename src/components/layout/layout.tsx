@@ -6,9 +6,11 @@ import { ReactNode, useState, useEffect } from 'react';
 interface LayoutProps {
   children: ReactNode;
   flag?: boolean;
+  folder?: string;
+  Owner?: boolean;
 }
 
-function Layout({ children, flag }: LayoutProps) {
+function Layout({ children, flag, folder, Owner }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -23,7 +25,8 @@ function Layout({ children, flag }: LayoutProps) {
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
-              folder="계정관리"
+              folder={folder}
+              Owner={Owner}
               users={[
                 {
                   letter: 'a',

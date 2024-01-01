@@ -27,9 +27,9 @@ function Mypage() {
 
 export default Mypage;
 
-Mypage.getLayout = function getLayout(page: ReactElement) {
+Mypage.getLayout = (page: ReactElement) => {
   return (
-    <Layout>
+    <Layout folder="계정관리">
       <NestedLayout>{page}</NestedLayout>
     </Layout>
   );

@@ -1,3 +1,4 @@
+import { getDashboard } from '@/api/dashboard';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
@@ -5,7 +6,9 @@ import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
+import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/[id]/mydashboard.module.css';
+import { useQuery } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 
@@ -34,10 +37,22 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [flag, setFlag] = useState(false);
   const [invitationFlag, setInvitationFlag] = useState(false);
   const [memberFlag, setMemberFlag] = useState(false);
+  const [folderName, setFolderName] = useState();
+  const [folderOwner, setFolderOwner] = useState();
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
+    queryFn: () => getDashboard(dashboardId),
+    enabled: true,
+  });
 
-  const handleModal = () => {
+  function handleModal() {
     setIsModalOpen(!isModalOpen);
-  };
+  }
+
+  useEffect(() => {
+    setFolderName(data?.title);
+    setFolderOwner(data?.createdByMe);
+  }, [data]);
 
   // // 모달이 열릴 경우 백그라운드 스크롤 방지
   useEffect(() => {
@@ -49,7 +64,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   }, [isModalOpen]);
 
   return (
-    <Layout flag={flag}>
+    <Layout folder={folderName} flag={flag} Owner={folderOwner}>
       <NestedLayout>
         <ReturnButton url={`/${dashboardId}`} />
         <div className={S.tableContainer}>

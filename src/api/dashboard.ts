@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 
 type Method = 'pagination' | 'infiniteScroll';
 
-export async function getDashboards(navigationMethod: Method) {
+export async function getDashboards(navigationMethod?: Method) {
   const option = {
     endpoint: '/dashboards',
     method: 'GET',
@@ -13,6 +13,16 @@ export async function getDashboards(navigationMethod: Method) {
   };
 
   const result = await axios.post('api/withAuthHandler', option);
+  return result.data;
+}
+
+export async function getDashboard(id: string) {
+  const option = {
+    endpoint: `/dashboards/${id}`,
+    method: 'GET',
+  };
+
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 
