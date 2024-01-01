@@ -1,46 +1,5 @@
 @value tablet, desktop from "@/styles/breakpoints.css";
 
-.mainOuter {
-  display: flex;
-  @media all and (tablet) {
-  }
-  @media all and (desktop) {
-  }
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-  @media all and (tablet) {
-    display: flex;
-    flex-direction: column;
-  }
-  @media all and (desktop) {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
-.mainContainer {
-  background: var(--gray-10);
-  width: calc(100vw - 89.1px);
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 17px 12px 24px 12px;
-  gap: 12px;
-  border-top: 2px solid;
-  border-color: var(--gray-30);
-  @media all and (tablet) {
-    width: calc(100vw - 182.1px);
-    padding: 20px 20px 48px 20px;
-  }
-  @media all and (desktop) {
-    width: calc(100vw - 322.1px);
-    padding: 20px 20px 48px 20px;
-  }
-}
-
 .tableContainer {
   display: flex;
   flex-direction: column;
