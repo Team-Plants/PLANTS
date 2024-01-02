@@ -71,22 +71,30 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     },
   });
 
-  const { handleSubmit, control, reset, watch } = methods;
+  const { handleSubmit, control, reset, watch, setError } = methods;
 
   function handleTodoModal() {
-    setIsOpenAddTodoModal((prev) => !prev);
+    setIsOpenAddTodoModal(true);
   }
 
   function handleColumnAddModal() {
-    setIsOpenColumnAddModal((prev) => !prev);
+    setIsOpenColumnAddModal(true);
   }
 
   function handleColumnManageModal(id: number) {
     setColumnId(id);
-    setIsOpenColumnManageModal((prev) => !prev);
+    setIsOpenColumnManageModal(true);
   }
 
   async function handleAddColumn(data: FieldValues) {
+    if (fullData.find((e: { title: string }) => e.title === data.title)) {
+      setError('title', {
+        type: 'validate',
+        message: '중복된 컬럼입니다',
+      });
+      setIsActive(false);
+      return;
+    }
     mutation.mutate(data);
     setIsOpenColumnAddModal(false);
     reset();
