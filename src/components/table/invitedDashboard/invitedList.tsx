@@ -7,15 +7,17 @@ import { getInvitations } from '@/api/invitations';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
+import useDebounce from '@/hooks/useDebounce';
 
 function InvitedList() {
   const [title, setTitle] = useState<string>();
+  const debouncedSearchValue = useDebounce(title, 500);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [cursorId, setCursorId] = useState();
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: ['invitation', title],
-    queryFn: ({ pageParam: cursorId }) => getInvitations(6, cursorId, title),
+    queryKey: ['invitation', debouncedSearchValue],
+    queryFn: ({ pageParam: cursorId }) => getInvitations(6, cursorId, debouncedSearchValue),
     getNextPageParam: (lastPage) => {
       if (lastPage) {
         return lastPage.cursorId;

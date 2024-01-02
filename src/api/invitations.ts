@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export async function getInvitations(size?: number, cursorId?: number | null, title?: string) {
+export async function getInvitations(size?: number | null, cursorId?: number | null, title?: string) {
   const option = {
     endpoint: '/invitations',
     method: 'GET',
