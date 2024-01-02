@@ -21,6 +21,7 @@ interface ColumnProps {
 function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
+  const [totalCount, setTotalCount] = useState(0);
   const [cursorId, setCursorId] = useState();
 
   const { isLoading, data, refetch } = useQuery({
@@ -43,6 +44,7 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
   useEffect(() => {
     if (data) {
       setCursorId(data.cursorId);
+      setTotalCount(data.totalCount);
       setCards((prev) => [...prev, ...data.cards]);
     }
   }, [data]);
@@ -57,7 +59,7 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
         <div className={S.info}>
           <div className={S.chip} />
           <span className={S.sectionName}>{columnName}</span>
-          <NumberChip num={cards.length} />
+          <NumberChip num={totalCount} />
         </div>
         <button onClick={settingClick}>
           <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />

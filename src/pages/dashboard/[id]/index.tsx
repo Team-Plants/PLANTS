@@ -91,7 +91,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setIsOpenColumnAddModal(false);
     reset();
     setFullData(columns);
-    // 새로고침 필요
   }
 
   async function handleModifyColumn(data: FieldValues) {
