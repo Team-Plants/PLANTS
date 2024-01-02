@@ -1,6 +1,6 @@
 import S from '@/components/modal/input/imgInput/imgInput.module.css';
 import Image from 'next/image';
-import { FormEvent, useCallback, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useRef, useState } from 'react';
 import ImgPlusImg from '@/assets/icons/imgPlus.svg';
 import {
   Control,
@@ -9,7 +9,6 @@ import {
   UseFormSetValue,
   useController,
 } from 'react-hook-form';
-import { fileToString } from '@/utils/utility';
 
 interface ImgInputProps {
   control: Control<FieldValues>;
@@ -22,10 +21,13 @@ function ImgInput({ control, name, setValue }: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
-  const onUpload = async (e: FormEvent<HTMLInputElement>) => {
-    const fileString = await fileToString(e);
-    setImageSrc(fileString);
-    setValue('img', fileString);
+  const onUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target && e.target.files) {
+      const targetFiles = e.target.files[0];
+      const selectedFiles = URL.createObjectURL(targetFiles);
+      setImageSrc(selectedFiles);
+      setValue('imageUrl', e.target.files[0]);
+    }
   };
 
   const handleUploadImg = useCallback(() => {
