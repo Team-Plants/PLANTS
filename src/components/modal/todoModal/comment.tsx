@@ -1,6 +1,8 @@
-import { deleteComment, putComment } from '@/api/comment';
+import { deleteComment, getComments, putComment } from '@/api/comment';
 import S from '@/components/modal/todoModal/comment.module.css';
-import { CommentDetail } from '@/types/Comment';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { CommentData, CommentDetail } from '@/types/Comment';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -22,6 +24,23 @@ function Comment({ data }: CommentProps) {
 
   const { handleSubmit, control } = methods;
 
+  const { refetch } = useQuery<CommentData>({
+    queryKey: [QUERY_KEYS.comment],
+    queryFn: () => getComments(172),
+    enabled: false,
+  });
+
+  const mutation = useMutation({
+    mutationFn: (data: FieldValues) => putComment(1025, data.content), // commentId
+    onError: (error) => {
+      alert(error);
+    },
+
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
   async function onClickCommentDeleteBtn(commentId: number) {
     if (confirm('해당 댓글을 삭제하시겠습니까?')) {
       await deleteComment(commentId);
@@ -29,7 +48,7 @@ function Comment({ data }: CommentProps) {
   }
 
   async function onClickCommentModifyBtn(data: FieldValues) {
-    await putComment(379, data.content);
+    mutation.mutate(data);
     setModifyInput(!modifyInput);
   }
 
