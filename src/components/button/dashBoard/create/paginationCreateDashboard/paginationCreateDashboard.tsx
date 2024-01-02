@@ -15,10 +15,7 @@ function PaginationCreateDashboard({
 }: PaginationCreateDashboardProps) {
   const { dashboards, totalCount } = dashboardData;
   const pageCount = Math.ceil((totalCount + 1) / 6);
-  const [mo, seMo] = useState(false);
-  function handleClick() {
-    seMo((pre) => !pre);
-  }
+
   return (
     <>
       <div className={S.boardGrid} onClick={handleClick}>
@@ -35,7 +32,6 @@ function PaginationCreateDashboard({
       </div>
       <div className={S.pagination}>
         {pageCount} 페이지 중<ArrowButton size="large" />{' '}
-        {mo && <AddTodoModal onClick={handleClick} />}
       </div>
     </>
   );
