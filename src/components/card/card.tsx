@@ -1,13 +1,14 @@
-import S from '@/components/card/card.module.css';
-import CategoryChip from '../chip/category/categoryChip';
 import CalendarImg from '@/assets/icons/Calendar.svg';
+import S from '@/components/card/card.module.css';
 import Image from 'next/image';
+import CategoryChip from '../chip/category/categoryChip';
 
 interface CardProps {
   title: string;
   date: string;
   profileImg?: string;
   cardImg?: string;
+  onClick: () => void;
 }
 
 interface Chip {
@@ -26,9 +27,9 @@ const dummyChip: Chip[] = [
   },
 ];
 
-function Card({ title, date, profileImg, cardImg }: CardProps) {
+function Card({ title, date, profileImg, cardImg, onClick }: CardProps) {
   return (
-    <div className={S.cardContainer}>
+    <div className={S.cardContainer} onClick={onClick}>
       {cardImg && (
         <Image className={S.cardImg} src={cardImg} alt="할 일 카드 이미지" />
       )}
