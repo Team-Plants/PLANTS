@@ -76,7 +76,7 @@ function InvitedList() {
             {hasNextPage && (
               <div
                 ref={setTarget}
-                style={{ width: 200, height: 20, border: '1px solid red' }}
+                style={{ width: 200, height: 20, border: '1px solid white' }}
               />
             )}
           </div>
