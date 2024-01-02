@@ -41,10 +41,13 @@ function Comment({ data }: CommentProps) {
     },
   });
 
-  async function onClickCommentDeleteBtn(commentId: number) {
-    if (confirm('해당 댓글을 삭제하시겠습니까?')) {
-      await deleteComment(commentId);
-    }
+  useQuery({
+    queryKey: [QUERY_KEYS.deleteComment],
+    queryFn: () => deleteComment(data.id),
+  });
+
+  async function onClickCommentDeleteBtn() {
+    await refetch();
   }
 
   async function onClickCommentModifyBtn(data: FieldValues) {
@@ -102,7 +105,7 @@ function Comment({ data }: CommentProps) {
               </div>
               <div
                 className={S.commentToolItem}
-                onClick={() => onClickCommentDeleteBtn(data.id)}>
+                onClick={() => onClickCommentDeleteBtn()}>
                 삭제
               </div>
             </div>
