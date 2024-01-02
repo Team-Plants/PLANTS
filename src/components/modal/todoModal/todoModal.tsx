@@ -32,15 +32,15 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
-      comment: '',
+      content: '',
     },
   });
 
-  const { handleSubmit, control } = methods;
+  const { handleSubmit, control, reset } = methods;
 
   const { data, refetch } = useQuery<CommentData>({
     queryKey: [QUERY_KEYS.comment],
-    queryFn: () => getComments(172),
+    queryFn: () => getComments(172, 1000),
   });
 
   const mutation = useMutation({
@@ -55,7 +55,8 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
   });
 
   async function handleCommentSubmit(data: FieldValues) {
-    mutation.mutate(data);
+    await mutation.mutate(data);
+    reset();
     //  cardId, columnId, dashboardId,
   }
 

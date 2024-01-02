@@ -26,7 +26,7 @@ function Comment({ data }: CommentProps) {
 
   const { refetch } = useQuery<CommentData>({
     queryKey: [QUERY_KEYS.comment],
-    queryFn: () => getComments(172),
+    queryFn: () => getComments(172, 1000),
     enabled: false,
   });
 
