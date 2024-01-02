@@ -6,9 +6,17 @@ function PasswordTable() {
   return (
     <div className={S.container}>
       <span className={S.title}>비밀번호 변경</span>
-      <Input type="currentPassword" label="현재 비밀번호" />
-      <Input type="newPassword" label="새 비밀번호" />
-      <Input type="newPasswordCheck" label="새 비밀번호 확인" />
+      <Input
+        type="currentPassword"
+        label="현재 비밀번호"
+        size="largeContainer"
+      />
+      <Input type="newPassword" label="새 비밀번호" size="largeContainer" />
+      <Input
+        type="newPasswordCheck"
+        label="새 비밀번호 확인"
+        size="largeContainer"
+      />
 
       <div className={S.buttonContainer}>
         <Button content="변경" status="primary" />
