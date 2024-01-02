@@ -24,13 +24,13 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
   const [cursorId, setCursorId] = useState();
 
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.card],
+    queryKey: [QUERY_KEYS.uniqueCard],
     queryFn: () => getCards(3, cursorId, columnId),
-    enabled: false,
   });
 
   async function fetchMoreCards() {
     if (isLoading) return;
+    if (!cursorId) return;
     refetch();
   }
 
@@ -42,9 +42,13 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
 
   useEffect(() => {
     if (data) {
-      setCursorId(data.cursorId + 3);
+      setCursorId(data.cursorId);
       setCards((prev) => [...prev, ...data.cards]);
     }
+  }, [data]);
+
+  useEffect(() => {
+    data;
   }, [data]);
 
   return (
@@ -63,17 +67,18 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
       <AddButton onClick={addClick} />
       <div className={S.cardContainer}>
         {cards &&
-          cards.map((card) => {
-            return (
-              <div key={card.id}>
-                <Card title={card.title} date={card.dueDate} />
-              </div>
-            );
-          })}
+          cards.map((card) => (
+            <div key={card.id}>
+              <Card title={card.title} date={card.dueDate} />
+            </div>
+          ))}
+        <div ref={setTarget} className={S.refContainer}>
+          <div className={S.loading}>{isLoading && 'loading...'}</div>
+        </div>
       </div>
-      <div ref={setTarget} className={S.refContainer}>
+      {/* <div ref={setTarget} className={S.refContainer}>
         <div className={S.loading}>{isLoading && 'loading...'}</div>
-      </div>
+      </div> */}
     </div>
   );
 }

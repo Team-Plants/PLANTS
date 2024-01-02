@@ -50,7 +50,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const { data: columns, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
     queryFn: () => getColumns(dashboardId),
-    enabled: true,
+    // enabled: true,
   });
 
   const queryclient = useQueryClient();

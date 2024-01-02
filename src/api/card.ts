@@ -8,8 +8,13 @@ export async function getCards(
   columnId: number,
 ) {
   const option = {
-    endpoint: `/cards?columnId=${columnId}`,
+    endpoint: `/cards`,
     method: 'GET',
+    params: {
+      size,
+      cursorId,
+      columnId,
+    },
   };
 
   const result = await axios.post('/api/withAuthHandler', option);
