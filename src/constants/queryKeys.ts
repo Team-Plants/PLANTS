@@ -1,5 +1,7 @@
 const QUERY_KEYS = {
   card: 'card',
+  comment: 'comment',
+  deleteComment: 'deleteComment',
   uniqueCard: 'uniqueCard',
   invitations: 'invitations',
   deleteInvitation: 'deleteInvitation',

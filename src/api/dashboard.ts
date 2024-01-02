@@ -95,3 +95,22 @@ export async function putDashboard(
     }
   }
 }
+
+export async function deleteDashboard(dashboardId: string) {
+  const option = {
+    endpoint: `/dashboards/${dashboardId}`,
+    method: 'DELETE',
+  };
+  try {
+    const response = await axios.post('/api/withAuthHandler', option);
+    if (response.status === 204) {
+      alert('대시보드 삭제가 완료되었습니다.');
+      return true;
+    }
+  } catch (e: unknown) {
+    if (e instanceof AxiosError) {
+      alert(e);
+      return false;
+    }
+  }
+}
