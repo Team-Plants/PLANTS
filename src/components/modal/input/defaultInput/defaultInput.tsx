@@ -22,7 +22,10 @@ function DefaultInput({
   control,
   isRequired = true,
 }: DefaultInputProps) {
-  const { field } = useController({
+  const {
+    field,
+    fieldState: { error },
+  } = useController({
     name,
     control,
     rules: isRequired
@@ -32,15 +35,18 @@ function DefaultInput({
       : {},
   });
   return (
-    <input
-      className={S.input}
-      placeholder={placeholder}
-      type={type}
-      id={field.name}
-      name={field.name}
-      value={field.value}
-      onChange={field.onChange}
-    />
+    <div>
+      <input
+        className={`${S.input} ${error ? S.errorInput : ''}`}
+        placeholder={placeholder}
+        type={type}
+        id={field.name}
+        name={field.name}
+        value={field.value}
+        onChange={field.onChange}
+      />
+      {error && <div className={S.errorMessage}>{error.message}</div>}
+    </div>
   );
 }
 

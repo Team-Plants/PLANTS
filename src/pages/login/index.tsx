@@ -21,7 +21,7 @@ Login.getLayout = (page: ReactElement) => (
     handleSubmit={handleLogin}
     greetingsContent="오늘도 만나서 반가워요!"
     submitButtonTitle="로그인"
-    submitLink="/boards"
+    submitLink="/mydashboard"
     memberStatus="회원이 아니신가요?"
     linkTitle="회원가입하기"
     link="/signup">

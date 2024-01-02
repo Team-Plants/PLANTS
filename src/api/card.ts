@@ -2,10 +2,19 @@ import { DashBoardData } from '@/components/modal/addTodoModal/addTodoModal';
 import { CardData } from '@/types/Card';
 import axios from 'axios';
 
-export async function getCards(columnId: number) {
+export async function getCards(
+  size: number,
+  cursorId: number | undefined,
+  columnId: number,
+) {
   const option = {
-    endpoint: `/cards?columnId=${columnId}`,
+    endpoint: `/cards`,
     method: 'GET',
+    params: {
+      size,
+      cursorId,
+      columnId,
+    },
   };
 
   const result = await axios.post('/api/withAuthHandler', option);
@@ -29,7 +38,7 @@ export async function postCard(newData: DashBoardData) {
     data: newData,
   };
 
-  const result = await axios.post('api/withAuthHandler', option);
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 
