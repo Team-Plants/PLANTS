@@ -6,7 +6,6 @@ import Card from '@/components/card/card';
 import ColumnButton from '@/components/button/column/columnButton';
 import Layout from '@/components/layout/layout';
 import NumberChip from '@/components/chip/number/numberChip';
-/* eslint-disable react-hooks/rules-of-hooks */
 import { getCards } from '@/api/card';
 import SettingImg from '@/assets/icons/Setting.svg';
 import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
@@ -15,6 +14,7 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/boards/boards.module.css';
 import { CardList } from '@/types/Card';
 import { useQuery } from '@tanstack/react-query';
+import { withLayout } from '@/hooks/withAuth';
 
 function Boards(cardId: number) {
   const [mounted, setMounted] = useState(false);
@@ -36,7 +36,7 @@ function Boards(cardId: number) {
   });
 
   return (
-    <>
+    mounted && (
       <div className={S.mainContainer}>
         <div className={S.toDo}>
           <div className={S.infoContainer}>
@@ -47,6 +47,8 @@ function Boards(cardId: number) {
             </div>
             <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
           </div>
+
+          <AddButton onClick={handleClick} />
 
           {data?.cards.map((item, index) => (
             <>
@@ -104,7 +106,7 @@ function Boards(cardId: number) {
 
         {modalOpen && <AddTodoModal onClick={handleClick} />}
       </div>
-    </>
+    )
   );
 }
 
