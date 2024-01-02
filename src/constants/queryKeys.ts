@@ -2,7 +2,12 @@ const QUERY_KEYS = {
   card: 'card',
   comment: 'comment',
   deleteComment: 'deleteComment',
-  // 필요한 queryKey 추가해서 사용해주세요.
+  invitations: 'invitations',
+  deleteInvitation: 'deleteInvitation',
+  dashboards: 'dashboards',
+  sidemenuDashboards: 'sidemenuDashboards',
+  members: 'members',
+  deleteMember: 'deleteMember',
 } as const;
 
 export default QUERY_KEYS;

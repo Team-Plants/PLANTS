@@ -1,16 +1,13 @@
-import { postDashboardsInvitations } from '@/api/dashboard';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
-import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
-import SideMenu from '@/components/sideMenu/SideMenu';
+import Layout from '@/components/layout/layout';
+import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
 import S from '@/pages/[id]/mydashboard.module.css';
-import { useMutation } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -34,34 +31,15 @@ interface DashboardEditPageProps {
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const mutation = useMutation({
-    mutationFn: (data: FieldValues) =>
-      postDashboardsInvitations(dashboardId, data),
-    onError: (error) => {
-      alert(error);
-    },
-  });
+  const [flag, setFlag] = useState(false);
+  const [invitationFlag, setInvitationFlag] = useState(false);
+  const [memberFlag, setMemberFlag] = useState(false);
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const methods = useForm<FieldValues>({
-    mode: 'onChange',
-    defaultValues: {
-      email: '',
-    },
-  });
-
-  const { handleSubmit, control, reset } = methods;
-
-  function handleAddTodo(data: FieldValues) {
-    mutation.mutate(data);
-    setIsModalOpen(false);
-    reset();
-  }
-
-  // 모달이 열릴 경우 백그라운드 스크롤 방지
+  // // 모달이 열릴 경우 백그라운드 스크롤 방지
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflowY = 'hidden';
@@ -71,31 +49,29 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   }, [isModalOpen]);
 
   return (
-    <div className={S.mainOuter}>
-      <SideMenu pageId={Number(dashboardId)} />
-      <div className={S.main}>
-        <DashboardHeader
-          folder="1"
-          users={[]}
-          user={{
-            letter: '1',
-            name: 'kim',
-            color: 'yellow',
-            ownerFolder: { folder: '1' },
-          }}
-        />
-        <div className={S.mainContainer}>
-          <ReturnButton url={`/${dashboardId}`} />
-          <div className={S.tableContainer}>
-            <EditDashboard />
-            <MemberList members={[]} />
-            <InvitationList invitations={[]} />
-            <div className={S.marginDiv}></div>
-            <DeleteDashBoardButton />
-          </div>
+    <Layout flag={flag}>
+      <NestedLayout>
+        <ReturnButton url={`/${dashboardId}`} />
+        <div className={S.tableContainer}>
+          <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
+          <MemberList
+            dashboardId={dashboardId}
+            memberFlag={memberFlag}
+            setMemberFlag={setMemberFlag}
+          />
+          <InvitationList
+            dashboardId={dashboardId}
+            onClick={handleModal}
+            invitationFlag={invitationFlag}
+            setInvitationFlag={setInvitationFlag}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
+          <div className={S.marginDiv}></div>
+          <DeleteDashBoardButton />
         </div>
-      </div>
-    </div>
+      </NestedLayout>
+    </Layout>
   );
 }
 
