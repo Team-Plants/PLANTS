@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { getCards } from '@/api/card';
-import SettingImg from '@/assets/icons/Setting.svg';
 import AddButton from '@/components/button/add/addButton';
-import ColumnButton from '@/components/button/column/columnButton';
 import Card from '@/components/card/card';
 import NumberChip from '@/components/chip/number/numberChip';
 import DashboardHeader from '@/components/header/dashboardHeader/dashboardHeader';
@@ -113,8 +111,6 @@ function boards(cardId: number) {
               ))}
 
               <AddButton onClick={handleClick} />
-              <Card title="송민혁 천재" date="12월 27일" />
-              <Card title="송민혁 천재" date="12월 27일" />
             </div>
             <div className={S.onProgress}>
               <div className={S.infoContainer}>
@@ -131,7 +127,6 @@ function boards(cardId: number) {
                 />
               </div>
               <AddButton onClick={handleClick} />
-              <Card title="송민혁 대박" date="12월 27일" />
             </div>
             <div className={S.done}>
               <div className={S.infoContainer}>
@@ -148,7 +143,6 @@ function boards(cardId: number) {
                 />
               </div>
               <AddButton onClick={handleClick} />
-              <Card title="송민혁 바보" date="12월 27일" />
             </div>
             <div className={S.addButton}>
               <ColumnButton />

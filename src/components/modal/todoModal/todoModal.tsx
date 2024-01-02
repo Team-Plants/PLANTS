@@ -14,7 +14,7 @@ import S from '@/components/modal/todoModal/todoModal.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { CardData } from '@/types/Card';
 import { CommentData } from '@/types/Comment';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -38,13 +38,25 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
 
   const { handleSubmit, control } = methods;
 
-  const { data } = useQuery<CommentData>({
+  const { data, refetch } = useQuery<CommentData>({
     queryKey: [QUERY_KEYS.comment],
     queryFn: () => getComments(172),
   });
 
+  const mutation = useMutation({
+    mutationFn: (data: FieldValues) =>
+      postComments(data.content, 172, 1012, 323),
+    onError: (error) => {
+      alert(error);
+    },
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
   async function handleCommentSubmit(data: FieldValues) {
-    await postComments(data.content, 172, 1012, 323); //  cardId, columnId, dashboardId,
+    mutation.mutate(data);
+    //  cardId, columnId, dashboardId,
   }
 
   return (
