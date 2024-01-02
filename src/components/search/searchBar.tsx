@@ -4,16 +4,15 @@ import SearchImg from '@/assets/icons/Search.svg';
 import { SetStateAction, Dispatch, ChangeEvent } from 'react';
 
 interface SearchBarProps {
-  setValue : Dispatch<SetStateAction<string | undefined>>
+  setValue: Dispatch<SetStateAction<string | undefined>>;
 }
 
 function SearchBar({ setValue }: SearchBarProps) {
-
-  function handleChange (e: ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setTimeout(() => {
-      setValue(value)
-    },1000)
+      setValue(value);
+    }, 1000);
   }
 
   return (

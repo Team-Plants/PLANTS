@@ -11,7 +11,7 @@ import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 function InvitedList() {
   const [title, setTitle] = useState<string>();
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  const [cursorId, setCursorId] = useState();;
+  const [cursorId, setCursorId] = useState();
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['invitation', title],
@@ -59,22 +59,24 @@ function InvitedList() {
               invitation.map((item, index) => {
                 return (
                   <div key={index}>
-                    {item.invitations?.map((invitation: InvitedDashBoardProps) => (
-                      <div key={invitation?.id} className={S.tableItem}>
-                        <InvitedItem
-                          dashBoardTitle={invitation?.dashboard?.title}
-                          invitationId={invitation?.id}
-                          inviter={invitation?.inviter?.nickname}
-                        />
-                      </div>
-                    ))}
+                    {item.invitations?.map(
+                      (invitation: InvitedDashBoardProps) => (
+                        <div key={invitation?.id} className={S.tableItem}>
+                          <InvitedItem
+                            dashBoardTitle={invitation?.dashboard?.title}
+                            invitationId={invitation?.id}
+                            inviter={invitation?.inviter?.nickname}
+                          />
+                        </div>
+                      ),
+                    )}
                   </div>
                 );
               })}
             {hasNextPage && (
               <div
                 ref={setTarget}
-                style={{ width: 200, height: 20, border: '1px solid red'}}
+                style={{ width: 200, height: 20, border: '1px solid red' }}
               />
             )}
           </div>
