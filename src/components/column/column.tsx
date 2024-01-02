@@ -30,7 +30,7 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
 
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.uniqueCard],
-    queryFn: () => getCards(3, cursorId, columnId),
+    queryFn: () => getCards(10, cursorId, columnId),
   });
 
   async function fetchMoreCards() {

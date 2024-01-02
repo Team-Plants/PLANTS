@@ -74,16 +74,16 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const { handleSubmit, control, reset, watch, setError } = methods;
 
   function handleTodoModal() {
-    setIsOpenAddTodoModal(true);
+    setIsOpenAddTodoModal((prev) => !prev);
   }
 
   function handleColumnAddModal() {
-    setIsOpenColumnAddModal(true);
+    setIsOpenColumnAddModal((prev) => !prev);
   }
 
   function handleColumnManageModal(id: number) {
     setColumnId(id);
-    setIsOpenColumnManageModal(true);
+    setIsOpenColumnManageModal((prev) => !prev);
   }
 
   async function handleAddColumn(data: FieldValues) {
@@ -135,22 +135,24 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   }, [columns]);
 
   return (
-    <div className={S.mainContainer}>
-      {fullData &&
-        fullData?.map((column: ColumnType) => {
-          return (
-            <div key={column.id}>
-              <Column
-                columnId={column.id}
-                columnName={column.title}
-                addClick={handleTodoModal}
-                settingClick={() => handleColumnManageModal(column.id)}
-              />
-            </div>
-          );
-        })}
-      <div className={S.addButton}>
-        <ColumnButton onClick={handleColumnAddModal} />
+    <>
+      <div className={S.mainContainer}>
+        {fullData &&
+          fullData?.map((column: ColumnType) => {
+            return (
+              <div key={column.id}>
+                <Column
+                  columnId={column.id}
+                  columnName={column.title}
+                  addClick={handleTodoModal}
+                  settingClick={() => handleColumnManageModal(column.id)}
+                />
+              </div>
+            );
+          })}
+        <div className={S.addButton}>
+          <ColumnButton onClick={handleColumnAddModal} />
+        </div>
       </div>
       {isOpenAddTodoModal && <AddTodoModal onClick={handleTodoModal} />}
       {isOpenColumnAddModal && (
@@ -198,7 +200,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           </InputLayout>
         </InputModal>
       )}
-    </div>
+    </>
   );
 }
 

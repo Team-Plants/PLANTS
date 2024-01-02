@@ -62,11 +62,8 @@
 }
 
 .refContainer {
-  background: var(--white);
   width: 70px;
   height: 5px;
-  border-right: 3px solid;
-  border-color: var(--gray-40);
   @media (min-width: 768px) {
     width: 148px;
   }
