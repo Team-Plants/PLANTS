@@ -17,7 +17,8 @@ function InvitedList() {
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['invitation', debouncedSearchValue],
-    queryFn: ({ pageParam: cursorId }) => getInvitations(6, cursorId, debouncedSearchValue),
+    queryFn: ({ pageParam: cursorId }) =>
+      getInvitations(6, cursorId, debouncedSearchValue),
     getNextPageParam: (lastPage) => {
       if (lastPage) {
         return lastPage.cursorId;

@@ -1,7 +1,7 @@
 import S from '@/components/search/searchBar.module.css';
 import Image from 'next/image';
 import SearchImg from '@/assets/icons/Search.svg';
-import { SetStateAction, Dispatch} from 'react';
+import { SetStateAction, Dispatch } from 'react';
 
 interface SearchBarProps {
   setValue: Dispatch<SetStateAction<string | undefined>>;
