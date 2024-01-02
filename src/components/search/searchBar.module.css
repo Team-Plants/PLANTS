@@ -1,3 +1,5 @@
+@value desktop, tablet from "@/styles/breakpoints.css";
+
 .container {
   display: flex;
   justify-content: center;
@@ -10,12 +12,12 @@
   border: 1px solid var(--gray-30);
   background: var(--white);
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     height: 40px;
     gap: 8px;
   }
 
-  @media (min-width: 1080px) {
+  @media (desktop) {
     height: 40px;
     gap: 8px;
   }
