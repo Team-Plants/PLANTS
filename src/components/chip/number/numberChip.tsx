@@ -1,7 +1,7 @@
 import S from '@/components/chip/number/number.module.css';
 
 interface Content {
-  num: number;
+  num?: number;
 }
 
 function NumberChip({ num }: Content) {

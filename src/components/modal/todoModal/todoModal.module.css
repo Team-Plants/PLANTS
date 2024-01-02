@@ -88,6 +88,8 @@
   flex-direction: column;
   margin-top: 4px;
   gap: 10px;
+  height: 300px;
+  overflow: scroll;
 }
 
 .mainInfoContainer {
