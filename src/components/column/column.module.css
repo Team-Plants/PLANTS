@@ -57,14 +57,14 @@
   height: auto;
 }
 
-/* .cardContainer::-webkit-scrollbar {
+.cardContainer::-webkit-scrollbar {
   display: none;
-} */
+}
 
 .refContainer {
-  background: var(--black);
+  background: var(--white);
   width: 70px;
-  height: 50px;
+  height: 5px;
   border-right: 3px solid;
   border-color: var(--gray-40);
   @media (min-width: 768px) {
@@ -73,4 +73,8 @@
   @media (min-width: 1200px) {
     width: 288px;
   }
+}
+
+.refContainer div {
+  height: 50px;
 }

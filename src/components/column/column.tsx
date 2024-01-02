@@ -76,9 +76,6 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
           <div className={S.loading}>{isLoading && 'loading...'}</div>
         </div>
       </div>
-      {/* <div ref={setTarget} className={S.refContainer}>
-        <div className={S.loading}>{isLoading && 'loading...'}</div>
-      </div> */}
     </div>
   );
 }
