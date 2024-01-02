@@ -14,24 +14,14 @@ import CreateDashBoardButton from '@/components/button/dashBoard/create/createDa
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 
 function MyDashboard() {
-  // const ref = useRef(null);
   const [DSize, setDSize] = useState(5);
-  const [ISize, setISize] = useState(6);
-  const [cursorId, setCursorId] = useState();
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dashboard, setDashboard] = useState<DashBoardData>();
-  const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
 
   const { data: dashboardsData } = useQuery({
     queryKey: [QUERY_KEYS.dashboards, DSize, page],
     queryFn: () => getDashboards('pagination', DSize, page),
-    enabled: true,
-  });
-
-  const { data: invitationsData, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.invitations],
-    queryFn: () => getInvitations(ISize, cursorId),
     enabled: true,
   });
 
@@ -51,11 +41,6 @@ function MyDashboard() {
     setDashboard(dashboardsData);
   }, [dashboardsData]);
 
-  useEffect(() => {
-    setInvitation(invitationsData?.invitations);
-    setCursorId(invitationsData?.cursorId);
-  }, [invitationsData]);
-
   return (
     <>
       {dashboard ? (
@@ -68,14 +53,7 @@ function MyDashboard() {
       ) : (
         <CreateDashBoardButton onClick={handleClick} />
       )}
-      {invitation ? (
-        <InvitedList
-          invitations={invitation}
-          // ref={ref}
-        />
-      ) : (
-        <EmptyInvitation />
-      )}
+      <InvitedList />
       {isOpenModal && (
         <NewDashboardModal onClick={handleClick} redirect={false} />
       )}
