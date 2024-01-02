@@ -6,21 +6,18 @@
   grid-template-rows: repeat(2, minmax(70px, auto));
   grid-row-gap: 12px;
   grid-column-gap: 13px;
-  height: 152px;
+  height: fit-content;
   width: 100%;
   max-width: 1022px;
 
   @media all and (tablet) {
     grid-template-columns: repeat(auto-fill, minmax(247px, 1fr));
-    grid-template-rows: repeat(3, minmax(68px, auto));
-    height: 224px;
-    width: 100%;
+    grid-template-rows: repeat(auto-fill, minmax(68px, auto));
   }
 
   @media all and (mobile) {
     grid-template-columns: repeat(auto-fill, minmax(247px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(58px, 1fr));
-    height: fit-content;
   }
 }
 
