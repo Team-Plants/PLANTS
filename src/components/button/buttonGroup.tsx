@@ -21,6 +21,7 @@ function ButtonGroup({
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['invitations'] });
       queryClient.invalidateQueries({ queryKey: ['dashboards'] });
+      // queryClient.refetchQueries({ queryKey: ['invitations', 'dashboards'] });
     },
   });
 

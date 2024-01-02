@@ -1,20 +1,20 @@
 import S from '@/components/table/invitedDashboard/invitedList.module.css';
 import SearchBar from '@/components/search/searchBar';
 import InvitedItem from './invitedItem';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import { getInvitations } from '@/api/invitations';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
-import { Invitation } from '@/types/Invitation';
+import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 
 function InvitedList() {
   const [title, setTitle] = useState<string>();
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  let cursorId;
+  const [cursorId, setCursorId] = useState();;
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: ['invitation', cursorId, title],
+    queryKey: ['invitation', title],
     queryFn: ({ pageParam: cursorId }) => getInvitations(6, cursorId, title),
     getNextPageParam: (lastPage) => {
       if (lastPage) {
@@ -31,6 +31,15 @@ function InvitedList() {
     fetchCallback: fetchNextPage,
     props: cursorId,
   });
+
+  useEffect(() => {
+    if (data) {
+      const lastPage = data.pages[data.pages.length - 1];
+      if (lastPage) {
+        setCursorId(lastPage.cursorId);
+      }
+    }
+  }, [data]);
 
   const invitation = data?.pages;
 
@@ -50,12 +59,12 @@ function InvitedList() {
               invitation.map((item, index) => {
                 return (
                   <div key={index}>
-                    {item.invitations?.map((invitation: Invitation) => (
+                    {item.invitations?.map((invitation: InvitedDashBoardProps) => (
                       <div key={invitation?.id} className={S.tableItem}>
                         <InvitedItem
                           dashBoardTitle={invitation?.dashboard?.title}
                           invitationId={invitation?.id}
-                          inviter={invitation?.invitee?.nickname}
+                          inviter={invitation?.inviter?.nickname}
                         />
                       </div>
                     ))}
@@ -65,7 +74,7 @@ function InvitedList() {
             {hasNextPage && (
               <div
                 ref={setTarget}
-                style={{ width: 200, height: 100, border: '1px solid red' }}
+                style={{ width: 200, height: 20, border: '1px solid red'}}
               />
             )}
           </div>

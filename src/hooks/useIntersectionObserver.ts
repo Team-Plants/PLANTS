@@ -24,7 +24,7 @@ function useIntersectionObserver({ target, fetchCallback, props }: Props) {
       observer = new IntersectionObserver(onIntersect, { threshold: 1 });
       observer.observe(target);
     }
-  }, [target, props ,fetchCallback]);
+  }, [target, props, fetchCallback]);
 }
 
 export default useIntersectionObserver;
