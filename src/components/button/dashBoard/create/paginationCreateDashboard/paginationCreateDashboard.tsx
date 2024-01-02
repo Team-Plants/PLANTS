@@ -18,7 +18,7 @@ function PaginationCreateDashboard({
 
   return (
     <>
-      <div className={S.boardGrid} onClick={handleClick}>
+      <div className={S.boardGrid} >
         <CreateDashBoardButton />
         {dashboards &&
           dashboards.map((board, index) => (
