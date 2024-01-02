@@ -16,7 +16,7 @@ import CommonStyle from '@/components/modal/modalCommon.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
 import { ColumnType } from '@/types/column';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ReactElement, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { GetServerSidePropsContext } from 'next';
@@ -45,19 +45,23 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [isColumnNameValid, setIsColumnNameValid] = useState(false);
   const [columnId, setColumnId] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [flag, setFlag] = useState(false);
   const [fullData, setFullData] = useState([]);
 
   const { data: columns, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
     queryFn: () => getColumns(dashboardId),
-    enabled: false,
+    enabled: true,
   });
+
+  const queryclient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (data: FieldValues) => postColumnAdd(data.title, dashboardId),
     onError: (error) => {
       alert(error);
+    },
+    onSuccess: () => {
+      queryclient.invalidateQueries(); // mutation이 되면 캐싱 리프레시 작업 >>> 새로고침
     },
   });
 
@@ -95,17 +99,15 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     putColumn(data.title, columnId);
     setIsOpenColumnManageModal(false);
     reset();
-    setFlag(true);
-    // 새로고침 필요
+    refetch();
   }
 
   function handleDeleteColumn(columnId: number): void {
     if (confirm('컬럼의 모든 카드가 삭제됩니다')) {
       deleteColumn(columnId);
       setIsOpenColumnManageModal(false);
-      setFlag(true);
+      refetch();
     }
-    // 새로고침 필요
   }
 
   // 빈값 확인하는 코드
@@ -119,13 +121,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     if (isColumnNameValid) setIsActive(true);
     else setIsActive(false);
   }, [isColumnNameValid]);
-
-  useEffect(() => {
-    if (flag) {
-      refetch();
-    }
-    setFlag(false);
-  }, [flag]);
 
   // 컬럼 관리 코드
   useEffect(() => {
@@ -190,7 +185,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
                 onClickCancel={() =>
                   setIsOpenColumnManageModal((prev) => !prev)
                 }
-                // TODO: 모달 더 추가해야 함
                 onClickDelete={() => handleDeleteColumn(columnId)}
                 isActive={isActive}
               />

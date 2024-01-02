@@ -37,8 +37,26 @@
 
 .sectionName {
   color: var(--black);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: var(--font-bold);
+}
+
+.addContainer {
+  width: auto;
+  height: 40px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  max-height: fit-content;
+  overflow-y: auto;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .refContainer {

@@ -28,7 +28,7 @@ export async function postCard(newData: DashBoardData) {
     data: newData,
   };
 
-  const result = await axios.post('api/withAuthHandler', option);
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 

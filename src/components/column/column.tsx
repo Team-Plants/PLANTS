@@ -47,8 +47,6 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
     }
   }, [data]);
 
-  console.log(cards);
-
   return (
     <div className={S.container}>
       <div className={S.infoContainer}>
@@ -61,15 +59,18 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
           <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
         </button>
       </div>
-      {cards &&
-        cards.map((card) => {
-          return (
-            <div key={card.id}>
-              <Card title={card.title} date={card.dueDate} />
-            </div>
-          );
-        })}
+      <div className={S.addContainer}></div>
       <AddButton onClick={addClick} />
+      <div className={S.cardContainer}>
+        {cards &&
+          cards.map((card) => {
+            return (
+              <div key={card.id}>
+                <Card title={card.title} date={card.dueDate} />
+              </div>
+            );
+          })}
+      </div>
       <div ref={setTarget} className={S.refContainer}>
         <div className={S.loading}>{isLoading && 'loading...'}</div>
       </div>
