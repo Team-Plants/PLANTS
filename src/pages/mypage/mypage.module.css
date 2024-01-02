@@ -16,16 +16,18 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 17px 12px 24px 40px;
   gap: 20px;
+  background: var(--gray-10);
+  width: calc(100vw - 316.6px);
+  padding: 40px;
 
   @media all and (tablet) {
     width: calc(100vw - 176.6px);
-    padding: 20px 20px 48px 20px;
+    padding: 40px;
   }
 
-  @media all and (desktop) {
-    width: calc(100vw - 316.6px);
-    padding: 20px 20px 48px 20px;
+  @media all and (mobile) {
+    width: 100%;
+    padding: 24px;
   }
 }

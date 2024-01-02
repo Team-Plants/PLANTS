@@ -22,3 +22,21 @@
     font-size: 1.2rem;
   }
 }
+
+.groupContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.primary {
+  background-color: var(--violet);
+  color: var(--white);
+}
+
+.secondary {
+  border: 1px solid var(--gray-30);
+  background-color: var(--white);
+  color: var(--violet);
+}

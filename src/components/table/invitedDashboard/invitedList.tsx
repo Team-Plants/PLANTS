@@ -15,7 +15,9 @@ function InvitedList({
         <SearchBar />
       </div>
       <div className={S.label}>
-        <div>이름</div> <div>초대자</div> <div>수락 여부</div>
+        <div className={S.labelTitle}>이름</div>{' '}
+        <div className={S.labelTitle}>초대자</div>{' '}
+        <div className={S.labelTitle}>수락 여부</div>
       </div>
       <div>
         {invitations &&

@@ -14,7 +14,7 @@ function DashBoardButton({ content, color, madeByOwner = false }: Category) {
     <button className={S.container}>
       <div className={S.contentContainer}>
         <div className={S.circle} style={{ backgroundColor: color }} />
-        {content}
+        <div className={S.content}>{content}</div>
         {madeByOwner && <Image src={Crown} alt="왕관" />}
       </div>
       <Image src={ArrowForwardImg} alt="오른쪽 화살표" />

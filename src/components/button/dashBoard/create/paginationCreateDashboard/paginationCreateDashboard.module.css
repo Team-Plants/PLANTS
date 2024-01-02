@@ -2,27 +2,25 @@
 
 .boardGrid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(33%, auto));
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, minmax(70px, auto));
   grid-row-gap: 12px;
   grid-column-gap: 13px;
   height: 152px;
-  width: 1022px;
-
-  /* button device props 수정 후 media query 수정필요*/
+  width: 100%;
+  max-width: 1022px;
 
   @media all and (tablet) {
-    grid-template-columns: repeat(2, minmax(50%, auto));
+    grid-template-columns: repeat(auto-fill, minmax(247px, 1fr));
     grid-template-rows: repeat(3, minmax(68px, auto));
     height: 224px;
-    width: 504px;
+    width: 100%;
   }
 
   @media all and (mobile) {
-    grid-template-columns: repeat(1, minmax(100%, auto));
-    grid-template-rows: repeat(6, minmax(17%, auto));
-    height: 388px;
-    width: 260px;
+    grid-template-columns: repeat(auto-fill, minmax(247px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(58px, 1fr));
+    height: fit-content;
   }
 }
 
@@ -30,17 +28,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 96px;
-  width: 1030px;
+  width: 100%;
+  max-width: 1022px;
   gap: 12px;
   font-size: 1.4rem;
-
-  @media all and (tablet) {
-    width: 504px;
-    height: 90px;
-  }
-  @media all and (mobile) {
-    width: 388px;
-    height: 68px;
-  }
+  margin-bottom: 24px;
+  margin-top: -8px;
 }
