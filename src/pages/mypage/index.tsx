@@ -11,7 +11,7 @@ function Mypage() {
   const methods = useForm<SignFormValuesType>({ mode: 'onChange' });
 
   return (
-    <>
+    <div className={S.nestedLayout}>
       <ReturnButton url="/boards" />
       <FormProvider {...methods}>
         <div className={S.formContainer}>
@@ -19,7 +19,7 @@ function Mypage() {
           <PasswordTable />
         </div>
       </FormProvider>
-    </>
+    </div>
   );
 }
 

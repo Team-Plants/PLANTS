@@ -48,11 +48,15 @@ function ProfileTable() {
       <form
         className={S.itemContainer}
         onSubmit={handleSubmit(handlePutProfile)}>
-        <ImgInput control={control} name="imageUrl" setValue={setValue} />
-
+        <ImgInput
+          control={control}
+          name="imageUrl"
+          setValue={setValue}
+          size="large"
+        />
         <div className={S.inputContainer}>
           <NoWorkEmailInput data={data} />
-          <NicknameInput size="shortContainer" data={data} />
+          <NicknameInput size="middleContainer" data={data} />
 
           <div className={S.buttonContainer}>
             <Button content="저장" status="primary" />

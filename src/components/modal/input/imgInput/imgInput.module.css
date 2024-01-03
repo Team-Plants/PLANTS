@@ -14,6 +14,11 @@
   }
 }
 
+.large {
+  width: 182px;
+  height: 182px;
+}
+
 .noImgContainer {
   border-radius: 6px;
   padding: 24px;
@@ -24,6 +29,10 @@
   @media all and (mobile) {
     padding: 19px;
   }
+}
+
+.large > .noImgContainer {
+  padding: 76px;
 }
 
 .noImgContainer > img {

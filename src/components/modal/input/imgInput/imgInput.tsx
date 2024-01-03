@@ -14,12 +14,16 @@ interface ImgInputProps {
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
-  width?: number;
-  height?: number;
+  size?: 'large' | 'default';
 }
 
 // 할 일 생성, 할 일 수정 내부 이미지 업로드 컴포넌트
-function ImgInput({ control, name, setValue, width, height }: ImgInputProps) {
+function ImgInput({
+  control,
+  name,
+  setValue,
+  size = 'default',
+}: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -45,14 +49,9 @@ function ImgInput({ control, name, setValue, width, height }: ImgInputProps) {
   });
 
   return (
-    <div className={S.imgInputContainer}>
+    <div className={`${S.imgInputContainer} ${S[size]}`}>
       {imageSrc ? (
-        <Image
-          src={imageSrc}
-          alt="할일 업로드 이미지"
-          width={width ? width : 58}
-          height={height ? height : 58}
-        />
+        <Image src={imageSrc} alt="이미지 업로드" />
       ) : (
         <div className={S.noImgContainer} onClick={handleUploadImg}>
           <Image src={ImgPlusImg} alt="이미지 업로드 플러스 아이콘" />

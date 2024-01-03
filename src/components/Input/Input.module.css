@@ -21,6 +21,11 @@
   width: 564px;
 }
 
+.middleContainer {
+  composes: formContainer;
+  width: 366px;
+}
+
 .formLabel {
   font-size: 1.6rem;
   color: var(--gray-70);
@@ -55,8 +60,9 @@
 .noWorkInputContainer {
   composes: input;
   border-radius: 8px;
-  width: 440px;
   color: var(--gray-40);
+  width: 366px;
+  box-sizing: border-box;
 }
 
 .checkbox {

@@ -6,9 +6,9 @@ import { getInvitations } from '@/api/invitations';
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import { useEffect, useState } from 'react';
-import Layout from '@/components/layout/layout';
 import { withLayout } from '@/hooks/withAuth';
 import S from '@/pages/mydashboard/index.module.css';
+import Layout from '@/components/layout/layout';
 
 function MyDashboard() {
   const [dashboards, setDashboards] = useState<DashBoardData>();

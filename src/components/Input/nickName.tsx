@@ -2,7 +2,7 @@ import Input from '@/components/Input/Input';
 import { MemberProps } from '@/types/Member';
 
 interface Props {
-  size?: 'shortContainer';
+  size?: 'shortContainer' | 'middleContainer';
   data?: MemberProps;
 }
 
