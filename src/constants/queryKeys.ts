@@ -2,6 +2,7 @@ const QUERY_KEYS = {
   card: 'card',
   comment: 'comment',
   deleteComment: 'deleteComment',
+  uniqueCard: 'uniqueCard',
   invitations: 'invitations',
   deleteInvitation: 'deleteInvitation',
   dashboards: 'dashboards',
@@ -9,6 +10,7 @@ const QUERY_KEYS = {
   members: 'members',
   deleteMember: 'deleteMember',
   getToken: 'getToekn',
+  columns: 'columns',
 } as const;
 
 export default QUERY_KEYS;

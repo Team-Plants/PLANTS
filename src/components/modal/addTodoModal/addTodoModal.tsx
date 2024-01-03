@@ -112,7 +112,7 @@ function AddTodoModal({
   }, [watchAll]);
 
   return (
-    <ModalLayout onClick={onClick}>
+    <ModalLayout onClick={onClick} isOpen={true}>
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}

@@ -23,7 +23,6 @@ function ModalLayout({ children, onClick, isOpen }: ModalLayoutProp) {
         ReactDOM.createPortal(
           <div className={S.overlay}>
             <div className={S.outerModalContainer} onClick={onClick} />
-
             {children}
           </div>,
           document?.getElementById('modal') as HTMLElement,
