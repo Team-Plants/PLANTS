@@ -87,19 +87,49 @@
 
 .serviceDescription {
   padding-top: 35px;
-  color: var(--white);
+  color: var(--gray-30);
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: var(--font-light);
-  line-height: normal;
+  line-height: 25px;
   letter-spacing: -1px;
   padding-bottom: 35px;
+  max-width: 1200px;
 
   @media (tablet) {
+    font-size: 1.8rem;
+    line-height: 30px;
+  }
+  @media (desktop) {
+    font-size: 2rem;
+    line-height: 35px;
+  }
+}
+
+.loginButton {
+  display: flex;
+  width: 235.2px;
+  padding: 13px 0px 12px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--violet);
+  color: var(--white);
+  text-align: center;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: var(--font-normal);
+  line-height: normal;
+  margin: 45px 0 55px 0;
+  @media (tablet) {
+    width: 280px;
+    padding: 15px 0 16px 0;
     font-size: 1.6rem;
+    margin-bottom: 155px;
   }
   @media (desktop) {
     font-size: 1.8rem;
+    padding: 15px 0 14px 0;
   }
 }
 
