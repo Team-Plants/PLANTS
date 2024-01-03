@@ -21,14 +21,14 @@ interface SideMenuProps {
 function SideMenu({ pageId, flag }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  const [cursorId, setCursorId] = useState();
+  // const [cursorId, setCursorId] = useState();
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
-
+  const [page, setPage] = useState(1);
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.sidemenuDashboards],
-    queryFn: () => getSideMenuDashboards(10, cursorId),
+    queryFn: () => getSideMenuDashboards(5, page),
     enabled: false,
   });
 
@@ -40,7 +40,8 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
   useEffect(() => {
     if (flag) {
       setDashboards([]);
-      setCursorId(undefined);
+      // setCursorId(undefined);
+      setPage(1);
       setCurrentLength(0);
       setTotalCount(0);
       refetch();
@@ -49,7 +50,8 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
 
   useEffect(() => {
     if (data) {
-      setCursorId(data.cursorId + 8);
+      // setCursorId(data.cursorId + 8);
+      setPage((prev) => prev + 1);
       setDashboards((prev) => [...prev, ...data.dashboards]);
       setCurrentLength((prev) => prev + data.dashboards.length);
       setTotalCount(data.totalCount);
@@ -59,7 +61,7 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
   useIntersectionObserver({
     target: target,
     fetchCallback: fetchMoreDashboards,
-    props: cursorId,
+    props: page,
   });
 
   function handleCancelClick() {

@@ -28,15 +28,18 @@ export async function getDashboard(id: string) {
 
 export async function getSideMenuDashboards(
   size: number,
-  cursorId: number | undefined,
+  page?: number,
+  cursorId?: number | undefined,
 ) {
   const option = {
     endpoint: '/dashboards',
     method: 'GET',
     params: {
-      navigationMethod: 'infiniteScroll',
-      size: size,
-      cursorId: cursorId,
+      // navigationMethod: 'infiniteScroll',
+      navigationMethod: 'pagination',
+      page,
+      size,
+      cursorId,
     },
   };
 
