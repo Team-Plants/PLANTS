@@ -28,8 +28,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const dashboardId = context?.params['id'];
-
   const cookie = context.req.headers.cookie || '';
+
+  if (cookie === '') {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
   const cookieString = cookie.slice(12, cookie.length);
   const headers = {
     Authorization: `Bearer ${cookieString}`,

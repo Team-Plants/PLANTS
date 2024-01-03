@@ -1,6 +1,7 @@
 import { instance } from '@/libs/api';
 import { AxiosError, AxiosResponse } from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { AuthError, getToken } from './getToken';
 
 async function sendApiRequest(
   req: NextApiRequest,
@@ -11,16 +12,12 @@ async function sendApiRequest(
     params?: object;
   },
 ) {
-  const token = req.cookies.accessToken;
-
-  if (!token) {
-    //TODO: redirect 처리
-    //return NextResponse.redirect('http://localhost:3000/login');
-  }
+  const token = getToken(req);
 
   const headers = {
     Authorization: `Bearer ${token}`,
   };
+
   try {
     const response: AxiosResponse = await instance({
       method: option.method,
@@ -40,14 +37,25 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const result: AxiosResponse | AxiosError = await sendApiRequest(
-    req,
-    req.body,
-  );
+  try {
+    const result: AxiosResponse | AxiosError = await sendApiRequest(
+      req,
+      req.body,
+    );
 
-  if (!(result instanceof AxiosError)) {
-    return res.status(result.status).json(result.data);
+    if (!(result instanceof AxiosError)) {
+      return res.status(result.status).json(result.data);
+    }
+
+    return res
+      .status(result.response?.status || 404)
+      .json(result.response?.data);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      return res.status(401).json({
+        message: error.message,
+        isAuthError: error.isAuthError,
+      });
+    }
   }
-
-  return res.status(result.response?.status || 404).json(result.response?.data);
 }

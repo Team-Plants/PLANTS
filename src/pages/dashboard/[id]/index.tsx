@@ -17,7 +17,7 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
 import { ColumnType } from '@/types/Columns';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ReactElement, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { GetServerSidePropsContext } from 'next';
 import Layout from '@/components/layout/layout';
@@ -36,8 +36,17 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const dashboardId = context?.params['id'];
-
   const cookie = context.req.headers.cookie || '';
+
+  if (cookie === '') {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
   const cookieString = cookie.slice(12, cookie.length);
   const headers = {
     Authorization: `Bearer ${cookieString}`,
@@ -62,7 +71,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   } catch (error) {
     alert(error);
   }
-
   return {
     props: {
       dashboardId,
@@ -154,6 +162,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       refetch();
     }
   }
+
   // 빈값 확인하는 코드
   useEffect(() => {
     if (watch('title') === '') setIsColumnNameValid(false);
