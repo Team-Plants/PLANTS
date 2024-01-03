@@ -1,13 +1,10 @@
-import { useEffect, useState, ReactElement, useRef } from 'react';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useEffect, useState, ReactElement } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getDashboards } from '@/api/dashboard';
-import { getInvitations } from '@/api/invitations';
 import { DashBoardData } from '@/types/DashBoard';
-import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import QUERY_KEYS from '@/constants/queryKeys';
 import InvitedList from '@/components/table/invitedDashboard/invitedList';
 import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
-import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
 import Layout from '@/components/layout/layout';
 import NestedLayout from '@/components/layout/nestedLayout';
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';

@@ -19,10 +19,8 @@ function ButtonGroup({
   const mutation = useMutation({
     mutationFn: (status: boolean) => putInvitations(invitationId, status),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ['invitations', 'dashboards'],
-      });
-      // queryClient.invalidateQueries({ queryKey: ['dashboards'] });
+      queryClient.invalidateQueries({ queryKey: ['invitations'] });
+      queryClient.invalidateQueries({ queryKey: ['dashboards'] });
     },
   });
 

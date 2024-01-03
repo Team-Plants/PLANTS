@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function getInvitations(
   size?: number | null,
   cursorId?: number | null,
-  title?: string,
+  title?: string | null,
 ) {
   const option = {
     endpoint: '/invitations',
@@ -15,7 +15,7 @@ export async function getInvitations(
     },
   };
 
-  const result = await axios.post('api/withAuthHandler', option);
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 

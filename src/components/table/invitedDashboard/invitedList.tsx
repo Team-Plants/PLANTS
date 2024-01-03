@@ -9,16 +9,26 @@ import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation
 import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
 import useDebounce from '@/hooks/useDebounce';
 
+interface InvitationData {
+  invitations?: InvitedDashBoardProps[] | null;
+  cursorId?: string | null;
+}
+
 function InvitedList() {
   const [title, setTitle] = useState<string>();
   const debouncedSearchValue = useDebounce(title, 500);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
+  const [invitation, setInvitation] = useState<InvitationData[]>();
   const [cursorId, setCursorId] = useState();
 
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
-    queryKey: ['invitation', debouncedSearchValue],
+    queryKey: ['invitations', debouncedSearchValue],
     queryFn: ({ pageParam: cursorId }) =>
-      getInvitations(6, cursorId, debouncedSearchValue),
+      getInvitations(
+        6,
+        cursorId,
+        debouncedSearchValue === '' ? null : debouncedSearchValue,
+      ),
     enabled: true,
     getNextPageParam: (lastPage) => {
       if (lastPage) {
@@ -39,13 +49,13 @@ function InvitedList() {
   useEffect(() => {
     if (data) {
       const lastPage = data.pages[data.pages.length - 1];
+      const invitationsData = data.pages;
       if (lastPage) {
         setCursorId(lastPage.cursorId);
       }
+      setInvitation(invitationsData);
     }
   }, [data]);
-
-  const invitation = data?.pages;
 
   return (
     <>
@@ -53,7 +63,7 @@ function InvitedList() {
         <div className={S.container}>
           <div className={S.header}>초대받은 대시보드</div>
           <div className={S.searchBar}>
-            <SearchBar setValue={setTitle} />
+            <SearchBar setValue={setTitle} value={title} />
           </div>
           <div className={S.label}>
             <div>이름</div> <div>초대자</div> <div>수락 여부</div>
