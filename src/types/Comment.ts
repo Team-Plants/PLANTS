@@ -1,4 +1,4 @@
-import { Assign } from '@/types/User';
+import { Assign } from '@/types/Assign';
 
 export interface CommentData {
   comments: CommentDetail[];

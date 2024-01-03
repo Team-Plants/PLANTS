@@ -7,7 +7,7 @@ import { ReactNode, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
-import { Assign } from '@/types/User';
+import { Assign } from '@/types/Assign';
 import { randomNickNameColor } from '@/utils/utility';
 import { MemberProps } from '@/types/Member';
 
