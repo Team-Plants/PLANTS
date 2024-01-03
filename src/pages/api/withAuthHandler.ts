@@ -52,7 +52,7 @@ export default async function handler(
       .json(result.response?.data);
   } catch (error) {
     if (error instanceof AuthError) {
-      return res.status(error.statusCode).json({
+      return res.status(401).json({
         message: error.message,
         isAuthError: error.isAuthError,
       });

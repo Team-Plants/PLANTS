@@ -15,6 +15,33 @@ export const instanceFiles = axios.create({
   },
 });
 
+export const authInstance = axios.create({
+  headers: {
+    'Content-type': 'application/json',
+  },
+});
+
+interface AuthResponseData {
+  isAuthError: boolean;
+  message: string;
+}
+
+authInstance.interceptors.response.use(
+  function (response: AxiosResponse) {
+    return response;
+  },
+
+  function (error: AxiosError) {
+    if (error.response?.status === 401 && error.response.data) {
+      const data = error.response.data as AuthResponseData;
+      alert(data.message);
+      window.location.href = '/login';
+      return;
+    }
+    return Promise.reject(error);
+  },
+);
+
 instance.interceptors.request.use(
   (config) => {
     // 요청 바로 직전
