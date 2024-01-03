@@ -15,7 +15,7 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
-import { ColumnType } from '@/types/column';
+import { ColumnType } from '@/types/Column';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ReactElement, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
