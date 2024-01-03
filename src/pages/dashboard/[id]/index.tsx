@@ -21,6 +21,12 @@ import { ReactElement, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { GetServerSidePropsContext } from 'next';
 import Layout from '@/components/layout/layout';
+import { instance } from '@/libs/api';
+import { AxiosResponse } from 'axios';
+
+interface Dashboard {
+  id: number;
+}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -30,6 +36,32 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const dashboardId = context?.params['id'];
+
+  const cookie = context.req.headers.cookie || '';
+  const cookieString = cookie.slice(12, cookie.length);
+  const headers = {
+    Authorization: `Bearer ${cookieString}`,
+  };
+
+  try {
+    const response: AxiosResponse = await instance({
+      method: 'GET',
+      url: 'https://sp-taskify-api.vercel.app/1-5/dashboards?navigationMethod=infiniteScroll&size=1000',
+      headers: headers,
+    });
+
+    const dashboardIdList = response?.data?.dashboards.map((el: Dashboard) =>
+      String(el.id),
+    );
+
+    if (!dashboardIdList.includes(dashboardId)) {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    alert(error);
+  }
 
   return {
     props: {
