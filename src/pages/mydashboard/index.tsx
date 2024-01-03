@@ -20,6 +20,7 @@ function MyDashboard() {
     queryKey: [QUERY_KEYS.dashboards, DSize, page],
     queryFn: () => getDashboards('pagination', DSize, page),
     enabled: true,
+    placeholderData: dashboard,
   });
 
   function handleClick() {
