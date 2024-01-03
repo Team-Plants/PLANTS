@@ -5,10 +5,11 @@ import { ReactNode, useState, useEffect } from 'react';
 
 interface LayoutProps {
   children: ReactNode;
+  pageId?: string;
   flag?: boolean;
 }
 
-function Layout({ children, flag }: LayoutProps) {
+function Layout({ children, pageId, flag }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ function Layout({ children, flag }: LayoutProps) {
     <>
       {mounted && (
         <div className={S.container}>
-          <SideMenu pageId={1} flag={flag} />
+          <SideMenu pageId={Number(pageId)} flag={flag} />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader

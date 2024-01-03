@@ -81,7 +81,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   }, [isModalOpen]);
 
   return (
-    <Layout flag={flag}>
+    <Layout pageId={dashboardId} flag={flag}>
       <NestedLayout>
         <ReturnButton url={`dashboard/${dashboardId}`} />
         <div className={S.tableContainer}>
