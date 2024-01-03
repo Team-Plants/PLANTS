@@ -133,6 +133,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       refetch();
     }
   }
+
   // 빈값 확인하는 코드
   useEffect(() => {
     if (watch('title') === '') setIsColumnNameValid(false);
