@@ -9,8 +9,8 @@ interface ButtonProps {
 function ButtonGroup({ primaryContent, secondaryContent }: ButtonProps) {
   return (
     <div className={S.groupContainer}>
-      <Button content={secondaryContent} status="secondary" />
       <Button content={primaryContent} status="primary" />
+      <Button content={secondaryContent} status="secondary" />
     </div>
   );
 }

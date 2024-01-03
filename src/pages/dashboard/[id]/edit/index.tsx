@@ -3,7 +3,6 @@ import { getMembers } from '@/api/member';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
-import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
@@ -125,7 +124,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
       pageId={dashboardId}
       id={dashboardId}
       member={member}>
-      <NestedLayout>
+      <div className={S.nestedLayout}>
         <ReturnButton url={`dashboard/${dashboardId}`} />
         <div className={S.tableContainer}>
           <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
@@ -144,7 +143,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton dashboardId={dashboardId} />
         </div>
-      </NestedLayout>
+      </div>
     </Layout>
   );
 }

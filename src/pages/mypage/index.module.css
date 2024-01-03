@@ -1,0 +1,4 @@
+.nestedLayout {
+  composes: itemContainer from '@/components/layout/layout.module.css';
+  padding: 20px;
+}
