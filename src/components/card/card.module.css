@@ -10,6 +10,7 @@
   padding: 20px;
   width: 314px;
   gap: 10px;
+  cursor: pointer;
 
   @media all and (tablet) {
     flex-direction: row;

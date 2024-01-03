@@ -26,3 +26,17 @@
   border: 1px solid var(--violet);
   outline: none;
 }
+
+.errorInput {
+  border: 1px solid var(--red);
+}
+.errorInput:focus {
+  border: 1px solid var(--red);
+}
+
+.errorMessage {
+  color: var(--red);
+  margin-top: 8px;
+  font-size: 1.4rem;
+  font-weight: var(--font-light);
+}

@@ -2,18 +2,13 @@ import { postDashboardsInvitations } from '@/api/dashboard';
 import { getInvitationList } from '@/api/invitations';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 import Button from '@/components/button/button';
-import InputLayout from '@/components/modal/input/inputLayout';
-import InputModal from '@/components/modal/inputModal/inputModal';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import S from '@/components/table/invitation/invitationList.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { Invitation, InvitationList } from '@/types/Invitation';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import CommonStyle from '@/components/modal/modalCommon.module.css';
-import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import TodoInvite from '@/components/modal/todoInvite/todoInvite';
 
 function InvitationList({
   dashboardId,
@@ -21,14 +16,12 @@ function InvitationList({
   invitationFlag,
   setInvitationFlag,
   isModalOpen,
-  setIsModalOpen,
 }: {
   dashboardId: string;
   onClick: () => void;
   invitationFlag: boolean;
   setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
   isModalOpen: boolean;
-  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
@@ -37,31 +30,8 @@ function InvitationList({
   const { data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.invitations],
     queryFn: () => getInvitationList(page, 5, dashboardId),
-    enabled: false,
+    enabled: true,
   });
-
-  const mutation = useMutation({
-    mutationFn: (result: FieldValues) =>
-      postDashboardsInvitations(dashboardId, result),
-    onError: (error) => {
-      alert(error);
-    },
-  });
-
-  const methods = useForm<FieldValues>({
-    mode: 'onChange',
-    defaultValues: {
-      email: '',
-    },
-  });
-
-  const { handleSubmit, control, reset } = methods;
-
-  async function handleAddTodo(result: FieldValues) {
-    await mutation.mutate(result);
-    setIsModalOpen(false);
-    reset();
-  }
 
   async function fetchMoreInvitations() {
     await refetch();
@@ -69,11 +39,12 @@ function InvitationList({
 
   useEffect(() => {
     setInvitationFlag(true);
-  }, [isModalOpen]);
+  }, [onClick()]);
 
   useEffect(() => {
     setFullData(data);
-  }, [data]);
+    refetch();
+  }, [data, dashboardId]);
 
   useEffect(() => {
     fetchMoreInvitations();
@@ -139,24 +110,7 @@ function InvitationList({
           })}
       </div>
       {isModalOpen && (
-        <InputModal onClick={onClick} title={'초대하기'}>
-          <InputLayout label="이메일" isNecessary={false}>
-            <form
-              onSubmit={handleSubmit(handleAddTodo)}
-              className={CommonStyle.form}>
-              <DefaultInput
-                placeholder="이메일을 입력해 주세요"
-                control={control}
-                name="email"
-              />
-              <ModalButtonSet
-                isDelete={false}
-                submitButtonTitle="초대"
-                onClickCancel={onClick}
-              />
-            </form>
-          </InputLayout>
-        </InputModal>
+        <TodoInvite onClick={onClick} dashboardId={dashboardId} />
       )}
     </>
   );

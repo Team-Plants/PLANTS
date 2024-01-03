@@ -3,6 +3,8 @@ import DashBoardButton from '@/components/button/dashBoard/dashBoardButton';
 import ArrowButton from '@/components/button/arrow/arrowButton';
 import S from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard.module.css';
 import { DashBoardData } from '@/types/DashBoard';
+import { useState } from 'react';
+import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 
 interface PaginationCreateDashboardProps {
   dashboardData: DashBoardData;
