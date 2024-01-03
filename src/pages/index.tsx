@@ -16,7 +16,7 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const cookie = context.req.headers.cookie || '';
-  console.log(cookie);
+
   if (cookie !== '') {
     return {
       redirect: {
