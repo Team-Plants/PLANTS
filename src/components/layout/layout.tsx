@@ -4,14 +4,15 @@ import DashboardHeader, {
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
+import NestedLayout from './nestedLayout';
+import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
-import { Assign } from '@/types/Assign';
 import { randomNickNameColor } from '@/utils/utility';
 import { MemberProps } from '@/types/Member';
 
-interface LayoutProps {
+export interface LayoutProps {
   children: ReactNode;
   flag?: boolean;
   folder?: string;
@@ -31,16 +32,13 @@ function Layout({
   member,
 }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
-  const [user, setUser] = useState<Assign>();
   const [color, setColor] = useState<Colors>('pink');
   const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],
     queryFn: () => getUsers(),
-    enabled: true,
   });
 
   useEffect(() => {
-    setUser(userData);
     if (!userData?.profileImageUrl) {
       const rc = randomNickNameColor();
       setColor(rc);
@@ -49,20 +47,20 @@ function Layout({
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+  }, [mounted]);
 
   return (
     <>
-      {mounted && user && (
+      {mounted && userData && (
         <div className={S.container}>
           <SideMenu pageId={1} flag={flag} />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
               user={{
-                letter: user.nickname.slice(0, 1),
-                name: user.nickname,
-                profile: user.profileImageUrl,
+                letter: userData.nickname.slice(0, 1),
+                name: userData.nickname,
+                profile: userData.profileImageUrl,
                 color: color,
               }}
               member={member}
@@ -71,7 +69,7 @@ function Layout({
               active={active}
               id={id}
             />
-            {children}
+            <NestedLayout>{children}</NestedLayout>
           </div>
         </div>
       )}
