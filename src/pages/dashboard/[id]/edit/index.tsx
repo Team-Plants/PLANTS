@@ -8,11 +8,17 @@ import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
 import QUERY_KEYS from '@/constants/queryKeys';
-import S from '@/pages/[id]/mydashboard.module.css';
+import S from '@/pages/dashboard/[id]/edit/dashboardEditPage.module.css';
 import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
+import { instance } from '@/libs/api';
+import { AxiosResponse } from 'axios';
+
+interface Dashboard {
+  id: number;
+}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -31,6 +37,31 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         permanent: false,
       },
     };
+  }
+
+  const cookieString = cookie.slice(12, cookie.length);
+  const headers = {
+    Authorization: `Bearer ${cookieString}`,
+  };
+
+  try {
+    const response: AxiosResponse = await instance({
+      method: 'GET',
+      url: 'https://sp-taskify-api.vercel.app/1-5/dashboards?navigationMethod=infiniteScroll&size=1000',
+      headers: headers,
+    });
+
+    const dashboardIdList = response?.data?.dashboards.map((el: Dashboard) =>
+      String(el.id),
+    );
+
+    if (!dashboardIdList.includes(dashboardId)) {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    alert(error);
   }
 
   return {
@@ -91,10 +122,11 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
       folder={folderName}
       flag={flag}
       Owner={folderOwner}
+      pageId={dashboardId}
       id={dashboardId}
       member={member}>
       <NestedLayout>
-        <ReturnButton url={`/${dashboardId}`} />
+        <ReturnButton url={`dashboard/${dashboardId}`} />
         <div className={S.tableContainer}>
           <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
           <MemberList
