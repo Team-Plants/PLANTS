@@ -1,9 +1,8 @@
 import Layout from '@/components/layout/layout';
-import NestedLayout from '@/components/layout/nestedLayout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
+import { withLayout } from '@/hooks/withAuth';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import { ReactElement, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function Mypage() {
@@ -25,12 +24,7 @@ function Mypage() {
   );
 }
 
-export default Mypage;
-
-Mypage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      <NestedLayout>{page}</NestedLayout>
-    </Layout>
-  );
-};
+export default withLayout(Mypage, Layout, {
+  folder: '계정관리',
+  active: false,
+});

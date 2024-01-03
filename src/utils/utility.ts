@@ -1,4 +1,4 @@
-import { FormEvent } from 'react';
+import { Colors } from '@/components/header/dashboardHeader/dashboardHeader';
 
 const color: ThemeType[] = [
   'green#00FF00',
@@ -11,6 +11,13 @@ const color: ThemeType[] = [
 export function randomChipColor() {
   const num = Math.floor(Math.random() * 6);
   return color[num];
+}
+
+const colors: Colors[] = ['yellow', 'orange', 'green', 'blue', 'brown', 'pink'];
+
+export function randomNickNameColor() {
+  const num = Math.floor(Math.random() * 6);
+  return colors[num];
 }
 
 export function dateFormat(dueDate: string) {

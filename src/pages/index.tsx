@@ -154,6 +154,7 @@ function Home() {
           </Link>
         </div>
       </footer>
+      {/* {<AddTodoModal onClick={() => console.log('a')} />} */}
     </>
   );
 }

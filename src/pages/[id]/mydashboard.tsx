@@ -1,3 +1,5 @@
+import { getDashboard } from '@/api/dashboard';
+import { getMembers } from '@/api/member';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
@@ -5,7 +7,10 @@ import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
+import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/[id]/mydashboard.module.css';
+import { MemberProps } from '@/types/Member';
+import { useQuery } from '@tanstack/react-query';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 
@@ -17,6 +22,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const dashboardId = context?.params['id'];
+  const cookie = context.req.headers.cookie || '';
+
+  if (cookie === '') {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
@@ -34,10 +49,33 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [flag, setFlag] = useState(false);
   const [invitationFlag, setInvitationFlag] = useState(false);
   const [memberFlag, setMemberFlag] = useState(false);
+  const [folderName, setFolderName] = useState();
+  const [folderOwner, setFolderOwner] = useState();
+  const [member, setMember] = useState<MemberProps[]>();
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
+    queryFn: () => getDashboard(dashboardId),
+    enabled: true,
+  });
 
-  const handleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+  const { data: memberData } = useQuery({
+    queryKey: [QUERY_KEYS.member, dashboardId],
+    queryFn: () => getMembers(dashboardId),
+    enabled: true,
+  });
+
+  function handleModal() {
+    setIsModalOpen((prev) => !prev);
+  }
+
+  useEffect(() => {
+    setFolderName(data?.title);
+    setFolderOwner(data?.createdByMe);
+  }, [data]);
+
+  useEffect(() => {
+    setMember(memberData?.members);
+  }, [memberData]);
 
   // // 모달이 열릴 경우 백그라운드 스크롤 방지
   useEffect(() => {
@@ -49,7 +87,12 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   }, [isModalOpen]);
 
   return (
-    <Layout flag={flag}>
+    <Layout
+      folder={folderName}
+      flag={flag}
+      Owner={folderOwner}
+      id={dashboardId}
+      member={member}>
       <NestedLayout>
         <ReturnButton url={`/${dashboardId}`} />
         <div className={S.tableContainer}>
@@ -65,7 +108,6 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             invitationFlag={invitationFlag}
             setInvitationFlag={setInvitationFlag}
             isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
           />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton dashboardId={dashboardId} />
