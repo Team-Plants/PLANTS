@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
-import { Assign } from '@/types/Assign';
 import { randomNickNameColor } from '@/utils/utility';
 import { MemberProps } from '@/types/Member';
 
@@ -33,8 +32,6 @@ function Layout({
   member,
 }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
-  const [isBoardPage, setIsBoardPage] = useState(false);
-  const { pathname } = useRouter();
   const [color, setColor] = useState<Colors>('pink');
   const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],
@@ -50,10 +47,7 @@ function Layout({
 
   useEffect(() => {
     setMounted(true);
-    if (pathname === '/boards') {
-      setIsBoardPage(true);
-    }
-  }, [pathname]);
+  }, [mounted]);
 
   return (
     <>
@@ -75,11 +69,7 @@ function Layout({
               active={active}
               id={id}
             />
-            {isBoardPage ? (
-              <>{children}</>
-            ) : (
-              <NestedLayout>{children}</NestedLayout>
-            )}
+            <NestedLayout>{children}</NestedLayout>
           </div>
         </div>
       )}

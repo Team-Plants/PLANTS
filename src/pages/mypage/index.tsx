@@ -28,11 +28,3 @@ export default withLayout(Mypage, Layout, {
   folder: '계정관리',
   active: false,
 });
-
-// Mypage.getLayout = (page: ReactElement) => {
-//   return (
-//     <Layout folder="계정관리" active={false}>
-//       <NestedLayout>{page}</NestedLayout>
-//     </Layout>
-//   );
-// };
