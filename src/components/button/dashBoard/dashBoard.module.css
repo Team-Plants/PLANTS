@@ -6,22 +6,17 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-
   border-radius: 8px;
   border: 1px solid var(--gray-30);
   background-color: var(--white);
-  font-weight: var(--font-normal);
-  font-size: 1.6rem;
   box-sizing: border-box;
-  width: 332px;
+  width: 100%;
   height: 70px;
 
   @media all and (tablet) {
-    width: 247px;
     height: 68px;
   }
   @media all and (mobile) {
-    width: 260px;
     height: 58px;
   }
 }
@@ -35,4 +30,10 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  margin-right: 8px;
+}
+
+.content {
+  font-weight: var(--font-normal);
+  font-size: 1.6rem;
 }

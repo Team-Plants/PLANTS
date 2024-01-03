@@ -11,7 +11,7 @@ interface ButtonProps {
 
 function Button({ content, status, onClick }: ButtonProps) {
   return (
-    <button className={`${S[status]}`} onClick={onClick}>
+    <button className={`${S[status]} ${S.container}`} onClick={onClick}>
       {content}
     </button>
   );
