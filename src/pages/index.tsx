@@ -9,9 +9,23 @@ import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
 import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
+import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookie = context.req.headers.cookie || '';
+  console.log(cookie);
+  if (cookie !== '') {
+    return {
+      redirect: {
+        destination: '/mydashboard',
+        permanent: false,
+      },
+    };
+  }
+}
 
 function Home() {
   const router = useRouter();
