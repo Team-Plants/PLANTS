@@ -75,14 +75,14 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
     <div className={S.main}>
       <div className={S.headerOuter}>
         <div className={S.imgContainer}>
-          <Link href="/myboard">
+          <Link href="/mydashboard">
             <Image
               src={SmallLogoImg}
               alt="로고 이미지"
               className={S.smallLogoImg}
             />
           </Link>
-          <Link href="/myboard">
+          <Link href="/mydashboard">
             <Image
               src={TaskifyImg}
               alt="Taskify 이미지"
@@ -106,7 +106,7 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
         <ul className={S.dashBoardContainer}>
           {dashboards &&
             dashboards.map((dashboard) => (
-              <Link href={`/${dashboard.id}/mydashboard`} key={dashboard.id}>
+              <Link href={`/dashboard/${dashboard.id}`} key={dashboard.id}>
                 <li
                   className={S.dashBoardLi}
                   style={{

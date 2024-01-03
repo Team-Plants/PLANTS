@@ -33,7 +33,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
     try {
       const result = await postDashboards(data.dashboardName, data.color);
       const dashboardId = result?.id;
-      router.push(`/${dashboardId}`);
+      router.push(`/dashboard/${dashboardId}`);
     } catch (error) {
       console.error('서버 오류로 대시보드 생성에 실패했습니다', error);
     }

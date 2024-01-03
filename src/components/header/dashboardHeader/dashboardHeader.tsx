@@ -54,7 +54,7 @@ function DashboardHeader({
       <div className={S.buttonContainer}>
         {Owner && active && (
           <>
-            <Link href={`${id ? `/${id}` : ''}/mydashboard`}>
+            <Link href={`/dashboard${id ? `/${id}` : ''}/edit`}>
               <button className={S.button}>
                 <Image
                   className={S.buttonImg}
