@@ -1,0 +1,74 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
+.container {
+  display: flex;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  width: calc(100vw - 83.6px);
+  padding: 17px 12px 24px 12px;
+  background: var(--gray-10);
+  align-items: center;
+
+  @media all and (tablet) {
+    width: calc(100vw - 176.6px);
+    padding: 20px 20px 48px 20px;
+    flex-direction: column;
+  }
+
+  @media all and (desktop) {
+    width: calc(100vw - 316.6px);
+    padding: 20px 20px 48px 20px;
+    flex-direction: row;
+    align-items: start;
+    overflow-x: auto;
+  }
+}
+
+.mainContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: var(--purple);
+}
+
+.sectionName {
+  color: var(--black);
+  font-size: 1.6rem;
+  font-weight: var(--font-bold);
+}
+
+.addButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 12px;
+
+  @media all and (desktop) {
+    margin-top: 48px;
+  }
+}

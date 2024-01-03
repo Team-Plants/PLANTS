@@ -33,20 +33,10 @@ export async function postSignup(data: SignFormValuesType) {
 }
 
 export async function getUsers() {
-  const tokenResponse = await axios.post('/api/getToken');
-  const token = tokenResponse.data;
-
-  if (token) {
-    const response = await instance({
-      url: '/users/me',
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return response.data;
-  }
-
-  return;
+  const option = {
+    endpoint: '/users/me',
+    method: 'GET',
+  };
+  const result = await axios.post('/api/withAuthHandler', option);
+  return result.data;
 }

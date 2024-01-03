@@ -24,7 +24,7 @@ function MemberList({
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.members],
     queryFn: () => getPaginationMembers(page, 4, Number(dashboardId)),
-    enabled: false,
+    enabled: true,
   });
 
   async function fetchMoreMembers() {
@@ -38,7 +38,8 @@ function MemberList({
 
   useEffect(() => {
     setTotalCount(data?.totalCount);
-  }, [data]);
+    fetchMoreMembers();
+  }, [data, dashboardId]);
 
   useEffect(() => {
     if (totalCount === undefined) return;

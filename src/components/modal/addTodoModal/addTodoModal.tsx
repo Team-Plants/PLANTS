@@ -15,7 +15,7 @@ import { MemberProps } from '@/types/Member';
 import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -54,11 +54,11 @@ function AddTodoModal({
   const watchAll = Object.values(watch(['title', 'description'])); //필수항목, 두개만 채워지면 제출가능
   const [isButtonActive, setIsButtonActive] = useState(true);
   const [managers, SetManagers] = useState<Option[]>();
-  // const dashboardId = useRouter();
-  const dashboardId = 259; //임시, 윗줄처럼 사용할 예정
+  const router = useRouter();
+  const dashboardId = parseInt(router.asPath.split('/')[2]);
 
   async function getMembersData() {
-    const response = await getMembers(dashboardId);
+    const response = await getMembers(String(dashboardId));
     const members = response.members;
     const filtered = members.map((member: MemberProps) => ({
       value: member.nickname,
@@ -112,7 +112,7 @@ function AddTodoModal({
   }, [watchAll]);
 
   return (
-    <ModalLayout onClick={onClick}>
+    <ModalLayout onClick={onClick} isOpen={true}>
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}

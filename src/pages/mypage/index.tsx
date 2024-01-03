@@ -1,21 +1,14 @@
-import { postProfileImage } from '@/api/mypage';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
-import NestedLayout from '@/components/layout/nestedLayout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
 import S from '@/pages/mypage/mypage.module.css';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import { useQuery } from '@tanstack/react-query';
-import { ReactElement } from 'react';
+import { withLayout } from '@/hooks/withAuth';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function Mypage() {
   const methods = useForm<SignFormValuesType>({ mode: 'onChange' });
-
-  const handleSubmit = (data: SignFormValuesType) => {
-    console.log(data);
-  };
 
   return (
     <>
@@ -30,12 +23,7 @@ function Mypage() {
   );
 }
 
-export default Mypage;
-
-Mypage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      <NestedLayout>{page}</NestedLayout>
-    </Layout>
-  );
-};
+export default withLayout(Mypage, Layout, {
+  folder: '계정관리',
+  active: false,
+});

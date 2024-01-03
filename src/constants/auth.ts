@@ -27,3 +27,6 @@ export const PASSWORD_STANDARD =
 
 //닉네임 형식: 두 글자 이상, 열 글자 이하, 적어도 한개의 알파벳 혹은 한글을 포함
 export const NICKNAME_STANDARD = /^(?=.*[A-Za-z가-힣])[A-Za-z가-힣\d]{2,10}$/;
+
+//컬럼 생성 : 중복된 컬럼이 있는지 확인
+export const ERROR_DUPLICATED_COLUMN = '중복된 컬럼 이름입니다.';

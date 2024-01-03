@@ -30,7 +30,10 @@ function ModalButtonSet({
       {isDelete && <div className={CommonStyle.deleteButton}>삭제하기</div>}
       <div className={CommonStyle.rightButtonContainer}>
         <ModalDefaultButton onClick={onClickCancel}>취소</ModalDefaultButton>
-        <ModalDefaultButton type="submit" onClick={onClickSubmit} isButtonActive={isButtonActive}>
+        <ModalDefaultButton
+          type="submit"
+          onClick={onClickSubmit}
+          isButtonActive={isButtonActive}>
           {submitButtonTitle}
         </ModalDefaultButton>
       </div>
