@@ -13,7 +13,7 @@
 
 .shortContainer {
   composes: formContainer;
-  width: 366px;
+  width: 468px;
 }
 
 .formLabel {
@@ -39,12 +39,19 @@
 .input {
   all: unset;
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 13px 16px;
   width: 100%;
   font-size: 1.6rem;
   color: var(--gray-80);
+  border: 1px solid var(--gray-30);
+}
+
+.noWorkInputContainer {
+  composes: input;
+  border-radius: 8px;
+  width: 440px;
+  color: var(--gray-40);
 }
 
 .checkbox {

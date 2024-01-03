@@ -8,7 +8,7 @@ interface ModalLayoutProp {
   isOpen?: boolean;
 }
 
-function ModalLayout({ children, onClick, isOpen }: ModalLayoutProp) {
+function ModalLayout({ children, onClick, isOpen = true }: ModalLayoutProp) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

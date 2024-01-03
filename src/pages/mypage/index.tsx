@@ -1,25 +1,30 @@
+import { postProfileImage } from '@/api/mypage';
+import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
 import NestedLayout from '@/components/layout/nestedLayout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
+import S from '@/pages/mypage/mypage.module.css';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import { ReactElement, useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function Mypage() {
   const methods = useForm<SignFormValuesType>({ mode: 'onChange' });
+
   const handleSubmit = (data: SignFormValuesType) => {
     console.log(data);
   };
 
   return (
     <>
-      {/* 돌아가기 버튼 넣기 */}
+      <ReturnButton url="/boards" />
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(handleSubmit)}>
+        <div className={S.formContainer}>
           <ProfileTable />
           <PasswordTable />
-        </form>
+        </div>
       </FormProvider>
     </>
   );

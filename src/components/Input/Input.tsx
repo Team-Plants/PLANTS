@@ -2,6 +2,7 @@ import EyeCloseImg from '@/assets/icons/EyeClose.svg';
 import EyeOpenImg from '@/assets/icons/EyeOpen.svg';
 import S from '@/components/Input/Input.module.css';
 import useAuthInput from '@/hooks/useAuthInput';
+import { MemberProps } from '@/types/Member';
 import { ErrorMessage } from '@hookform/error-message';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -26,11 +27,13 @@ interface InputProps {
     | '새 비밀번호 확인'
     | '';
   size?: 'shortContainer';
+  data?: MemberProps;
 }
 
-function Input({ type, label, size }: InputProps) {
+function Input({ type, label, size, data }: InputProps) {
   const { register, errors, rules } = useAuthInput(type);
   const [eye, setEye] = useState(false);
+
   return (
     <div
       className={type === 'checkbox' ? '' : size ? S[size] : S.formContainer}>
@@ -58,7 +61,7 @@ function Input({ type, label, size }: InputProps) {
                 type.includes('password') ? (eye ? 'text' : 'password') : type
               }
               className={S.input}
-              placeholder={rules.required}
+              placeholder={data ? data.nickname : rules.required} // 닉네임
               {...register(type, {
                 pattern: rules.pattern,
                 minLength: rules.minLength,

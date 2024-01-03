@@ -14,6 +14,8 @@ export const ERROR_NICKNAME_CHECK =
   '총 2~10글자, 알파벳과 한글을 포함해 작성해 주세요.';
 export const ERROR_NICKNAME_EMPTY = '닉네임을 입력해 주세요.';
 
+export const ERROR_NICKNAME_NEW = '닉네임은 10자 이하로 작성해주세요';
+
 //이메일 형식
 export const EMAIL_STANDARD =
   /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

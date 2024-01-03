@@ -33,11 +33,20 @@ export async function postSignup(data: SignFormValuesType) {
 }
 
 export async function getUsers() {
-  // 실제 필요한 api endpoint, method를 넣어주세요
-  const option = {
-    endpoint: '/users/me',
-    method: 'GET',
-  };
-  const result = await axios.post('/api/withAuthHandler', option);
-  return result;
+  const tokenResponse = await axios.post('/api/getToken');
+  const token = tokenResponse.data;
+
+  if (token) {
+    const response = await instance({
+      url: '/users/me',
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  }
+
+  return;
 }

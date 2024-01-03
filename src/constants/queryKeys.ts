@@ -8,6 +8,7 @@ const QUERY_KEYS = {
   sidemenuDashboards: 'sidemenuDashboards',
   members: 'members',
   deleteMember: 'deleteMember',
+  user: 'user',
 } as const;
 
 export default QUERY_KEYS;
