@@ -37,24 +37,24 @@ function ProfileTable() {
   });
 
   interface ProfileData {
-    [key: string]: string | number;
+    [key: string]: string;
   }
 
   async function handlePutProfile(data: FieldValues) {
     const newData: ProfileData = {
-      imageUrl: data.imageUrl,
+      profileImageUrl: data.imageUrl,
     };
 
     if (data.imageUrl) {
       const imgFormData = new FormData();
-      imgFormData.append('profileImageUrl', data.imageUrl);
+      imgFormData.append('image', data.imageUrl);
       console.log(imgFormData);
       const response = await postProfileImage(imgFormData);
       console.log(response);
-      newData.imageUrl = response.imageUrl;
+      newData.profileImageUrl = response.profileImageUrl;
     }
 
-    const response = await putUser(data.nickname, data.imageUrl);
+    const response = await putUser(data.nickname, newData.profileImageUrl);
     return response;
     // mutation.mutate(data);
   }
@@ -65,11 +65,7 @@ function ProfileTable() {
       <form
         className={S.itemContainer}
         onSubmit={handleSubmit(handlePutProfile)}>
-        <ImgInput
-          control={control}
-          name="profileImageUrl"
-          setValue={setValue}
-        />
+        <ImgInput control={control} name="imageUrl" setValue={setValue} />
 
         <div className={S.inputContainer}>
           <NoWorkEmailInput data={data} />
