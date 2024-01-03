@@ -37,7 +37,10 @@ function MyDashboard() {
   );
 }
 
-export default withLayout(MyDashboard, Layout);
+export default withLayout(MyDashboard, Layout, {
+  folder: '내 대시보드',
+  active: false,
+});
 
 // MyDashboard.getLayout = (page: ReactElement) => {
 //   return (
