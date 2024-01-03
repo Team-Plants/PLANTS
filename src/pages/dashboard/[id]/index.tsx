@@ -21,7 +21,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { GetServerSidePropsContext } from 'next';
 import Layout from '@/components/layout/layout';
 import { getDashboard } from '@/api/dashboard';
-import { ColumnType } from '@/types/\bColumns';
+import { ColumnType } from '@/types/Columns';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
