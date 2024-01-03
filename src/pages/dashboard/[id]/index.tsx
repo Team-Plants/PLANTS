@@ -15,7 +15,7 @@ import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
-import { ColumnType } from '@/types/Column';
+import { ColumnType } from '@/types/Columns';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ReactElement, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -23,7 +23,7 @@ import { GetServerSidePropsContext } from 'next';
 import Layout from '@/components/layout/layout';
 import { instance } from '@/libs/api';
 import { AxiosResponse } from 'axios';
-
+import { getDashboard } from '@/api/dashboard';
 interface Dashboard {
   id: number;
 }
@@ -78,6 +78,13 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [columnId, setColumnId] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [fullData, setFullData] = useState([]);
+  const [folderName, setFolderName] = useState();
+  const [folderOwner, setFolderOwner] = useState();
+  const { data: myDashboard } = useQuery({
+    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
+    queryFn: () => getDashboard(dashboardId),
+    enabled: true,
+  });
 
   const { data: columns, refetch } = useQuery({
     queryKey: [QUERY_KEYS.columns],
@@ -147,7 +154,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       refetch();
     }
   }
-
   // 빈값 확인하는 코드
   useEffect(() => {
     if (watch('title') === '') setIsColumnNameValid(false);
@@ -166,8 +172,17 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     refetch();
   }, [columns]);
 
+  useEffect(() => {
+    setFolderName(myDashboard?.title);
+    setFolderOwner(myDashboard?.createdByMe);
+  }, [myDashboard]);
+
   return (
-    <Layout pageId={dashboardId}>
+    <Layout
+      folder={folderName}
+      Owner={folderOwner}
+      id={dashboardId}
+      pageId={dashboardId}>
       <div className={S.mainContainer}>
         {fullData &&
           fullData?.map((column: ColumnType) => {
