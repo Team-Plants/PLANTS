@@ -58,7 +58,7 @@ function AddTodoModal({
   const dashboardId = parseInt(router.asPath.split('/')[2]);
 
   async function getMembersData() {
-    const response = await getMembers(dashboardId);
+    const response = await getMembers(String(dashboardId));
     const members = response.members;
     const filtered = members.map((member: MemberProps) => ({
       value: member.nickname,
