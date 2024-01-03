@@ -1,38 +1,65 @@
-import InvitedList from '@/components/table/invitedDashboard/invitedList';
-import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { getDashboards } from '@/api/dashboard';
 import { DashBoardData } from '@/types/DashBoard';
-import { getInvitations } from '@/api/invitations';
-import { InvitedDashBoardProps } from '@/types/InvitedDashBoard';
-import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation/emptyInvitation';
-import { useEffect, useState } from 'react';
+import QUERY_KEYS from '@/constants/queryKeys';
+import InvitedList from '@/components/table/invitedDashboard/invitedList';
+// import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
 import Layout from '@/components/layout/layout';
 import { withLayout } from '@/hooks/withAuth';
 import S from '@/pages/mydashboard/index.module.css';
+// import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
+import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 
 function MyDashboard() {
-  const [dashboards, setDashboards] = useState<DashBoardData>();
-  const [invitation, setInvitation] = useState<InvitedDashBoardProps[]>();
+  const [DSize, setDSize] = useState(5);
+  const [page, setPage] = useState(1);
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [dashboard, setDashboard] = useState<DashBoardData>();
 
-  async function getDashboardsData() {
-    const dashboardData = await getDashboards('pagination');
-    setDashboards(dashboardData);
-    const response = await getInvitations();
-    const invitedData = response.invitations;
-    setInvitation(invitedData);
+  const { data: dashboardsData } = useQuery({
+    queryKey: [QUERY_KEYS.dashboards, DSize, page],
+    queryFn: () =>
+      getDashboards({
+        navigationMethod: 'pagination',
+        size: DSize,
+        page: page,
+      }),
+    enabled: true,
+    placeholderData: dashboard,
+  });
+
+  function handleClick() {
+    setIsOpenModal((prev) => !prev);
   }
 
   useEffect(() => {
-    getDashboardsData();
-  }, []);
+    if (page > 1) {
+      setDSize(6);
+    } else if (page === 1) {
+      setDSize(5);
+    }
+  }, [page]);
+
+  useEffect(() => {
+    setDashboard(dashboardsData);
+  }, [dashboardsData]);
 
   return (
     <div className={S.nestedLayout}>
-      {dashboards && <PaginationCreateDashboard dashboardData={dashboards} />}
-      {invitation ? (
-        <InvitedList invitations={invitation} />
+      {/* {dashboard ? (
+        <PaginationCreateDashboard
+          dashboardData={dashboard}
+          onClick={handleClick}
+          page={page}
+          setPage={setPage}
+        />
       ) : (
-        <EmptyInvitation />
+        <CreateDashBoardButton onClick={handleClick} />  //102브래치 버전
+      )} */}
+      <InvitedList />
+      {isOpenModal && (
+        <NewDashboardModal onClick={handleClick} redirect={false} />
       )}
     </div>
   );
