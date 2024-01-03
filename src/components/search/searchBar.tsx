@@ -10,9 +10,9 @@ interface SearchBarProps {
 function SearchBar({ setValue }: SearchBarProps) {
   const [inputValue, setInputValue] = useState('');
 
-  function handleChange (e : ChangeEvent<HTMLInputElement>) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
-    setValue(e.target.value)
+    setValue(e.target.value);
   }
 
   return (
