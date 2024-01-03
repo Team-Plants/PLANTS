@@ -5,7 +5,6 @@ import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
 import NestedLayout from './nestedLayout';
-import { useRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
