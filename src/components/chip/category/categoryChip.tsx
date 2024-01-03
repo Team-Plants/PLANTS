@@ -6,7 +6,8 @@ interface Category {
 }
 
 function CategoryChip({ content, color }: Category) {
-  return <div className={S[color]}>{content}</div>;
+  const colorName = color.split('#')[0];
+  return <div className={S[colorName]}>{content}</div>;
 }
 
 export default CategoryChip;

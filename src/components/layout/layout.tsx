@@ -4,7 +4,6 @@ import DashboardHeader, {
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
 import { ReactNode, useState, useEffect } from 'react';
-import NestedLayout from './nestedLayout';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
@@ -28,7 +27,7 @@ function Layout({
   flag,
   folder,
   Owner,
-  active,
+  active = true,
   id,
   member,
 }: LayoutProps) {
@@ -70,7 +69,7 @@ function Layout({
               active={active}
               id={id}
             />
-            <NestedLayout>{children}</NestedLayout>
+            {children}
           </div>
         </div>
       )}

@@ -1,5 +1,9 @@
 @value tablet, mobile from '@/styles/breakpoints.css';
 
+.nestedLayout {
+  composes: itemContainer from '@/components/layout/layout.module.css';
+}
+
 .header {
   position: fixed;
   top: 0;

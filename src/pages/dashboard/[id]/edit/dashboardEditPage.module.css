@@ -1,5 +1,10 @@
 @value tablet, desktop from "@/styles/breakpoints.css";
 
+.nestedLayout {
+  composes: itemContainer from '@/components/layout/layout.module.css';
+  padding: 20px;
+}
+
 .tableContainer {
   display: flex;
   flex-direction: column;
