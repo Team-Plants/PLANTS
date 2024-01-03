@@ -89,7 +89,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
   const { data: myDashboard } = useQuery({
-    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
+    queryKey: [QUERY_KEYS.dashboards, dashboardId],
     queryFn: () => getDashboards({ id: dashboardId }),
     enabled: true,
   });

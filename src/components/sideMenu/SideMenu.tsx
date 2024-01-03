@@ -27,7 +27,7 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
   const [isModalClicked, setIsModalClicked] = useState(false);
 
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.sidemenuDashboards],
+    queryKey: [QUERY_KEYS.dashboards],
     queryFn: () =>
       getDashboards({ navigationMethod: 'infiniteScroll', size: 50 }), //cursorId : cursorId
     enabled: false,

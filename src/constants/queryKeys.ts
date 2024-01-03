@@ -6,13 +6,11 @@ const QUERY_KEYS = {
   invitations: 'invitations',
   deleteInvitation: 'deleteInvitation',
   dashboards: 'dashboards',
-  sidemenuDashboards: 'sidemenuDashboards',
   member: 'member',
   members: 'members',
   deleteMember: 'deleteMember',
   getToken: 'getToekn',
   columns: 'columns',
-  myDashboard: 'myDashboard',
   user: 'userMe',
 } as const;
 
