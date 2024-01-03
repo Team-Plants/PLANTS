@@ -167,7 +167,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   }, [columns]);
 
   return (
-    <>
+    <Layout pageId={dashboardId}>
       <div className={S.mainContainer}>
         {fullData &&
           fullData?.map((column: ColumnType) => {
@@ -232,12 +232,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           </InputLayout>
         </InputModal>
       )}
-    </>
+    </Layout>
   );
 }
 
 export default dashboard;
-
-dashboard.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
-};
