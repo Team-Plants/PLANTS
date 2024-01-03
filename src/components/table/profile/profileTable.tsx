@@ -7,7 +7,7 @@ import ImgInput from '@/components/modal/input/imgInput/imgInput';
 import S from '@/components/table/profile/profileTable.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { MemberProps } from '@/types/Member';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { FieldValues, useForm } from 'react-hook-form';
 
 function ProfileTable() {
@@ -17,23 +17,9 @@ function ProfileTable() {
 
   const { handleSubmit, control, setValue } = methods;
 
-  const { data, refetch } = useQuery<MemberProps>({
+  const { data } = useQuery<MemberProps>({
     queryKey: [QUERY_KEYS.user],
     queryFn: () => getUsers(),
-  });
-
-  const mutation = useMutation({
-    mutationFn: (data: FieldValues) =>
-      putUser(data.nickname, data.profileImageUrl),
-
-    onError: (error) => {
-      alert(error);
-    },
-
-    onSuccess: () => {
-      alert('정보가 수정되었습니다!');
-      refetch();
-    },
   });
 
   interface ProfileData {
@@ -54,7 +40,6 @@ function ProfileTable() {
 
     const response = await putUser(data.nickname, newData.profileImageUrl);
     return response;
-    // mutation.mutate(data);
   }
 
   return (

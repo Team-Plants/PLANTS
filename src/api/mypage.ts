@@ -22,20 +22,28 @@ export async function postProfileImage(body: FormData) {
 }
 
 export async function putPassword(password: string, newPassword: string) {
+  const tokenResponse = await axios.post('/api/getToken');
+  const token = tokenResponse.data;
+
   const data = {
     password,
     newPassword,
   };
 
-  const option = {
-    endpoint: `/auth/password`,
-    method: 'PUT',
-    data: data,
-  };
+  if (token) {
+    const response = await instance({
+      url: '/auth/password',
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    });
 
-  const response = await axios.post('/api/withAuthHandler', option);
+    return response.data;
+  }
 
-  return response.data;
+  return;
 }
 
 export async function putUser(nickname: string, profileImageUrl: string) {
