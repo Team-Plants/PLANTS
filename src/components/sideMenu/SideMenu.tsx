@@ -15,17 +15,19 @@ import QUERY_KEYS from '@/constants/queryKeys';
 
 interface SideMenuProps {
   pageId: number;
+  initialPage: number;
   flag?: boolean;
+  refreshFlag?: boolean;
 }
 
-function SideMenu({ pageId, flag }: SideMenuProps) {
+function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   // const [cursorId, setCursorId] = useState();
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(initialPage);
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.sidemenuDashboards],
     queryFn: () => getSideMenuDashboards(5, page),
@@ -47,6 +49,16 @@ function SideMenu({ pageId, flag }: SideMenuProps) {
       refetch();
     }
   }, [flag]);
+
+  useEffect(() => {
+    if (refreshFlag) {
+      setDashboards([]);
+      // setCursorId(undefined);
+      setPage(1);
+      setCurrentLength(0);
+      setTotalCount(0);
+    }
+  }, [refreshFlag]);
 
   useEffect(() => {
     if (data) {
