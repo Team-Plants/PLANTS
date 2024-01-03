@@ -51,7 +51,7 @@ function ImgInput({
   return (
     <div className={`${S.imgInputContainer} ${S[size]}`}>
       {imageSrc ? (
-        <Image src={imageSrc} alt="이미지 업로드" />
+        <Image src={imageSrc} alt="이미지 업로드" fill />
       ) : (
         <div className={S.noImgContainer} onClick={handleUploadImg}>
           <Image src={ImgPlusImg} alt="이미지 업로드 플러스 아이콘" />

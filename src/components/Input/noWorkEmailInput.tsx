@@ -1,5 +1,6 @@
 import S from '@/components/Input/Input.module.css';
 import { MemberProps } from '@/types/Member';
+import SInput from '@/components/modal/input/inputLayout.module.css';
 
 interface EmailProps {
   data?: MemberProps;
@@ -8,7 +9,7 @@ interface EmailProps {
 function NoWorkEmailInput({ data }: EmailProps) {
   return (
     <>
-      <label className={S.formLabel}>이메일</label>
+      <label className={SInput.label}>이메일</label>
       <div className={S.noWorkInputContainer}>{data?.email}</div>
     </>
   );
