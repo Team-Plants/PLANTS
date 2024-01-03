@@ -63,9 +63,9 @@ function MyDashboard() {
 
 export default MyDashboard;
 
-MyDashboard.getLayout = function getLayout(page: ReactElement) {
+MyDashboard.getLayout = (page: ReactElement) => {
   return (
-    <Layout>
+    <Layout folder="내 대시보드" active={false}>
       <NestedLayout>{page}</NestedLayout>
     </Layout>
   );

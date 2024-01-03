@@ -1,0 +1,29 @@
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 93px;
+  height: 82px;
+  background-color: var(--white);
+  border-radius: 6px;
+  border: 1px solid var(--gray-30);
+}
+
+.clickContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 81px;
+  height: 32px;
+  font-size: 1.4rem;
+}
+
+.clickContainer:hover {
+  border-radius: 4px;
+  background-color: var(--violet-8);
+  color: var(--violet);
+}

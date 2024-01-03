@@ -3,7 +3,7 @@ import NestedLayout from '@/components/layout/nestedLayout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function Mypage() {
@@ -27,9 +27,9 @@ function Mypage() {
 
 export default Mypage;
 
-Mypage.getLayout = function getLayout(page: ReactElement) {
+Mypage.getLayout = (page: ReactElement) => {
   return (
-    <Layout>
+    <Layout folder="계정관리" active={false}>
       <NestedLayout>{page}</NestedLayout>
     </Layout>
   );
