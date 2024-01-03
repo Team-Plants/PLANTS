@@ -12,6 +12,7 @@ import { MemberProps } from '@/types/Member';
 
 export interface LayoutProps {
   children: ReactNode;
+  pageId?: string;
   flag?: boolean;
   folder?: string;
   Owner?: boolean;
@@ -22,6 +23,7 @@ export interface LayoutProps {
 
 function Layout({
   children,
+  pageId,
   flag,
   folder,
   Owner,
@@ -51,7 +53,7 @@ function Layout({
     <>
       {mounted && userData && (
         <div className={S.container}>
-          <SideMenu pageId={1} flag={flag} />
+          <SideMenu pageId={Number(pageId)} flag={flag} />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
