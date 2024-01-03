@@ -5,7 +5,7 @@ import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
-import S from '@/pages/[id]/mydashboard.module.css';
+import S from '@/pages/dashboard/[id]/edit/dashboardEditPage.module.css';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 
@@ -51,7 +51,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   return (
     <Layout flag={flag}>
       <NestedLayout>
-        <ReturnButton url={`/${dashboardId}`} />
+        <ReturnButton url={`dashboard/${dashboardId}`} />
         <div className={S.tableContainer}>
           <EditDashboard dashboardId={dashboardId} setFlag={setFlag} />
           <MemberList
