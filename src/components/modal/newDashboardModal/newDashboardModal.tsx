@@ -5,7 +5,7 @@ import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
 import { useEffect, useState } from 'react';
-import DashboardModalButtonSet from '@/components/modal/button/dashboardModalButtonSet';
+import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
 import { postDashboards } from '@/api/dashboard';
 import { useRouter } from 'next/router';
 
@@ -65,7 +65,7 @@ function NewDashboardModal({ onClick }: NewDashboardModalProps) {
           />
           <ColorChipInput setValue={setValue} />
 
-          <DashboardModalButtonSet
+          <ActiveModalButtonSet
             isDelete={false}
             submitButtonTitle="생성"
             onClickCancel={onClick}

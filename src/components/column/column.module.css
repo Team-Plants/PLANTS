@@ -1,0 +1,77 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 17px 12px 12px;
+  border-bottom: 1px solid var(--gray-30);
+
+  @media all and (desktop) {
+    height: 80vh;
+    /* height: 100vh; */
+    padding: 12px;
+    border-bottom: none;
+    border-right: 1px solid var(--gray-30);
+  }
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 17px;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50px;
+  background: var(--purple);
+}
+
+.sectionName {
+  color: var(--black);
+  font-size: 1.8rem;
+  font-weight: var(--font-bold);
+}
+
+.addContainer {
+  width: auto;
+  height: 40px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
+  /* max-height: fit-content; */
+  overflow-y: auto;
+  height: auto;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.refContainer {
+  width: 70px;
+  height: 5px;
+  @media (min-width: 768px) {
+    width: 148px;
+  }
+  @media (min-width: 1200px) {
+    width: 288px;
+  }
+}
+
+.refContainer div {
+  height: 50px;
+}

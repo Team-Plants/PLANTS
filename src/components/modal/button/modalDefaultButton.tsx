@@ -1,10 +1,12 @@
 import S from '@/components/modal/button/modalDefaultButton.module.css';
 import { ReactNode } from 'react';
+import { FieldValues } from 'react-hook-form';
 
 interface ModalDefaultButtonProps {
   children: ReactNode;
   type?: 'submit' | 'button';
-  onClick?: () => void;
+  onClick?: (data: FieldValues) => void;
+  // onClick?: () => void;
   isButtonActive?: boolean;
 }
 

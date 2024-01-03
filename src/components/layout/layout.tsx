@@ -7,7 +7,7 @@ import { ReactNode, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
-import { User } from '@/types/user';
+import { Assign } from '@/types/User';
 import { randomNickNameColor } from '@/utils/utility';
 import { MemberProps } from '@/types/Member';
 
@@ -31,7 +31,7 @@ function Layout({
   member,
 }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<Assign>();
   const [color, setColor] = useState<Colors>('pink');
   const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],

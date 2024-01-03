@@ -1,10 +1,12 @@
-import CommonStyle from '@/components/modal/modalCommon.module.css';
 import ModalDefaultButton from '@/components/modal/button/modalDefaultButton';
+import CommonStyle from '@/components/modal/modalCommon.module.css';
+import { FieldValues } from 'react-hook-form';
 
 interface ModalButtonSetState {
   isDelete: boolean;
   submitButtonTitle: '생성' | '변경' | '삭제' | '확인' | '수정' | '초대';
   onClickCancel: () => void;
+  onClickSubmit?: (data: FieldValues) => void;
   isButtonActive?: boolean;
 }
 
@@ -17,6 +19,7 @@ function ModalButtonSet({
   isDelete,
   submitButtonTitle = '확인',
   onClickCancel,
+  onClickSubmit,
   isButtonActive = false,
 }: ModalButtonSetState) {
   return (
@@ -27,7 +30,10 @@ function ModalButtonSet({
       {isDelete && <div className={CommonStyle.deleteButton}>삭제하기</div>}
       <div className={CommonStyle.rightButtonContainer}>
         <ModalDefaultButton onClick={onClickCancel}>취소</ModalDefaultButton>
-        <ModalDefaultButton type="submit" isButtonActive={isButtonActive}>
+        <ModalDefaultButton
+          type="submit"
+          onClick={onClickSubmit}
+          isButtonActive={isButtonActive}>
           {submitButtonTitle}
         </ModalDefaultButton>
       </div>

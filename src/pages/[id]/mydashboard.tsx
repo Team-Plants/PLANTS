@@ -100,7 +100,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             isModalOpen={isModalOpen}
           />
           <div className={S.marginDiv}></div>
-          <DeleteDashBoardButton />
+          <DeleteDashBoardButton dashboardId={dashboardId} />
         </div>
       </NestedLayout>
     </Layout>

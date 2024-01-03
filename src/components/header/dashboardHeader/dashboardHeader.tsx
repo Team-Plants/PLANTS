@@ -16,7 +16,7 @@ interface DashboardProps {
   user: {
     letter: string;
     name: string;
-    profile: string;
+    profile?: string;
     color: Colors;
   };
   member?: MemberProps[];

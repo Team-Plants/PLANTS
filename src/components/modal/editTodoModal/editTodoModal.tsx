@@ -1,18 +1,24 @@
+import { putCard } from '@/api/card';
+import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import S from '@/components/modal/editTodoModal/editTodoModal.module.css';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
+import ImgInput from '@/components/modal/input/imgInput/imgInput';
 import InputLayout from '@/components/modal/input/inputLayout';
+import SelectInput from '@/components/modal/input/selectInput/selectInput';
 import TagInput from '@/components/modal/input/tagInput/tagInput';
 import InputModalLayout from '@/components/modal/inputModal/inputModalLayout';
-import ModalLayout from '@/components/modal/modalLayout';
-import S from '@/components/modal/editTodoModal/editTodoModal.module.css';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
+import ModalLayout from '@/components/modal/modalLayout';
 import TextArea from '@/components/modal/textarea/textarea';
-import SelectInput from '@/components/modal/input/selectInput/selectInput';
-import ImgInput from '@/components/modal/input/imgInput/imgInput';
-import ModalButtonSet from '@/components/modal/button/modalButtonSet';
+import { CardData } from '@/types/Card';
+import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface AddTodoModalProps {
   onClick: () => void;
+  state: boolean;
+  cardId: number;
+  data: CardData;
 }
 
 export type StatusType = 'ToDo' | 'On Progress' | 'Done';
@@ -28,35 +34,50 @@ const stateOptions: StateOptions[] = [
   { value: 'Done', label: 'Done' },
 ];
 
-const ManagerOptions = [
-  { value: '배유철', label: '배유철' },
-  { value: '배동석', label: '배동석' },
-  { value: '배유철1', label: '배유철1' },
-];
+function EditTodoModal({ onClick, state, cardId, data }: AddTodoModalProps) {
+  const ManagerOptions = [
+    { value: data.assignee.nickname, label: data.assignee.nickname },
+  ];
 
-// 할 일 수정 모달
-function EditTodoModal({ onClick }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
-      manager: '',
-      title: '',
-      explain: '',
-      date: '',
-      tag: [],
-      img: '',
+      manager: data?.assignee.nickname,
+      title: data?.title,
+      description: data?.description,
+      dueDate: data?.dueDate,
+      tags: [data?.tags],
+      imageUrl: data?.imageUrl,
     },
   });
 
   const { handleSubmit, control, setValue } = methods;
+  const [isOpenState, setIsOpenState] = useState<boolean>(state);
 
   function handleEditTodo(data: FieldValues) {
-    // 구현 필요
-    console.log(data);
+    const newData: CardData = {
+      id: data.id,
+      assignee: data.assignee,
+      dashboardId: data.dashboardId,
+      columnId: data.columnId,
+      title: data.title,
+      description: data.description,
+      dueDate: data.dueDate,
+      tags: data.tags,
+      imageUrl: data.imageUrl,
+    };
+
+    if (confirm('해당 카드를 수정하시겠습니까?')) {
+      putCard(cardId, newData);
+    }
   }
 
   return (
-    <ModalLayout onClick={onClick}>
+    <ModalLayout
+      onClick={() => {
+        setIsOpenState(!false);
+      }}
+      isOpen={isOpenState}>
       <InputModalLayout title="할 일 수정">
         <form
           className={CommonStyle.form}
@@ -91,7 +112,7 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
             <TextArea
               placeholder="설명을 입력해 주세요"
               control={control}
-              name="explain"
+              name="description"
             />
           </InputLayout>
           <InputLayout label="마감일" isNecessary={false}>
@@ -99,20 +120,21 @@ function EditTodoModal({ onClick }: AddTodoModalProps) {
               placeholder="설명을 입력해 주세요"
               type="date"
               control={control}
-              name="date"
+              name="dueDate"
             />
           </InputLayout>
           <InputLayout label="태그" isNecessary={false}>
-            <TagInput setValue={setValue} control={control} name="tag" />
+            <TagInput setValue={setValue} control={control} name="tags" />
           </InputLayout>
           <InputLayout label="이미지" isNecessary={false}>
-            <ImgInput control={control} name="img" setValue={setValue} />
+            <ImgInput control={control} name="imageUrl" setValue={setValue} />
           </InputLayout>
 
           <ModalButtonSet
             isDelete={false}
             submitButtonTitle="수정"
             onClickCancel={onClick}
+            onClickSubmit={handleEditTodo}
           />
         </form>
       </InputModalLayout>
