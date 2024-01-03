@@ -48,9 +48,7 @@ function ProfileTable() {
     if (data.imageUrl) {
       const imgFormData = new FormData();
       imgFormData.append('image', data.imageUrl);
-      console.log(imgFormData);
       const response = await postProfileImage(imgFormData);
-      console.log(response);
       newData.profileImageUrl = response.profileImageUrl;
     }
 
