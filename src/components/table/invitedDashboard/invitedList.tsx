@@ -19,6 +19,7 @@ function InvitedList() {
     queryKey: ['invitation', debouncedSearchValue],
     queryFn: ({ pageParam: cursorId }) =>
       getInvitations(6, cursorId, debouncedSearchValue),
+    enabled: true,
     getNextPageParam: (lastPage) => {
       if (lastPage) {
         return lastPage.cursorId;
