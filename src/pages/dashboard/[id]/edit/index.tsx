@@ -5,9 +5,15 @@ import NestedLayout from '@/components/layout/nestedLayout';
 import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
+import { instance } from '@/libs/api';
 import S from '@/pages/dashboard/[id]/edit/dashboardEditPage.module.css';
+import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
+
+interface Dashboard {
+  id: number;
+}
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!context.params) {
@@ -17,6 +23,32 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   const dashboardId = context?.params['id'];
+
+  const cookie = context.req.headers.cookie || '';
+  const cookieString = cookie.slice(12, cookie.length);
+  const headers = {
+    Authorization: `Bearer ${cookieString}`,
+  };
+
+  try {
+    const response: AxiosResponse = await instance({
+      method: 'GET',
+      url: 'https://sp-taskify-api.vercel.app/1-5/dashboards?navigationMethod=infiniteScroll&size=1000',
+      headers: headers,
+    });
+
+    const dashboardIdList = response?.data?.dashboards.map((el: Dashboard) =>
+      String(el.id),
+    );
+
+    if (!dashboardIdList.includes(dashboardId)) {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    alert(error);
+  }
 
   return {
     props: {
