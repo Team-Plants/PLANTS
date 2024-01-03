@@ -69,8 +69,10 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
           <Image src={SettingImg} alt="설정 버튼" width={22} height={22} />
         </button>
       </div>
-      <div className={S.addContainer}></div>
-      <AddButton onClick={addClick} />
+      <div className={S.addContainer}>
+        <AddButton onClick={addClick} />
+      </div>
+
       <div className={S.cardContainer}>
         {cards &&
           cards.map((card, index) => (

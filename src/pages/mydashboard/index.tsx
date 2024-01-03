@@ -8,6 +8,7 @@ import EmptyInvitation from '@/components/table/invitedDashboard/emptyInvitation
 import { useEffect, useState } from 'react';
 import Layout from '@/components/layout/layout';
 import { withLayout } from '@/hooks/withAuth';
+import S from '@/pages/mydashboard/index.module.css';
 
 function MyDashboard() {
   const [dashboards, setDashboards] = useState<DashBoardData>();
@@ -26,14 +27,14 @@ function MyDashboard() {
   }, []);
 
   return (
-    <>
+    <div className={S.nestedLayout}>
       {dashboards && <PaginationCreateDashboard dashboardData={dashboards} />}
       {invitation ? (
         <InvitedList invitations={invitation} />
       ) : (
         <EmptyInvitation />
       )}
-    </>
+    </div>
   );
 }
 

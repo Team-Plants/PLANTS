@@ -9,8 +9,7 @@
   border-bottom: 1px solid var(--gray-30);
 
   @media all and (desktop) {
-    height: 80vh;
-    /* height: 100vh; */
+    height: 90vh;
     padding: 12px;
     border-bottom: none;
     border-right: 1px solid var(--gray-30);
