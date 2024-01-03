@@ -22,7 +22,7 @@ function DashBoardButton({
   return (
     <button
       className={S.container}
-      onClick={() => router.push(`/${dashboardId}/mydashboard`)}>
+      onClick={() => router.push(`dashboard/${dashboardId}/`)}>
       <div className={S.contentContainer}>
         <div className={S.circle} style={{ backgroundColor: color }} />
         <div className={S.content}>{content}</div>
