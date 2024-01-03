@@ -3,7 +3,6 @@ import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
 import { withLayout } from '@/hooks/withAuth';
 import { SignFormValuesType } from '@/types/SignFormValue';
-import { ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function Mypage() {

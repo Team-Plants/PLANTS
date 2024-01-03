@@ -28,12 +28,16 @@ export function withAuth(WrappedComponent: any) {
   return WithAuth;
 }
 
-export function withLayout(PageComponent: any, getLayout: any) {
+export function withLayout(
+  PageComponent: any,
+  getLayout: any,
+  layoutProps: any,
+) {
   const WithLayout = (props: any) => {
     const Layout = getLayout || ((page: any) => page);
 
     return (
-      <Layout>
+      <Layout {...layoutProps}>
         <PageComponent {...props} />
       </Layout>
     );
