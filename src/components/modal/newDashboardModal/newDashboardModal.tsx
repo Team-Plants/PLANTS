@@ -47,7 +47,7 @@ function NewDashboardModal({
       queryClient.invalidateQueries({ queryKey: ['dashboards'] }); //쿼리무효화
 
       if (dashBoardId && redirect) {
-        router.push(dashBoardId);
+        router.push(`/dashboard/${dashBoardId}`);
       }
     },
   });

@@ -1,4 +1,4 @@
-import { useEffect, useState, ReactElement } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getDashboards } from '@/api/dashboard';
 import { DashBoardData } from '@/types/DashBoard';
@@ -6,7 +6,8 @@ import QUERY_KEYS from '@/constants/queryKeys';
 import InvitedList from '@/components/table/invitedDashboard/invitedList';
 import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
 import Layout from '@/components/layout/layout';
-import NestedLayout from '@/components/layout/nestedLayout';
+import { withLayout } from '@/hooks/withAuth';
+import S from '@/pages/mydashboard/index.module.css';
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 
@@ -40,7 +41,7 @@ function MyDashboard() {
   }, [dashboardsData]);
 
   return (
-    <>
+    <div className={S.nestedLayout}>
       {dashboard ? (
         <PaginationCreateDashboard
           dashboardData={dashboard}
@@ -55,16 +56,11 @@ function MyDashboard() {
       {isOpenModal && (
         <NewDashboardModal onClick={handleClick} redirect={false} />
       )}
-    </>
+    </div>
   );
 }
 
-export default MyDashboard;
-
-MyDashboard.getLayout = (page: ReactElement) => {
-  return (
-    <Layout folder="내 대시보드" active={false}>
-      <NestedLayout>{page}</NestedLayout>
-    </Layout>
-  );
-};
+export default withLayout(MyDashboard, Layout, {
+  folder: '내 대시보드',
+  active: false,
+});

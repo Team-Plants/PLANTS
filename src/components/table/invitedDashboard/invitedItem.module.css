@@ -49,12 +49,14 @@
   color: var(--gray-70);
   font-size: 1.4rem;
   font-weight: var(--font-light);
+  margin-left: 0;
 
   @media all and (tablet) {
     display: flex;
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
+    margin-left: 30px;
   }
 
   @media all and (desktop) {
@@ -62,6 +64,7 @@
     align-items: center;
     color: var(--gray-70);
     font-size: 1.6rem;
+    margin-left: 36px;
   }
 }
 

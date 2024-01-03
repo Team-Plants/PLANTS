@@ -5,20 +5,21 @@
   width: fit-content;
   border-radius: 8px;
   gap: 8px;
-  padding: 30px 17px;
+  padding: 32px 28px 28px;
+  margin-bottom: 12px;
 }
 
 .title {
   font-weight: var(--font-bold);
-  font-size: 2.6rem;
-  margin-bottom: 40px;
+  font-size: 2.4rem;
+  margin-bottom: 32px;
 }
 
 .itemContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 30px;
+  gap: 16px;
 }
 
 .inputContainer {
@@ -30,4 +31,5 @@
 .buttonContainer {
   display: flex;
   justify-content: flex-end;
+  margin-top: 4px;
 }

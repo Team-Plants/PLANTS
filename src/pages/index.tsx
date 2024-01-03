@@ -11,6 +11,7 @@ import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
+
 function Home() {
   return (
     <>

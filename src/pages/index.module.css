@@ -1,13 +1,15 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
 .body {
   background: var(--black);
   display: flex;
   flex-direction: column;
   padding: 50px 16px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     padding: 100px 40px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding: 100px auto;
   }
 }
@@ -33,7 +35,14 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 50px;
+  }
+
+  @media (desktop) {
     flex-direction: row;
     gap: 20px;
     padding-top: 50px;
@@ -48,12 +57,13 @@
   line-height: normal;
   letter-spacing: -2px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     font-size: 5.6rem;
     line-height: 100%;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     font-size: 7.6rem;
+    line-height: 100%;
   }
 }
 
@@ -65,12 +75,13 @@
   line-height: normal;
   letter-spacing: -1px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     font-size: 5.6rem;
     line-height: 100%;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     font-size: 7.6rem;
+    line-height: 100%;
   }
 }
 
@@ -84,10 +95,10 @@
   letter-spacing: -1px;
   padding-bottom: 35px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     font-size: 1.6rem;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     font-size: 1.8rem;
   }
 }
@@ -108,10 +119,10 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     margin: 45px 0;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     margin: 45px 0;
     flex-direction: row;
   }
@@ -120,7 +131,12 @@
 .pointHeader {
   text-align: center;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
+    text-align: left;
+    padding-left: 60px;
+  }
+
+  @media (desktop) {
     text-align: left;
     padding-left: 60px;
   }
@@ -133,8 +149,8 @@
   font-weight: var(--font-normal);
   line-height: normal;
   padding: 60px 0;
-  
-  @media (min-width: 1200px) {
+
+  @media (desktop) {
     padding: 120px 0;
   }
 }
@@ -147,10 +163,10 @@
   line-height: 50px;
   padding-bottom: 250px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     padding-bottom: 200px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding-bottom: 0px;
     width: 300px;
   }
@@ -159,7 +175,7 @@
 .pointDescriptionSpan {
   composes: pointDescription;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     color: var(--gray-30);
   }
 }
@@ -170,7 +186,7 @@
   height: 65vw;
   max-height: 497px;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     margin-top: 103px;
   }
 }
@@ -195,10 +211,10 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     margin: 45px 0;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     margin: 45px 0;
     flex-direction: row-reverse;
   }
@@ -207,12 +223,13 @@
 .pointHeader2 {
   text-align: center;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     text-align: left;
     padding-left: 60px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding-right: 250px;
+    text-align: left;
   }
 }
 
@@ -221,7 +238,7 @@
   position: relative;
   justify-content: center;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding-top: 100px;
     padding-right: 45px;
   }
@@ -242,11 +259,12 @@
   line-height: normal;
   padding-bottom: 36px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     font-size: 2.8rem;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     text-align: left;
+    font-size: 2.8rem;
   }
 }
 
@@ -264,10 +282,10 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     margin: 45px 0;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     margin: 55px 0;
   }
 }
@@ -278,7 +296,7 @@
   align-items: center;
   gap: 48px;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     flex-direction: row;
     justify-content: center;
     gap: 30px;
@@ -292,10 +310,10 @@
   max-width: 448px;
   height: auto;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     max-width: 470px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     max-width: 378px;
     max-height: 384px;
   }
@@ -311,7 +329,7 @@
   position: relative;
   min-height: 280px;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding: 20px 20px;
     min-height: 260px;
   }
@@ -341,7 +359,7 @@
   border-radius: 0 0 8px 8px;
   gap: 20px;
 
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding: 20px 22px;
   }
 }
@@ -373,23 +391,31 @@
   align-items: center;
   gap: 26px;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
     gap: 0;
     font-size: 1.6rem;
     flex-direction: row;
     justify-content: space-between;
     padding: 0 60px 35px 60px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding: 0 150px 35px 150px;
+    gap: 0;
+    font-size: 1.6rem;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
 
 .footerGap {
   display: flex;
   gap: 22px;
-  
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    padding-left: 35px;
+  }
+
+  @media (desktop) {
     padding-left: 35px;
   }
 }
@@ -401,7 +427,10 @@
   align-items: center;
   justify-content: center;
 
-  @media (min-width: 768px) {
+  @media (tablet) {
+    margin: 0;
+  }
+  @media (desktop) {
     margin: 0;
   }
 }

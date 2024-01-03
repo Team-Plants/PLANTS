@@ -7,12 +7,12 @@ import { ReactNode, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
-import { Assign } from '@/types/Assign';
 import { randomNickNameColor } from '@/utils/utility';
 import { MemberProps } from '@/types/Member';
 
-interface LayoutProps {
+export interface LayoutProps {
   children: ReactNode;
+  pageId?: string;
   flag?: boolean;
   folder?: string;
   Owner?: boolean;
@@ -23,24 +23,22 @@ interface LayoutProps {
 
 function Layout({
   children,
+  pageId,
   flag,
   folder,
   Owner,
-  active,
+  active = true,
   id,
   member,
 }: LayoutProps) {
   const [mounted, setMounted] = useState(false);
-  const [user, setUser] = useState<Assign>();
   const [color, setColor] = useState<Colors>('pink');
   const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],
     queryFn: () => getUsers(),
-    enabled: true,
   });
 
   useEffect(() => {
-    setUser(userData);
     if (!userData?.profileImageUrl) {
       const rc = randomNickNameColor();
       setColor(rc);
@@ -49,20 +47,20 @@ function Layout({
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+  }, [mounted]);
 
   return (
     <>
-      {mounted && user && (
+      {mounted && userData && (
         <div className={S.container}>
-          <SideMenu pageId={1} flag={flag} />
+          <SideMenu pageId={Number(pageId)} flag={flag} />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader
               user={{
-                letter: user.nickname.slice(0, 1),
-                name: user.nickname,
-                profile: user.profileImageUrl,
+                letter: userData.nickname.slice(0, 1),
+                name: userData.nickname,
+                profile: userData.profileImageUrl,
                 color: color,
               }}
               member={member}

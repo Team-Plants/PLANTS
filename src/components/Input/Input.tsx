@@ -25,7 +25,7 @@ interface InputProps {
     | '새 비밀번호'
     | '새 비밀번호 확인'
     | '';
-  size?: 'shortContainer';
+  size?: 'shortContainer' | 'largeContainer';
 }
 
 function Input({ type, label, size }: InputProps) {

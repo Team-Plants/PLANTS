@@ -1,3 +1,5 @@
+@value tablet, desktop from "@/styles/breakpoints.css";
+
 .main {
   background: var(--white);
   width: 67px;
@@ -5,10 +7,11 @@
   min-height: 100vh;
   border-right: 2px solid;
   border-color: var(--gray-30);
-  @media (min-width: 768px) {
+
+  @media (tablet) {
     width: 160px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     width: 300px;
   }
 }
@@ -16,10 +19,11 @@
 .headerOuter {
   height: auto;
   padding: 20px 22px 0 22px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
     padding: 20px 25px 0 25px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     padding: 20px 24px 0 24px;
   }
 }
@@ -30,18 +34,26 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 38.8px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
     margin-bottom: 59.9px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     justify-content: left;
+    margin-bottom: 59.9px;
   }
 }
 
 .smallLogoImg {
   width: 23.6px;
   height: 27.1px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    width: 28.8px;
+    height: 33px;
+  }
+
+  @media (desktop) {
     width: 28.8px;
     height: 33px;
   }
@@ -49,7 +61,14 @@
 
 .taskifyImg {
   display: none;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    display: block;
+    width: 80px;
+    height: 22px;
+  }
+
+  @media (desktop) {
     display: block;
     width: 80px;
     height: 22px;
@@ -62,7 +81,13 @@
   align-items: center;
   justify-content: center;
   padding-bottom: 24px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+
+  @media (desktop) {
     justify-content: space-between;
     padding-bottom: 16px;
   }
@@ -76,7 +101,11 @@
   font-weight: 700;
   line-height: normal;
   padding-bottom: 3px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    display: block;
+  }
+  @media (desktop) {
     display: block;
   }
 }
@@ -91,7 +120,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    align-items: stretch;
+  }
+  @media (desktop) {
     align-items: stretch;
   }
 }
@@ -106,13 +139,16 @@
   align-items: center;
   justify-content: center;
   border-radius: 4px;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
     width: auto;
     justify-content: left;
     height: 43px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     height: 45px;
+    width: auto;
+    justify-content: left;
   }
 }
 
@@ -130,7 +166,12 @@
   font-weight: 500;
   line-height: normal;
   display: none;
-  @media (min-width: 768px) {
+
+  @media (tablet) {
+    display: block;
+  }
+
+  @media (desktop) {
     display: block;
   }
 }
@@ -141,10 +182,11 @@
   height: auto;
   border-right: 3px solid;
   border-color: var(--gray-40);
-  @media (min-width: 768px) {
+
+  @media (tablet) {
     width: 148px;
   }
-  @media (min-width: 1200px) {
+  @media (desktop) {
     width: 288px;
   }
 }

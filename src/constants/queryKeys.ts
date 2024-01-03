@@ -9,9 +9,10 @@ const QUERY_KEYS = {
   member: 'member',
   members: 'members',
   deleteMember: 'deleteMember',
+  getToken: 'getToekn',
   columns: 'columns',
   myDashboard: 'myDashboard',
-  user: 'user',
+  user: 'userMe',
   dashboards: 'dashboards',
   search: 'search',
 } as const;
