@@ -93,3 +93,8 @@
     display: none;
   }
 }
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+}
