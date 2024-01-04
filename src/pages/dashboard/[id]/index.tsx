@@ -98,7 +98,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   });
 
   const { data: columns, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.columns],
+    queryKey: [QUERY_KEYS.columns, dashboardId],
     queryFn: () => getColumns(dashboardId),
   });
 

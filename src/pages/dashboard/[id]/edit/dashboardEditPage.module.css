@@ -2,7 +2,13 @@
 
 .nestedLayout {
   composes: itemContainer from '@/components/layout/layout.module.css';
-  padding: 20px;
+  padding: 24px;
+  @media all and (tablet) {
+    padding: 24px;
+  }
+  @media all and (desktop) {
+    padding: 40px;
+  }
 }
 
 .tableContainer {
