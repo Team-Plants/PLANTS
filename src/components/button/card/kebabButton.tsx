@@ -1,5 +1,7 @@
 import { deleteCard } from '@/api/card';
 import S from '@/components/button/card/kebab.module.css';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   cardId: number;
@@ -7,10 +9,14 @@ interface Props {
 }
 
 function KebabButton({ cardId, onClick }: Props) {
-  function onClickCardDeleteBtn(cardId: number) {
-    if (confirm('해당 카드를 삭제하시겠습니까?')) {
-      deleteCard(cardId);
-    }
+  const { refetch } = useQuery({
+    queryKey: [QUERY_KEYS.deleteCard],
+    queryFn: () => deleteCard(cardId),
+    enabled: false,
+  });
+
+  async function onClickCardDeleteBtn() {
+    await refetch();
   }
 
   return (
@@ -20,7 +26,7 @@ function KebabButton({ cardId, onClick }: Props) {
       </button>
       <button
         className={S.clickContainer}
-        onClick={() => onClickCardDeleteBtn(cardId)}>
+        onClick={() => onClickCardDeleteBtn()}>
         삭제하기
       </button>
     </div>
