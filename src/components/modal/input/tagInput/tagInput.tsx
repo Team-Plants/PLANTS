@@ -1,5 +1,7 @@
-import { ChangeEvent, KeyboardEvent, useState } from 'react';
+import CategoryChip from '@/components/chip/category/categoryChip';
 import S from '@/components/modal/input/tagInput/tagInput.module.css';
+import { randomChipColor } from '@/utils/utility';
+import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import {
   Control,
   FieldPath,
@@ -7,8 +9,6 @@ import {
   UseFormSetValue,
   useController,
 } from 'react-hook-form';
-import CategoryChip from '@/components/chip/category/categoryChip';
-import { randomChipColor } from '@/utils/utility';
 
 interface TagInputProps {
   control: Control<FieldValues>;
@@ -26,7 +26,11 @@ function TagInput({ control, name, setValue }: TagInputProps) {
   const [tagList, setTagList] = useState<TagItem[]>([]);
 
   const onKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (tagItem?.content.length !== 0 && e.key === 'Enter') {
+    if (
+      tagItem?.content.length !== 0 &&
+      e.key === 'Enter' &&
+      e.nativeEvent.isComposing === false
+    ) {
       submitTagItem();
     }
   };
