@@ -205,6 +205,26 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setOpenModifyModal(true);
   };
 
+  useEffect(() => {
+    if (
+      isOpenAddTodoModal ||
+      isOpenColumnAddModal ||
+      isOpenColumnManageModal ||
+      isOpenTodoModal ||
+      isOpenModifyModal
+    ) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [
+    isOpenAddTodoModal,
+    isOpenColumnAddModal,
+    isOpenColumnManageModal,
+    isOpenTodoModal,
+    isOpenModifyModal,
+  ]);
+
   return (
     <Layout
       folder={folderName}
@@ -284,6 +304,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           modal={() => setIsOpenTodoModal(!isOpenTodoModal)}
           handleEditModal={handleEditModal}
           cardData={cardData}
+          columnId={columnId}
         />
       )}
       {isOpenModifyModal && cardData && (

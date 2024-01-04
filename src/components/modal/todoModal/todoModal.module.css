@@ -89,7 +89,11 @@
   margin-top: 4px;
   gap: 10px;
   height: 300px;
-  overflow: scroll;
+  overflow-y: scroll;
+}
+
+.commentContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .mainInfoContainer {
