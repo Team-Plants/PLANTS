@@ -14,7 +14,7 @@ function PasswordTable() {
     defaultValues: {
       currentPassword: '',
       newPassword: '',
-      newpasswordCheck: '',
+      newPasswordCheck: '',
     },
   });
 
