@@ -9,7 +9,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
-import { getSideMenuDashboards } from '@/api/dashboard';
+import { getDashboards } from '@/api/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 
@@ -28,8 +28,9 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   const [isModalClicked, setIsModalClicked] = useState(false);
   const [page, setPage] = useState(initialPage);
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.sidemenuDashboards],
-    queryFn: () => getSideMenuDashboards(5, page),
+    queryKey: [QUERY_KEYS.dashboards],
+    queryFn: () =>
+      getDashboards({ navigationMethod: 'infiniteScroll', size: 50 }), //cursorId : cursorId
     enabled: false,
   });
 

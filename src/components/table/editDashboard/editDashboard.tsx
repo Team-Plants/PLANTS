@@ -2,6 +2,7 @@ import { putDashboard } from '@/api/dashboard';
 import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import S from '@/components/table/editDashboard/editDashboard.module.css';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -23,13 +24,17 @@ function EditDashboard({ dashboardId, setFlag }: EditDashboardProps) {
     },
   });
 
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (data: FieldValues) =>
+      putDashboard(dashboardId, data.dashboardTitle, data.color),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['dashboards'] });
+    },
+  });
+
   async function handleEditDashboard(data: FieldValues) {
-    const result = await putDashboard(
-      dashboardId,
-      data.dashboardTitle,
-      data.color,
-    );
-    if (result) setFlag(true);
+    mutation.mutate(data);
   }
 
   const { handleSubmit, control, setValue, watch } = methods;

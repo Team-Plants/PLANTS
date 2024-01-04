@@ -1,4 +1,4 @@
-import { getDashboard } from '@/api/dashboard';
+import { getDashboards } from '@/api/dashboard';
 import { getMembers } from '@/api/member';
 import DeleteDashBoardButton from '@/components/button/dashBoard/delete/deleteDashBoardButton';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
@@ -83,8 +83,8 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [folderOwner, setFolderOwner] = useState();
   const [member, setMember] = useState<MemberProps[]>();
   const { data } = useQuery({
-    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
-    queryFn: () => getDashboard(dashboardId),
+    queryKey: [QUERY_KEYS.dashboards, dashboardId],
+    queryFn: () => getDashboards({ id: dashboardId }),
     enabled: true,
   });
 
