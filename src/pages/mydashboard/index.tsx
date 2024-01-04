@@ -19,7 +19,12 @@ function MyDashboard() {
 
   const { data: dashboardsData } = useQuery({
     queryKey: [QUERY_KEYS.dashboards, DSize, page],
-    queryFn: () => getDashboards('pagination', DSize, page),
+    queryFn: () =>
+      getDashboards({
+        navigationMethod: 'pagination',
+        size: DSize,
+        page: page,
+      }),
     enabled: true,
     placeholderData: dashboard,
   });

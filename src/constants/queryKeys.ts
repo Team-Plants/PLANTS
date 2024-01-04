@@ -5,15 +5,13 @@ const QUERY_KEYS = {
   uniqueCard: 'uniqueCard',
   invitations: 'invitations',
   deleteInvitation: 'deleteInvitation',
-  sidemenuDashboards: 'sidemenuDashboards',
+  dashboards: 'dashboards',
   member: 'member',
   members: 'members',
   deleteMember: 'deleteMember',
   getToken: 'getToekn',
   columns: 'columns',
-  myDashboard: 'myDashboard',
   user: 'userMe',
-  dashboards: 'dashboards',
   search: 'search',
 } as const;
 
