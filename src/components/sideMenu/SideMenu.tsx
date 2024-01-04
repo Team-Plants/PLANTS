@@ -9,7 +9,7 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
-import { getSideMenuDashboards } from '@/api/dashboard';
+import { getDashboards, getSideMenuDashboards } from '@/api/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 
@@ -27,15 +27,17 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
   const [page, setPage] = useState(initialPage);
+  const [addFlag, setAddFlag] = useState(false);
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.dashboards],
-    queryFn: () => getSideMenuDashboards(5, page),
+    queryFn: () =>
+      getDashboards({ navigationMethod: 'pagination', size: 5, page: page }),
     enabled: false,
   });
 
   async function fetchMoreDashboards() {
     if (isLoading) return;
-    refetch();
+    await refetch();
   }
 
   useEffect(() => {
@@ -47,6 +49,17 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
       refetch();
     }
   }, [flag]);
+
+  useEffect(() => {
+    if (addFlag) {
+      setDashboards([]);
+      setPage(1);
+      setCurrentLength(0);
+      setTotalCount(0);
+      refetch();
+      setAddFlag(false);
+    }
+  }, [addFlag]);
 
   useEffect(() => {
     if (refreshFlag) {
@@ -150,7 +163,12 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
           </div>
         </ul>
       </div>
-      {isModalClicked && <NewDashboardModal onClick={handleCancelClick} />}
+      {isModalClicked && (
+        <NewDashboardModal
+          onClick={handleCancelClick}
+          setAddFlag={setAddFlag}
+        />
+      )}
     </div>
   );
 }
