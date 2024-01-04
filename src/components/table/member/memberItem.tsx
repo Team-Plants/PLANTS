@@ -1,10 +1,11 @@
 import { DeleteMember } from '@/api/member';
 import Button from '@/components/button/button';
 import S from '@/components/table/member/memberItem.module.css';
-import QUERY_KEYS from '@/constants/queryKeys';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import CrownImg from '@/assets/icons/Crown.svg';
 import Image from 'next/image';
+import NameBadge from '@/components/nameBadge/nameBadge';
+import { randomNickNameColor } from '@/utils/utility';
 
 interface MemberItemProps {
   nickname: string;
@@ -18,32 +19,40 @@ function MemberItem({
   nickname,
   profileImageUrl,
   memberId,
-  setMemberFlag,
   isOwner,
 }: MemberItemProps) {
-  const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.deleteMember],
-    queryFn: () => DeleteMember(String(memberId)),
-    enabled: false,
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: () => DeleteMember(String(memberId)),
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+    },
   });
-
-  async function fetchDeleteMember() {
-    if (isLoading) return;
-    await refetch();
-  }
 
   async function handleCancelClick() {
     try {
-      await fetchDeleteMember();
-      setMemberFlag(true);
+      mutation.mutate();
     } catch (error) {
       console.error(error);
     }
   }
   return (
     <div className={S.container}>
-      {/* TODO: 아바타 배지 넣기 */}
       <div className={S.infoGroup}>
+        {profileImageUrl ? (
+          <Image
+            src={profileImageUrl}
+            alt="프로필"
+            width={38}
+            height={38}
+            className={S.profileImage}
+          />
+        ) : (
+          <NameBadge
+            letter={nickname.slice(0, 1)}
+            color={randomNickNameColor()}
+          />
+        )}
         {`${nickname} `}
         {isOwner && (
           <Image src={CrownImg} alt="왕관 이미지" width={17.6} height={14} />

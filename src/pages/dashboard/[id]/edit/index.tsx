@@ -7,13 +7,13 @@ import EditDashboard from '@/components/table/editDashboard/editDashboard';
 import InvitationList from '@/components/table/invitation/invitationList';
 import MemberList from '@/components/table/member/memberList';
 import QUERY_KEYS from '@/constants/queryKeys';
-import { instance } from '@/libs/api';
 import S from '@/pages/dashboard/[id]/edit/dashboardEditPage.module.css';
 import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
+import { instance } from '@/libs/api';
+import { AxiosResponse } from 'axios';
 
 interface Dashboard {
   id: number;
@@ -60,7 +60,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
     }
   } catch (error) {
-    console.log(error);
+    alert(error);
   }
 
   return {
