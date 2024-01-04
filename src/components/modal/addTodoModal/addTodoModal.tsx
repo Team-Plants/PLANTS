@@ -108,6 +108,10 @@ function AddTodoModal({
     mutation.mutateAsync(newData);
   }
 
+  const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
   useEffect(() => {
     getMembersData();
   }, []);
@@ -125,7 +129,8 @@ function AddTodoModal({
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}
-          onSubmit={handleSubmit(handleAddTodo)}>
+          onSubmit={handleSubmit(handleAddTodo)}
+          onKeyDown={(e) => checkKeyDown(e)}>
           <InputLayout label="담당자" isNecessary={false}>
             <SelectInput
               optionData={managers}
