@@ -16,6 +16,7 @@ import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -24,7 +25,7 @@ interface AddTodoModalProps {
 }
 
 export interface DashBoardData {
-  [key: string]: string | number;
+  [key: string]: string | number | undefined;
 }
 
 export interface Option {
@@ -35,8 +36,8 @@ export interface Option {
 // 할 일 생성 모달
 function AddTodoModal({
   onClick,
-  assigneeUserId = 143, //임시
-  columnId = 814, //임시
+  assigneeUserId,
+  columnId,
 }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -52,8 +53,10 @@ function AddTodoModal({
 
   const { handleSubmit, control, setValue, watch } = methods;
   const watchAll = Object.values(watch(['title', 'description'])); //필수항목, 두개만 채워지면 제출가능
+
   const [isButtonActive, setIsButtonActive] = useState(true);
   const [managers, SetManagers] = useState<Option[]>();
+
   const router = useRouter();
   const dashboardId = parseInt(router.asPath.split('/')[2]);
 
@@ -67,13 +70,19 @@ function AddTodoModal({
     SetManagers(filtered);
   }
 
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: postCard,
+    onSuccess: () => queryClient.invalidateQueries(),
+  });
+
   async function handleAddTodo(data: FieldValues) {
     onClick();
 
+    console.log(columnId);
     const newData: DashBoardData = {
       assigneeUserId,
-      // dashboardId : dashboardId.pathname, //
-      dashboardId: dashboardId, //임시, dashboardId받아와서 윗줄처럼 사용하도록 수정필요
+      dashboardId,
       columnId,
     };
 
@@ -94,9 +103,9 @@ function AddTodoModal({
       const response = await postColumnImage(imgFormData, `${columnId}`);
       newData.imageUrl = response.imageUrl;
     }
+    console.log(newData);
 
-    const response = await postCard(newData);
-    console.log(response); //카드만들 데이터
+    mutation.mutateAsync(newData);
   }
 
   useEffect(() => {
