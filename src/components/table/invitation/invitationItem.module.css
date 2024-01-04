@@ -1,4 +1,4 @@
-@value desktop, table from "@/styles/breakpoints.css";
+@value desktop, tablet from "@/styles/breakpoints.css";
 
 .container {
   display: flex;
@@ -25,16 +25,26 @@
 }
 
 .badge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background-color: var(--purple);
+  display: none;
 
-  @media all and (mobile) {
-    display: none;
+  @media all and (tablet) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--purple);
+  }
+
+  @media all and (desktop) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--purple);
   }
 }
 
@@ -42,7 +52,7 @@
   font-size: 1.4rem;
 
   @media all and (tablet) {
-    font-size: 60rem;
+    font-size: 1.6rem;
   }
 
   @media all and (desktop) {
