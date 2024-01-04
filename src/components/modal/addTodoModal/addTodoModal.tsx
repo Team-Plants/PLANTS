@@ -22,7 +22,7 @@ import QUERY_KEYS from '@/constants/queryKeys';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  columnId?: number;
+  columnId: number;
 }
 
 export interface DashBoardData {
@@ -35,10 +35,7 @@ export interface Option {
 }
 
 // 할 일 생성 모달
-function AddTodoModal({
-  onClick,
-  columnId = 6204, //임시
-}: AddTodoModalProps) {
+function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
