@@ -6,6 +6,7 @@
   padding: 24px 16px;
   border-radius: 8px;
   background: var(--white);
+  overflow: scroll;
 
   @media all and (tablet) {
     height: 592px;
@@ -62,6 +63,7 @@
 
   @media all and (desktop) {
     font-size: 1.6rem;
+
   }
 }
 
@@ -70,8 +72,19 @@
 }
 
 .tableItem {
+  height: 120px;
   padding: 16px 0 8px;
   border-bottom: 1px solid var(--gray-20);
+
+  @media all and (tablet) {
+    height: 70px;
+    padding: 20px 0px 20px 38px;
+  }
+
+  @media all and (desktop) {
+    height: 72px;
+    padding: 20px 20px 20px 36px;
+  }
 }
 
 .tableItem:last-child {

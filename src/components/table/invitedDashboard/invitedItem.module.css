@@ -8,10 +8,6 @@
   @media all and (tablet) {
     gap: 0;
   }
-
-  @media all and (desktop) {
-    gap: 0;
-  }
 }
 
 .info {
@@ -22,12 +18,14 @@
 
   @media all and (tablet) {
     display: grid;
-    grid-template-columns: 5fr 3fr 4fr;
+    grid-template-columns: 1fr 0.8fr 1fr;
+    gap: 0px;
   }
 
   @media all and (desktop) {
     display: grid;
-    grid-template-columns: 5fr 3fr 4fr;
+    grid-template-columns: 2.9fr 3.3fr 3.1fr;
+    gap: 0px;
   }
 }
 
@@ -47,7 +45,7 @@
 
 .title {
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1fr 4fr;
   color: var(--gray-70);
   font-size: 1.4rem;
   font-weight: var(--font-light);
@@ -72,7 +70,7 @@
 
 .inviter {
   display: grid;
-  grid-template-columns: 2fr 4fr;
+  grid-template-columns: 1fr 4fr;
   color: var(--gray-70);
   font-size: 1.4rem;
   font-weight: var(--font-light);

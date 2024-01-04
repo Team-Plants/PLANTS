@@ -12,6 +12,7 @@ const QUERY_KEYS = {
   getToken: 'getToekn',
   columns: 'columns',
   user: 'userMe',
+  search: 'search',
 } as const;
 
 export default QUERY_KEYS;
