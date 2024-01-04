@@ -16,7 +16,7 @@ function MyDashboard() {
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dashboard, setDashboard] = useState<DashBoardData>();
-
+  const [, setAddFlag] = useState(false);
   const { data: dashboardsData } = useQuery({
     queryKey: [QUERY_KEYS.dashboards, DSize, page],
     queryFn: () =>
@@ -59,7 +59,11 @@ function MyDashboard() {
       )}
       <InvitedList />
       {isOpenModal && (
-        <NewDashboardModal onClick={handleClick} redirect={false} />
+        <NewDashboardModal
+          onClick={handleClick}
+          redirect={false}
+          setAddFlag={setAddFlag}
+        />
       )}
     </div>
   );
