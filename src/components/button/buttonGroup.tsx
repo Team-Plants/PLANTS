@@ -1,4 +1,3 @@
-import { MouseEvent } from 'react';
 import Button from '@/components/button/button';
 import { putInvitations } from '@/api/invitations';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -8,12 +7,14 @@ interface ButtonProps {
   primaryContent: string;
   secondaryContent: string;
   invitationId?: number;
+  invited?: boolean;
 }
 
 function ButtonGroup({
   primaryContent,
   secondaryContent,
   invitationId,
+  invited,
 }: ButtonProps) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -27,13 +28,15 @@ function ButtonGroup({
   return (
     <div className={S.groupContainer}>
       <Button
-        content={secondaryContent}
-        status="secondary"
+        content={primaryContent}
+        status="primary"
+        invited={invited}
         onClick={() => mutation.mutate(true)}
       />
       <Button
-        content={primaryContent}
-        status="primary"
+        content={secondaryContent}
+        status="secondary"
+        invited={invited}
         onClick={() => mutation.mutate(false)}
       />
     </div>

@@ -6,12 +6,19 @@ type MouseEventHandler<T = Element> = EventHandler<MouseEvent<T>>;
 interface ButtonProps {
   content: string;
   status: 'primary' | 'secondary';
+  invited?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-function Button({ content, status, onClick }: ButtonProps) {
+function Button({ content, status, invited, onClick }: ButtonProps) {
   return (
-    <button className={`${S[status]} ${S.container}`} onClick={onClick}>
+    <button
+      className={
+        invited
+          ? `${S[status]} ${S.container} ${S.invited}`
+          : `${S[status]} ${S.container}`
+      }
+      onClick={onClick}>
       {content}
     </button>
   );
