@@ -34,7 +34,7 @@ function EditDashboard({ dashboardId, setFlag }: EditDashboardProps) {
   });
 
   async function handleEditDashboard(data: FieldValues) {
-    mutation.mutate(data);
+    await mutation.mutate(data);
     setFlag((prev) => !prev);
   }
 
