@@ -41,13 +41,11 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   }
 
   useEffect(() => {
-    if (flag) {
-      setDashboards([]);
-      setPage(1);
-      setCurrentLength(0);
-      setTotalCount(0);
-      refetch();
-    }
+    setDashboards([]);
+    setPage(1);
+    setCurrentLength(0);
+    setTotalCount(0);
+    refetch();
   }, [flag]);
 
   useEffect(() => {
