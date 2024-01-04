@@ -23,7 +23,6 @@ interface SideMenuProps {
 function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
-  // const [cursorId, setCursorId] = useState();
   const [totalCount, setTotalCount] = useState<number>(Infinity);
   const [currentLength, setCurrentLength] = useState(0);
   const [isModalClicked, setIsModalClicked] = useState(false);
@@ -42,7 +41,6 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   useEffect(() => {
     if (flag) {
       setDashboards([]);
-      // setCursorId(undefined);
       setPage(1);
       setCurrentLength(0);
       setTotalCount(0);
@@ -53,7 +51,6 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   useEffect(() => {
     if (refreshFlag) {
       setDashboards([]);
-      // setCursorId(undefined);
       setPage(1);
       setCurrentLength(0);
       setTotalCount(0);
@@ -62,7 +59,6 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
 
   useEffect(() => {
     if (data) {
-      // setCursorId(data.cursorId + 8);
       setPage((prev) => prev + 1);
       setDashboards((prev) => [...prev, ...data.dashboards]);
       setCurrentLength((prev) => prev + data.dashboards.length);
