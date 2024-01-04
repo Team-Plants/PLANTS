@@ -1,7 +1,7 @@
+import ImgPlusImg from '@/assets/icons/imgPlus.svg';
 import S from '@/components/modal/input/imgInput/imgInput.module.css';
 import Image from 'next/image';
 import { ChangeEvent, useCallback, useRef, useState } from 'react';
-import ImgPlusImg from '@/assets/icons/imgPlus.svg';
 import {
   Control,
   FieldPath,
@@ -14,10 +14,16 @@ interface ImgInputProps {
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
   setValue: UseFormSetValue<FieldValues>;
+  size?: 'large' | 'default';
 }
 
 // 할 일 생성, 할 일 수정 내부 이미지 업로드 컴포넌트
-function ImgInput({ control, name, setValue }: ImgInputProps) {
+function ImgInput({
+  control,
+  name,
+  setValue,
+  size = 'default',
+}: ImgInputProps) {
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -43,9 +49,9 @@ function ImgInput({ control, name, setValue }: ImgInputProps) {
   });
 
   return (
-    <div className={S.imgInputContainer}>
+    <div className={`${S.imgInputContainer} ${S[size]}`}>
       {imageSrc ? (
-        <Image src={imageSrc} alt="할일 업로드 이미지" width={58} height={58} />
+        <Image src={imageSrc} alt="이미지 업로드" fill />
       ) : (
         <div className={S.noImgContainer} onClick={handleUploadImg}>
           <Image src={ImgPlusImg} alt="이미지 업로드 플러스 아이콘" />

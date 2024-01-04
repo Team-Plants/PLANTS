@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getDashboards } from '@/api/dashboard';
 import { DashBoardData } from '@/types/DashBoard';
+import { withLayout } from '@/hooks/withAuth';
+import S from '@/pages/mydashboard/index.module.css';
+import Layout from '@/components/layout/layout';
 import QUERY_KEYS from '@/constants/queryKeys';
 import InvitedList from '@/components/table/invitedDashboard/invitedList';
 import PaginationCreateDashboard from '@/components/button/dashBoard/create/paginationCreateDashboard/paginationCreateDashboard';
-import Layout from '@/components/layout/layout';
-import { withLayout } from '@/hooks/withAuth';
-import S from '@/pages/mydashboard/index.module.css';
 import CreateDashBoardButton from '@/components/button/dashBoard/create/createDashBoardButton';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
 

@@ -12,6 +12,7 @@ interface DefaultInputProps {
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
   isRequired?: boolean;
+  size?: 'middleInput' | 'default' | 'largeInput';
 }
 
 // 모달 내 기본 input
@@ -21,6 +22,7 @@ function DefaultInput({
   name,
   control,
   isRequired = true,
+  size = 'default',
 }: DefaultInputProps) {
   const {
     field,
@@ -30,14 +32,14 @@ function DefaultInput({
     control,
     rules: isRequired
       ? {
-          required: { value: true, message: '입력해주세요' },
+          required: { value: true, message: '값을 입력해주세요' },
         }
       : {},
   });
   return (
     <div>
       <input
-        className={`${S.input} ${error ? S.errorInput : ''}`}
+        className={`${S.input} ${error ? S.errorInput : ''} ${S[size]}`}
         placeholder={placeholder}
         type={type}
         id={field.name}

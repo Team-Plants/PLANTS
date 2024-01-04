@@ -13,12 +13,17 @@
 
 .shortContainer {
   composes: formContainer;
-  width: 366px;
+  width: 468px;
 }
 
 .largeContainer {
   composes: formContainer;
   width: 564px;
+}
+
+.middleContainer {
+  composes: formContainer;
+  width: 366px;
 }
 
 .formLabel {
@@ -44,12 +49,20 @@
 .input {
   all: unset;
   display: flex;
-  justify-content: center;
   align-items: center;
   padding: 13px 16px;
   width: 100%;
   font-size: 1.6rem;
   color: var(--gray-80);
+  border: 1px solid var(--gray-30);
+}
+
+.noWorkInputContainer {
+  composes: input;
+  border-radius: 8px;
+  color: var(--gray-40);
+  width: 366px;
+  box-sizing: border-box;
 }
 
 .checkbox {

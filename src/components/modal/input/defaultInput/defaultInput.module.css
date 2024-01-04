@@ -19,6 +19,14 @@
   }
 }
 
+.middleInput {
+  width: 366px;
+}
+
+.largeInput {
+  width: 564px;
+}
+
 .input::placeholder {
   color: var(--gray-40);
 }

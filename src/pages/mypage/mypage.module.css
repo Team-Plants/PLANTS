@@ -2,3 +2,9 @@
   composes: itemContainer from '@/components/layout/layout.module.css';
   padding: 20px;
 }
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
