@@ -44,7 +44,6 @@ function TagInput({ control, name, setValue }: TagInputProps) {
       updatedTagList.map((i) => i.content),
     );
     setTagItem({ content: '' });
-    console.log(tagItem);
   };
 
   function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
