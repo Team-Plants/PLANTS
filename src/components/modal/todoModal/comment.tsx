@@ -2,6 +2,7 @@ import { deleteComment, getComments, putComment } from '@/api/comment';
 import S from '@/components/modal/todoModal/comment.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { CommentData, CommentDetail } from '@/types/Comment';
+import { dateFormat } from '@/utils/utility';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
@@ -62,6 +63,8 @@ function Comment({ data }: CommentProps) {
           src={data.author.profileImageUrl}
           alt="유저 프로필 이미지"
           className={S.profileImg}
+          width={58}
+          height={58}
         />
       ) : (
         <div className={S.noImg}></div>
@@ -70,7 +73,7 @@ function Comment({ data }: CommentProps) {
       <div className={S.commentContentContainer}>
         <div className={S.commentTopContainer}>
           <div className={S.name}>{data.author.nickname}</div>
-          <div className={S.date}>{data.createdAt}</div>
+          <div className={S.date}>{dateFormat(`${data.createdAt}`)}</div>
         </div>
 
         {modifyInput ? (

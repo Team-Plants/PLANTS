@@ -5,10 +5,9 @@ import ReactDOM from 'react-dom';
 interface ModalLayoutProp {
   children: ReactNode;
   onClick: () => void;
-  isOpen?: boolean;
 }
 
-function ModalLayout({ children, onClick, isOpen = true }: ModalLayoutProp) {
+function ModalLayout({ children, onClick }: ModalLayoutProp) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -19,14 +18,13 @@ function ModalLayout({ children, onClick, isOpen = true }: ModalLayoutProp) {
 
   return (
     <>
-      {isOpen &&
-        ReactDOM.createPortal(
-          <div className={S.overlay}>
-            <div className={S.outerModalContainer} onClick={onClick} />
-            {children}
-          </div>,
-          document?.getElementById('modal') as HTMLElement,
-        )}
+      {ReactDOM.createPortal(
+        <div className={S.overlay}>
+          <div className={S.outerModalContainer} onClick={onClick} />
+          {children}
+        </div>,
+        document?.getElementById('modal') as HTMLElement,
+      )}
     </>
   );
 }

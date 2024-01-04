@@ -20,14 +20,13 @@ import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface TodoModalProps {
-  state: boolean;
   cardData: CardData;
   modal: () => void;
+  handleEditModal: () => void;
 }
 
-function TodoModal({ state, cardData, modal }: TodoModalProps) {
+function TodoModal({ cardData, modal, handleEditModal }: TodoModalProps) {
   const [openKebab, setOpenKebab] = useState(false);
-  const [isOpenState, setIsOpenState] = useState<boolean>(state);
 
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -61,11 +60,7 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
   }
 
   return (
-    <ModalLayout
-      onClick={() => {
-        setIsOpenState(!false);
-      }}
-      isOpen={isOpenState}>
+    <ModalLayout onClick={modal}>
       <div className={S.todoModalContainer}>
         <div className={S.headerContainer}>
           <div className={S.modalTitle}>{cardData?.title}</div>
@@ -79,7 +74,7 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
                 onClick={() => setOpenKebab(!openKebab)}
               />
               {openKebab && (
-                <KebabButton cardId={cardData.id} onClick={modal} />
+                <KebabButton cardId={cardData.id} onClick={handleEditModal} />
               )}
             </div>
 
@@ -88,7 +83,7 @@ function TodoModal({ state, cardData, modal }: TodoModalProps) {
               alt="닫힘 아이콘"
               width={32}
               height={32}
-              onClick={() => setIsOpenState(false)}
+              onClick={modal}
             />
           </div>
         </div>

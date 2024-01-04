@@ -16,16 +16,17 @@ import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getUsers } from '@/api/user';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  assigneeUserId?: number;
-  columnId?: number;
+  columnId: number;
 }
 
 export interface DashBoardData {
-  [key: string]: string | number | undefined;
+  [key: string]: string | number;
 }
 
 export interface Option {
@@ -34,11 +35,7 @@ export interface Option {
 }
 
 // 할 일 생성 모달
-function AddTodoModal({
-  onClick,
-  assigneeUserId,
-  columnId,
-}: AddTodoModalProps) {
+function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
@@ -60,6 +57,11 @@ function AddTodoModal({
   const router = useRouter();
   const dashboardId = parseInt(router.asPath.split('/')[2]);
 
+  const { data: userData } = useQuery<MemberProps>({
+    queryKey: [QUERY_KEYS.user],
+    queryFn: () => getUsers(),
+  });
+
   async function getMembersData() {
     const response = await getMembers(String(dashboardId));
     const members = response.members;
@@ -74,15 +76,19 @@ function AddTodoModal({
   const mutation = useMutation({
     mutationFn: postCard,
     onSuccess: () => queryClient.invalidateQueries(),
+    onError: () => {
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+    },
   });
 
   async function handleAddTodo(data: FieldValues) {
+    if (!userData) return;
+
     onClick();
 
-    console.log(columnId);
     const newData: DashBoardData = {
-      assigneeUserId,
-      dashboardId,
+      assigneeUserId: userData.id,
+      dashboardId: dashboardId,
       columnId,
     };
 
@@ -103,7 +109,6 @@ function AddTodoModal({
       const response = await postColumnImage(imgFormData, `${columnId}`);
       newData.imageUrl = response.imageUrl;
     }
-    console.log(newData);
 
     mutation.mutateAsync(newData);
   }
@@ -125,7 +130,7 @@ function AddTodoModal({
   }, [watchAll]);
 
   return (
-    <ModalLayout onClick={onClick} isOpen={true}>
+    <ModalLayout onClick={onClick}>
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}
