@@ -23,7 +23,7 @@ import { GetServerSidePropsContext } from 'next';
 import Layout from '@/components/layout/layout';
 import { instance } from '@/libs/api';
 import { AxiosResponse } from 'axios';
-import { getDashboard } from '@/api/dashboard';
+import { getDashboards } from '@/api/dashboard';
 interface Dashboard {
   id: number;
 }
@@ -89,8 +89,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
   const { data: myDashboard } = useQuery({
-    queryKey: [QUERY_KEYS.myDashboard, dashboardId],
-    queryFn: () => getDashboard(dashboardId),
+    queryKey: [QUERY_KEYS.dashboards, dashboardId],
+    queryFn: () => getDashboards({ id: dashboardId }),
     enabled: true,
   });
 
