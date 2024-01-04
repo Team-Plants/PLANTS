@@ -40,7 +40,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
     updatedTagList.push(tagItem!);
     setTagList(updatedTagList);
     setValue(
-      'tag',
+      'tags',
       updatedTagList.map((i) => i.content),
     );
     setTagItem({ content: '' });

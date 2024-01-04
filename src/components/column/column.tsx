@@ -88,6 +88,7 @@ function Column({
           cards.map((card) => (
             <div key={card.id}>
               <Card
+                tags={card.tags}
                 title={card.title}
                 date={card.dueDate}
                 onClick={() => {
