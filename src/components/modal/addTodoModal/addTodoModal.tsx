@@ -36,7 +36,7 @@ export interface Option {
 function AddTodoModal({
   onClick,
   assigneeUserId = 143, //임시
-  columnId = 814, //임시
+  columnId = 6204, //임시
 }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
@@ -112,7 +112,7 @@ function AddTodoModal({
   }, [watchAll]);
 
   return (
-    <ModalLayout onClick={onClick} isOpen={true}>
+    <ModalLayout onClick={onClick}>
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}

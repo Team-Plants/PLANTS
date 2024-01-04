@@ -11,13 +11,10 @@ import CommonStyle from '@/components/modal/modalCommon.module.css';
 import ModalLayout from '@/components/modal/modalLayout';
 import TextArea from '@/components/modal/textarea/textarea';
 import { CardData } from '@/types/Card';
-import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  state: boolean;
-  cardId: number;
   data: CardData;
 }
 
@@ -34,7 +31,7 @@ const stateOptions: StateOptions[] = [
   { value: 'Done', label: 'Done' },
 ];
 
-function EditTodoModal({ onClick, state, cardId, data }: AddTodoModalProps) {
+function EditTodoModal({ onClick, data }: AddTodoModalProps) {
   const ManagerOptions = [
     { value: data.assignee.nickname, label: data.assignee.nickname },
   ];
@@ -52,7 +49,6 @@ function EditTodoModal({ onClick, state, cardId, data }: AddTodoModalProps) {
   });
 
   const { handleSubmit, control, setValue } = methods;
-  const [isOpenState, setIsOpenState] = useState<boolean>(state);
 
   function handleEditTodo(data: FieldValues) {
     const newData: CardData = {
@@ -68,16 +64,12 @@ function EditTodoModal({ onClick, state, cardId, data }: AddTodoModalProps) {
     };
 
     if (confirm('해당 카드를 수정하시겠습니까?')) {
-      putCard(cardId, newData);
+      putCard(data.id, newData);
     }
   }
 
   return (
-    <ModalLayout
-      onClick={() => {
-        setIsOpenState(!false);
-      }}
-      isOpen={isOpenState}>
+    <ModalLayout onClick={onClick}>
       <InputModalLayout title="할 일 수정">
         <form
           className={CommonStyle.form}

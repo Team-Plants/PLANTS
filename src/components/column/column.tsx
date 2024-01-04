@@ -10,23 +10,25 @@ import { useEffect, useState } from 'react';
 import AddButton from '@/components/button/add/addButton';
 import NumberChip from '@/components/chip/number/numberChip';
 import Card from '@/components/card/card';
-import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
-import TodoModal from '@/components/modal/todoModal/todoModal';
-
 interface ColumnProps {
   columnId: number;
   columnName: string;
   addClick: () => void;
   settingClick: () => void;
+  handleTodoModal: (cardData: CardData) => void;
 }
 
-function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
+function Column({
+  columnId,
+  columnName,
+  addClick,
+  settingClick,
+  handleTodoModal,
+}: ColumnProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [totalCount, setTotalCount] = useState(0);
   const [cursorId, setCursorId] = useState();
-  const [isOpenModal, setOpenModal] = useState(false);
-  const [isOpenModifyModal, setOpenModifyModal] = useState(false);
 
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.uniqueCard],
@@ -75,33 +77,14 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
 
       <div className={S.cardContainer}>
         {cards &&
-          cards.map((card, index) => (
-            <>
-              {isOpenModifyModal ? (
-                <EditTodoModal
-                  state={isOpenModifyModal}
-                  onClick={() => setOpenModifyModal(!isOpenModifyModal)}
-                  cardId={card.id}
-                  data={card}
-                />
-              ) : (
-                isOpenModal && (
-                  <TodoModal
-                    state={isOpenModal}
-                    cardData={card}
-                    key={index}
-                    modal={() => setOpenModifyModal(!isOpenModal)}
-                  />
-                )
-              )}
-              <div key={card.id}>
-                <Card
-                  title={card.title}
-                  date={card.dueDate}
-                  onClick={() => setOpenModal(!isOpenModal)}
-                />
-              </div>
-            </>
+          cards.map((card) => (
+            <div key={card.id}>
+              <Card
+                title={card.title}
+                date={card.dueDate}
+                onClick={() => handleTodoModal(card)}
+              />
+            </div>
           ))}
         <div ref={setTarget} className={S.refContainer}>
           <div className={S.loading}>{isLoading && 'loading...'}</div>
