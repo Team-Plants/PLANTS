@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const cookie = context.req.headers.cookie || '';
 
-  if (cookie !== '') {
+  if (cookie !== '' && cookie !== 'accessToken=') {
     return {
       redirect: {
         destination: '/mydashboard',
@@ -25,6 +25,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       },
     };
   }
+
+  return { props: {} };
 }
 
 function Home() {
