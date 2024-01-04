@@ -4,7 +4,7 @@ import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getPaginationMembers } from '@/api/member';
-import { useEffect, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
 
 interface MemberListProps {
@@ -22,24 +22,15 @@ function MemberList({
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.members],
+    queryKey: [QUERY_KEYS.members, page, Number(dashboardId)],
     queryFn: () => getPaginationMembers(page, 4, Number(dashboardId)),
     enabled: true,
   });
 
-  async function fetchMoreMembers() {
-    if (isLoading) return;
-    await refetch();
-  }
-
-  useEffect(() => {
-    fetchMoreMembers();
-  }, [page]);
-
   useEffect(() => {
     setTotalCount(data?.totalCount);
-    fetchMoreMembers();
-  }, [data, dashboardId]);
+    refetch();
+  }, [data]);
 
   useEffect(() => {
     if (totalCount === undefined) return;
@@ -49,13 +40,6 @@ function MemberList({
       setTotalPage(Math.ceil(totalCount / 4));
     }
   }, [totalCount]);
-
-  useEffect(() => {
-    if (memberFlag) {
-      fetchMoreMembers();
-      setMemberFlag(false);
-    }
-  }, [memberFlag]);
 
   useEffect(() => {
     if (totalPage !== 0 && totalPage < page) setPage((prev) => prev - 1);
@@ -78,9 +62,9 @@ function MemberList({
       <div className={S.label}>이름</div>
       <div>
         {data &&
-          data?.members.map((member: MemberProps) => {
+          data?.members.map((member: MemberProps, index: Key) => {
             return (
-              <div className={S.tableItem} key={member.userId}>
+              <div className={S.tableItem} key={index}>
                 <MemberItem
                   isOwner={member.isOwner}
                   nickname={member.nickname}
