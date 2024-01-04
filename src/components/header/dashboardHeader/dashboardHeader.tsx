@@ -84,7 +84,7 @@ function DashboardHeader({
         <Image className={S.vectorImage} src={VectorImg} alt="구분이미지" />
       )}
       {user && (
-        <>
+        <Link href={'/mypage'} className={S.linkContainer}>
           {user.profile ? (
             <Image
               src={user.profile}
@@ -98,7 +98,7 @@ function DashboardHeader({
           )}
 
           <p className={S.userName}>{user.name}</p>
-        </>
+        </Link>
       )}
       {isModalOpen && <TodoInvite onClick={handleClick} dashboardId={id} />}
     </div>

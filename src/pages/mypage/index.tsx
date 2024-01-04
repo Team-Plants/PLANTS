@@ -4,11 +4,28 @@ import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
 import S from '@/pages/mypage/mypage.module.css';
 import { withLayout } from '@/hooks/withAuth';
+import Button from '@/components/button/button';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function Mypage() {
+  const router = useRouter();
+  const handleLogout = async () => {
+    try {
+      const result = await axios.get('/api/logout');
+      alert(result.data.message);
+      router.push('/');
+    } catch (e) {
+      alert(e);
+    }
+  };
   return (
     <div className={S.nestedLayout}>
-      <ReturnButton url="/mydashboard" />
+      <div className={S.topContainer}>
+        <ReturnButton url="/mydashboard" />
+        <Button content="로그아웃" status="primary" onClick={handleLogout} />
+      </div>
+
       <div>
         <div className={S.formContainer}>
           <ProfileTable />

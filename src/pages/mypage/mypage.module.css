@@ -7,3 +7,10 @@
   flex-direction: column;
   gap: 12px;
 }
+
+.topContainer {
+  display: flex;
+  width: 620px;
+  align-items: center;
+  justify-content: space-between;
+}
