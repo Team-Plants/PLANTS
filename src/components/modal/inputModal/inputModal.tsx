@@ -10,7 +10,7 @@ interface InputModalLayoutProps {
 
 function InputModal({ onClick, children, title }: InputModalLayoutProps) {
   return (
-    <ModalLayout onClick={onClick} isOpen={true}>
+    <ModalLayout onClick={onClick}>
       <InputModalLayout title={title}>{children}</InputModalLayout>
     </ModalLayout>
   );

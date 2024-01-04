@@ -4,7 +4,7 @@ import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useState } from 'react';
 import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
 import { postDashboards } from '@/api/dashboard';
 import { useRouter } from 'next/router';
@@ -13,11 +13,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 interface NewDashboardModalProps {
   onClick: () => void;
   redirect?: boolean;
+  setAddFlag: React.Dispatch<SetStateAction<boolean>>;
 }
 
 function NewDashboardModal({
   onClick,
   redirect = true,
+  setAddFlag,
 }: NewDashboardModalProps) {
   const [isColorValid, setIsColorValid] = useState(false);
   const [isDashboardNameValid, setIsDashboardNameValid] = useState(false);
@@ -45,7 +47,7 @@ function NewDashboardModal({
     onSuccess: (data) => {
       const dashBoardId = data.id;
       queryClient.invalidateQueries({ queryKey: ['dashboards'] }); //쿼리무효화
-
+      setAddFlag(true);
       if (dashBoardId && redirect) {
         router.push(`/dashboard/${dashBoardId}`);
       }

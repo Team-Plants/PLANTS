@@ -24,6 +24,12 @@ import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import Layout from '@/components/layout/layout';
+import { getDashboards } from '@/api/dashboard';
+import TodoModal from '@/components/modal/todoModal/todoModal';
+import { CardData } from '@/types/Card';
+import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
+
 interface Dashboard {
   id: number;
 }
@@ -120,8 +126,15 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
 
   const { handleSubmit, control, reset, watch, setError } = methods;
 
-  function handleTodoModal() {
+  const [cardData, setCardData] = useState<CardData | null>(null);
+
+  function handleAddTodoModal() {
     setIsOpenAddTodoModal((prev) => !prev);
+  }
+
+  function handleTodoModal(card: CardData) {
+    setCardData(card);
+    setIsOpenTodoModal(!isOpenTodoModal);
   }
 
   function handleColumnAddModal() {
@@ -186,6 +199,14 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setFolderOwner(myDashboard?.createdByMe);
   }, [myDashboard]);
 
+  const [isOpenTodoModal, setIsOpenTodoModal] = useState(false);
+  const [isOpenModifyModal, setOpenModifyModal] = useState(false);
+
+  const handleEditModal = () => {
+    setIsOpenTodoModal(false);
+    setOpenModifyModal(true);
+  };
+
   return (
     <Layout
       folder={folderName}
@@ -200,8 +221,10 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
                 <Column
                   columnId={column.id}
                   columnName={column.title}
-                  addClick={handleTodoModal}
+                  addClick={handleAddTodoModal}
                   settingClick={() => handleColumnManageModal(column.id)}
+                  handleTodoModal={handleTodoModal}
+                  setColumnId={setColumnId}
                 />
               </div>
             );
@@ -210,7 +233,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           <ColumnButton onClick={handleColumnAddModal} />
         </div>
       </div>
-      {isOpenAddTodoModal && <AddTodoModal onClick={handleTodoModal} />}
+      {isOpenAddTodoModal && (
+        <AddTodoModal onClick={handleAddTodoModal} columnId={columnId} />
+      )}
       {isOpenColumnAddModal && (
         <InputModal onClick={handleColumnAddModal} title={'새 컬럼 생성'}>
           <InputLayout label="이름" isNecessary={false}>
@@ -255,6 +280,19 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
             </form>
           </InputLayout>
         </InputModal>
+      )}
+      {isOpenTodoModal && cardData && (
+        <TodoModal
+          modal={() => setIsOpenTodoModal(!isOpenTodoModal)}
+          handleEditModal={handleEditModal}
+          cardData={cardData}
+        />
+      )}
+      {isOpenModifyModal && cardData && (
+        <EditTodoModal
+          onClick={() => setOpenModifyModal(!isOpenModifyModal)}
+          data={cardData}
+        />
       )}
     </Layout>
   );

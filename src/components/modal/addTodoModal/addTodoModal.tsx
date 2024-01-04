@@ -16,11 +16,13 @@ import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { getUsers } from '@/api/user';
+import QUERY_KEYS from '@/constants/queryKeys';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  assigneeUserId?: number;
-  columnId?: number;
+  columnId: number;
 }
 
 export interface DashBoardData {
@@ -33,11 +35,7 @@ export interface Option {
 }
 
 // 할 일 생성 모달
-function AddTodoModal({
-  onClick,
-  assigneeUserId = 143, //임시
-  columnId = 814, //임시
-}: AddTodoModalProps) {
+function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
     mode: 'onChange',
     defaultValues: {
@@ -52,10 +50,17 @@ function AddTodoModal({
 
   const { handleSubmit, control, setValue, watch } = methods;
   const watchAll = Object.values(watch(['title', 'description'])); //필수항목, 두개만 채워지면 제출가능
+
   const [isButtonActive, setIsButtonActive] = useState(true);
   const [managers, SetManagers] = useState<Option[]>();
+
   const router = useRouter();
   const dashboardId = parseInt(router.asPath.split('/')[2]);
+
+  const { data: userData } = useQuery<MemberProps>({
+    queryKey: [QUERY_KEYS.user],
+    queryFn: () => getUsers(),
+  });
 
   async function getMembersData() {
     const response = await getMembers(String(dashboardId));
@@ -67,13 +72,23 @@ function AddTodoModal({
     SetManagers(filtered);
   }
 
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: postCard,
+    onSuccess: () => queryClient.invalidateQueries(),
+    onError: () => {
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+    },
+  });
+
   async function handleAddTodo(data: FieldValues) {
+    if (!userData) return;
+
     onClick();
 
     const newData: DashBoardData = {
-      assigneeUserId,
-      // dashboardId : dashboardId.pathname, //
-      dashboardId: dashboardId, //임시, dashboardId받아와서 윗줄처럼 사용하도록 수정필요
+      assigneeUserId: userData.id,
+      dashboardId: dashboardId,
       columnId,
     };
 
@@ -95,8 +110,7 @@ function AddTodoModal({
       newData.imageUrl = response.imageUrl;
     }
 
-    const response = await postCard(newData);
-    console.log(response); //카드만들 데이터
+    mutation.mutateAsync(newData);
   }
 
   useEffect(() => {
@@ -112,7 +126,7 @@ function AddTodoModal({
   }, [watchAll]);
 
   return (
-    <ModalLayout onClick={onClick} isOpen={true}>
+    <ModalLayout onClick={onClick}>
       <InputModalLayout title="할 일 생성">
         <form
           className={CommonStyle.form}

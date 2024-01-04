@@ -6,30 +6,34 @@ import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import { CardData } from '@/types/Card';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import AddButton from '@/components/button/add/addButton';
 import NumberChip from '@/components/chip/number/numberChip';
 import Card from '@/components/card/card';
-import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
-import TodoModal from '@/components/modal/todoModal/todoModal';
-
 interface ColumnProps {
   columnId: number;
   columnName: string;
   addClick: () => void;
   settingClick: () => void;
+  handleTodoModal: (cardData: CardData) => void;
+  setColumnId: Dispatch<SetStateAction<number>>;
 }
 
-function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
+function Column({
+  columnId,
+  columnName,
+  addClick,
+  settingClick,
+  handleTodoModal,
+  setColumnId,
+}: ColumnProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [totalCount, setTotalCount] = useState(0);
   const [cursorId, setCursorId] = useState();
-  const [isOpenModal, setOpenModal] = useState(false);
-  const [isOpenModifyModal, setOpenModifyModal] = useState(false);
 
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.uniqueCard],
+    queryKey: [QUERY_KEYS.uniqueCard, columnId],
     queryFn: () => getCards(10, cursorId, columnId),
   });
 
@@ -47,14 +51,15 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
 
   useEffect(() => {
     if (data) {
+      if (totalCount === data.totalCount || totalCount === 0) {
+        setCards((prev) => [...prev, ...data.cards]);
+      } else {
+        const lastCard = data.cards[data.cards.length - 1];
+        setCards((prev) => [...prev, lastCard]);
+      }
       setCursorId(data.cursorId);
       setTotalCount(data.totalCount);
-      setCards((prev) => [...prev, ...data.cards]);
     }
-  }, [data]);
-
-  useEffect(() => {
-    data;
   }, [data]);
 
   return (
@@ -70,38 +75,24 @@ function Column({ columnId, columnName, addClick, settingClick }: ColumnProps) {
         </button>
       </div>
       <div className={S.addContainer}>
-        <AddButton onClick={addClick} />
+        <AddButton
+          onClick={() => {
+            setColumnId(columnId);
+            addClick();
+          }}
+        />
       </div>
 
       <div className={S.cardContainer}>
         {cards &&
-          cards.map((card, index) => (
-            <>
-              {isOpenModifyModal ? (
-                <EditTodoModal
-                  state={isOpenModifyModal}
-                  onClick={() => setOpenModifyModal(!isOpenModifyModal)}
-                  cardId={card.id}
-                  data={card}
-                />
-              ) : (
-                isOpenModal && (
-                  <TodoModal
-                    state={isOpenModal}
-                    cardData={card}
-                    key={index}
-                    modal={() => setOpenModifyModal(!isOpenModal)}
-                  />
-                )
-              )}
-              <div key={card.id}>
-                <Card
-                  title={card.title}
-                  date={card.dueDate}
-                  onClick={() => setOpenModal(!isOpenModal)}
-                />
-              </div>
-            </>
+          cards.map((card) => (
+            <div key={card.id}>
+              <Card
+                title={card.title}
+                date={card.dueDate}
+                onClick={() => handleTodoModal(card)}
+              />
+            </div>
           ))}
         <div ref={setTarget} className={S.refContainer}>
           <div className={S.loading}>{isLoading && 'loading...'}</div>
