@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 interface Props {
   fetchCallback: () => void;
   target: HTMLDivElement | null;
-  props?: undefined;
+  props?: undefined | number;
 }
 
 function useIntersectionObserver({ target, fetchCallback, props }: Props) {

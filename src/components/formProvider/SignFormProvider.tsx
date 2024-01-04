@@ -50,6 +50,7 @@ function SignFormProvider({
       router.push(submitLink);
     }
   };
+
   const [isButtonActive, setIsButtonActive] = useState<'active' | 'inActive'>(
     'inActive',
   );

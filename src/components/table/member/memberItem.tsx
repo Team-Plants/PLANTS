@@ -11,7 +11,7 @@ interface MemberItemProps {
   profileImageUrl?: string;
   memberId: number;
   setMemberFlag: React.Dispatch<React.SetStateAction<boolean>>;
-  isOwner: boolean;
+  isOwner?: boolean;
 }
 
 function MemberItem({
