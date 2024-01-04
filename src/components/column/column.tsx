@@ -51,14 +51,15 @@ function Column({
 
   useEffect(() => {
     if (data) {
+      if (totalCount === data.totalCount || totalCount === 0) {
+        setCards((prev) => [...prev, ...data.cards]);
+      } else {
+        const lastCard = data.cards[data.cards.length - 1];
+        setCards((prev) => [...prev, lastCard]);
+      }
       setCursorId(data.cursorId);
       setTotalCount(data.totalCount);
-      setCards((prev) => [...prev, ...data.cards]);
     }
-  }, [data]);
-
-  useEffect(() => {
-    data;
   }, [data]);
 
   return (

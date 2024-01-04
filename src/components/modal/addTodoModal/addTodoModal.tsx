@@ -16,9 +16,9 @@ import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { useQuery } from '@tanstack/react-query';
 import { getUsers } from '@/api/user';
 import QUERY_KEYS from '@/constants/queryKeys';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
 interface AddTodoModalProps {
   onClick: () => void;
@@ -50,8 +50,10 @@ function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
 
   const { handleSubmit, control, setValue, watch } = methods;
   const watchAll = Object.values(watch(['title', 'description'])); //필수항목, 두개만 채워지면 제출가능
+
   const [isButtonActive, setIsButtonActive] = useState(true);
   const [managers, SetManagers] = useState<Option[]>();
+
   const router = useRouter();
   const dashboardId = parseInt(router.asPath.split('/')[2]);
 
@@ -69,6 +71,15 @@ function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
     }));
     SetManagers(filtered);
   }
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: postCard,
+    onSuccess: () => queryClient.invalidateQueries(),
+    onError: () => {
+      alert('문제가 발생했습니다. 다시 시도해주세요.');
+    },
+  });
 
   async function handleAddTodo(data: FieldValues) {
     if (!userData) return;
@@ -99,8 +110,7 @@ function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
       newData.imageUrl = response.imageUrl;
     }
 
-    const response = await postCard(newData);
-    console.log(response); //카드만들 데이터
+    mutation.mutateAsync(newData);
   }
 
   useEffect(() => {
