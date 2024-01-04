@@ -27,6 +27,7 @@ function InvitedItem({
             primaryContent="수락"
             secondaryContent="거절"
             invitationId={invitationId}
+            invited={true}
           />
         </div>
       </div>
