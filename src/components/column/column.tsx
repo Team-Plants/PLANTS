@@ -90,7 +90,10 @@ function Column({
               <Card
                 title={card.title}
                 date={card.dueDate}
-                onClick={() => handleTodoModal(card)}
+                onClick={() => {
+                  setColumnId(columnId);
+                  handleTodoModal(card);
+                }}
               />
             </div>
           ))}

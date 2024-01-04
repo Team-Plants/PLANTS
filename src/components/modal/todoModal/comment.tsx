@@ -27,12 +27,13 @@ function Comment({ data }: CommentProps) {
 
   const { refetch } = useQuery<CommentData>({
     queryKey: [QUERY_KEYS.comment],
-    queryFn: () => getComments(172, 1000),
+    queryFn: () => getComments(data.cardId, 1000),
     enabled: false,
   });
 
   const mutation = useMutation({
-    mutationFn: (data: FieldValues) => putComment(1025, data.content), // commentId
+    mutationFn: (fieldData: FieldValues) =>
+      putComment(data.id, fieldData.content),
     onError: (error) => {
       alert(error);
     },
@@ -42,13 +43,15 @@ function Comment({ data }: CommentProps) {
     },
   });
 
-  useQuery({
-    queryKey: [QUERY_KEYS.deleteComment],
-    queryFn: () => deleteComment(data.id),
+  const deleteMutation = useMutation({
+    mutationFn: () => deleteComment(data.id),
+    onSuccess: () => {
+      refetch();
+    },
   });
 
   async function onClickCommentDeleteBtn() {
-    await refetch();
+    deleteMutation.mutate();
   }
 
   async function onClickCommentModifyBtn(data: FieldValues) {

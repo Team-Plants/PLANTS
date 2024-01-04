@@ -16,6 +16,7 @@ import { CardData } from '@/types/Card';
 import { CommentData } from '@/types/Comment';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -23,9 +24,15 @@ interface TodoModalProps {
   cardData: CardData;
   modal: () => void;
   handleEditModal: () => void;
+  columnId: number;
 }
 
-function TodoModal({ cardData, modal, handleEditModal }: TodoModalProps) {
+function TodoModal({
+  cardData,
+  modal,
+  handleEditModal,
+  columnId,
+}: TodoModalProps) {
   const [openKebab, setOpenKebab] = useState(false);
 
   const methods = useForm<FieldValues>({
@@ -39,12 +46,15 @@ function TodoModal({ cardData, modal, handleEditModal }: TodoModalProps) {
 
   const { data, refetch } = useQuery<CommentData>({
     queryKey: [QUERY_KEYS.comment],
-    queryFn: () => getComments(172, 1000),
+    queryFn: () => getComments(cardData.id, 1000),
   });
+
+  const router = useRouter();
+  const dashboardId = parseInt(router.asPath.split('/')[2]);
 
   const mutation = useMutation({
     mutationFn: (data: FieldValues) =>
-      postComments(data.content, 172, 1012, 323),
+      postComments(data.content, cardData.id, columnId, dashboardId),
     onError: (error) => {
       alert(error);
     },
