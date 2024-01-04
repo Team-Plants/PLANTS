@@ -13,6 +13,7 @@ const QUERY_KEYS = {
   columns: 'columns',
   user: 'userMe',
   search: 'search',
+  deleteCard: 'deleteCard',
 } as const;
 
 export default QUERY_KEYS;
