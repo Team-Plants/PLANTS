@@ -6,7 +6,7 @@ import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import { CardData } from '@/types/Card';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import AddButton from '@/components/button/add/addButton';
 import NumberChip from '@/components/chip/number/numberChip';
 import Card from '@/components/card/card';
@@ -16,6 +16,7 @@ interface ColumnProps {
   addClick: () => void;
   settingClick: () => void;
   handleTodoModal: (cardData: CardData) => void;
+  setColumnId: Dispatch<SetStateAction<number>>;
 }
 
 function Column({
@@ -24,6 +25,7 @@ function Column({
   addClick,
   settingClick,
   handleTodoModal,
+  setColumnId,
 }: ColumnProps) {
   const [cards, setCards] = useState<CardData[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
@@ -31,7 +33,7 @@ function Column({
   const [cursorId, setCursorId] = useState();
 
   const { isLoading, data, refetch } = useQuery({
-    queryKey: [QUERY_KEYS.uniqueCard],
+    queryKey: [QUERY_KEYS.uniqueCard, columnId],
     queryFn: () => getCards(10, cursorId, columnId),
   });
 
@@ -72,7 +74,12 @@ function Column({
         </button>
       </div>
       <div className={S.addContainer}>
-        <AddButton onClick={addClick} />
+        <AddButton
+          onClick={() => {
+            setColumnId(columnId);
+            addClick();
+          }}
+        />
       </div>
 
       <div className={S.cardContainer}>

@@ -16,10 +16,12 @@ import { dateFormat } from '@/utils/utility';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
+import { useQuery } from '@tanstack/react-query';
+import { getUsers } from '@/api/user';
+import QUERY_KEYS from '@/constants/queryKeys';
 
 interface AddTodoModalProps {
   onClick: () => void;
-  assigneeUserId?: number;
   columnId?: number;
 }
 
@@ -35,7 +37,6 @@ export interface Option {
 // 할 일 생성 모달
 function AddTodoModal({
   onClick,
-  assigneeUserId = 143, //임시
   columnId = 6204, //임시
 }: AddTodoModalProps) {
   const methods = useForm<FieldValues>({
@@ -57,6 +58,11 @@ function AddTodoModal({
   const router = useRouter();
   const dashboardId = parseInt(router.asPath.split('/')[2]);
 
+  const { data: userData } = useQuery<MemberProps>({
+    queryKey: [QUERY_KEYS.user],
+    queryFn: () => getUsers(),
+  });
+
   async function getMembersData() {
     const response = await getMembers(String(dashboardId));
     const members = response.members;
@@ -68,12 +74,13 @@ function AddTodoModal({
   }
 
   async function handleAddTodo(data: FieldValues) {
+    if (!userData) return;
+
     onClick();
 
     const newData: DashBoardData = {
-      assigneeUserId,
-      // dashboardId : dashboardId.pathname, //
-      dashboardId: dashboardId, //임시, dashboardId받아와서 윗줄처럼 사용하도록 수정필요
+      assigneeUserId: userData.id,
+      dashboardId: dashboardId,
       columnId,
     };
 

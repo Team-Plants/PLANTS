@@ -221,6 +221,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
                   addClick={handleAddTodoModal}
                   settingClick={() => handleColumnManageModal(column.id)}
                   handleTodoModal={handleTodoModal}
+                  setColumnId={setColumnId}
                 />
               </div>
             );
@@ -229,7 +230,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           <ColumnButton onClick={handleColumnAddModal} />
         </div>
       </div>
-      {isOpenAddTodoModal && <AddTodoModal onClick={handleAddTodoModal} />}
+      {isOpenAddTodoModal && (
+        <AddTodoModal onClick={handleAddTodoModal} columnId={columnId} />
+      )}
       {isOpenColumnAddModal && (
         <InputModal onClick={handleColumnAddModal} title={'새 컬럼 생성'}>
           <InputLayout label="이름" isNecessary={false}>
