@@ -9,10 +9,30 @@ import HomeImg5 from '@/assets/images/Home5.png';
 import HomeImg6 from '@/assets/images/Home6.png';
 import DarkHeader from '@/components/header/DarkHeader';
 import S from '@/pages/index.module.css';
+import { GetServerSidePropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const cookie = context.req.headers.cookie || '';
+
+  if (cookie !== '') {
+    return {
+      redirect: {
+        destination: '/mydashboard',
+        permanent: false,
+      },
+    };
+  }
+}
 
 function Home() {
+  const router = useRouter();
+  function handleLoginClick() {
+    router.push('/login');
+  }
+
   return (
     <>
       <DarkHeader />
@@ -25,8 +45,23 @@ function Home() {
             <p className={S.h1}>새로운 일정 관리</p>
             <p className={S.h1Violet}>Taskify</p>
           </div>
-          <p className={S.serviceDescription}>서비스에 대한 설명</p>
-          {/* <button></button> */}
+          <p className={S.serviceDescription}>
+            이 프로젝트는 사용자들이 효과적으로 할일을 관리하고 협업을 강화하는
+            데 초점을 두었습니다. 회원가입과 로그인을 통해 사용자는 개인 계정을
+            생성하고 관리할 수 있습니다. 대시보드의 생성, 수정, 삭제를 통해
+            사용자는 자신에게 적합한 작업환경을 손쉽게 조성할 수 있으며, 각
+            대시보드에는 칼럼과 카드를 자유롭게 추가, 수정, 삭제하여 할일을
+            체계적으로 정리할 수 있습니다. 사이드메뉴를 활용하여 빠르게
+            대시보드에 접근할 수 있고, 협업을 위한 핵심 기능으로는 다른 사용자를
+            대시보드에 초대하거나 초대를 취소하며, 초대를 받은 사용자는 손쉽게
+            수락할 수 있습니다. 대시보드에 속한 구성원 목록을 확인하고, 대시보드
+            owner는 구성원을 삭제하여 팀의 동적인 협업을 가능하게 합니다. 이
+            프로젝트는 간편한 사용자 경험과 효율적인 협업을 통해 업무 관리의
+            품질을 높이는 것을 목표로 하여 개발되었습니다.
+          </p>
+          <button className={S.loginButton} onClick={handleLoginClick}>
+            로그인하기
+          </button>
         </div>
         <div className={S.pointContainer}>
           <div className={S.point}>

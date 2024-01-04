@@ -1,12 +1,21 @@
 import axios from 'axios';
 
-export async function getInvitations() {
+export async function getInvitations(
+  size?: number | null,
+  cursorId?: number | null,
+  title?: string | null,
+) {
   const option = {
     endpoint: '/invitations',
     method: 'GET',
+    params: {
+      size,
+      cursorId,
+      title,
+    },
   };
 
-  const result = await axios.post('api/withAuthHandler', option);
+  const result = await axios.post('/api/withAuthHandler', option);
   return result.data;
 }
 
@@ -39,4 +48,17 @@ export async function DeleteInvitation(
 
   const result = await axios.post('/api/withAuthHandler', option);
   return result;
+}
+
+export async function putInvitations(invitationId?: number, content?: boolean) {
+  const option = {
+    endpoint: `/invitations${invitationId ? `/${invitationId}` : ''}`,
+    method: 'PUT',
+    data: {
+      inviteAccepted: content,
+    },
+  };
+
+  const result = await axios.post('api/withAuthHandler', option);
+  return result.data;
 }

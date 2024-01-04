@@ -1,42 +1,23 @@
 import axios, { AxiosError } from 'axios';
 
-type Method = 'pagination' | 'infiniteScroll';
-
-export async function getDashboards(navigationMethod?: Method) {
-  const option = {
-    endpoint: '/dashboards',
-    method: 'GET',
-    params: {
-      navigationMethod: `${navigationMethod}`,
-      size: 5,
-    },
-  };
-
-  const result = await axios.post('api/withAuthHandler', option);
-  return result.data;
+interface Dashboard {
+  navigationMethod?: 'pagination' | 'infiniteScroll';
+  size?: number;
+  page?: number;
+  cursorId?: number;
+  id?: string;
 }
 
-export async function getDashboard(id: string) {
+export async function getDashboards(dashboard: Dashboard) {
+  const { id, navigationMethod, page, size, cursorId } = dashboard;
   const option = {
-    endpoint: `/dashboards/${id}`,
-    method: 'GET',
-  };
-
-  const result = await axios.post('/api/withAuthHandler', option);
-  return result.data;
-}
-
-export async function getSideMenuDashboards(
-  size: number,
-  cursorId: number | undefined,
-) {
-  const option = {
-    endpoint: '/dashboards',
+    endpoint: `/dashboards${id ? `/${id}` : ''}`,
     method: 'GET',
     params: {
-      navigationMethod: 'infiniteScroll',
-      size: size,
-      cursorId: cursorId,
+      navigationMethod,
+      page,
+      size,
+      cursorId,
     },
   };
 
