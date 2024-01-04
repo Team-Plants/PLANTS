@@ -24,23 +24,18 @@ function ButtonGroup({
     },
   });
 
-  function handleClick(e: MouseEvent<HTMLButtonElement>) {
-    const content = (e.currentTarget as HTMLButtonElement).textContent;
-    if (content === '수락') {
-      mutation.mutate(true);
-    } else if (content === '거절') {
-      mutation.mutate(false);
-    }
-  }
-
   return (
     <div className={S.groupContainer}>
       <Button
         content={secondaryContent}
         status="secondary"
-        onClick={handleClick}
+        onClick={() => mutation.mutate(true)}
       />
-      <Button content={primaryContent} status="primary" onClick={handleClick} />
+      <Button
+        content={primaryContent}
+        status="primary"
+        onClick={() => mutation.mutate(false)}
+      />
     </div>
   );
 }
