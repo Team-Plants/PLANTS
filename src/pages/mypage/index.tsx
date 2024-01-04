@@ -8,7 +8,7 @@ import { withLayout } from '@/hooks/withAuth';
 function Mypage() {
   return (
     <div className={S.nestedLayout}>
-      <ReturnButton url="/boards" />
+      <ReturnButton url="/mydashboard" />
       <div>
         <div className={S.formContainer}>
           <ProfileTable />
