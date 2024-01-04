@@ -12,7 +12,7 @@ interface DefaultInputProps {
   control: Control<FieldValues>;
   name: FieldPath<FieldValues>;
   isRequired?: boolean;
-  size?: 'middleInput' | 'default';
+  size?: 'middleInput' | 'default' | 'largeInput';
 }
 
 // 모달 내 기본 input
@@ -32,7 +32,7 @@ function DefaultInput({
     control,
     rules: isRequired
       ? {
-          required: { value: true, message: '입력해주세요' },
+          required: { value: true, message: '값을 입력해주세요' },
         }
       : {},
   });
