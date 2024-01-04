@@ -3,7 +3,7 @@ import DashboardHeader, {
 } from '@/components/header/dashboardHeader/dashboardHeader';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
-import { ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
@@ -31,7 +31,8 @@ function Layout({
   id,
   member,
 }: LayoutProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useRef(false);
+  const [refreshFlag, setRefreshFlag] = useState(false);
   const [color, setColor] = useState<Colors>('pink');
   const { data: userData } = useQuery({
     queryKey: [QUERY_KEYS.user],
@@ -46,14 +47,22 @@ function Layout({
   }, [userData]);
 
   useEffect(() => {
-    setMounted(true);
-  }, [mounted]);
+    if (!mounted.current) {
+      mounted.current = true;
+      setRefreshFlag(true);
+    }
+  }, []);
 
   return (
     <>
       {mounted && userData && (
         <div className={S.container}>
-          <SideMenu pageId={Number(pageId)} flag={flag} />
+          <SideMenu
+            pageId={Number(pageId)}
+            initialPage={1}
+            flag={flag}
+            refreshFlag={refreshFlag}
+          />
 
           <div className={S.sideBarContainer}>
             <DashboardHeader

@@ -177,17 +177,16 @@
 }
 
 .refContainer {
-  background: var(--white);
-  width: 70px;
+  width: 69px;
   height: auto;
-  border-right: 3px solid;
-  border-color: var(--gray-40);
+  border-right: 2px solid;
+  border-color: var(--gray-30);
 
   @media (tablet) {
-    width: 148px;
+    width: 160px;
   }
   @media (desktop) {
-    width: 288px;
+    width: 300px;
   }
 }
 
