@@ -22,51 +22,35 @@ export async function postProfileImage(body: FormData) {
 }
 
 export async function putPassword(password: string, newPassword: string) {
-  const tokenResponse = await axios.post('/api/getToken');
-  const token = tokenResponse.data;
-
   const data = {
     password,
     newPassword,
   };
 
-  if (token) {
-    const response = await instance({
-      url: '/auth/password',
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: data,
-    });
+  const option = {
+    endpoint: '/auth/password',
+    method: 'PUT',
+    data: data,
+  };
 
-    return response.data;
-  }
+  const result = await axios.post('/api/withAuthHandler', option);
 
-  return;
+  return result.data;
 }
 
 export async function putUser(nickname: string, profileImageUrl: string) {
-  const tokenResponse = await axios.post('/api/getToken');
-  const token = tokenResponse.data;
-
   const data = {
     nickname,
     profileImageUrl,
   };
 
-  if (token) {
-    const response = await instance({
-      url: '/users/me',
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: data,
-    });
+  const option = {
+    endpoint: '/users/me',
+    method: 'PUT',
+    data: data,
+  };
 
-    return response.data;
-  }
+  const result = await axios.post('/api/withAuthHandler', option);
 
-  return;
+  return result.data;
 }

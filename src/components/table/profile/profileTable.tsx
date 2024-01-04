@@ -9,7 +9,7 @@ import InputLayout from '@/components/modal/input/inputLayout';
 import S from '@/components/table/profile/profileTable.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { MemberProps } from '@/types/Member';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { FieldValues, useForm } from 'react-hook-form';
 
@@ -24,6 +24,8 @@ function ProfileTable() {
     queryKey: [QUERY_KEYS.user],
     queryFn: () => getUsers(),
   });
+
+  const queryclient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: (data: ProfileData) =>
@@ -42,7 +44,8 @@ function ProfileTable() {
     },
 
     onSuccess: () => {
-      alert('변경 완료');
+      alert('변경이 완료되었습니다.');
+      queryclient.invalidateQueries({ queryKey: ['userMe'] });
     },
   });
 
