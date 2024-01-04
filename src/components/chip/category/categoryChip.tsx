@@ -6,7 +6,7 @@ interface Category {
 }
 
 function CategoryChip({ content, color }: Category) {
-  const colorName = color.split('#')[0];
+  const colorName = color?.split('#')[0];
   return <div className={S[colorName]}>{content}</div>;
 }
 
