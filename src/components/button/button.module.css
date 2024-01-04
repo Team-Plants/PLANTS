@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 84px;
+  width: 52px;
   height: 32px;
   border-radius: 4px;
   font-weight: var(--font-normal);
@@ -17,8 +17,7 @@
   }
 
   @media all and (desktop) {
-    width: 109px;
-    padding: 7px 37px;
+    width: 840px;
     font-size: 1.2rem;
   }
 }

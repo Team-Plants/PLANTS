@@ -32,6 +32,10 @@
   height: 34px;
   border-radius: 50%;
   background-color: var(--purple);
+
+  @media all and (mobile) {
+    display: none;
+  }
 }
 
 .email {
