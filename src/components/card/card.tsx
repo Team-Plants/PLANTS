@@ -2,6 +2,7 @@ import CalendarImg from '@/assets/icons/Calendar.svg';
 import S from '@/components/card/card.module.css';
 import Image from 'next/image';
 import CategoryChip from '../chip/category/categoryChip';
+import { randomChipColor } from '@/utils/utility';
 
 interface CardProps {
   title: string;
@@ -9,25 +10,10 @@ interface CardProps {
   profileImg?: string;
   cardImg?: string;
   onClick: () => void;
+  tags: string[];
 }
 
-interface Chip {
-  content: string;
-  color: ThemeType;
-}
-
-const dummyChip: Chip[] = [
-  {
-    content: '프로젝트',
-    color: 'orange#FFA500',
-  },
-  {
-    content: '백엔드',
-    color: 'pink#FFC0CB',
-  },
-];
-
-function Card({ title, date, profileImg, cardImg, onClick }: CardProps) {
+function Card({ title, date, profileImg, cardImg, onClick, tags }: CardProps) {
   return (
     <div className={S.cardContainer} onClick={onClick}>
       {cardImg && (
@@ -38,9 +24,13 @@ function Card({ title, date, profileImg, cardImg, onClick }: CardProps) {
 
         <div className={S.subContentContainer}>
           <div className={S.chipContainer}>
-            {dummyChip.map((e, index) => {
+            {tags.map((e, index) => {
               return (
-                <CategoryChip content={e.content} color={e.color} key={index} />
+                <CategoryChip
+                  content={e}
+                  color={randomChipColor()}
+                  key={index}
+                />
               );
             })}
           </div>
