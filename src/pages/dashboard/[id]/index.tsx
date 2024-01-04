@@ -283,6 +283,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           modal={() => setIsOpenTodoModal(!isOpenTodoModal)}
           handleEditModal={handleEditModal}
           cardData={cardData}
+          columnId={columnId}
         />
       )}
       {isOpenModifyModal && cardData && (
