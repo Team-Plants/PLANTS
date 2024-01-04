@@ -1,11 +1,11 @@
-@value tablet, mobile from "@/styles/breakpoints.css";
+@value tablet, desktop from "@/styles/breakpoints.css";
 
 .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 84px;
+  width: 52px;
   height: 32px;
   border-radius: 4px;
   font-weight: var(--font-normal);
@@ -16,9 +16,8 @@
     height: 30px;
   }
 
-  @media all and (mobile) {
-    width: 109px;
-    padding: 7px 37px;
+  @media all and (desktop) {
+    width: 84px;
     font-size: 1.2rem;
   }
 }
@@ -39,4 +38,29 @@
   border: 1px solid var(--gray-30);
   background-color: var(--white);
   color: var(--violet);
+}
+
+.container.invited {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 109px;
+  height: 28px;
+  padding: 7px 37px;
+  border-radius: 4px;
+  font-weight: var(--font-normal);
+  font-size: 1.4rem;
+
+  @media all and (tablet) {
+    width: 72px;
+    height: 30px;
+    padding: 0;
+  }
+
+  @media all and (desktop) {
+    width: 84px;
+    font-size: 1.2rem;
+    padding: 0;
+  }
 }

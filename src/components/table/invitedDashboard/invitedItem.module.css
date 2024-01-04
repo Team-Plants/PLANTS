@@ -18,13 +18,13 @@
 
   @media all and (tablet) {
     display: grid;
-    grid-template-columns: 1fr 0.8fr 1fr;
+    grid-template-columns: 5fr 3fr 4fr;
     gap: 0px;
   }
 
   @media all and (desktop) {
     display: grid;
-    grid-template-columns: 2.9fr 3.3fr 3.1fr;
+    grid-template-columns: 5.3fr 3.2fr 4fr;
     gap: 0px;
   }
 }

@@ -9,6 +9,7 @@ import { Invitation, InvitationList } from '@/types/Invitation';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import TodoInvite from '@/components/modal/todoInvite/todoInvite';
+import InvitationButton from '@/components/button/invitation/invitation';
 
 function InvitationList({
   dashboardId,
@@ -90,7 +91,7 @@ function InvitationList({
               />
             </div>
             <div className={S.inviteButton}>
-              <Button content="초대하기" status="primary" onClick={onClick} />
+              <InvitationButton onClick={onClick} />
             </div>
           </div>
         </div>

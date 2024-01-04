@@ -6,7 +6,7 @@
   padding: 24px 16px;
   border-radius: 8px;
   background: var(--white);
-  overflow: scroll;
+  overflow-y: scroll;
 
   @media all and (tablet) {
     height: 592px;
@@ -18,6 +18,10 @@
     height: 600px;
     padding: 32px 28px 20px;
   }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
 }
 
 .header {
@@ -63,7 +67,6 @@
 
   @media all and (desktop) {
     font-size: 1.6rem;
-
   }
 }
 
@@ -78,12 +81,12 @@
 
   @media all and (tablet) {
     height: 70px;
-    padding: 20px 0px 20px 38px;
+    padding: 20px 0px 20px 0px;
   }
 
   @media all and (desktop) {
     height: 72px;
-    padding: 20px 20px 20px 36px;
+    padding: 20px 20px 20px 0px;
   }
 }
 

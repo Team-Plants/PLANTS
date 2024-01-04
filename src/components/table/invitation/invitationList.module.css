@@ -6,7 +6,7 @@
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  padding: 32px 20px 16px;
+  padding: 32px 16px 16px;
   border-radius: 8px;
   background: var(--white);
 
@@ -28,6 +28,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   color: var(--black);
   font-size: 2rem;
   font-weight: var(--font-bold);
