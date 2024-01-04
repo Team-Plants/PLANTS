@@ -72,7 +72,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
       };
     }
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
   return {
     props: {
@@ -203,6 +203,26 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setIsOpenTodoModal(false);
     setOpenModifyModal(true);
   };
+
+  useEffect(() => {
+    if (
+      isOpenAddTodoModal ||
+      isOpenColumnAddModal ||
+      isOpenColumnManageModal ||
+      isOpenTodoModal ||
+      isOpenModifyModal
+    ) {
+      document.body.style.overflowY = 'hidden';
+    } else {
+      document.body.style.overflowY = 'auto';
+    }
+  }, [
+    isOpenAddTodoModal,
+    isOpenColumnAddModal,
+    isOpenColumnManageModal,
+    isOpenTodoModal,
+    isOpenModifyModal,
+  ]);
 
   return (
     <Layout
