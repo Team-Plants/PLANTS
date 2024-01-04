@@ -5,7 +5,6 @@ const QUERY_KEYS = {
   uniqueCard: 'uniqueCard',
   invitations: 'invitations',
   deleteInvitation: 'deleteInvitation',
-  dashboards: 'dashboards',
   sidemenuDashboards: 'sidemenuDashboards',
   member: 'member',
   members: 'members',
@@ -14,6 +13,8 @@ const QUERY_KEYS = {
   columns: 'columns',
   myDashboard: 'myDashboard',
   user: 'userMe',
+  dashboards: 'dashboards',
+  search: 'search',
 } as const;
 
 export default QUERY_KEYS;

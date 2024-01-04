@@ -3,10 +3,15 @@ import S from '@/components/table/invitedDashboard/invitedItem.module.css';
 
 interface InvitedItemProps {
   dashBoardTitle?: string;
+  invitationId?: number;
   inviter?: string;
 }
 
-function InvitedItem({ dashBoardTitle, inviter }: InvitedItemProps) {
+function InvitedItem({
+  dashBoardTitle,
+  invitationId,
+  inviter,
+}: InvitedItemProps) {
   return (
     <div className={S.container}>
       <div className={S.info}>
@@ -18,7 +23,11 @@ function InvitedItem({ dashBoardTitle, inviter }: InvitedItemProps) {
         </div>
 
         <div className={S.buttonGroup}>
-          <ButtonGroup primaryContent="수락" secondaryContent="거절" />
+          <ButtonGroup
+            primaryContent="수락"
+            secondaryContent="거절"
+            invitationId={invitationId}
+          />
         </div>
       </div>
     </div>
