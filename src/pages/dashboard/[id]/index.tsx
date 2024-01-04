@@ -11,24 +11,22 @@ import Column from '@/components/column/column';
 import Layout from '@/components/layout/layout';
 import AddTodoModal from '@/components/modal/addTodoModal/addTodoModal';
 import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
+import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
+import TodoModal from '@/components/modal/todoModal/todoModal';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { instance } from '@/libs/api';
 import S from '@/pages/dashboard/[id]/dashboard.module.css';
+import { CardData } from '@/types/Card';
 import { ColumnType } from '@/types/Columns';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { AxiosResponse } from 'axios';
 import { GetServerSidePropsContext } from 'next';
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import Layout from '@/components/layout/layout';
-import { getDashboards } from '@/api/dashboard';
-import TodoModal from '@/components/modal/todoModal/todoModal';
-import { CardData } from '@/types/Card';
-import EditTodoModal from '@/components/modal/editTodoModal/editTodoModal';
 
 interface Dashboard {
   id: number;
