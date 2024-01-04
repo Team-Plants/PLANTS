@@ -60,7 +60,7 @@ export async function putCard(cardId: number, newData: CardData) {
 
 export async function deleteCard(cardId: number) {
   const option = {
-    endpoint: `/cards/${cardId}}`,
+    endpoint: `/cards/${cardId}`,
     method: 'DELETE',
   };
 
