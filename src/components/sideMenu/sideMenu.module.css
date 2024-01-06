@@ -129,53 +129,6 @@
   }
 }
 
-.dashBoardLi {
-  width: 40px;
-  list-style: none;
-  display: flex;
-  gap: 16px;
-  padding: 0 12px;
-  height: 40px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-
-  @media (tablet) {
-    width: auto;
-    justify-content: left;
-    height: 43px;
-  }
-  @media (desktop) {
-    height: 45px;
-    width: auto;
-    justify-content: left;
-  }
-}
-
-.dashBoardColor {
-  width: 8px;
-  height: 8px;
-  border-radius: 50px;
-  background: var(--gray-50);
-}
-
-.dashBoardTitle {
-  color: var(--gray-50);
-  font-size: 1.6rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  display: none;
-
-  @media (tablet) {
-    display: block;
-  }
-
-  @media (desktop) {
-    display: block;
-  }
-}
-
 .refContainer {
   width: 69px;
   height: auto;
