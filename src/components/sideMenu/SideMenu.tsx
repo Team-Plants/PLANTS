@@ -8,10 +8,10 @@ import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
-import { getDashboards, getSideMenuDashboards } from '@/api/dashboard';
+import { getDashboards } from '@/api/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
-import SideMenuItem from './sideMenuItem';
+import SideMenuItem from '@/components/sideMenu/sideMenuItem';
 
 interface SideMenuProps {
   pageId: number;
