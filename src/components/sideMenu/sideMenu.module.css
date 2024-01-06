@@ -119,6 +119,20 @@
   }
 }
 
+.dashBoardOuter::-webkit-scrollbar {
+  width: 3.5px;
+}
+
+.dashBoardOuter::-webkit-scrollbar-thumb {
+  background-color: var(--gray-40);
+  border-radius: 50px;
+}
+
+.dashBoardOuter::-webkit-scrollbar-track {
+  background-color: var(--gray-20);
+  border-radius: 50px;
+}
+
 .dashBoardContainer {
   list-style: none;
   display: flex;
