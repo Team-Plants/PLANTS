@@ -23,6 +23,10 @@
   }
 }
 
+.dashBoardLi:hover {
+  background-color: #f1effd !important;
+}
+
 .dashBoardColor {
   width: 8px;
   height: 8px;

@@ -9,7 +9,6 @@ interface SideMenuItemProps {
   dashboardColor: string;
   dashboardTitle: string;
   createdByMe: boolean;
-  key: number;
 }
 
 function SideMenuItem({
@@ -18,10 +17,9 @@ function SideMenuItem({
   dashboardColor,
   dashboardTitle,
   createdByMe,
-  key,
 }: SideMenuItemProps) {
   return (
-    <Link href={`/dashboard/${dashboardId}`} key={key}>
+    <Link href={`/dashboard/${dashboardId}`} key={dashboardId}>
       <li
         className={S.dashBoardLi}
         style={{
