@@ -4,14 +4,14 @@ import Link from 'next/link';
 import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
-import CrownImg from '@/assets/icons/Crown.svg';
 import { MouseEvent, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
-import { getDashboards, getSideMenuDashboards } from '@/api/dashboard';
+import { getDashboards } from '@/api/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
+import SideMenuItem from '@/components/sideMenu/sideMenuItem';
 
 interface SideMenuProps {
   pageId: number;
@@ -127,29 +127,14 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
         <ul className={S.dashBoardContainer}>
           {dashboards &&
             dashboards.map((dashboard) => (
-              <Link href={`/dashboard/${dashboard.id}`} key={dashboard.id}>
-                <li
-                  className={S.dashBoardLi}
-                  style={{
-                    backgroundColor:
-                      pageId == dashboard.id ? '#F1EFFD' : '#FFF',
-                  }}>
-                  <div
-                    className={S.dashBoardColor}
-                    style={{ backgroundColor: `${dashboard.color}` }}></div>
-                  <div className={S.dashBoardTitle}>
-                    {dashboard.title + ' '}
-                    {dashboard.createdByMe && (
-                      <Image
-                        src={CrownImg}
-                        alt="왕관 이미지"
-                        width={17.6}
-                        height={14}
-                      />
-                    )}
-                  </div>
-                </li>
-              </Link>
+              <SideMenuItem
+                dashboardId={dashboard.id}
+                pageId={pageId}
+                dashboardColor={dashboard.color}
+                dashboardTitle={dashboard.title}
+                createdByMe={dashboard.createdByMe}
+                key={dashboard.id}
+              />
             ))}
           <div ref={setTarget} className={S.refContainer}>
             <div className={S.loading}>{isLoading && 'loading...'}</div>
