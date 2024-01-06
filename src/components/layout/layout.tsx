@@ -57,14 +57,15 @@ function Layout({
     <>
       {mounted && userData && (
         <div className={S.container}>
-          <SideMenu
-            pageId={Number(pageId)}
-            initialPage={1}
-            flag={flag}
-            refreshFlag={refreshFlag}
-          />
-
-          <div className={S.sideBarContainer}>
+          <div className={S.sideMenuContainer}>
+            <SideMenu
+              pageId={Number(pageId)}
+              initialPage={1}
+              flag={flag}
+              refreshFlag={refreshFlag}
+            />
+          </div>
+          <div className={S.headerContainer}>
             <DashboardHeader
               user={{
                 letter: userData.nickname.slice(0, 1),
@@ -78,8 +79,8 @@ function Layout({
               active={active}
               id={id}
             />
-            {children}
           </div>
+          <div className={S.childrenContainer}>{children}</div>
         </div>
       )}
     </>
