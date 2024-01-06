@@ -44,9 +44,11 @@
 
   @media (tablet) {
     display: block;
+    width: 90px;
   }
 
   @media (desktop) {
     display: block;
+    width: 220px;
   }
 }
