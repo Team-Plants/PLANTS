@@ -3,8 +3,7 @@
 .main {
   background: var(--white);
   width: 67px;
-  height: auto;
-  min-height: 100vh;
+  height: 100vh;
   border-right: 2px solid;
   border-color: var(--gray-30);
 
@@ -111,8 +110,13 @@
 }
 
 .dashBoardOuter {
-  height: auto;
+  height: 81vh;
+  overflow-y: scroll;
   padding: 0 12px;
+
+  @media (desktop) {
+    height: 80vh;
+  }
 }
 
 .dashBoardContainer {
