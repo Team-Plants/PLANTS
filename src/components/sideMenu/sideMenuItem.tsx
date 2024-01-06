@@ -9,6 +9,7 @@ interface SideMenuItemProps {
   dashboardColor: string;
   dashboardTitle: string;
   createdByMe: boolean;
+  width: number;
 }
 
 function SideMenuItem({
@@ -17,6 +18,7 @@ function SideMenuItem({
   dashboardColor,
   dashboardTitle,
   createdByMe,
+  width,
 }: SideMenuItemProps) {
   return (
     <Link href={`/dashboard/${dashboardId}`} key={dashboardId}>
@@ -28,7 +30,9 @@ function SideMenuItem({
         <div
           className={S.dashBoardColor}
           style={{ backgroundColor: `${dashboardColor}` }}></div>
-        <div className={S.dashBoardTitle}>
+        <div
+          style={width === 67 ? { display: 'none' } : { display: 'block' }}
+          className={S.dashBoardTitle}>
           {dashboardTitle + ' '}
           {createdByMe && (
             <Image src={CrownImg} alt="왕관 이미지" width={17.6} height={14} />

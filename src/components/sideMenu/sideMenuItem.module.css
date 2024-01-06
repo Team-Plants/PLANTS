@@ -40,15 +40,14 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  display: none;
 
   @media (tablet) {
-    display: block;
-    width: 90px;
+    display: block !important;
+    width: 90px !important;
   }
 
   @media (desktop) {
-    display: block;
-    width: 220px;
+    display: block !important;
+    width: 220px !important;
   }
 }

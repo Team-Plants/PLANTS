@@ -2,16 +2,16 @@
 
 .main {
   background: var(--white);
-  width: 67px;
+  transition: width 1s ease;
   height: 100vh;
   border-right: 2px solid;
   border-color: var(--gray-30);
 
   @media (tablet) {
-    width: 160px;
+    width: 160px !important;
   }
   @media (desktop) {
-    width: 300px;
+    width: 300px !important;
   }
 }
 
@@ -174,7 +174,7 @@
   background-color: black;
   position: absolute;
   left: 102px;
-  top: 130px;
+  top: 48px;
   width: 75px;
   height: 45px;
   background: var(--violet);
@@ -186,6 +186,7 @@
   text-align: center;
   box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
   animation: bounce 1s infinite alternate;
+  z-index: 12;
 
   @media (tablet) {
     display: none;

@@ -28,6 +28,7 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   const [isModalClicked, setIsModalClicked] = useState(false);
   const [page, setPage] = useState(initialPage);
   const [addFlag, setAddFlag] = useState(false);
+  const [width, setWidth] = useState(67);
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.dashboards],
     queryFn: () =>
@@ -92,8 +93,17 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
     setIsModalClicked(true);
   }
 
+  function handleExpansionClick(e: MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    if (width === 67) {
+      setWidth(160);
+    } else if (width === 160) {
+      setWidth(67);
+    }
+  }
+
   return (
-    <div className={S.main}>
+    <div style={{ width: `${width}px` }} className={S.main}>
       <div className={S.headerOuter}>
         <div className={S.imgContainer}>
           <Link href="/mydashboard">
@@ -122,7 +132,9 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
             />
           </button>
         </div>
-        <button className={S.expansionButton}>사이드바 확장</button>
+        <button className={S.expansionButton} onClick={handleExpansionClick}>
+          {width === 67 ? '사이드바 확장' : '사이드바 축소'}
+        </button>
       </div>
       <div className={S.dashBoardOuter}>
         <ul className={S.dashBoardContainer}>
@@ -135,6 +147,7 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
                 dashboardTitle={dashboard.title}
                 createdByMe={dashboard.createdByMe}
                 key={dashboard.id}
+                width={width}
               />
             ))}
           <div ref={setTarget} className={S.refContainer}>
