@@ -122,6 +122,7 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
             />
           </button>
         </div>
+        <button className={S.expansionButton}>사이드바 확장</button>
       </div>
       <div className={S.dashBoardOuter}>
         <ul className={S.dashBoardContainer}>
