@@ -96,8 +96,8 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
   function handleExpansionClick(e: MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     if (width === 67) {
-      setWidth(160);
-    } else if (width === 160) {
+      setWidth(190);
+    } else if (width === 190) {
       setWidth(67);
     }
   }

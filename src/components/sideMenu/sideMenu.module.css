@@ -138,13 +138,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media (tablet) {
-    align-items: stretch;
-  }
-  @media (desktop) {
-    align-items: stretch;
-  }
 }
 
 .refContainer {

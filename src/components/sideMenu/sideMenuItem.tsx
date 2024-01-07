@@ -24,9 +24,19 @@ function SideMenuItem({
     <Link href={`/dashboard/${dashboardId}`} key={dashboardId}>
       <li
         className={S.dashBoardLi}
-        style={{
-          backgroundColor: pageId == dashboardId ? '#F1EFFD' : '#FFF',
-        }}>
+        style={
+          width === 67
+            ? {
+                width: '40px',
+                justifyContent: 'center',
+                backgroundColor: pageId == dashboardId ? '#F1EFFD' : '#FFF',
+              }
+            : {
+                width: '170px',
+                justifyContent: 'left',
+                backgroundColor: pageId == dashboardId ? '#F1EFFD' : '#FFF',
+              }
+        }>
         <div
           className={S.dashBoardColor}
           style={{ backgroundColor: `${dashboardColor}` }}></div>
