@@ -2,16 +2,16 @@
 
 .main {
   background: var(--white);
-  width: 67px;
+  transition: width 1s ease;
   height: 100vh;
   border-right: 2px solid;
   border-color: var(--gray-30);
 
   @media (tablet) {
-    width: 160px;
+    width: 160px !important;
   }
   @media (desktop) {
-    width: 300px;
+    width: 300px !important;
   }
 }
 
@@ -138,13 +138,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media (tablet) {
-    align-items: stretch;
-  }
-  @media (desktop) {
-    align-items: stretch;
-  }
 }
 
 .refContainer {
@@ -168,4 +161,38 @@
 
 .warning {
   text-align: center;
+}
+
+.expansionButton {
+  position: absolute;
+  left: 102px;
+  top: 48px;
+  width: auto;
+  height: 50px;
+  border-radius: 15px;
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
+  animation: bounce 1s infinite alternate;
+  z-index: 12;
+
+  @media (tablet) {
+    display: none;
+  }
+  @media (desktop) {
+    display: none;
+  }
+}
+
+.expansionButton:hover {
+  animation: none;
+  transform: scale(1.18);
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }

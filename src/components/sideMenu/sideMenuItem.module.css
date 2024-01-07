@@ -1,25 +1,23 @@
 @value tablet, desktop from "@/styles/breakpoints.css";
 
 .dashBoardLi {
-  width: 40px;
   list-style: none;
   display: flex;
   gap: 16px;
   padding: 0 12px;
   height: 40px;
   align-items: center;
-  justify-content: center;
   border-radius: 4px;
 
   @media (tablet) {
-    width: auto;
-    justify-content: left;
+    width: auto !important;
+    justify-content: left !important;
     height: 43px;
   }
   @media (desktop) {
     height: 45px;
-    width: auto;
-    justify-content: left;
+    width: auto !important;
+    justify-content: left !important;
   }
 }
 
@@ -28,8 +26,8 @@
 }
 
 .dashBoardColor {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50px;
   background: var(--gray-50);
 }
@@ -40,15 +38,15 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  display: none;
+  width: 120px;
 
   @media (tablet) {
-    display: block;
-    width: 90px;
+    display: block !important;
+    width: 90px !important;
   }
 
   @media (desktop) {
-    display: block;
-    width: 220px;
+    display: block !important;
+    width: 220px !important;
   }
 }
