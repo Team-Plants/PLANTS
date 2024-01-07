@@ -164,19 +164,12 @@
 }
 
 .expansionButton {
-  background-color: black;
   position: absolute;
   left: 102px;
   top: 48px;
-  width: 75px;
-  height: 45px;
-  background: var(--violet);
-  color: var(--white);
+  width: auto;
+  height: 50px;
   border-radius: 15px;
-  font-size: 1.5rem;
-  font-weight: var(--font-Mbold);
-  padding: 3px;
-  text-align: center;
   box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
   animation: bounce 1s infinite alternate;
   z-index: 12;
@@ -190,9 +183,8 @@
 }
 
 .expansionButton:hover {
-  font-size: 1.6rem;
-  font-weight: var(--font-bold);
-  animation-play-state: paused;
+  animation: none;
+  transform: scale(1.18);
 }
 
 @keyframes bounce {
@@ -201,6 +193,6 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-6px);
   }
 }

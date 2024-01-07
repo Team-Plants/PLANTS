@@ -12,6 +12,8 @@ import { getDashboards } from '@/api/dashboard';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import SideMenuItem from '@/components/sideMenu/sideMenuItem';
+import DoubleArrowLeft from '@/assets/icons/DoubleArrowLeft.png';
+import DoubleArrowRight from '@/assets/icons/DoubleArrowRight.png';
 
 interface SideMenuProps {
   pageId: number;
@@ -133,7 +135,21 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
           </button>
         </div>
         <button className={S.expansionButton} onClick={handleExpansionClick}>
-          {width === 67 ? '사이드바 확장' : '사이드바 축소'}
+          {width === 67 ? (
+            <Image
+              src={DoubleArrowRight}
+              alt="화살표 이미지"
+              width={50}
+              height={50}
+            />
+          ) : (
+            <Image
+              src={DoubleArrowLeft}
+              alt="화살표 이미지"
+              width={50}
+              height={50}
+            />
+          )}
         </button>
       </div>
       <div className={S.dashBoardOuter}>
