@@ -14,7 +14,8 @@ function AuthButton({
   type = 'button',
 }: Category) {
   return (
-    <button type={type} className={`${S[size]} ${S[active]}`}>
+    // <button type={type} className={`${S[size]} ${S[active]}`}>
+    <button type={type} className={`${S[active]}`}>
       {content}
     </button>
   );
