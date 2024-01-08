@@ -15,6 +15,30 @@
   }
 }
 
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileContainerBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.profileBtn {
+  display: flex;
+  justify-content: center;
+  background-color: var(--violet);
+  color: var(--white);
+  padding: 8px 13px;
+  border-radius: 4px;
+
+  font-weight: var(--bold);
+  font-size: 1.3rem;
+}
+
 .large {
   width: 182px;
   height: 182px;
@@ -23,7 +47,6 @@
 .noImgContainer {
   border-radius: 6px;
   padding: 24px;
-  background: #f5f5f5;
   width: fit-content;
   cursor: pointer;
 

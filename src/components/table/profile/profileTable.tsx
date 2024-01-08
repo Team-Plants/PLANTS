@@ -1,10 +1,9 @@
 import { postProfileImage, putUser } from '@/api/mypage';
 import { getUsers } from '@/api/user';
-import NicknameInput from '@/components/Input/nickName';
 import NoWorkEmailInput from '@/components/Input/noWorkEmailInput';
 import Button from '@/components/button/button';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
-import ImgInput from '@/components/modal/input/imgInput/imgInput';
+import ProfileImgInput from '@/components/modal/input/imgInput/profileImgInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import S from '@/components/table/profile/profileTable.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
@@ -25,6 +24,7 @@ function ProfileTable() {
     queryFn: () => getUsers(),
   });
 
+  console.log(data);
   const queryclient = useQueryClient();
 
   const mutation = useMutation({
@@ -78,11 +78,12 @@ function ProfileTable() {
         <form
           className={S.itemContainer}
           onSubmit={handleSubmit(handlePutProfile)}>
-          <ImgInput
+          <ProfileImgInput
             control={control}
             name="imageUrl"
             setValue={setValue}
             size="large"
+            profileImg={data.profileImageUrl}
           />
           <div className={S.inputContainer}>
             <NoWorkEmailInput data={data} />
