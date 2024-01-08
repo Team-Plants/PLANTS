@@ -24,7 +24,6 @@ function ProfileTable() {
     queryFn: () => getUsers(),
   });
 
-  console.log(data);
   const queryclient = useQueryClient();
 
   const mutation = useMutation({
