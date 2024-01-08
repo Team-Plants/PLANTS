@@ -1,4 +1,5 @@
 import { deleteComment, getComments, putComment } from '@/api/comment';
+import TextArea from '@/components/modal/textarea/textarea';
 import S from '@/components/modal/todoModal/comment.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { CommentData, CommentDetail } from '@/types/Comment';
@@ -7,7 +8,6 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import TextArea from '../textarea/textarea';
 
 interface CommentProps {
   data: CommentDetail;

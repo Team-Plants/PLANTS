@@ -1,10 +1,10 @@
 import LogoImg from '@/assets/icons/Logo.svg';
+import SignFormProvider from '@/components/formProvider/SignFormProvider';
 import S from '@/components/layout/authLayout.module.css';
 import { AuthLayoutType } from '@/types/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
-import SignFormProvider from '../formProvider/SignFormProvider';
 
 function AuthLayout({
   greetingsContent,

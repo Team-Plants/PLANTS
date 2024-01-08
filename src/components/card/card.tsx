@@ -1,8 +1,8 @@
 import CalendarImg from '@/assets/icons/Calendar.svg';
 import S from '@/components/card/card.module.css';
-import Image from 'next/image';
-import CategoryChip from '../chip/category/categoryChip';
+import CategoryChip from '@/components/chip/category/categoryChip';
 import { randomChipColor } from '@/utils/utility';
+import Image from 'next/image';
 
 interface CardProps {
   title: string;

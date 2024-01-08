@@ -1,9 +1,9 @@
+import AuthButton from '@/components/button/auth/authButton';
 import { SignFormValuesType } from '@/types/SignFormValue';
 import { DevTool } from '@hookform/devtools';
 import { useRouter } from 'next/router';
 import { ReactNode, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import AuthButton from '../button/auth/authButton';
 
 interface SignFormProviderProps {
   children: ReactNode;
