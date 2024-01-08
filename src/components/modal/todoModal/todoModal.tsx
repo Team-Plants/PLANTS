@@ -84,7 +84,11 @@ function TodoModal({
                 onClick={() => setOpenKebab(!openKebab)}
               />
               {openKebab && (
-                <KebabButton cardId={cardData.id} onClick={handleEditModal} />
+                <KebabButton
+                  cardId={cardData.id}
+                  openEditModal={handleEditModal}
+                  closeTodoModal={modal}
+                />
               )}
             </div>
 
