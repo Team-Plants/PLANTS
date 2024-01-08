@@ -2,7 +2,7 @@ import CircleImg from '@/assets/icons/Circle.svg';
 import S from '@/components/chip/progress/progress.module.css';
 import Image from 'next/image';
 
-type StatusType = 'ToDo' | 'On Progress' | 'Done';
+type StatusType = string;
 
 interface Status {
   progress: StatusType;

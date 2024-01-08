@@ -305,6 +305,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
           handleEditModal={handleEditModal}
           cardData={cardData}
           columnId={columnId}
+          column={columns.find((column: ColumnType) => column.id === columnId)}
         />
       )}
       {isOpenModifyModal && cardData && (
