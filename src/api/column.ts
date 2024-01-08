@@ -20,7 +20,7 @@ export async function postColumnImage(body: FormData, columnId: string) {
   return;
 }
 
-export async function postColumnAdd(title: string, dashboardId: string) {
+export async function postColumn(title: string, dashboardId: string) {
   const data = {
     title: title,
     dashboardId: Number(dashboardId),
