@@ -14,8 +14,6 @@ interface CardProps {
 }
 
 function Card({ title, date, profileImg, cardImg, onClick, tags }: CardProps) {
-  console.log(tags);
-
   return (
     <div className={S.cardContainer} onClick={onClick}>
       {cardImg && (
@@ -30,7 +28,7 @@ function Card({ title, date, profileImg, cardImg, onClick, tags }: CardProps) {
               return (
                 <CategoryChip
                   content={value}
-                  color={selectChipColor((value.length + index) % 6)} // 최초로 한 번만 실행되면서 특정한 수를 주는 방법
+                  color={selectChipColor((value.length + index) % 6)}
                   key={index}
                 />
               );
