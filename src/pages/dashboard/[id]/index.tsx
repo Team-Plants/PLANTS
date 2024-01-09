@@ -1,10 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {
-  deleteColumn,
-  getColumns,
-  postColumnAdd,
-  putColumn,
-} from '@/api/column';
+import { deleteColumn, getColumns, postColumn, putColumn } from '@/api/column';
 import { getDashboards } from '@/api/dashboard';
 import ColumnButton from '@/components/button/column/columnButton';
 import Column from '@/components/column/column';
@@ -105,8 +100,26 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
 
   const queryclient = useQueryClient();
 
-  const mutation = useMutation({
-    mutationFn: (data: FieldValues) => postColumnAdd(data.title, dashboardId),
+  const addMutation = useMutation({
+    mutationFn: (data: FieldValues) => postColumn(data.title, dashboardId),
+    onError: (error) => {
+      alert(error);
+    },
+    onSuccess: () => {
+      queryclient.invalidateQueries(); // mutation이 되면 캐싱 리프레시 작업 >>> 새로고침
+    },
+  });
+
+  const modifyMutation = useMutation({
+    mutationFn: ({ data, columnId }: { data: FieldValues; columnId: number }) =>
+      putColumn(data.title, columnId),
+    onSuccess: () => {
+      queryclient.invalidateQueries();
+    },
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: (columnId: number) => deleteColumn(columnId),
     onError: (error) => {
       alert(error);
     },
@@ -153,22 +166,22 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       setIsActive(false);
       return;
     }
-    mutation.mutate(data);
+    addMutation.mutate(data);
     setIsOpenColumnAddModal(false);
     reset();
     setFullData(columns);
   }
 
   async function handleModifyColumn(data: FieldValues) {
-    putColumn(data.title, columnId);
+    modifyMutation.mutate({ data, columnId });
     setIsOpenColumnManageModal(false);
     reset();
-    refetch();
   }
 
   function handleDeleteColumn(columnId: number): void {
     if (confirm('컬럼의 모든 카드가 삭제됩니다')) {
-      deleteColumn(columnId);
+      // deleteColumn(columnId);
+      deleteMutation.mutate(columnId);
       setIsOpenColumnManageModal(false);
       refetch();
     }
