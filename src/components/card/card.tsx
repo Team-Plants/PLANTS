@@ -2,7 +2,7 @@ import CalendarImg from '@/assets/icons/Calendar.svg';
 import S from '@/components/card/card.module.css';
 import Image from 'next/image';
 import CategoryChip from '../chip/category/categoryChip';
-import { randomChipColor } from '@/utils/utility';
+import { selectChipColor } from '@/utils/utility';
 
 interface CardProps {
   title: string;
@@ -14,6 +14,8 @@ interface CardProps {
 }
 
 function Card({ title, date, profileImg, cardImg, onClick, tags }: CardProps) {
+  console.log(tags);
+
   return (
     <div className={S.cardContainer} onClick={onClick}>
       {cardImg && (
@@ -24,11 +26,11 @@ function Card({ title, date, profileImg, cardImg, onClick, tags }: CardProps) {
 
         <div className={S.subContentContainer}>
           <div className={S.chipContainer}>
-            {tags.map((e, index) => {
+            {tags.map((value, index) => {
               return (
                 <CategoryChip
-                  content={e}
-                  color={randomChipColor()}
+                  content={value}
+                  color={selectChipColor((value.length + index) % 6)} // 최초로 한 번만 실행되면서 특정한 수를 주는 방법
                   key={index}
                 />
               );
