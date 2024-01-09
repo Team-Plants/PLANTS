@@ -5,10 +5,11 @@ import { useQuery } from '@tanstack/react-query';
 
 interface Props {
   cardId: number;
-  onClick: () => void;
+  openEditModal: () => void;
+  closeTodoModal: () => void;
 }
 
-function KebabButton({ cardId, onClick }: Props) {
+function KebabButton({ cardId, openEditModal, closeTodoModal }: Props) {
   const { refetch } = useQuery({
     queryKey: [QUERY_KEYS.deleteCard],
     queryFn: () => deleteCard(cardId),
@@ -17,11 +18,12 @@ function KebabButton({ cardId, onClick }: Props) {
 
   async function onClickCardDeleteBtn() {
     await refetch();
+    closeTodoModal();
   }
 
   return (
     <div className={S.container}>
-      <button className={S.clickContainer} onClick={onClick}>
+      <button className={S.clickContainer} onClick={openEditModal}>
         수정하기
       </button>
       <button

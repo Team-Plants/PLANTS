@@ -1,7 +1,6 @@
 import { getComments, postComments } from '@/api/comment';
 import CloseImg from '@/assets/icons/Close.svg';
 import KebabImg from '@/assets/icons/Kebab.svg';
-import TodoImg from '@/assets/images/Todo2.png';
 import KebabButton from '@/components/button/card/kebabButton';
 import CategoryChip from '@/components/chip/category/categoryChip';
 import ProgressChip from '@/components/chip/progress/progressChip';
@@ -13,6 +12,7 @@ import Comment from '@/components/modal/todoModal/comment';
 import S from '@/components/modal/todoModal/todoModal.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { CardData } from '@/types/Card';
+import { ColumnType } from '@/types/Columns';
 import { CommentData } from '@/types/Comment';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
@@ -25,6 +25,7 @@ interface TodoModalProps {
   modal: () => void;
   handleEditModal: () => void;
   columnId: number;
+  column: ColumnType;
 }
 
 function TodoModal({
@@ -32,6 +33,7 @@ function TodoModal({
   modal,
   handleEditModal,
   columnId,
+  column,
 }: TodoModalProps) {
   const [openKebab, setOpenKebab] = useState(false);
 
@@ -84,7 +86,11 @@ function TodoModal({
                 onClick={() => setOpenKebab(!openKebab)}
               />
               {openKebab && (
-                <KebabButton cardId={cardData.id} onClick={handleEditModal} />
+                <KebabButton
+                  cardId={cardData.id}
+                  openEditModal={handleEditModal}
+                  closeTodoModal={modal}
+                />
               )}
             </div>
 
@@ -100,7 +106,7 @@ function TodoModal({
         <div className={S.mainContainer}>
           <div className={S.mainContentContainer}>
             <div className={S.chipContainer}>
-              <ProgressChip progress="ToDo" />
+              <ProgressChip progress={column.title} />
               <div>|</div>
               <div className={S.categoryChipContainer}>
                 {cardData?.tags?.map((e, index) => {
@@ -116,7 +122,11 @@ function TodoModal({
             </div>
 
             <div className={S.mainContent}>{cardData?.description}</div>
-            <Image className={S.mainImg} src={TodoImg} alt="할 일 이미지" />
+            {cardData.imageUrl && (
+              <div className={S.mainImg}>
+                <Image src={cardData.imageUrl} alt="생성된 카드 이미지" fill />
+              </div>
+            )}
             <div className={S.commentInputContainer}>
               <div className={S.commentTitle}>댓글</div>
               <form
