@@ -173,7 +173,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   }
 
   async function handleModifyColumn(data: FieldValues) {
-    // putColumn(data.title, columnId);
     modifyMutation.mutate({ data, columnId });
     setIsOpenColumnManageModal(false);
     reset();
