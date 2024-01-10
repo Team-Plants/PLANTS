@@ -46,30 +46,29 @@ function MyDashboard() {
   }, [dashboardsData]);
 
   return (
-    <div className={S.nestedLayout}>
-      {dashboard ? (
-        <PaginationCreateDashboard
-          dashboardData={dashboard}
-          onClick={handleClick}
-          page={page}
-          setPage={setPage}
-        />
-      ) : (
-        <CreateDashBoardButton onClick={handleClick} />
-      )}
-      <InvitedList />
-      {isOpenModal && (
-        <NewDashboardModal
-          onClick={handleClick}
-          redirect={false}
-          setAddFlag={setAddFlag}
-        />
-      )}
-    </div>
+    <Layout folder="내 대시보드" active={false}>
+      <div className={S.nestedLayout}>
+        {dashboard ? (
+          <PaginationCreateDashboard
+            dashboardData={dashboard}
+            onClick={handleClick}
+            page={page}
+            setPage={setPage}
+          />
+        ) : (
+          <CreateDashBoardButton onClick={handleClick} />
+        )}
+        <InvitedList />
+        {isOpenModal && (
+          <NewDashboardModal
+            onClick={handleClick}
+            redirect={false}
+            setAddFlag={setAddFlag}
+          />
+        )}
+      </div>
+    </Layout>
   );
 }
 
-export default withLayout(MyDashboard, Layout, {
-  folder: '내 대시보드',
-  active: false,
-});
+export default MyDashboard;
