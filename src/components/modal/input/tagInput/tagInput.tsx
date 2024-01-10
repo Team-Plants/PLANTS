@@ -1,6 +1,6 @@
 import CategoryChip from '@/components/chip/category/categoryChip';
 import S from '@/components/modal/input/tagInput/tagInput.module.css';
-import { randomChipColor } from '@/utils/utility';
+import { selectChipColor } from '@/utils/utility';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 import {
   Control,
@@ -18,7 +18,6 @@ interface TagInputProps {
 
 interface TagItem {
   content: string;
-  color?: ThemeType;
 }
 // 모달 내 태그 옵션 컴포넌트
 function TagInput({ control, name, setValue }: TagInputProps) {
@@ -47,8 +46,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
   };
 
   function handleChangeInput(e: ChangeEvent<HTMLInputElement>) {
-    const color = randomChipColor();
-    setTagItem({ content: e.target.value, color: color });
+    setTagItem({ content: e.target.value });
   }
 
   const { field } = useController({
@@ -64,7 +62,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
             <CategoryChip
               content={tagItem.content}
               key={index}
-              color={tagItem.color || 'green#00FF00'}
+              color={selectChipColor((tagItem.content.length + index) % 6)}
             />
           );
         })}

@@ -8,9 +8,8 @@ const color: ThemeType[] = [
   'pink#FFC0CB',
 ];
 
-export function randomChipColor() {
-  const num = Math.floor(Math.random() * 6);
-  return color[num];
+export function selectChipColor(index: number) {
+  return color[index];
 }
 
 const colors: Colors[] = ['yellow', 'orange', 'green', 'blue', 'brown', 'pink'];
