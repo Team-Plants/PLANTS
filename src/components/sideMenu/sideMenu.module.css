@@ -165,10 +165,10 @@
 
 .expansionButton {
   position: absolute;
-  left: 102px;
-  top: 48px;
+  left: 114px;
+  top: 80px;
   width: auto;
-  height: 50px;
+  height: 28px;
   border-radius: 15px;
   box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3);
   animation: bounce 1s infinite alternate;
@@ -184,7 +184,7 @@
 
 .expansionButton:hover {
   animation: none;
-  transform: scale(1.18);
+  transform: scale(1.1);
 }
 
 @keyframes bounce {
@@ -193,6 +193,6 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-3px);
   }
 }
