@@ -3,7 +3,7 @@ import DashboardHeader, {
 } from '@/components/header/dashboardHeader/dashboardHeader';
 import SideMenu from '@/components/sideMenu/SideMenu';
 import S from '@/components/layout/layout.module.css';
-import { ReactNode, useState, useEffect, useRef } from 'react';
+import { ReactNode, useState, useEffect, useRef, SetStateAction } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { getUsers } from '@/api/user';
@@ -19,6 +19,8 @@ export interface LayoutProps {
   active?: boolean;
   id?: string;
   member?: MemberProps[];
+  secondAddFlag?: boolean;
+  setSecondAddFlag?: React.Dispatch<SetStateAction<boolean>>;
 }
 
 function Layout({
@@ -30,6 +32,8 @@ function Layout({
   active = true,
   id,
   member,
+  secondAddFlag,
+  setSecondAddFlag,
 }: LayoutProps) {
   const mounted = useRef(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
@@ -63,6 +67,8 @@ function Layout({
               initialPage={1}
               flag={flag}
               refreshFlag={refreshFlag}
+              secondAddFlag={secondAddFlag}
+              setSecondAddFlag={setSecondAddFlag}
             />
           </div>
           <div className={S.headerContainer}>
