@@ -139,15 +139,15 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
             <Image
               src={DoubleArrowRight}
               alt="화살표 이미지"
-              width={50}
-              height={50}
+              width={28}
+              height={28}
             />
           ) : (
             <Image
               src={DoubleArrowLeft}
               alt="화살표 이미지"
-              width={50}
-              height={50}
+              width={28}
+              height={28}
             />
           )}
         </button>
