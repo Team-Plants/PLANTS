@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import S from '@/components/modal/input/selectInput/selectInput.module.css';
 import CheckImg from '@/assets/icons/CheckG.svg';
 import Image from 'next/image';
@@ -7,6 +7,7 @@ import { FieldValues, UseFormSetValue } from 'react-hook-form';
 import ProgressChip from '@/components/chip/progress/progressChip';
 import { StatusType } from '@/components/modal/editTodoModal/editTodoModal';
 import { Option } from '@/components/modal/addTodoModal/addTodoModal';
+import useShowDropDown from '@/hooks/useShowDropDown';
 
 interface SelectInputProps {
   optionData?: Option[];
@@ -26,7 +27,9 @@ function SelectInput({
 }: SelectInputProps) {
   const [selected, setSelected] = useState(placeholder);
   const [selectedImg, setSelectedImg] = useState('');
-  const [showOptions, setShowOptions] = useState(false);
+
+  const ref = useRef() as MutableRefObject<HTMLDivElement>;
+  const [showOptions, setShowOptions] = useShowDropDown(ref, false);
 
   const onChangeSelect = (e: Option) => {
     if (e) {
@@ -39,7 +42,8 @@ function SelectInput({
   return (
     <div
       className={S.selectContainer}
-      onClick={() => setShowOptions((prev) => !prev)}>
+      ref={ref}
+      onClick={() => setShowOptions(!showOptions)}>
       <label className={S.selectedLabel}>
         {selected !== placeholder ? (
           type === 'manager' ? (
