@@ -21,6 +21,7 @@ export interface LayoutProps {
   member?: MemberProps[];
   secondAddFlag?: boolean;
   setSecondAddFlag?: React.Dispatch<SetStateAction<boolean>>;
+  isEditButtonActive?: boolean;
 }
 
 function Layout({
@@ -34,6 +35,7 @@ function Layout({
   member,
   secondAddFlag,
   setSecondAddFlag,
+  isEditButtonActive,
 }: LayoutProps) {
   const mounted = useRef(false);
   const [refreshFlag, setRefreshFlag] = useState(false);
@@ -84,6 +86,7 @@ function Layout({
               Owner={Owner}
               active={active}
               id={id}
+              isEditButtonActive={isEditButtonActive}
             />
           </div>
           <div className={S.childrenContainer}>{children}</div>
