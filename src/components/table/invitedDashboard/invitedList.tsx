@@ -38,7 +38,7 @@ function InvitedList() {
         return null;
       }
     },
-    initialPageParam: cursorId,
+    initialPageParam: undefined,
   });
 
   useIntersectionObserver({
