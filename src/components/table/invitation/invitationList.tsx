@@ -16,13 +16,13 @@ function InvitationList({
   onClick,
   invitationFlag,
   setInvitationFlag,
-  isModalOpen,
+  isInvitationModalOpen,
 }: {
   dashboardId: string;
   onClick: () => void;
   invitationFlag: boolean;
   setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
-  isModalOpen: boolean;
+  isInvitationModalOpen: boolean;
 }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
@@ -110,7 +110,7 @@ function InvitationList({
             );
           })}
       </div>
-      {isModalOpen && (
+      {isInvitationModalOpen && (
         <TodoInvite onClick={onClick} dashboardId={dashboardId} />
       )}
     </>
