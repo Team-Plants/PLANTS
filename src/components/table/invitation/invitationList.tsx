@@ -1,7 +1,5 @@
-import { postDashboardsInvitations } from '@/api/dashboard';
 import { getInvitationList } from '@/api/invitations';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
-import Button from '@/components/button/button';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import S from '@/components/table/invitation/invitationList.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
@@ -13,16 +11,12 @@ import InvitationButton from '@/components/button/invitation/invitation';
 
 function InvitationList({
   dashboardId,
-  onClick,
   invitationFlag,
   setInvitationFlag,
-  isInvitationModalOpen,
 }: {
   dashboardId: string;
-  onClick: () => void;
   invitationFlag: boolean;
   setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
-  isInvitationModalOpen: boolean;
 }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
@@ -38,9 +32,9 @@ function InvitationList({
     await refetch();
   }
 
-  useEffect(() => {
-    setInvitationFlag(true);
-  }, [onClick()]);
+  // useEffect(() => {
+  //   setInvitationFlag(true);
+  // }, [onClick()]);
 
   useEffect(() => {
     setFullData(data);
@@ -63,6 +57,12 @@ function InvitationList({
       setTotalPage(Math.ceil(totalCount / 5));
     }
   }, [totalCount, invitationFlag]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   useEffect(() => {
     if (invitationFlag) {
@@ -91,7 +91,7 @@ function InvitationList({
               />
             </div>
             <div className={S.inviteButton}>
-              <InvitationButton onClick={onClick} />
+              <InvitationButton onClick={handleModal} />
             </div>
           </div>
         </div>
@@ -110,8 +110,8 @@ function InvitationList({
             );
           })}
       </div>
-      {isInvitationModalOpen && (
-        <TodoInvite onClick={onClick} dashboardId={dashboardId} />
+      {isModalOpen && (
+        <TodoInvite onClick={handleModal} dashboardId={dashboardId} />
       )}
     </>
   );

@@ -75,7 +75,6 @@ interface DashboardEditPageProps {
 }
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
-  const [isInvitationModalOpen, setIsInvitationModalOpen] = useState(false);
   const [flag, setFlag] = useState(false);
   const [invitationFlag, setInvitationFlag] = useState(false);
   const [memberFlag, setMemberFlag] = useState(false);
@@ -93,10 +92,6 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
     queryFn: () => getMembers(dashboardId),
     enabled: true,
   });
-
-  function handleModal() {
-    setIsInvitationModalOpen((prev) => !prev);
-  }
 
   useEffect(() => {
     setFolderName(data?.title);
@@ -126,10 +121,8 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
           />
           <InvitationList
             dashboardId={dashboardId}
-            onClick={handleModal}
             invitationFlag={invitationFlag}
             setInvitationFlag={setInvitationFlag}
-            isInvitationModalOpen={isInvitationModalOpen}
           />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton dashboardId={dashboardId} />
