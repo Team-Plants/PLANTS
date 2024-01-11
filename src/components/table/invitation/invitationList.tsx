@@ -9,15 +9,7 @@ import { useEffect, useState } from 'react';
 import TodoInvite from '@/components/modal/todoInvite/todoInvite';
 import InvitationButton from '@/components/button/invitation/invitation';
 
-function InvitationList({
-  dashboardId,
-  invitationFlag,
-  setInvitationFlag,
-}: {
-  dashboardId: string;
-  invitationFlag: boolean;
-  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+function InvitationList({ dashboardId }: { dashboardId: string }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
@@ -32,10 +24,6 @@ function InvitationList({
     await refetch();
   }
 
-  // useEffect(() => {
-  //   setInvitationFlag(true);
-  // }, [onClick()]);
-
   useEffect(() => {
     setFullData(data);
     refetch();
@@ -47,7 +35,7 @@ function InvitationList({
 
   useEffect(() => {
     setTotalCount(data?.totalCount);
-  }, [data, invitationFlag]);
+  }, [data]);
 
   useEffect(() => {
     if (totalCount === undefined) return;
@@ -56,20 +44,13 @@ function InvitationList({
     } else if (totalCount > 5) {
       setTotalPage(Math.ceil(totalCount / 5));
     }
-  }, [totalCount, invitationFlag]);
+  }, [totalCount]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
-
-  useEffect(() => {
-    if (invitationFlag) {
-      setInvitationFlag(false);
-      fetchMoreInvitations();
-    }
-  }, [invitationFlag]);
 
   useEffect(() => {
     if (totalPage !== 0 && totalPage < page) setPage((prev) => prev - 1);
@@ -104,7 +85,6 @@ function InvitationList({
                   email={invitation.invitee.email}
                   invitationId={invitation.id}
                   dashboardId={dashboardId}
-                  setInvitationFlag={setInvitationFlag}
                 />
               </div>
             );

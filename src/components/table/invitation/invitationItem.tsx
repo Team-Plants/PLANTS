@@ -3,27 +3,27 @@ import WhiteSmileLogoImg from '@/assets/icons/WhiteSmileLogo.svg';
 import Button from '@/components/button/button';
 import S from '@/components/table/invitation/invitationItem.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 
 interface InvitationItemProps {
   email: string;
   invitationId: number;
   dashboardId: string;
-  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 function InvitationItem({
   email,
   invitationId,
   dashboardId,
-  setInvitationFlag,
 }: InvitationItemProps) {
   const { isLoading, data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.deleteInvitation],
     queryFn: () => DeleteInvitation(dashboardId, String(invitationId)),
     enabled: false,
   });
+
+  const queryClient = useQueryClient();
 
   async function fetchDeleteInvitation() {
     if (isLoading) return;
@@ -33,7 +33,7 @@ function InvitationItem({
   async function handleCancelClick() {
     try {
       await fetchDeleteInvitation();
-      setInvitationFlag(true);
+      queryClient.invalidateQueries({ queryKey: ['invitations'] });
     } catch (error) {
       console.error(error);
     }

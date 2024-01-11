@@ -76,7 +76,6 @@ interface DashboardEditPageProps {
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   const [flag, setFlag] = useState(false);
-  const [invitationFlag, setInvitationFlag] = useState(false);
   const [memberFlag, setMemberFlag] = useState(false);
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
@@ -119,11 +118,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             memberFlag={memberFlag}
             setMemberFlag={setMemberFlag}
           />
-          <InvitationList
-            dashboardId={dashboardId}
-            invitationFlag={invitationFlag}
-            setInvitationFlag={setInvitationFlag}
-          />
+          <InvitationList dashboardId={dashboardId} />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton dashboardId={dashboardId} />
         </div>
