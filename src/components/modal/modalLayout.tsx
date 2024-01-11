@@ -8,14 +8,6 @@ interface ModalLayoutProp {
 }
 
 function ModalLayout({ children, onClick }: ModalLayoutProp) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return <></>;
-
   return (
     <>
       {ReactDOM.createPortal(
