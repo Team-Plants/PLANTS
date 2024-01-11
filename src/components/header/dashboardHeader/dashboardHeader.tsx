@@ -53,6 +53,7 @@ function DashboardHeader({
             height={16}></Image>
         )}
       </p>
+      {member && <UsersImage member={member} />}
       <div className={S.buttonContainer}>
         {Owner && active && (
           <>
@@ -83,7 +84,6 @@ function DashboardHeader({
           </>
         )}
       </div>
-      {member && <UsersImage member={member} />}
       {active && (
         <Image className={S.vectorImage} src={VectorImg} alt="구분이미지" />
       )}
