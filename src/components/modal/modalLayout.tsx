@@ -8,8 +8,6 @@ interface ModalLayoutProp {
 }
 
 function ModalLayout({ children, onClick }: ModalLayoutProp) {
-  console.log(onClick);
-
   return (
     <>
       {ReactDOM.createPortal(

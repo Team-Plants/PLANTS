@@ -173,7 +173,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setFullData(columns);
   }
 
-  console.log(isOpenColumnAddModal);
   async function handleModifyColumn(data: FieldValues) {
     modifyMutation.mutate({ data, columnId });
     setIsOpenColumnManageModal(false);
@@ -188,8 +187,6 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       refetch();
     }
   }
-
-  // console.log(isOpenColumnManageModal)
 
   // 빈값 확인하는 코드
   useEffect(() => {
