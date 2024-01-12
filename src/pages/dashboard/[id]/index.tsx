@@ -173,6 +173,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
     setFullData(columns);
   }
 
+  console.log(isOpenColumnAddModal);
   async function handleModifyColumn(data: FieldValues) {
     modifyMutation.mutate({ data, columnId });
     setIsOpenColumnManageModal(false);
@@ -187,6 +188,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       refetch();
     }
   }
+
+  // console.log(isOpenColumnManageModal)
 
   // 빈값 확인하는 코드
   useEffect(() => {
@@ -291,7 +294,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
         </InputModal>
       )}
       {isOpenColumnManageModal && (
-        <InputModal onClick={() => handleColumnManageModal} title={'컬럼 관리'}>
+        <InputModal
+          onClick={() => setIsOpenColumnManageModal((prev) => !prev)}
+          title={'컬럼 관리'}>
           <InputLayout label="이름" isNecessary={false}>
             <form
               onSubmit={handleSubmit(handleModifyColumn)}
