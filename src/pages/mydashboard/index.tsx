@@ -16,7 +16,8 @@ function MyDashboard() {
   const [page, setPage] = useState(1);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dashboard, setDashboard] = useState<DashBoardData>();
-  const [, setAddFlag] = useState(false);
+  const [addFlag, setAddFlag] = useState(false);
+  const [secondAddFlag, setSecondAddFlag] = useState(false);
   const { data: dashboardsData } = useQuery({
     queryKey: [QUERY_KEYS.dashboards, DSize, page],
     queryFn: () =>
@@ -45,31 +46,41 @@ function MyDashboard() {
     setDashboard(dashboardsData);
   }, [dashboardsData]);
 
+  useEffect(() => {
+    if (addFlag) {
+      setSecondAddFlag(true);
+      setAddFlag(false);
+    }
+  }, [addFlag]);
+
   return (
-    <div className={S.nestedLayout}>
-      {dashboard ? (
-        <PaginationCreateDashboard
-          dashboardData={dashboard}
-          onClick={handleClick}
-          page={page}
-          setPage={setPage}
-        />
-      ) : (
-        <CreateDashBoardButton onClick={handleClick} />
-      )}
-      <InvitedList />
-      {isOpenModal && (
-        <NewDashboardModal
-          onClick={handleClick}
-          redirect={false}
-          setAddFlag={setAddFlag}
-        />
-      )}
-    </div>
+    <Layout
+      folder="내 대시보드"
+      active={false}
+      secondAddFlag={secondAddFlag}
+      setSecondAddFlag={setSecondAddFlag}>
+      <div className={S.nestedLayout}>
+        {dashboard ? (
+          <PaginationCreateDashboard
+            dashboardData={dashboard}
+            onClick={handleClick}
+            page={page}
+            setPage={setPage}
+          />
+        ) : (
+          <CreateDashBoardButton onClick={handleClick} />
+        )}
+        <InvitedList />
+        {isOpenModal && (
+          <NewDashboardModal
+            onClick={handleClick}
+            redirect={false}
+            setAddFlag={setAddFlag}
+          />
+        )}
+      </div>
+    </Layout>
   );
 }
 
-export default withLayout(MyDashboard, Layout, {
-  folder: '내 대시보드',
-  active: false,
-});
+export default MyDashboard;

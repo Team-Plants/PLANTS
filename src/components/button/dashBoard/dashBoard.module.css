@@ -10,13 +10,15 @@
   border: 1px solid var(--gray-30);
   background-color: var(--white);
   box-sizing: border-box;
-  width: 100%;
+  width: 332px;
   height: 70px;
 
   @media all and (tablet) {
+    width: 247px;
     height: 68px;
   }
   @media all and (mobile) {
+    width: 100%;
     height: 58px;
   }
 }

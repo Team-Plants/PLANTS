@@ -4,7 +4,7 @@ import Link from 'next/link';
 import SmallLogoImg from '@/assets/icons/SmallLogo.svg';
 import TaskifyImg from '@/assets/icons/Taskify.svg';
 import AddBoxImg from '@/assets/icons/AddBox.svg';
-import { MouseEvent, useEffect, useState } from 'react';
+import { MouseEvent, SetStateAction, useEffect, useState } from 'react';
 import { DashBoardList } from '@/types/DashBoard';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import NewDashboardModal from '@/components/modal/newDashboardModal/newDashboardModal';
@@ -20,9 +20,18 @@ interface SideMenuProps {
   initialPage: number;
   flag?: boolean;
   refreshFlag?: boolean;
+  secondAddFlag?: boolean;
+  setSecondAddFlag?: React.Dispatch<SetStateAction<boolean>>;
 }
 
-function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
+function SideMenu({
+  pageId,
+  initialPage,
+  flag,
+  refreshFlag,
+  secondAddFlag,
+  setSecondAddFlag,
+}: SideMenuProps) {
   const [dashboards, setDashboards] = useState<DashBoardList[]>([]);
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [totalCount, setTotalCount] = useState<number>(Infinity);
@@ -61,6 +70,17 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
       setAddFlag(false);
     }
   }, [addFlag]);
+
+  useEffect(() => {
+    if (secondAddFlag) {
+      setDashboards([]);
+      setPage(1);
+      setCurrentLength(0);
+      setTotalCount(0);
+      refetch();
+      setSecondAddFlag?.(false);
+    }
+  }, [secondAddFlag]);
 
   useEffect(() => {
     if (refreshFlag) {
@@ -139,15 +159,15 @@ function SideMenu({ pageId, initialPage, flag, refreshFlag }: SideMenuProps) {
             <Image
               src={DoubleArrowRight}
               alt="화살표 이미지"
-              width={50}
-              height={50}
+              width={28}
+              height={28}
             />
           ) : (
             <Image
               src={DoubleArrowLeft}
               alt="화살표 이미지"
-              width={50}
-              height={50}
+              width={28}
+              height={28}
             />
           )}
         </button>

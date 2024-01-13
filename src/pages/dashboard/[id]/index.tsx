@@ -87,6 +87,7 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
   const [fullData, setFullData] = useState([]);
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
+  const isEditButtonActive = true;
   const { data: myDashboard } = useQuery({
     queryKey: [QUERY_KEYS.dashboards, dashboardId],
     queryFn: () => getDashboards({ id: dashboardId }),
@@ -243,7 +244,8 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
       folder={folderName}
       Owner={folderOwner}
       id={dashboardId}
-      pageId={dashboardId}>
+      pageId={dashboardId}
+      isEditButtonActive={isEditButtonActive}>
       <div className={S.mainContainer}>
         {fullData &&
           fullData?.map((column: ColumnType) => {
@@ -289,7 +291,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
         </InputModal>
       )}
       {isOpenColumnManageModal && (
-        <InputModal onClick={() => handleColumnManageModal} title={'컬럼 관리'}>
+        <InputModal
+          onClick={() => setIsOpenColumnManageModal((prev) => !prev)}
+          title={'컬럼 관리'}>
           <InputLayout label="이름" isNecessary={false}>
             <form
               onSubmit={handleSubmit(handleModifyColumn)}

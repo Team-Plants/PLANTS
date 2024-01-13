@@ -24,6 +24,7 @@ interface DashboardProps {
   Owner?: boolean;
   active?: boolean;
   id?: string;
+  isEditButtonActive?: boolean;
 }
 
 function DashboardHeader({
@@ -33,6 +34,7 @@ function DashboardHeader({
   Owner = false,
   active = true,
   id,
+  isEditButtonActive = false,
 }: DashboardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,21 +53,24 @@ function DashboardHeader({
             height={16}></Image>
         )}
       </p>
+      {member && <UsersImage member={member} />}
       <div className={S.buttonContainer}>
         {Owner && active && (
           <>
-            <Link href={`/dashboard${id ? `/${id}` : ''}/edit`}>
-              <button className={S.button}>
-                <Image
-                  className={S.buttonImg}
-                  src={SettingImg}
-                  width={20}
-                  height={20}
-                  alt="관리하기"
-                />
-                관리
-              </button>
-            </Link>
+            {isEditButtonActive && (
+              <Link href={`/dashboard${id ? `/${id}` : ''}/edit`}>
+                <button className={S.button}>
+                  <Image
+                    className={S.buttonImg}
+                    src={SettingImg}
+                    width={20}
+                    height={20}
+                    alt="관리하기"
+                  />
+                  관리
+                </button>
+              </Link>
+            )}
             <button className={S.button} onClick={handleClick}>
               <Image
                 className={S.buttonImg}
@@ -79,7 +84,6 @@ function DashboardHeader({
           </>
         )}
       </div>
-      {member && <UsersImage member={member} />}
       {active && (
         <Image className={S.vectorImage} src={VectorImg} alt="구분이미지" />
       )}

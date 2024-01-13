@@ -1,5 +1,5 @@
 import S from '@/components/modal/modalLayout.module.css';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 interface ModalLayoutProp {
@@ -8,14 +8,6 @@ interface ModalLayoutProp {
 }
 
 function ModalLayout({ children, onClick }: ModalLayoutProp) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return <></>;
-
   return (
     <>
       {ReactDOM.createPortal(

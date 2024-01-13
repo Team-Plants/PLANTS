@@ -1,27 +1,15 @@
 import { getInvitationList } from '@/api/invitations';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
-import InvitationButton from '@/components/button/invitation/invitation';
-import TodoInvite from '@/components/modal/todoInvite/todoInvite';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import S from '@/components/table/invitation/invitationList.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { Invitation, InvitationList } from '@/types/Invitation';
 import { useQuery } from '@tanstack/react-query';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import TodoInvite from '@/components/modal/todoInvite/todoInvite';
+import InvitationButton from '@/components/button/invitation/invitation';
 
-function InvitationList({
-  dashboardId,
-  onClick,
-  invitationFlag,
-  setInvitationFlag,
-  isModalOpen,
-}: {
-  dashboardId: string;
-  onClick: () => void;
-  invitationFlag: boolean;
-  setInvitationFlag: Dispatch<SetStateAction<boolean>>;
-  isModalOpen: boolean;
-}) {
+function InvitationList({ dashboardId }: { dashboardId: string }) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
@@ -37,10 +25,6 @@ function InvitationList({
   }
 
   useEffect(() => {
-    setInvitationFlag(true);
-  }, [onClick()]);
-
-  useEffect(() => {
     setFullData(data);
     refetch();
   }, [data, dashboardId]);
@@ -51,7 +35,7 @@ function InvitationList({
 
   useEffect(() => {
     setTotalCount(data?.totalCount);
-  }, [data, invitationFlag]);
+  }, [data]);
 
   useEffect(() => {
     if (totalCount === undefined) return;
@@ -60,14 +44,13 @@ function InvitationList({
     } else if (totalCount > 5) {
       setTotalPage(Math.ceil(totalCount / 5));
     }
-  }, [totalCount, invitationFlag]);
+  }, [totalCount]);
 
-  useEffect(() => {
-    if (invitationFlag) {
-      setInvitationFlag(false);
-      fetchMoreInvitations();
-    }
-  }, [invitationFlag]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   useEffect(() => {
     if (totalPage !== 0 && totalPage < page) setPage((prev) => prev - 1);
@@ -89,7 +72,7 @@ function InvitationList({
               />
             </div>
             <div className={S.inviteButton}>
-              <InvitationButton onClick={onClick} />
+              <InvitationButton onClick={handleModal} />
             </div>
           </div>
         </div>
@@ -102,14 +85,13 @@ function InvitationList({
                   email={invitation.invitee.email}
                   invitationId={invitation.id}
                   dashboardId={dashboardId}
-                  setInvitationFlag={setInvitationFlag}
                 />
               </div>
             );
           })}
       </div>
       {isModalOpen && (
-        <TodoInvite onClick={onClick} dashboardId={dashboardId} />
+        <TodoInvite onClick={handleModal} dashboardId={dashboardId} />
       )}
     </>
   );

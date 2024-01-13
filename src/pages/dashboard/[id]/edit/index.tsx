@@ -75,9 +75,7 @@ interface DashboardEditPageProps {
 }
 
 function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [flag, setFlag] = useState(false);
-  const [invitationFlag, setInvitationFlag] = useState(false);
   const [memberFlag, setMemberFlag] = useState(false);
   const [folderName, setFolderName] = useState();
   const [folderOwner, setFolderOwner] = useState();
@@ -94,10 +92,6 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
     enabled: true,
   });
 
-  function handleModal() {
-    setIsModalOpen((prev) => !prev);
-  }
-
   useEffect(() => {
     setFolderName(data?.title);
     setFolderOwner(data?.createdByMe);
@@ -106,15 +100,6 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
   useEffect(() => {
     setMember(memberData?.members);
   }, [memberData]);
-
-  // // 모달이 열릴 경우 백그라운드 스크롤 방지
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflowY = 'hidden';
-    } else {
-      document.body.style.overflowY = 'auto';
-    }
-  }, [isModalOpen]);
 
   return (
     <Layout
@@ -133,13 +118,7 @@ function DashboardEditPage({ dashboardId }: DashboardEditPageProps) {
             memberFlag={memberFlag}
             setMemberFlag={setMemberFlag}
           />
-          <InvitationList
-            dashboardId={dashboardId}
-            onClick={handleModal}
-            invitationFlag={invitationFlag}
-            setInvitationFlag={setInvitationFlag}
-            isModalOpen={isModalOpen}
-          />
+          <InvitationList dashboardId={dashboardId} />
           <div className={S.marginDiv}></div>
           <DeleteDashBoardButton dashboardId={dashboardId} />
         </div>

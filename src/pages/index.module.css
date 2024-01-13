@@ -86,24 +86,31 @@
 }
 
 .serviceDescription {
-  padding-top: 35px;
-  color: var(--gray-30);
+  padding-top: 20px;
+  color: var(--gray-40);
   text-align: center;
   font-size: 1.6rem;
   font-weight: var(--font-light);
   line-height: 25px;
   letter-spacing: -1px;
-  padding-bottom: 35px;
   max-width: 1200px;
 
   @media (tablet) {
-    font-size: 1.8rem;
+    font-size: 2rem;
     line-height: 30px;
   }
   @media (desktop) {
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 35px;
   }
+}
+
+.descriptionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 60px 0;
 }
 
 .loginButton {
