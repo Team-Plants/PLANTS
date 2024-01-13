@@ -1,5 +1,5 @@
 import S from '@/components/modal/modalLayout.module.css';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 interface ModalLayoutProp {

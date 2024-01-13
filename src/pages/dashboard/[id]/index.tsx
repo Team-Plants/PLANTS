@@ -291,7 +291,9 @@ function dashboard({ dashboardId }: { dashboardId: string }) {
         </InputModal>
       )}
       {isOpenColumnManageModal && (
-        <InputModal onClick={() => handleColumnManageModal} title={'컬럼 관리'}>
+        <InputModal
+          onClick={() => setIsOpenColumnManageModal((prev) => !prev)}
+          title={'컬럼 관리'}>
           <InputLayout label="이름" isNecessary={false}>
             <form
               onSubmit={handleSubmit(handleModifyColumn)}
