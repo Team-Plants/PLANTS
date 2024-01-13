@@ -3,6 +3,8 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=30&pause=2000&color=478D5F&center=true&vCenter=true&random=false&width=435&lines=Play+Planning+Plants+%F0%9F%8C%B1" alt="Typing SVG">
 </p>
 
+
+
 ###### <p align="center">Plant는 계획과 조화로운 실행을 통해 목표를 성취하고 일정을 관리합니다</p>
 
 <p align="center">
@@ -35,11 +37,26 @@
   </a>
 </p>
 
-</br>
-</br>
+![image](https://github.com/Team-Plants/PLANTS/assets/98685266/25f46ec7-4fad-4575-ad80-c5a7a2be3167)
 
 
+### 🪴 플랜츠 사용해보기
+<a href='https://lets-plants.vercel.app/'>Let's PLANTS</a>
 <br />
+
+### 🪴 플랜츠 기여해보기
+```
+git clone https://github.com/Team-Plants/PLANTS.git
+```
+```
+cd 폴더명
+```
+```
+npm install
+```
+```
+npm run dev
+```
 
 ### <span id="1">🪴 서비스 소개</span>
 칸반 보드를 사용하여 일정을 계획하고 관리하는 웹사이트 입니다.
@@ -66,8 +83,8 @@
 ├─ .prettierrc.json
 ├─ public
 ├─ src
-│  ├─ api
-│  ├─ assets
+│  ├─ api 
+│  ├─ assets 
 │  ├─ components
 │  ├─ constants
 │  ├─ hooks
