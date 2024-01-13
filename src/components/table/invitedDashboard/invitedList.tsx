@@ -29,6 +29,7 @@ function InvitedList() {
         debouncedSearchValue?.length ? debouncedSearchValue : null,
       ),
     enabled: true,
+    gcTime: 5000,
     getNextPageParam: (lastPage) => {
       if (lastPage) {
         return lastPage.cursorId;
@@ -36,7 +37,7 @@ function InvitedList() {
         return null;
       }
     },
-    initialPageParam: cursorId,
+    initialPageParam: undefined,
   });
 
   useIntersectionObserver({
