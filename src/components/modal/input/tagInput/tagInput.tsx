@@ -62,7 +62,7 @@ function TagInput({ control, name, setValue }: TagInputProps) {
             <CategoryChip
               content={tagItem.content}
               key={index}
-              color={selectChipColor((tagItem.content.length + index) % 6)}
+              color={selectChipColor((tagItem.content.length + index) % 5)}
             />
           );
         })}
