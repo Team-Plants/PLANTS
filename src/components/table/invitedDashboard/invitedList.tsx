@@ -20,14 +20,13 @@ function InvitedList() {
   const [target, setTarget] = useState<HTMLDivElement | null>(null);
   const [invitation, setInvitation] = useState<InvitationData[]>();
   const [cursorId, setCursorId] = useState();
-
   const { data, fetchNextPage, hasNextPage } = useInfiniteQuery({
     queryKey: ['invitations', debouncedSearchValue],
     queryFn: ({ pageParam: cursorId }) =>
       getInvitations(
         6,
-        cursorId,
-        debouncedSearchValue === '' ? null : debouncedSearchValue,
+        debouncedSearchValue?.length ? undefined : cursorId,
+        debouncedSearchValue?.length ? debouncedSearchValue : null,
       ),
     enabled: true,
     getNextPageParam: (lastPage) => {
