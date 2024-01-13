@@ -4,12 +4,13 @@ import InActiveArrowLeftImg from '@/assets/icons/InActiveArrowLeft.svg';
 import InActiveArrowRightImg from '@/assets/icons/InActiveArrowRight.svg';
 import S from '@/components/button/arrow/paginationArrowButton.module.css';
 import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
 
 interface PaginationArrowButtonProps {
   size: SizeType;
   totalPage: number;
   page: number;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
 function PaginationArrowButton({

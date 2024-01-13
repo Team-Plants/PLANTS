@@ -1,15 +1,13 @@
-import { postDashboardsInvitations } from '@/api/dashboard';
 import { getInvitationList } from '@/api/invitations';
 import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
-import Button from '@/components/button/button';
+import InvitationButton from '@/components/button/invitation/invitation';
+import TodoInvite from '@/components/modal/todoInvite/todoInvite';
 import InvitationItem from '@/components/table/invitation/invitationItem';
 import S from '@/components/table/invitation/invitationList.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { Invitation, InvitationList } from '@/types/Invitation';
 import { useQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-import TodoInvite from '@/components/modal/todoInvite/todoInvite';
-import InvitationButton from '@/components/button/invitation/invitation';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 function InvitationList({
   dashboardId,
@@ -21,7 +19,7 @@ function InvitationList({
   dashboardId: string;
   onClick: () => void;
   invitationFlag: boolean;
-  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
+  setInvitationFlag: Dispatch<SetStateAction<boolean>>;
   isModalOpen: boolean;
 }) {
   const [page, setPage] = useState(1);

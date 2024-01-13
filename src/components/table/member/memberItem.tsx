@@ -1,17 +1,18 @@
 import { DeleteMember } from '@/api/member';
-import Button from '@/components/button/button';
-import S from '@/components/table/member/memberItem.module.css';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import CrownImg from '@/assets/icons/Crown.svg';
-import Image from 'next/image';
+import Button from '@/components/button/button';
 import NameBadge from '@/components/nameBadge/nameBadge';
+import S from '@/components/table/member/memberItem.module.css';
 import { randomNickNameColor } from '@/utils/utility';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
 
 interface MemberItemProps {
   nickname: string;
   profileImageUrl?: string;
   memberId: number;
-  setMemberFlag: React.Dispatch<React.SetStateAction<boolean>>;
+  setMemberFlag: Dispatch<SetStateAction<boolean>>;
   isOwner?: boolean;
 }
 

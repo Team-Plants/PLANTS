@@ -13,7 +13,7 @@ import ModalLayout from '@/components/modal/modalLayout';
 import TextArea from '@/components/modal/textarea/textarea';
 import { MemberProps } from '@/types/Member';
 import { dateFormat } from '@/utils/utility';
-import { useEffect, useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import { getUsers } from '@/api/user';
@@ -113,7 +113,7 @@ function AddTodoModal({ onClick, columnId }: AddTodoModalProps) {
     mutation.mutateAsync(newData);
   }
 
-  const checkKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  const checkKeyDown = (e: KeyboardEvent<HTMLFormElement>) => {
     if (e.key === 'Enter') e.preventDefault();
   };
 

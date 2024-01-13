@@ -5,12 +5,13 @@ import S from '@/components/table/invitation/invitationItem.module.css';
 import QUERY_KEYS from '@/constants/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { Dispatch, SetStateAction } from 'react';
 
 interface InvitationItemProps {
   email: string;
   invitationId: number;
   dashboardId: string;
-  setInvitationFlag: React.Dispatch<React.SetStateAction<boolean>>;
+  setInvitationFlag: Dispatch<SetStateAction<boolean>>;
 }
 
 function InvitationItem({

@@ -1,19 +1,19 @@
-import { FieldValues, useForm } from 'react-hook-form';
+import { postDashboards } from '@/api/dashboard';
+import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
 import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInput';
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import InputLayout from '@/components/modal/input/inputLayout';
 import InputModal from '@/components/modal/inputModal/inputModal';
 import CommonStyle from '@/components/modal/modalCommon.module.css';
-import { SetStateAction, useEffect, useState } from 'react';
-import ActiveModalButtonSet from '@/components/modal/button/activeModalButtonSet';
-import { postDashboards } from '@/api/dashboard';
-import { useRouter } from 'next/router';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 
 interface NewDashboardModalProps {
   onClick: () => void;
   redirect?: boolean;
-  setAddFlag: React.Dispatch<SetStateAction<boolean>>;
+  setAddFlag: Dispatch<SetStateAction<boolean>>;
 }
 
 function NewDashboardModal({
