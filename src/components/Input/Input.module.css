@@ -1,4 +1,4 @@
-@value mobile from "@/styles/breakpoints.css";
+@value desktop, tablet, mobile from "@/styles/breakpoints.css";
 
 .formContainer {
   display: flex;
@@ -61,8 +61,17 @@
   composes: input;
   border-radius: 8px;
   color: var(--gray-40);
-  width: 366px;
+  width: 100%;
+  max-width: 300px;
   box-sizing: border-box;
+
+  @media all and (tablet) {
+    max-width: 366px;
+  }
+
+  @media all and (desktop) {
+    max-width: 366px;
+  }
 }
 
 .checkbox {

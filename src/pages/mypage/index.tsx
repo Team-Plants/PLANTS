@@ -1,10 +1,10 @@
+import Button from '@/components/button/button';
 import ReturnButton from '@/components/button/dashBoard/return/returnButton';
 import Layout from '@/components/layout/layout';
 import PasswordTable from '@/components/table/password/passwordTable';
 import ProfileTable from '@/components/table/profile/profileTable';
-import S from '@/pages/mypage/mypage.module.css';
 import { withLayout } from '@/hooks/withAuth';
-import Button from '@/components/button/button';
+import S from '@/pages/mypage/mypage.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -26,11 +26,9 @@ function Mypage() {
         <Button content="로그아웃" status="primary" onClick={handleLogout} />
       </div>
 
-      <div>
-        <div className={S.formContainer}>
-          <ProfileTable />
-          <PasswordTable />
-        </div>
+      <div className={S.formContainer}>
+        <ProfileTable />
+        <PasswordTable />
       </div>
     </div>
   );

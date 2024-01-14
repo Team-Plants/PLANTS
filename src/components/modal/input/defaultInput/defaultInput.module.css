@@ -14,6 +14,7 @@
 
   @media all and (mobile) {
     width: 100%;
+    max-width: 300px;
     height: 42px;
     font-size: 1.4rem;
   }

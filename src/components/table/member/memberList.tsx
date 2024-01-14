@@ -1,27 +1,23 @@
+import { getPaginationMembers } from '@/api/member';
+import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
+import MemberItem from '@/components/table/member/memberItem';
 import S from '@/components/table/member/memberList.module.css';
-import MemberItem from './memberItem';
+import QUERY_KEYS from '@/constants/queryKeys';
 import { MemberProps } from '@/types/Member';
 import { useQuery } from '@tanstack/react-query';
-import QUERY_KEYS from '@/constants/queryKeys';
-import { getPaginationMembers } from '@/api/member';
-import { Key, useEffect, useState } from 'react';
-import PaginationArrowButton from '@/components/button/arrow/paginationArrowButton';
+import { Dispatch, Key, SetStateAction, useEffect, useState } from 'react';
 
 interface MemberListProps {
   dashboardId: string;
   memberFlag: boolean;
-  setMemberFlag: React.Dispatch<React.SetStateAction<boolean>>;
+  setMemberFlag: Dispatch<SetStateAction<boolean>>;
 }
 
-function MemberList({
-  dashboardId,
-  memberFlag,
-  setMemberFlag,
-}: MemberListProps) {
+function MemberList({ dashboardId, setMemberFlag }: MemberListProps) {
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState<number>(0);
   const [totalCount, setTotalCount] = useState();
-  const { isLoading, data, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.members, page, Number(dashboardId)],
     queryFn: () => getPaginationMembers(page, 4, Number(dashboardId)),
     enabled: true,

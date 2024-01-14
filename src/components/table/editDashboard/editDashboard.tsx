@@ -3,12 +3,12 @@ import ColorChipInput from '@/components/modal/input/colorChipInput/colorChipInp
 import DefaultInput from '@/components/modal/input/defaultInput/defaultInput';
 import S from '@/components/table/editDashboard/editDashboard.module.css';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 interface EditDashboardProps {
   dashboardId: string;
-  setFlag: React.Dispatch<React.SetStateAction<boolean>>;
+  setFlag: Dispatch<SetStateAction<boolean>>;
 }
 
 function EditDashboard({ dashboardId, setFlag }: EditDashboardProps) {

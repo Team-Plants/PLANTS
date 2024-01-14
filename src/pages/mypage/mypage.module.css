@@ -1,3 +1,5 @@
+@value desktop, tablet, mobile from "@/styles/breakpoints.css";
+
 .nestedLayout {
   composes: itemContainer from '@/components/layout/layout.module.css';
 }
@@ -10,7 +12,7 @@
 
 .topContainer {
   display: flex;
-  width: 620px;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 }
